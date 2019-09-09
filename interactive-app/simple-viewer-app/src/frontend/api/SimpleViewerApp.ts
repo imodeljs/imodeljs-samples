@@ -2,7 +2,7 @@
 * Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
-import { BentleyCloudRpcParams } from "@bentley/imodeljs-common";
+import { BentleyCloudRpcParams, ElectronRpcConfiguration } from "@bentley/imodeljs-common";
 import { Config, UrlDiscoveryClient, OidcFrontendClientConfiguration, IOidcFrontendClient } from "@bentley/imodeljs-clients";
 import { IModelApp, OidcBrowserClient, FrontendRequestContext } from "@bentley/imodeljs-frontend";
 import { Presentation } from "@bentley/presentation-frontend";
@@ -61,8 +61,16 @@ export class SimpleViewerApp {
   }
 
   private static async initializeOidc() {
-    const clientId = Config.App.get("imjs_browser_test_client_id");
-    const redirectUri = Config.App.getString("imjs_browser_test_redirect_uri"); // must be set in config
+    let clientId, redirectUri;
+    if (ElectronRpcConfiguration.isElectron) {
+      // We are running in an electron context
+      clientId = Config.App.get("imjs_electron_test_client_id");
+      redirectUri = Config.App.get("imjs_electron_test_redirect_uri");
+    } else {
+      // We are running in a web context
+      clientId = Config.App.get("imjs_browser_test_client_id");
+      redirectUri = Config.App.getString("imjs_browser_test_redirect_uri");
+    }
     const scope = Config.App.getString("imjs_browser_test_scope");
     const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope };
 

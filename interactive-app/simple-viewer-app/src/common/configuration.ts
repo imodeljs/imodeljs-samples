@@ -30,16 +30,23 @@ export default function setupEnv() {
     // of running this sample on localhost, ensure your registration includes http://localhost:3000/signin-callback as a
     // valid redirect URI.
     // -----------------------------------------------------------------------------------------------------------
-    imjs_browser_test_client_id: "imodeljs-spa-test-2686",
+
     // Set this to the registered clientId
     // Note: "imodeljs-spa-test-2686" is setup to work with the (default) localhost redirect URI below
+    imjs_browser_test_client_id: "imodeljs-spa-test-2686",
 
-    imjs_browser_test_redirect_uri: "http://localhost:3000/signin-callback",
+    // Use this client id when running electron app
+    imjs_electron_test_client_id: "spa-nhNhyPAwoeFnwIhOwvnekjy7W",
+
     // Set this to be the registered redirect URI
-    // Note: "http://localhost:3000/signin-callback" is setup to work with the (default) clientId above
+    // Note: "http://localhost:3000/signin-callback" is setup to work with the (default) web clientId above
+    imjs_browser_test_redirect_uri: "http://localhost:3000/signin-callback",
 
-    imjs_browser_test_scope: "openid email profile organization imodelhub context-registry-service:read-only",
+    // This redirect uri is set up to be used with the electron clientId above
+    imjs_electron_test_redirect_uri: "electron://frontend/signin-callback",
+
     // Set this to be the scopes of services the application needs to access
     // Note: The default value set above ensures the minimal working of the application
+    imjs_browser_test_scope: "openid email profile organization imodelhub context-registry-service:read-only",
   });
 }

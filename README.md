@@ -62,6 +62,8 @@ To run these samples, you need to first get the [required tools](https://imodelj
 
     For the purpose of running a sample on localhost, ensure your registration includes http://localhost:3000/signin-callback as a valid redirect URI.
 
+    If you would like to run a sample in electron, another application should be registered which includes [electron://frontend/signin-callback]() as a valid redirect URI.
+
     Note: If you are just testing on localhost you can use the default registration included in the sample. However, it's recommended that you complete the registration, especially since registration is a requirement before the application can be deployed. For more information, see the section on [authorization](https://imodeljs.github.io/iModelJs-docs-output/learning/common/accesstoken/).
 
 3. Configure your app using the values you obtained from the registration process.  In the interactive-app subfolder, edit src/common/config.json and src/common/configuration.ts.
