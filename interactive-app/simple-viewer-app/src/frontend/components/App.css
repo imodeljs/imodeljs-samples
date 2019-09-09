@@ -1,0 +1,74 @@
+/*---------------------------------------------------------------------------------------------
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
+
+.app {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-header {
+  background-color: #222;
+  color: white;
+  padding-left: 20px;
+}
+
+.app .button-open-imodel {
+  width: 200px;
+  margin: 30vh auto auto auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.app-content {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.app-content .top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 70%;
+  width: 70%;
+}
+
+.app-content .bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 30%;
+  width: 70%;
+}
+
+.app-content .right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 30%;
+}
+
+.app-content .right .top {
+  position: absolute;
+  top: 0;
+  height: 50%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content .right .bottom {
+  position: absolute;
+  bottom: 0;
+  height: 50%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}

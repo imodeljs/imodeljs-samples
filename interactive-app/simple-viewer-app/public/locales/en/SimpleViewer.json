@@ -1,0 +1,12 @@
+{
+  "welcome-message": "Welcome to Simple Viewer App",
+  "signing-in": "Signing-in",
+  "components": {
+    "imodel-picker": {
+      "open-imodel": "Open Sample iModel"
+    },
+    "properties": "Properties",
+    "table": "Table",
+    "tree": "Tree"
+  }
+}

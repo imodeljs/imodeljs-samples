@@ -1,0 +1,47 @@
+# Logs
+*.log
+npm-debug.log*
+
+# Coverage directory used by tools like istanbul or nyc
+coverage
+.nyc_output
+
+# Dependency directories
+node_modules/
+package-lock.json
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+
+# Common toolchain intermediate files
+temp
+.DS_Store
+
+# Rush files
+common/temp/**
+package-deps.json
+
+# Build output
+lib
+*.tsbuildinfo
+output
+env_vars.sh
+
+# misc
+*.TileCache*
+*.Tiles

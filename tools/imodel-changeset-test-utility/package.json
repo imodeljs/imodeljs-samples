@@ -1,0 +1,71 @@
+{
+  "name": "imodel-changeset-test-utility",
+  "version": "0.0.55",
+  "main": "lib/index.js",
+  "typings": "lib/index",
+  "description": "Creates and pushed configurable change sets to iModels",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc 1>&2",
+    "clean": "rimraf lib tsconfig.tsbuildinfo",
+    "clean-output": "rimraf ./lib/output",
+    "lint": "tslint --project .",
+    "start": "node ./lib/IModelChangesetCLUtility.js",
+    "test": "node ./node_modules/@bentley/build-tools/scripts/test.js --grep \"#integration\" --invert",
+    "test:integration": "mocha --timeout 300000 --require ts-node/register --require source-map-support/register ./src/test/**/*.test.ts --grep \"#integration\"",
+    "cover": "npm run clean-output && nyc mocha --timeout 300000 --require ts-node/register --require source-map-support/register ./src/test/**/*.test.ts"
+  },
+  "author": {
+    "name": "Bentley Systems, Inc.",
+    "url": "http://www.bentley.com"
+  },
+  "dependencies": {
+    "@bentley/bentleyjs-core": "1.1.0",
+    "@bentley/geometry-core": "1.1.0",
+    "@bentley/imodeljs-backend": "1.1.0",
+    "@bentley/imodeljs-clients": "1.1.0",
+    "@bentley/imodeljs-clients-backend": "1.1.0",
+    "@bentley/imodeljs-common": "1.1.0",
+    "minimist": "^1.2.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@bentley/build-tools": "1.1.0",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.5.7",
+    "chai": "^4.2.0",
+    "debug": "^3.1.0",
+    "mocha": "^5.2.0",
+    "nyc": "^14.0.0",
+    "source-map-support": "^0.5.6",
+    "tslint": "^5.11.0",
+    "ts-node": "^7.0.1",
+    "typemoq": "^2.1.0",
+    "typescript": "^3.5.0"
+  },
+  "nyc": {
+    "include": [
+      "./src/**/*.ts"
+    ],
+    "exclude": [
+      "./src/test/*",
+      "**/*.d.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "source-map-support/register",
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text",
+      "text-summary",
+      "lcov",
+      "cobertura"
+    ],
+    "report-dir": "./lib/test/coverage",
+    "all": true
+  }
+}

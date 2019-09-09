@@ -1,0 +1,12 @@
+# start off ignoring everything, and then add back only the files we want
+*
+!lib/**/*.d.ts
+!lib/**/*.js
+!lib/assets/**
+output/**
+assets/**
+test
+!public/**
+!package.json
+!*.md
+.nyc_ouput

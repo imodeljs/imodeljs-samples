@@ -1,0 +1,29 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/command-line.schema.json",
+  "commands": [ 
+    {
+      "name": "clean",
+      "commandKind": "bulk",
+      "summary": "Cleans build output within each package",
+      "description": "Iterates through each package in the monorepo and runs the 'clean' script",
+      "enableParallelism": true,
+      "ignoreMissingScript": false
+    },
+    {
+      "name": "lint",
+      "commandKind": "bulk",
+      "summary": "Run lint rules on each package",
+      "description": "Iterates through each package in the monorepo and runs the 'lint' script",
+      "enableParallelism": true,
+      "ignoreMissingScript": false
+    },
+    {
+      "name": "test",
+      "commandKind": "bulk",
+      "summary": "Run test script for each package",
+      "description": "Iterates through each package in the monorepo and runs the 'test' script",
+      "enableParallelism": true,
+      "ignoreMissingScript": false
+    }
+  ]
+}

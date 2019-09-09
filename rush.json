@@ -1,0 +1,31 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
+  "rushVersion": "5.10.0",
+  "pnpmVersion": "2.25.7",
+  "nodeSupportedVersionRange": ">=10.6.0 <11.0.0",
+  "projectFolderMinDepth": 2,
+  "ensureConsistentVersions": true,
+  "gitPolicy": {
+    "allowedEmailRegExps": [
+      "[^@]+@users\\.noreply\\.github\\.com"
+    ],
+    "sampleEmail": "mrexample@users.noreply.github.com"
+  },
+  "repository": {
+    "url": "https://github.com/imodeljs/imodeljs-samples"
+  },
+  "projects": [ 
+    {
+      "packageName": "imodel-query-agent",
+      "projectFolder": "agent-app/query-agent"
+    },
+    {
+      "packageName": "simple-viewer-app",
+      "projectFolder": "interactive-app/simple-viewer-app"
+    },
+    {
+      "packageName": "imodel-changeset-test-utility",
+      "projectFolder": "tools/imodel-changeset-test-utility"
+    }
+  ]
+}

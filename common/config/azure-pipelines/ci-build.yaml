@@ -1,0 +1,33 @@
+
+jobs:
+  - job:
+    condition: succeeded()
+    strategy:
+      maxParallel: 2
+      matrix:
+        'Windows':
+          os: vs2017-win2016
+        'Linux':
+          os: ubuntu-16.04
+    pool:
+      vmImage: $(os)
+    steps:
+      - checkout: self
+        clean: all
+      - task: NodeTool@0
+        displayName: 'Install Node 10.15.x'
+        inputs:
+          versionSpec: 10.15.0
+          checkLatest: true
+      - script: |
+                git config user.name "imodeljs-admin"
+                git config user.email "38288322+imodeljs-admin@users.noreply.github.com"
+        displayName: Setup git config
+      - script: node ./common/scripts/install-run-rush.js install
+        displayName: Rush install
+      - script: node ./common/scripts/install-run-rush.js lint
+        displayName: Rush lint
+      - script: node ./common/scripts/install-run-rush.js build
+        displayName: Rush build
+      - script: node ./common/scripts/install-run-rush.js test
+        displayName: Rush test

@@ -1,0 +1,15 @@
+{
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/lib": true
+  },
+  "cSpell.words": [
+    "backend",
+    "bbox",
+    "bentleyjs",
+    "ecschema",
+    "imodel",
+    "imodeljs",
+    "undefine"
+  ]
+}
