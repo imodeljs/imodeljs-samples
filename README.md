@@ -22,6 +22,8 @@ This GitHub repo contains a (growing) collection of sample apps that demonstrate
 
     A collection of tools
 
+To run these samples, you need to first get the [required tools](https://imodeljs.github.io/iModelJs-docs-output/getting-started/#1-get-the-tools) and ensure you have _Node.js 10.x LTS_ installed on your machine.
+
 ## Sample Agent Apps
 
 1. [Query Agent](./agent-app/query-agent/README.md)
