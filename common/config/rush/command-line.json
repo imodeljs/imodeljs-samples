@@ -15,7 +15,8 @@
       "summary": "Run lint rules on each package",
       "description": "Iterates through each package in the monorepo and runs the 'lint' script",
       "enableParallelism": true,
-      "ignoreMissingScript": false
+      "ignoreMissingScript": false,
+      "allowWarningsInSuccessfulBuild": true
     },
     {
       "name": "test",
@@ -23,7 +24,8 @@
       "summary": "Run test script for each package",
       "description": "Iterates through each package in the monorepo and runs the 'test' script",
       "enableParallelism": true,
-      "ignoreMissingScript": false
+      "ignoreMissingScript": false,
+      "allowWarningsInSuccessfulBuild": true
     }
   ]
 }

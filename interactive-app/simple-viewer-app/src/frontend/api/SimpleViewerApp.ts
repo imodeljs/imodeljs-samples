@@ -15,7 +15,6 @@ import initRpc from "./rpc";
 // initialize logging
 initLogging();
 
-// subclass of IModelApp needed to use imodeljs-frontend
 export class SimpleViewerApp {
 
   private static _isReady: Promise<void>;

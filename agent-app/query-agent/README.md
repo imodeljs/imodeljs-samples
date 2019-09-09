@@ -6,11 +6,20 @@ imodel-query-agent is an example of an [agent](https://imodeljs.github.io/iModel
 
 More specifically, this sample application demonstrates use of iModel.js API to:
 
-* Listen to 'Change Sets' posted to the iModels on the iModelHub.
-* Listen to 'Named Versions' created for iModels on the iModelHub.
-* Query and download these Change Sets from the iModelHub.
-* Parse the Change Sets to construct a 'Change Summary' of useful information contained in them.
-* Iterate and query the information contained in the Change Summary.
+    * Listen to 'Change Sets' posted to the iModels on the iModelHub.
+    * Listen to 'Named Versions' created for iModels on the iModelHub.
+    * Query and download these Change Sets from the iModelHub.
+    * Parse the Change Sets to construct a 'Change Summary' of useful information contained in them.
+    * Iterate and query the information contained in the Change Summary.
+
+Watch the console for various messages that show the progress:
+
+    * Register event handlers that listen to Change Sets being posted to the iModelHub.
+    * Register event handlers that listen to Named Versions created on the iModelHub.
+    * Receive notification of a new Change Set posted to the iModelHub.
+    * Receive notification of a new Named Version created on the iModelHub.
+    * Extract Change Summary information from the Change Set.
+    * Dump the contents of the Change Summary as a JSON file to disk.
 
 See http://imodeljs.org for comprehensive documentation on the iModel.js API and the various constructs used in this sample.
 
@@ -20,31 +29,15 @@ See http://imodeljs.org for comprehensive documentation on the iModel.js API and
 
 ## Development Setup
 
-1. (Optional) Create a sample project using the procedure at [Developer Registration](https://imodeljs.github.io/iModelJs-docs-output/getting-started/registration-dashboard/?tab=1).  This step is not needed if you already have a project to test with.
+1. Follow the [Agent Development Setup](../../README.md) section under Sample Agent Apps to configure, install dependencies, build, and run the app.
 
-1. (Required) Register your application at [Developer Registration](https://imodeljs.github.io/iModelJs-docs-output/getting-started/registration-dashboard/?tab=0). Select "Agent" from the app type dropdown. For more information, see the section on [authorization](https://imodeljs.github.io/iModelJs-docs-output/learning/common/accesstoken/).
-
-1. (Required) Add your agent's identity email as a project participant on your project. Edit your [sample project](https://imodeljs.github.io/iModelJs-docs-output/getting-started/registration-dashboard/?tab=1) and add {client_id}@apps.imsoidc.bentley.com as a project particpant. If adding the user does not work at first, please wait a few minutes. The identity user is being created in the background, this can take up to ten minutes.
-
-1. Edit [src/QueryAgentConfig.ts](./src/QueryAgentConfig.ts) to set the values you obtained from registration.
-
-1. Install the dependencies with `npm install`
-
-1. Build the source with `npm run build`
-
-1. (Optional) Follow the Development Setup process to setup the [imodel-changeset-test-utility](https://github.com/imodeljs/imodel-changeset-test-utility/blob/master/README.md). The utility can be used to generate and push sample change sets to the iModelHub that can then be consumed by this sample.
+2. (Optional) Follow the Development Setup process to setup the [imodel-changeset-test-utility](../../tools/imodel-changeset-test-utility/README.md). The utility can be used to generate and push sample change sets to the iModelHub that can then be consumed by this sample.
 
 ## Run Query Agent
 
-1. Start this sample application with `npm start`. Watch the console for various messages that show the progress:
-    * Register event handlers that listen to Change Sets being posted to the iModelHub.
-    * Register event handlers that listen to Named Versions created on the iModelHub.
-    * Receive notification of a new Change Set posted to the iModelHub.
-    * Receive notification of a new Named Version created on the iModelHub.
-    * Extract Change Summary information from the Change Set.
-    * Dump the contents of the Change Summary as a JSON file to disk.
+1. Start this sample application with `npm start`. 
 
-1. (Optional) Immediately start the imodel-changeset-test-utility to generate and push change sets by following the procedure documented in its [README](../../tools/imodel-changeset-test-utility/README.md).
+2. (Optional) Immediately start the imodel-changeset-test-utility to generate and push change sets by following the procedure documented in its [README](../../tools/imodel-changeset-test-utility/README.md).
 
 ## Run automated tests
 

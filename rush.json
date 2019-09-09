@@ -20,6 +20,10 @@
       "projectFolder": "agent-app/query-agent"
     },
     {
+      "packageName": "basic-viewport-app",
+      "projectFolder": "interactive-app/basic-viewport-app"
+    },
+    {
       "packageName": "simple-viewer-app",
       "projectFolder": "interactive-app/simple-viewer-app"
     },

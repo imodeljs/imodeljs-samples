@@ -6,16 +6,11 @@ import * as React from "react";
 import { Id64, Id64String, OpenMode } from "@bentley/bentleyjs-core";
 import { AccessToken, ConnectClient, IModelQuery, Project, Config } from "@bentley/imodeljs-clients";
 import { IModelApp, IModelConnection, FrontendRequestContext, AuthorizedFrontendRequestContext, SpatialViewState, DrawingViewState } from "@bentley/imodeljs-frontend";
-import { Presentation, SelectionChangeEventArgs, ISelectionProvider } from "@bentley/presentation-frontend";
 import { Button, ButtonSize, ButtonType, Spinner, SpinnerSize } from "@bentley/ui-core";
-import { SignIn } from "@bentley/ui-components";
-import { SimpleViewerApp } from "../api/SimpleViewerApp";
-import PropertiesWidget from "./Properties";
-import GridWidget from "./Table";
-import TreeWidget from "./Tree";
-import ViewportContentControl from "./Viewport";
+import { SignIn, ViewportComponent } from "@bentley/ui-components";
+import { BasicViewportApp } from "../api/BasicViewportApp";
+import Toolbar from "./Toolbar";
 import "@bentley/icons-generic-webfont/dist/bentley-icons-generic-webfont.css";
-import "./App.css";
 
 // tslint:disable: no-console
 // cSpell:ignore imodels
@@ -26,7 +21,6 @@ export interface AppState {
     accessToken?: AccessToken;
     isLoading?: boolean;
   };
-  offlineIModel: boolean;
   imodel?: IModelConnection;
   viewDefinitionId?: Id64String;
 }
@@ -42,18 +36,14 @@ export default class App extends React.Component<{}, AppState> {
         isLoading: false,
         accessToken: undefined,
       },
-      offlineIModel: false,
     };
   }
 
   public componentDidMount() {
-    // subscribe for unified selection changes
-    Presentation.selection.selectionChange.addListener(this._onSelectionChanged);
-
     // Initialize authorization state, and add listener to changes
-    SimpleViewerApp.oidcClient.onUserStateChanged.addListener(this._onUserStateChanged);
-    if (SimpleViewerApp.oidcClient.isAuthorized) {
-      SimpleViewerApp.oidcClient.getAccessToken(new FrontendRequestContext()) // tslint:disable-line: no-floating-promises
+    BasicViewportApp.oidcClient.onUserStateChanged.addListener(this._onUserStateChanged);
+    if (BasicViewportApp.oidcClient.isAuthorized) {
+      BasicViewportApp.oidcClient.getAccessToken(new FrontendRequestContext()) // tslint:disable-line: no-floating-promises
         .then((accessToken: AccessToken | undefined) => {
           this.setState((prev) => ({ user: { ...prev.user, accessToken, isLoading: false } }));
         });
@@ -61,45 +51,13 @@ export default class App extends React.Component<{}, AppState> {
   }
 
   public componentWillUnmount() {
-    // unsubscribe from unified selection changes
-    Presentation.selection.selectionChange.removeListener(this._onSelectionChanged);
     // unsubscribe from user state changes
-    SimpleViewerApp.oidcClient.onUserStateChanged.removeListener(this._onUserStateChanged);
-  }
-
-  private _onSelectionChanged = (evt: SelectionChangeEventArgs, selectionProvider: ISelectionProvider) => {
-    const selection = selectionProvider.getSelection(evt.imodel, evt.level);
-    if (selection.isEmpty) {
-      console.log("========== Selection cleared ==========");
-    } else {
-      console.log("========== Selection change ===========");
-      if (selection.instanceKeys.size !== 0) {
-        // log all selected ECInstance ids grouped by ECClass name
-        console.log("ECInstances:");
-        selection.instanceKeys.forEach((ids, ecclass) => {
-          console.log(`${ecclass}: [${[...ids].join(",")}]`);
-        });
-      }
-      if (selection.nodeKeys.size !== 0) {
-        // log all selected node keys
-        console.log("Nodes:");
-        selection.nodeKeys.forEach((key) => console.log(JSON.stringify(key)));
-      }
-      console.log("=======================================");
-    }
-  }
-
-  private _onRegister = () => {
-    window.open("https://imodeljs.github.io/iModelJs-docs-output/getting-started/#developer-registration", "_blank");
-  }
-
-  private _onOffline = () => {
-    this.setState((prev) => ({ user: { ...prev.user, isLoading: false }, offlineIModel: true }));
+    BasicViewportApp.oidcClient.onUserStateChanged.removeListener(this._onUserStateChanged);
   }
 
   private _onStartSignin = async () => {
     this.setState((prev) => ({ user: { ...prev.user, isLoading: true } }));
-    await SimpleViewerApp.oidcClient.signIn(new FrontendRequestContext());
+    await BasicViewportApp.oidcClient.signIn(new FrontendRequestContext());
   }
 
   private _onUserStateChanged = (accessToken: AccessToken | undefined) => {
@@ -139,34 +97,26 @@ export default class App extends React.Component<{}, AppState> {
       this.setState({ imodel, viewDefinitionId });
     } catch (e) {
       // if failed, close the imodel and reset the state
-      if (this.state.offlineIModel) {
-        await imodel.closeSnapshot();
-      } else {
-        await imodel.close();
-      }
+      await imodel.close();
       this.setState({ imodel: undefined, viewDefinitionId: undefined });
       alert(e.message);
     }
-  }
-
-  private get _signInRedirectUri() {
-    const split = (Config.App.get("imjs_browser_test_redirect_uri") as string).split("://");
-    return split[split.length - 1];
   }
 
   /** The component's render method */
   public render() {
     let ui: React.ReactNode;
 
-    if (this.state.user.isLoading || window.location.href.includes(this._signInRedirectUri)) {
+    const signInRedirectUri = "localhost:3000/signin-callback";
+    if (this.state.user.isLoading || window.location.href.includes(signInRedirectUri)) {
       // if user is currently being loaded, just tell that
-      ui = `${IModelApp.i18n.translate("SimpleViewer:signing-in")}...`;
-    } else if (!this.state.user.accessToken && !this.state.offlineIModel) {
+      ui = `signing-in...`;
+    } else if (!this.state.user.accessToken) {
       // if user doesn't have and access token, show sign in page
-      ui = (<SignIn onSignIn={this._onStartSignin} onRegister={this._onRegister} onOffline={this._onOffline} />);
+      ui = (<SignIn onSignIn={this._onStartSignin}/>);
     } else if (!this.state.imodel || !this.state.viewDefinitionId) {
       // if we don't have an imodel / view definition id - render a button that initiates imodel open
-      ui = (<OpenIModelButton accessToken={this.state.user.accessToken} offlineIModel={this.state.offlineIModel} onIModelSelected={this._onIModelSelected} />);
+      ui = (<OpenIModelButton accessToken={this.state.user.accessToken} onIModelSelected={this._onIModelSelected} />);
     } else {
       // if we do have an imodel and view definition id - render imodel components
       ui = (<IModelComponents imodel={this.state.imodel} viewDefinitionId={this.state.viewDefinitionId} />);
@@ -174,10 +124,7 @@ export default class App extends React.Component<{}, AppState> {
 
     // render the app
     return (
-      <div className="app">
-        <div className="app-header">
-          <h2>{IModelApp.i18n.translate("SimpleViewer:welcome-message")}</h2>
-        </div>
+      <div>
         {ui}
       </div>
     );
@@ -187,7 +134,6 @@ export default class App extends React.Component<{}, AppState> {
 /** React props for [[OpenIModelButton]] component */
 interface OpenIModelButtonProps {
   accessToken: AccessToken | undefined;
-  offlineIModel: boolean;
   onIModelSelected: (imodel: IModelConnection | undefined) => void;
 }
 /** React state for [[OpenIModelButton]] component */
@@ -232,13 +178,8 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
     let imodel: IModelConnection | undefined;
     try {
       // attempt to open the imodel
-      if (this.props.offlineIModel) {
-        const offlineIModel = Config.App.getString("imjs_offline_imodel");
-        imodel = await IModelConnection.openSnapshot(offlineIModel);
-      } else {
-        const info = await this.getIModelInfo();
-        imodel = await IModelConnection.open(info.projectId, info.imodelId, OpenMode.Readonly);
-      }
+      const info = await this.getIModelInfo();
+      imodel = await IModelConnection.open(info.projectId, info.imodelId, OpenMode.Readonly);
     } catch (e) {
       alert(e.message);
     }
@@ -247,8 +188,8 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
 
   public render() {
     return (
-      <Button size={ButtonSize.Large} buttonType={ButtonType.Primary} className="button-open-imodel" onClick={this._onClick}>
-        <span>{IModelApp.i18n.translate("SimpleViewer:components.imodel-picker.open-imodel")}</span>
+      <Button size={ButtonSize.Large} buttonType={ButtonType.Primary} onClick={this._onClick}>
+        <span>Open iModel</span>
         {this.state.isLoading ? <span style={{ marginLeft: "8px" }}><Spinner size={SpinnerSize.Small} /></span> : undefined}
       </Button>
     );
@@ -260,29 +201,18 @@ interface IModelComponentsProps {
   imodel: IModelConnection;
   viewDefinitionId: Id64String;
 }
-/** Renders a viewport, a tree, a property grid and a table */
+
+/** Renders a viewport */
 class IModelComponents extends React.PureComponent<IModelComponentsProps> {
   public render() {
-    // ID of the presentation ruleset used by all of the controls; the ruleset
-    // can be found at `assets/presentation_rules/Default.PresentationRuleSet.xml`
-    const rulesetId = "Default";
     return (
-      <div className="app-content">
-        <div className="top-left">
-          <ViewportContentControl imodel={this.props.imodel} rulesetId={rulesetId} viewDefinitionId={this.props.viewDefinitionId} />
-        </div>
-        <div className="right">
-          <div className="top">
-            <TreeWidget imodel={this.props.imodel} rulesetId={rulesetId} />
-          </div>
-          <div className="bottom">
-            <PropertiesWidget imodel={this.props.imodel} rulesetId={rulesetId} />
-          </div>
-        </div>
-        <div className="bottom">
-          <GridWidget imodel={this.props.imodel} rulesetId={rulesetId} />
-        </div>
-      </div>
+      <>
+        <ViewportComponent
+          style={{ height: "600px" }}
+          imodel={this.props.imodel}
+          viewDefinitionId={this.props.viewDefinitionId} />
+        <Toolbar />
+      </>
     );
   }
 }
