@@ -5,12 +5,6 @@
   "nodeSupportedVersionRange": ">=10.6.0 <11.0.0",
   "projectFolderMinDepth": 2,
   "ensureConsistentVersions": true,
-  "gitPolicy": {
-    "allowedEmailRegExps": [
-      "[^@]+@users\\.noreply\\.github\\.com"
-    ],
-    "sampleEmail": "mrexample@users.noreply.github.com"
-  },
   "repository": {
     "url": "https://github.com/imodeljs/imodeljs-samples"
   },

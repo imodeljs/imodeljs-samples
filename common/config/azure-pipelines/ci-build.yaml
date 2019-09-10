@@ -19,10 +19,6 @@ jobs:
         inputs:
           versionSpec: 10.15.0
           checkLatest: true
-      - script: |
-                git config user.name "imodeljs-admin"
-                git config user.email "38288322+imodeljs-admin@users.noreply.github.com"
-        displayName: Setup git config
       - script: node ./common/scripts/install-run-rush.js install
         displayName: Rush install
       - script: node ./common/scripts/install-run-rush.js lint
