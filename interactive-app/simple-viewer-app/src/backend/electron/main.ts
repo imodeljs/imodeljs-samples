@@ -16,6 +16,8 @@ export default function initialize(rpcs: RpcInterfaceDefinition[]) {
     height: 800,
     webPreferences: {
       experimentalFeatures: true, // Needed for CSS Grid support
+      nodeIntegration: true,
+      preload: path.join(__dirname, "preload.js"),
     },
     autoHideMenuBar: true,
     show: false,

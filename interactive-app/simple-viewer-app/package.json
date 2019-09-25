@@ -47,6 +47,10 @@
         {
           "source": "./src/frontend/plugins/public/**/*",
           "dest": "./lib/webresources"
+        },
+        {
+          "source": "./src/**/*.js",
+          "dest": "./lib"
         }
       ],
       "webpack": {

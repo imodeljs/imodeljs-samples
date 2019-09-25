@@ -2,22 +2,24 @@
 * Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
+import { Config } from "@bentley/imodeljs-clients";
 import { Application } from "spectron";
 import { assert } from "chai";
 import * as path from "path";
 import * as app from "electron";
 
-describe("Application launch", () => {
+describe("Application", () => {
   let testApp: Application;
-  beforeEach(async () => {
+  before(async () => {
     testApp = new Application({
       path: app as any,
       args: [path.join(__dirname, "..", "..", "lib/backend/main.js")],
+      requireName: "electronRequire",
     });
     return testApp.start();
   });
 
-  afterEach(async () => {
+  after(async () => {
     if (testApp && testApp.isRunning()) {
       return testApp.stop();
     } else {
@@ -25,19 +27,31 @@ describe("Application launch", () => {
     }
   });
 
-  it("shows an initial window", async () => {
+  it("opens window", () => {
+    testApp.client.waitUntilWindowLoaded();
     return testApp.client.getWindowCount().then((count) => {
+      // Only one window should open, note that if
+      // dev tools are open window count will equal 2
       assert.equal(count, 1);
-      // Please note that getWindowCount() will return 2 if `dev tools` are opened.
-      // assert.equal(count, 2)
     });
   });
 
-  it("sign page", async () => {
-    testApp.client.waitForExist(".components-signin-offline").then((t) => {
-      assert.isTrue(t);
-    }).waitForExist(".components-signin-button").then((t) => {
-      assert.isTrue(t);
-    });
+  it("opens sign-in page", async () => {
+    return testApp.client
+      .waitForExist(".components-signin-prompt")
+      .element(".components-signin-button").click()
+      .waitForExist(".form-signin");
+  });
+
+  it("can sign-in to bentley ims", async () => {
+    return testApp.client
+      .setValue("#EmailAddress", Config.App.getString("imjs_test_regular_user_name")) // 1st sign in page
+      .setValue("#Password", Config.App.getString("imjs_test_regular_user_password"))
+      .element("#submitLogon").click()
+      .waitForExist("#authArea")
+      .setValue("#userNameInput", Config.App.getString("imjs_test_regular_user_name")) // 2nd sign in page
+      .setValue("#passwordInput", Config.App.getString("imjs_test_regular_user_password"))
+      .element("#submitButton").click()
+      .waitForExist("#submitButton", undefined, true); // Passes if we leave the sign in page
   });
 });
