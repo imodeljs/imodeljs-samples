@@ -10,6 +10,9 @@
     "win32",
     "linux"
   ],
+  "engines": {
+    "node": ">=10.11.0 <11.0"
+  },
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -21,12 +24,12 @@
     "clean": "rimraf lib",
     "lint": "tslint --project . 1>&2",
     "test": "npm run test:unit",
-    "test:unit": "mocha --opts ./test/unit/mocha.opts \"test/unit/**/*.test.ts*\"",
-    "test:integration": "mocha --opts ./test/integration/mocha.opts \"test/integration/**/*.test.ts*\"",
+    "test:unit": "mocha --opts ./test/utils/mocha.opts \"./test/unit/**/*.test.ts*\"",
+    "test:integration": "mocha --opts ./test/utils/mocha.opts \"test/integration/**/*.test.ts*\"",
     "test:e2e": "start-server-and-test test:e2e:start-app http-get://localhost:3000 test:e2e:test-app",
     "test:e2e:start-app": "env-cmd ./lib/webresources/config.json run-p \"start:webserver\" \"start:backend\"",
     "test:e2e:test-app": "mocha --opts ./test/end-to-end/mocha.opts \"test/end-to-end/**/*.test.ts*\"",
-    "test:electron": "mocha --opts ./test/electron/mocha.opts \"test/electron/**/*.test.ts*\""
+    "test:electron": "mocha --opts ./test/utils/mocha.opts \"test/electron/**/*.test.ts*\""
   },
   "iModelJs": {
     "buildModule": {
@@ -128,8 +131,8 @@
     "chai": "^4.2.0",
     "chai-jest-snapshot": "^2.0.0",
     "chromedriver": "^75.0.0",
-    "electron": "^5.0.6",
-    "electron-chromedriver": "^6.0.0-beta.3",
+    "electron": "^4.0.0",
+    "electron-chromedriver": "^4.0.0",
     "env-cmd": "^8.0.2",
     "ignore-styles": "^5.0.1",
     "jsdom": "^13.0.0",

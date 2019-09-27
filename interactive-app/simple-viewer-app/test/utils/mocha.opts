@@ -1,0 +1,16 @@
+# A couple standard opts used for all test types
+--check-leaks
+--no-timeouts
+
+# Required for all test types because the *.ts files are provided to mocha.  If the compiled .js files were given, this wouldn't be needed.
+--require ts-node/register
+
+# Allows the "window" to be defined in the tests for compilation
+--require jsdom-global/register
+
+# Ignore style imports that would normally be resolved by Webpack, however in Mocha they'll throw errors.
+--require ignore-styles
+
+# Run as a precursor to the entire test run to 
+--file ./test/utils/setupTests.js
+

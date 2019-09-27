@@ -25,5 +25,5 @@ jobs:
         displayName: Rush lint
       - script: node ./common/scripts/install-run-rush.js build
         displayName: Rush build
-      - script: node ./common/scripts/install-run-rush.js test
+      - script: node ./common/scripts/install-run-rush.js test -v
         displayName: Rush test
