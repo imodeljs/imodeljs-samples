@@ -8,7 +8,7 @@ import { HubUtility } from "./HubUtility";
 import { IModelDbHandler } from "./IModelDbHandler";
 import { TestChangesetSequence } from "./TestChangesetSequence";
 import { Id64String, Logger, assert, Guid } from "@bentley/bentleyjs-core";
-import { IModelDb } from "@bentley/imodeljs-backend";
+import { IModelDb, GeometricElement } from "@bentley/imodeljs-backend";
 import { AccessToken, AuthorizedClientRequestContext } from "@bentley/imodeljs-clients";
 import { YawPitchRollAngles, Point3d, Box, Vector3d } from "@bentley/geometry-core";
 import { GeometryStreamBuilder, GeometryStreamProps, IModelVersion, GeometricElement3dProps, Code } from "@bentley/imodeljs-common";
@@ -136,7 +136,7 @@ export class ChangesetGenerator {
 
   private updateElement(eid: Id64String, newUserLabel: string, newSize: Point3d = new Point3d(10, 10, 10)) {
 
-    const element = this._iModelDb!.elements.getElement(eid);
+    const element: GeometricElement = this._iModelDb!.elements.getElement<GeometricElement>(eid);
     if (!element)
       throw new Error(`Element with name ${name} not found`);
 

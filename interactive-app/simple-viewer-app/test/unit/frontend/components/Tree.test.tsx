@@ -24,6 +24,7 @@ class EmptyTreeDataProvider implements IPresentationTreeDataProvider {
   public getNodeKey = () => ({ type: "testType", pathFromRoot: ["root"] });
   public getNodes = async () => this._nodes;
   public getNodesCount = async () => this._nodes.length;
+  public loadHierarchy = async () => { return; }
 }
 
 describe("Tree", () => {
