@@ -8,7 +8,11 @@ If you have questions, or wish to contribute to the iModel.js samples, see our [
 
 ## Overview of Repo
 
-This GitHub repo contains a (growing) collection of sample apps that demonstrate various implementations using iModel.js.  Each of the samples are self-contained and, as such, can be copied out of the cloned source tree and built independently.  These samples are intended to serve as training material and all submissions are welcome and encouraged.  The samples are organized in sub-folders according to the type of app:  
+[![Build Status](https://dev.azure.com/imodeljs/imodeljs/_apis/build/status/iModel.js%20Samples?branchName=master)](https://dev.azure.com/imodeljs/imodeljs/_build/latest?definitionId=5&branchName=master)
+
+This GitHub repo contains a (growing) collection of sample apps that demonstrate various implementations using iModel.js.  To handle managing and building all of the samples, it is built using [Rush](http://rushjs.io/).
+
+Each of the samples are self-contained and, as such, can be copied out of the cloned source tree and built independently.  These samples are intended to serve as training material and all submissions are welcome and encouraged.  The samples are organized in sub-folders according to the type of app:  
 
 1. [agent-app](#sample-agent-apps)
 
@@ -96,21 +100,21 @@ Follow the [steps](#building-samples) to build the samples.
 1. Install the dependencies
 
     ```sh
-    rush update
+    node /common/scripts/install-run-rush update
     ```
 
 2. Build all sample applications
 
     ```sh
-    rush build
+    node /common/scripts/install-run-rush build
     ```
 
     or to build a single application (replace app-name):
 
     ```sh
-    rush build --to app-name
+    node /common/scripts/install-run-rush build --to app-name
     ```
 
 ## Unit tests
 
-Run with `rush test`
+Run with `node /common/scripts/install-run-rush test`
