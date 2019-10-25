@@ -5,6 +5,7 @@
 
 import { QueryAgent } from "./QueryAgent";
 import { QueryAgentConfig } from "./QueryAgentConfig";
+import { Logger } from "@bentley/bentleyjs-core";
 import * as bodyParser from "body-parser";
 import * as express from "express";
 import * as http from "http";
@@ -32,32 +33,34 @@ export class QueryAgentWebServer {
 
     webServer.set("port", QueryAgentConfig.port);
     // tslint:disable-next-line:no-console
-    this._server = webServer.listen(webServer.get("port"), () => console.log("iModel Query Agent listening on http://localhost:" + webServer.get("port")))
+    this._server = webServer.listen(webServer.get("port"), () => Logger.logInfo(QueryAgentConfig.loggingCategory, "iModel Query Agent listening on http://localhost:" + webServer.get("port")))
       .on("error", (e: any) => this._handlePortError(QueryAgentConfig.port, e));
-
   }
+
   private _handlePortError = (port: number, error: Error) => {
-    // tslint:disable-next-line:no-console
-    console.log(`Error: Unable to connect to port # ${port}. Make sure nothing else is listening on this port or try a different one... ${error}\n\n`);
+    Logger.logError(QueryAgentConfig.loggingCategory, `Unable to connect to port # ${port}. Make sure nothing else is listening on this port or try a different one... ${error}\n\n`);
     throw error;
   }
+
   public getServer(): http.Server {
-    return this._server!;
+    return this._server;
   }
+
   public async run(listenTime?: number): Promise<boolean> {
-    // Initialize the iModelJS backend sitting behind this web server
+    // Initialize the iModel.js backend sitting behind this web server
     try {
       await this._agent.listenForAndHandleChangesets(listenTime || QueryAgentConfig.listenTime);
     } catch (error) {
       this.close();
+      Logger.logError(QueryAgentConfig.loggingCategory, error);
       return false;
     }
     return true;
   }
+
   public close(): void {
     try {
       this._server!.close();
-    } catch (error) {
-    }
+    } catch (error) { }
   }
 }

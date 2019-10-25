@@ -1,5 +1,3 @@
-trigger:
-- master
 
 jobs:
   - job:
@@ -21,13 +19,9 @@ jobs:
         inputs:
           versionSpec: 10.15.0
           checkLatest: true
-      - script: node ./common/scripts/install-run-rush.js check
-        displayName: Rush check
       - script: node ./common/scripts/install-run-rush.js install
         displayName: Rush install
-      - script: node ./common/scripts/install-run-rush.js lint
-        displayName: Rush lint
       - script: node ./common/scripts/install-run-rush.js build
         displayName: Rush build
-      - script: node ./common/scripts/install-run-rush.js test -v
-        displayName: Rush test
+      - script: node ./common/scripts/install-run-rush.js test:integration -v
+        displayName: Rush Integration Test

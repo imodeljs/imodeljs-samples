@@ -1,0 +1,88 @@
+{
+  // Use IntelliSense to learn about possible Node.js debug attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach to node process",
+      "processId": "${command:PickProcess}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run iModel Query Agent Tests (Integration)",
+      "program": "${workspaceFolder}/agent-app/query-agent/node_modules/@bentley/build-tools/scripts/test",
+      "cwd": "${workspaceFolder}/agent-app/query-agent",
+      "args": [
+        "--testDir=${workspaceFolder}/agent-app/query-agent/lib/test",
+        "--debug",
+        "--grep",
+        "#integration",
+      ],
+      "env": {
+        "imjs_agent_client_id": "",
+        "imjs_agent_client_secret": "",
+        "imjs_agent_imodel_name": "",
+        "imjs_agent_project_name": "",
+        "imjs_browser_test_client_id": "",
+        "imjs_test_imodel": "",
+        "imjs_test_project": "",
+        "imjs_test_regular_user_name": "",
+        "imjs_test_regular_user_password": ""
+      },
+      "port": 9229,
+      "protocol": "inspector",
+      "outputCapture": "std"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run iModel Query Agent Tests",
+      "program": "${workspaceFolder}/agent-app/query-agent/node_modules/@bentley/build-tools/scripts/test",
+      "cwd": "${workspaceFolder}/agent-app/query-agent",
+      "args": [
+        "--testDir=${workspaceFolder}/agent-app/query-agent/lib/test/",
+        "--debug",
+        "--grep",
+        "#integration",
+        "--invert"
+      ],
+      "port": 9229,
+      "protocol": "inspector",
+      "outputCapture": "std"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run Simple Viewer App Tests (Integration)",
+      "program": "${workspaceFolder}/interactive-app/simple-viewer-app/node_modules/mocha/mocha.js",
+      "cwd": "${workspaceFolder}/interactive-app/simple-viewer-app",
+      "args": [
+        "--testDir=${workspaceFolder}/interactive-app/simple-viewer-app/test/integration/",
+        "--debug",
+        "--opts",
+        "${workspaceFolder}/interactive-app/simple-viewer-app/test/utils/mocha.opts"
+      ],
+      "port": 9229,
+      "protocol": "inspector",
+      "outputCapture": "std"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run Simple Viewer App Tests (Unit)",
+      "program": "${workspaceFolder}/interactive-app/simple-viewer-app/node_modules/mocha/bin/_mocha",
+      "cwd": "${workspaceFolder}/interactive-app/simple-viewer-app",
+      "args": [
+        "--opts",
+        "${workspaceFolder}/interactive-app/simple-viewer-app/test/utils/mocha.opts",
+        "${workspaceFolder}/interactive-app/simple-viewer-app/test/unit/**/*.test.ts"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}

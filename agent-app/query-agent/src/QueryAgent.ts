@@ -79,7 +79,7 @@ export class QueryAgent {
     // Wait for callbacks from events in the iModelHub
     await pause(listenFor);
 
-    if (this._iModelDb)
+    if (this._iModelDb && this._iModelDb.isOpen)
       await this._iModelDb.close(authCtx);
     // Unsubscribe from events (if necessary)
     if (deleteChangeSetListener)

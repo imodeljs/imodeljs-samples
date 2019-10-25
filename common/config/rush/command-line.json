@@ -26,6 +26,15 @@
       "enableParallelism": true,
       "ignoreMissingScript": false,
       "allowWarningsInSuccessfulBuild": true
-    }
+    },
+    {
+      "name": "test:integration",
+      "commandKind": "bulk",
+      "summary": "Run integration tests for each package",
+      "description": "Iterates through each package in the monorepo and runs the 'test:integration' script",
+      "enableParallelism": true,
+      "ignoreMissingScript": false,
+      "allowWarningsInSuccessfulBuild": true
+    },
   ]
 }

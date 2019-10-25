@@ -39,7 +39,25 @@ export async function fillInSignin(page: Puppeteer.Page) {
 
   // Try to catch failed logins
   try {
-    await page.waitForSelector("#messageControlDiv", { visible: true, timeout: 1000 }).then(() => { throw new Error(`Failed login to ${page.url()} for ${Config.App.getString("imjs_test_regular_user_name")} using ${Config.App.getString("IMJS_BUDDI_RESOLVE_URL_USING_REGION")}`); });
+    const errorSelectors = ["#messageControlDiv", ".consent-buttons"];
+    const jsHandle = await page.waitForFunction((selectors) => {
+      for (const selector of selectors) {
+        if (document.querySelector(selector) !== null) {
+          return selector;
+        }
+      }
+      return false;
+    }, {}, errorSelectors);
+    const selector = await jsHandle.jsonValue();
+
+    // If .consent-buttons is found. Click the consent button
+    if (selector === errorSelectors[1]) {
+      await page.click("#connect-main > div > div > form > div.consent-buttons > div.consent-buttons-nowrap > button.bwc-button-primary");
+    }
+    else if (selector === errorSelectors[0]) {
+      // #messageControlDiv found. Throw failed login error.
+      throw new Error(`Failed login to ${page.url()} for ${Config.App.getString("imjs_test_regular_user_name")} using ${Config.App.getString("IMJS_BUDDI_RESOLVE_URL_USING_REGION")}`);
+    }
   } catch (e) {
     // Ignore Timeout errors
     if (!e.name.includes("Timeout")) {

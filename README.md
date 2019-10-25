@@ -118,3 +118,32 @@ Follow the [steps](#building-samples) to build the samples.
 ## Unit tests
 
 Run with `node /common/scripts/install-run-rush test`
+
+## Integration tests
+
+Run with `node /common/scripts/install-run-rush test:integration`
+
+The integration tests require all configuration variables to be set either in each app's [`Config.App`](https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-clients/config/config) object or as environment variables. The full list of variables required by the integration test are:
+
+*Interactive Apps*
+
+| Variable | Description |
+| - | - |
+| imjs_test_regular_user_name | The user who should sign in during the test |
+| imjs_test_regular_user_password | The user's password |
+| imjs_browser_test_client_id | The OIDC client id of the registered app.  Used for Simple Viewer App tests |
+| imjs_test_project | A CONNECT Project that the user is member of |
+| imjs_test_imodel | The iModel in the above Project to use for tests. |
+
+*Agent Apps*
+
+| Variable | Description |
+| - | - |
+| imjs_agent_client_id | The OIDC client id for an agent.  Used for the iModel Changeset Utility |
+| imjs_agent_client_secret | The OIDC client secret for the above agent_client_id.  Used for the iModel Changeset Utility |
+| imjs_agent_project_name | A CONNECT Project the above client ID is member of. |
+| imjs_agent_imodel_name | The iModel in the above Project to use for tests. |
+
+> All of the above variables can be setup on the registration pages on the [Getting Started](https://imodeljs.github.io/iModelJs-docs-output/getting-started/) page.
+
+> NOTE: The imjs_agent_client_id has to be added to the Project with the following email format, `{Client Id}@apps.imsoidc.bentley.com`.  This new user to the project can be added through the [Project registration dashboard](https://imodeljs.github.io/iModelJs-docs-output/getting-started/registration-dashboard/?tab=1)

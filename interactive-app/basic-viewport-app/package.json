@@ -19,6 +19,7 @@
     "start:servers": "env-cmd ./lib/webresources/config.json run-p \"start:webserver\" \"start:backend\"",
     "lint": "tslint --project . 1>&2",
     "test": "",
+    "test:integration": "",
     "clean": "rimraf lib"
   },
   "iModelJs": {

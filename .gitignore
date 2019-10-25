@@ -40,7 +40,7 @@ package-deps.json
 lib
 *.tsbuildinfo
 output
-env_vars.sh
+env_vars.*
 
 # misc
 *.TileCache*

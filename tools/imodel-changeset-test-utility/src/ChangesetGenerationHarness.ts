@@ -52,7 +52,7 @@ export class ChangesetGenerationHarness {
           this._hubUtility = new HubUtility();
         this._accessToken = await this._hubUtility.login();
         const authCtx = new AuthorizedClientRequestContext(this._accessToken!);
-        Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Attempting to file projectId for ${ChangesetGenerationConfig.projectName}`);
+        Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Attempting to find projectId for ${ChangesetGenerationConfig.projectName}`);
         this._projectId = await this._hubUtility.queryProjectIdByName(authCtx, ChangesetGenerationConfig.projectName);
         this._iModelId = await this._hubUtility.queryIModelIdByName(authCtx, this._projectId, ChangesetGenerationConfig.iModelName);
         Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Opening latest iModel`);
@@ -106,7 +106,7 @@ export class ChangesetGenerationHarness {
         Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Successful Async Initialization`);
         this._isInitialized = true;
       } catch (error) {
-        Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Error with async initialization: ${error}`);
+        Logger.logError(ChangesetGenerationConfig.loggingCategory, `Error with async initialization: ${error} Ensure variables are set properly in ChangesetGenerationConfig.ts or enviroment variables.`);
       }
     }
   }
@@ -114,7 +114,7 @@ export class ChangesetGenerationHarness {
     await this.initialize();
     const authCtx = new AuthorizedClientRequestContext(this._accessToken!);
     if (!this._isInitialized) {
-      Logger.logTrace(ChangesetGenerationConfig.loggingCategory, "Unable to Generate ChangeSets when async initializtion fails");
+      Logger.logError(ChangesetGenerationConfig.loggingCategory, "Unable to Generate ChangeSets when async initializtion fails");
       return false;
     }
     const retVal = await this._changeSetGenerator!.pushTestChangeSetsAndVersions(this._projectId!, this._iModelId!, changesetSequence);

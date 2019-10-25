@@ -34,7 +34,7 @@ export class ChangesetGenerationConfig {
       // Other application settings (NOT REQUIRED)
       // -----------------------------------------------------------------------------------------------------------
       imjs_default_relying_party_uri: "https://connect-wsg20.bentley.com",
-      imjs_agent_scope: "urlps-third-party context-registry-service imodelhub",
+      imjs_agent_scope: "urlps-third-party context-registry-service:read-only imodelhub",
     });
   }
 
