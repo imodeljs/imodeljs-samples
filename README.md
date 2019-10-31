@@ -100,28 +100,28 @@ Follow the [steps](#building-samples) to build the samples.
 1. Install the dependencies
 
     ```sh
-    node /common/scripts/install-run-rush update
+    node ./common/scripts/install-run-rush update
     ```
 
 2. Build all sample applications
 
     ```sh
-    node /common/scripts/install-run-rush build
+    node ./common/scripts/install-run-rush build
     ```
 
     or to build a single application (replace app-name):
 
     ```sh
-    node /common/scripts/install-run-rush build --to app-name
+    node ./common/scripts/install-run-rush build --to app-name
     ```
 
 ## Unit tests
 
-Run with `node /common/scripts/install-run-rush test`
+Run with `node ./common/scripts/install-run-rush test`
 
 ## Integration tests
 
-Run with `node /common/scripts/install-run-rush test:integration`
+Run with `node ./common/scripts/install-run-rush test:integration`
 
 The integration tests require all configuration variables to be set either in each app's [`Config.App`](https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-clients/config/config) object or as environment variables. The full list of variables required by the integration test are:
 
