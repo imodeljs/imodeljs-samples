@@ -20,7 +20,7 @@
     "lint": "tslint --project . 1>&2",
     "test": "",
     "test:integration": "",
-    "clean": "rimraf lib"
+    "clean": "rimraf lib .rush"
   },
   "iModelJs": {
     "buildModule": {

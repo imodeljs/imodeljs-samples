@@ -21,7 +21,7 @@
     "start:backend": "node lib/backend/main.js",
     "start:servers": "env-cmd ./lib/webresources/config.json run-p \"start:webserver\" \"start:backend\"",
     "electron": "electron lib/backend/main.js",
-    "clean": "rimraf lib",
+    "clean": "rimraf lib .rush",
     "lint": "tslint --project . 1>&2",
     "test": "npm run test:unit",
     "test:unit": "mocha --opts ./test/utils/mocha.opts \"./test/unit/**/*.test.ts*\"",

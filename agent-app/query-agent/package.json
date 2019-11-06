@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc 1>&2",
-    "clean": "rimraf lib tsconfig.tsbuildinfo",
+    "clean": "rimraf lib tsconfig.tsbuildinfo .rush",
     "lint": "tslint --project . 1>&2",
     "test": "node ./node_modules/@bentley/build-tools/scripts/test.js --grep \"#integration\" --invert",
     "test:integration": "node ./node_modules/@bentley/build-tools/scripts/test.js --timeout 240000 --grep \"#integration\"",
