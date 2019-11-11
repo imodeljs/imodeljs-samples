@@ -5,10 +5,10 @@
 import { Config } from "@bentley/imodeljs-clients";
 
 /**
- * List of possible backends that simple-viewer-app can use
+ * List of possible backends that ninezone-sample-app can use
  */
 export enum UseBackend {
-  /** Use local simple-viewer-app backend */
+  /** Use local ninezone-sample-app backend */
   Local = 0,
 
   /** Use deployed Navigator backend */
@@ -27,7 +27,7 @@ export default function setupEnv() {
     // Client registration (RECOMMENDED but OPTIONAL)
     // Must set these variables before deployment, but the supplied defaults can be used for testing on localhost.
     // Create a client registration using the procedure here - https://git.io/fx8YP (Developer registration). For the purpose
-    // of running this sample on localhost, ensure your registration includes http://localhost:3000/signin-callback as a
+    // of running this sample on localhost, ensure your registration includes http://localhost:3000/signin-oidc as a
     // valid redirect URI.
     // -----------------------------------------------------------------------------------------------------------
 

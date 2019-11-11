@@ -58,6 +58,10 @@ To run these samples, you need to first get the [required tools](https://imodelj
 
     Demonstrates opening an iModel and viewing its data using unified selection and is presented using a viewport, tree control, property grid, and table.
 
+3. [Ninezone Sample App](./interactive-app/ninezone-sample-app/README.md)
+
+    Demonstrates the Bentley 9-Zone UI layout pattern and opening an iModel and viewing its data.
+
 ### Interactive App Development Setup
 
 1. (Optional) Create a sample project using the procedure at [Developer Registration](https://imodeljs.github.io/iModelJs-docs-output/getting-started/#developer-registration).  This step is not needed if you already have a project to test with.

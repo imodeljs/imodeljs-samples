@@ -39,7 +39,7 @@
     "mocha": "^5.2.0",
     "nyc": "^14.0.0",
     "source-map-support": "^0.5.6",
-    "tslint": "^5.11.0",
+    "tslint": "^5.16.0",
     "ts-node": "^7.0.1",
     "typemoq": "^2.1.0",
     "typescript": "^3.5.0"

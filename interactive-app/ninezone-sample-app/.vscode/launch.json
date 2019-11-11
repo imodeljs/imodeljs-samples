@@ -1,0 +1,107 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Web: All",
+      "configurations": [
+        "Web: Server (backend)",
+        "Web: Chrome (frontend)"
+      ]
+    },
+    {
+      "name": "Electron: All",
+      "configurations": [
+        "Electron: Main (backend)",
+        "Electron: Renderer (frontend)"
+      ]
+    }
+  ],
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Sam's Launch Program",
+      "program": "D:/iModelTechnologies/ninezone-sample-app/lib/main.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Web: Server (backend)",
+      "protocol": "inspector",
+      "runtimeExecutable": "node",
+      "program": "${workspaceFolder}/node_modules/nodemon/bin/nodemon.js",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--inspect=41016",
+        "--watch",
+        "${workspaceFolder}/lib/main.js",
+        "${workspaceFolder}/lib/main.js",
+      ],
+      "port": 41016,
+      "showAsyncStacks": true,
+      "smartStep": true,
+      "restart": true
+    },
+    {
+      "name": "Web: Chrome (frontend)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000/",
+      "webRoot": "${workspaceFolder}/src",
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      },
+      "smartStep": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Electron: Main (backend)",
+      "protocol": "inspector",
+      "runtimeExecutable": "node",
+      "program": "${workspaceFolder}/node_modules/nodemon/bin/nodemon.js",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--watch",
+        "${workspaceFolder}/lib/main.js",
+        "${workspaceFolder}/node_modules/electron/cli.js",
+        "${workspaceFolder}/lib/main.js",
+        "--remote-debugging-port=9223",
+        "--inspect-brk=41016",
+      ],
+      "smartStep": true,
+      "restart": true,
+      "port": 41016
+    },
+    {
+      "name": "Electron: Renderer (frontend)",
+      "type": "chrome",
+      "request": "attach",
+      "port": 9223,
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/src",
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      },
+      "smartStep": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "iModelJs Backend",
+      "program": "${workspaceFolder}/node_modules/@bentley/webpack-tools/bin/bentley-webpack-tools.js",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "start",
+        "--debug=9229"
+      ],
+      "port": 9229,
+      "protocol": "inspector",
+      "outputCapture": "std",
+      "timeout": 100000,
+    }
+  ]
+}

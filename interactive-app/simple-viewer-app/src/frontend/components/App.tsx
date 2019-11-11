@@ -4,7 +4,7 @@
 *--------------------------------------------------------------------------------------------*/
 import * as React from "react";
 import { Id64, Id64String, OpenMode } from "@bentley/bentleyjs-core";
-import { AccessToken, ConnectClient, IModelQuery, Project, Config } from "@bentley/imodeljs-clients";
+import { ConnectClient, IModelQuery, Project, Config } from "@bentley/imodeljs-clients";
 import { IModelApp, IModelConnection, FrontendRequestContext, AuthorizedFrontendRequestContext, SpatialViewState, DrawingViewState } from "@bentley/imodeljs-frontend";
 import { Presentation, SelectionChangeEventArgs, ISelectionProvider } from "@bentley/presentation-frontend";
 import { Button, ButtonSize, ButtonType, Spinner, SpinnerSize } from "@bentley/ui-core";
@@ -23,7 +23,6 @@ import "./App.css";
 /** React state of the App component */
 export interface AppState {
   user: {
-    accessToken?: AccessToken;
     isLoading?: boolean;
   };
   offlineIModel: boolean;
@@ -40,7 +39,6 @@ export default class App extends React.Component<{}, AppState> {
     this.state = {
       user: {
         isLoading: false,
-        accessToken: undefined,
       },
       offlineIModel: false,
     };
@@ -49,22 +47,11 @@ export default class App extends React.Component<{}, AppState> {
   public componentDidMount() {
     // subscribe for unified selection changes
     Presentation.selection.selectionChange.addListener(this._onSelectionChanged);
-
-    // Initialize authorization state, and add listener to changes
-    SimpleViewerApp.oidcClient.onUserStateChanged.addListener(this._onUserStateChanged);
-    if (SimpleViewerApp.oidcClient.isAuthorized) {
-      SimpleViewerApp.oidcClient.getAccessToken(new FrontendRequestContext()) // tslint:disable-line: no-floating-promises
-        .then((accessToken: AccessToken | undefined) => {
-          this.setState((prev) => ({ user: { ...prev.user, accessToken, isLoading: false } }));
-        });
-    }
   }
 
   public componentWillUnmount() {
     // unsubscribe from unified selection changes
     Presentation.selection.selectionChange.removeListener(this._onSelectionChanged);
-    // unsubscribe from user state changes
-    SimpleViewerApp.oidcClient.onUserStateChanged.removeListener(this._onUserStateChanged);
   }
 
   private _onSelectionChanged = (evt: SelectionChangeEventArgs, selectionProvider: ISelectionProvider) => {
@@ -102,10 +89,6 @@ export default class App extends React.Component<{}, AppState> {
     await SimpleViewerApp.oidcClient.signIn(new FrontendRequestContext());
   }
 
-  private _onUserStateChanged = (accessToken: AccessToken | undefined) => {
-    this.setState((prev) => ({ user: { ...prev.user, accessToken, isLoading: false } }));
-  }
-
   /** Pick the first available spatial view definition in the imodel */
   private async getFirstViewDefinitionId(imodel: IModelConnection): Promise<Id64String> {
     // Return default view definition (if any)
@@ -114,12 +97,12 @@ export default class App extends React.Component<{}, AppState> {
       return defaultViewId;
 
     // Return first spatial view definition (if any)
-    const spatialViews: IModelConnection.ViewSpec[] = await imodel.views.getViewList({ from: SpatialViewState.classFullName});
+    const spatialViews: IModelConnection.ViewSpec[] = await imodel.views.getViewList({ from: SpatialViewState.classFullName });
     if (spatialViews.length > 0)
       return spatialViews[0].id!;
 
     // Return first drawing view definition (if any)
-    const drawingViews: IModelConnection.ViewSpec[] = await imodel.views.getViewList({ from: DrawingViewState.classFullName});
+    const drawingViews: IModelConnection.ViewSpec[] = await imodel.views.getViewList({ from: DrawingViewState.classFullName });
     if (drawingViews.length > 0)
       return drawingViews[0].id!;
 
@@ -161,12 +144,12 @@ export default class App extends React.Component<{}, AppState> {
     if (this.state.user.isLoading || window.location.href.includes(this._signInRedirectUri)) {
       // if user is currently being loaded, just tell that
       ui = `${IModelApp.i18n.translate("SimpleViewer:signing-in")}...`;
-    } else if (!this.state.user.accessToken && !this.state.offlineIModel) {
+    } else if (!SimpleViewerApp.oidcClient.hasSignedIn && !this.state.offlineIModel) {
       // if user doesn't have and access token, show sign in page
       ui = (<SignIn onSignIn={this._onStartSignin} onRegister={this._onRegister} onOffline={this._onOffline} />);
     } else if (!this.state.imodel || !this.state.viewDefinitionId) {
       // if we don't have an imodel / view definition id - render a button that initiates imodel open
-      ui = (<OpenIModelButton accessToken={this.state.user.accessToken} offlineIModel={this.state.offlineIModel} onIModelSelected={this._onIModelSelected} />);
+      ui = (<OpenIModelButton offlineIModel={this.state.offlineIModel} onIModelSelected={this._onIModelSelected} />);
     } else {
       // if we do have an imodel and view definition id - render imodel components
       ui = (<IModelComponents imodel={this.state.imodel} viewDefinitionId={this.state.viewDefinitionId} />);
@@ -186,7 +169,6 @@ export default class App extends React.Component<{}, AppState> {
 
 /** React props for [[OpenIModelButton]] component */
 interface OpenIModelButtonProps {
-  accessToken: AccessToken | undefined;
   offlineIModel: boolean;
   onIModelSelected: (imodel: IModelConnection | undefined) => void;
 }

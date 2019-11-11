@@ -1,0 +1,20 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.trimAutoWhitespace": true,
+  "files.exclude": {
+    "**/lib/**": false,
+    "**/node_modules/**": false,
+    "**/*.TileCache*": true,
+  },
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "cSpell.words": [
+    "BACKSTAGESHOW",
+    "backstagehide",
+    "imodels"
+  ]
+}

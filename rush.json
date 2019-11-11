@@ -8,7 +8,7 @@
   "repository": {
     "url": "https://github.com/imodeljs/imodeljs-samples"
   },
-  "projects": [ 
+  "projects": [
     {
       "packageName": "imodel-query-agent",
       "projectFolder": "agent-app/query-agent"
@@ -16,6 +16,10 @@
     {
       "packageName": "basic-viewport-app",
       "projectFolder": "interactive-app/basic-viewport-app"
+    },
+    {
+      "packageName": "ninezone-sample-app",
+      "projectFolder": "interactive-app/ninezone-sample-app"
     },
     {
       "packageName": "simple-viewer-app",

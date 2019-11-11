@@ -22,17 +22,21 @@ dependencies:
   '@bentley/ui-abstract': 1.7.0_5c3f72175d025818bdd6f70fb0cbaf2f
   '@bentley/ui-components': 1.7.0_bd36ea15d66e95b02975ee8489f8ee45
   '@bentley/ui-core': 1.7.0_5c3f72175d025818bdd6f70fb0cbaf2f
-  '@bentley/webpack-tools': 1.7.0_30d46c88778096a2312ace349a9af723
-  '@rush-temp/basic-viewport-app': 'file:projects/basic-viewport-app.tgz_chai@4.2.0'
+  '@bentley/ui-framework': 1.7.0_00f6606e83746db5906cc3c0ec6fdbe6
+  '@bentley/ui-ninezone': 1.7.0_@bentley+ui-core@1.7.0
+  '@bentley/webpack-tools': 1.7.0_782b05e5ba540be83a3cdfe05c055abe
+  '@rush-temp/basic-viewport-app': 'file:projects/basic-viewport-app.tgz_33991a341b3e0aa3ae396a2cde7b815a'
   '@rush-temp/imodel-changeset-test-utility': 'file:projects/imodel-changeset-test-utility.tgz'
   '@rush-temp/imodel-query-agent': 'file:projects/imodel-query-agent.tgz'
-  '@rush-temp/simple-viewer-app': 'file:projects/simple-viewer-app.tgz'
+  '@rush-temp/ninezone-sample-app': 'file:projects/ninezone-sample-app.tgz'
+  '@rush-temp/simple-viewer-app': 'file:projects/simple-viewer-app.tgz_react-test-renderer@16.11.0'
   '@testing-library/dom': 5.6.1
   '@testing-library/react': 8.0.9_react-dom@16.11.0+react@16.11.0
   '@types/body-parser': 1.17.1
   '@types/bunyan': 1.8.6
   '@types/chai': 4.2.4
   '@types/chai-jest-snapshot': 1.3.5
+  '@types/electron-devtools-installer': 2.2.0
   '@types/express': 4.17.2
   '@types/jsdom': 12.2.4
   '@types/minimist': 1.2.0
@@ -40,7 +44,9 @@ dependencies:
   '@types/node': 10.17.4
   '@types/puppeteer': 1.20.2
   '@types/react': 16.9.11
-  '@types/react-dom': 16.0.7
+  '@types/react-dom': 16.9.4
+  '@types/react-redux': 6.0.14
+  '@types/react-resize-detector': 3.1.1
   '@types/supertest': 2.0.8
   '@types/webdriverio': 4.13.3
   body-parser: 1.19.0
@@ -51,6 +57,7 @@ dependencies:
   debug: 3.2.6
   electron: 4.2.12
   electron-chromedriver: 4.2.0
+  electron-devtools-installer: 2.2.4
   env-cmd: 8.0.2
   express: 4.17.1
   file-loader: 1.1.11_webpack@4.41.2
@@ -72,14 +79,19 @@ dependencies:
   react-dnd-html5-backend: 5.0.1
   react-dom: 16.11.0_react@16.11.0
   react-redux: 5.1.2_react@16.11.0+redux@4.0.4
+  react-resize-detector: 3.4.0_react@16.11.0
+  react-test-renderer: 16.11.0_react@16.11.0
   redux: 4.0.4
   rimraf: 2.7.1
   sinon: 7.5.0
+  source-map-loader: 0.2.4
   source-map-support: 0.5.16
   spectron: 5.0.0
   start-server-and-test: 1.10.6
   strip-json-comments-cli: 1.0.1
   supertest: 4.0.2
+  svg-sprite-loader: 3.9.2
+  three: 0.93.0
   ts-node: 7.0.1
   tslint: 5.20.1_typescript@3.7.2
   typemoq: 2.1.0
@@ -89,6 +101,11 @@ dependencies:
   xmlhttprequest: 1.8.0
 lockfileVersion: 5.1
 packages:
+  /7zip/0.0.6:
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha1-nK+xca+CMpSQNTtIFvAzR6oVCjA=
   /@azure/ms-rest-js/2.0.4:
     dependencies:
       '@types/node-fetch': 2.5.3
@@ -174,6 +191,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-SQ0sS7KUJDvgCI2cpZG0nJygO6002oTbhgSuw4WcocsnbxLwL5Q8I3fqbJdyBAc3uFrWZiR2JomseuxSuci3SQ==
+  /@babel/runtime/7.7.2:
+    dependencies:
+      regenerator-runtime: 0.13.3
+    dev: false
+    resolution:
+      integrity: sha512-JONRbXbTXc9WQE2mAZd1p0Z3DZ/6vaQIkgYMSTP3KjRCyd7rCZCcfhCyX+YjwcKxcZ82UrxbRD358bpExNgrjw==
   /@babel/template/7.7.0:
     dependencies:
       '@babel/code-frame': 7.5.5
@@ -286,6 +309,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-F453BK4Qu6tHYObmD7PGLNgR31M=
+  /@bentley/icons-generic/0.0.31:
+    dev: false
+    resolution:
+      integrity: sha1-mwt1MGtSz4er/Sts2xA83/fOIds=
   /@bentley/imodeljs-backend/1.7.0_cedea38bc94f7a51b4d0ce448a8fc88b:
     dependencies:
       '@azure/storage-blob': 10.5.0
@@ -620,7 +647,61 @@ packages:
       '@bentley/imodeljs-i18n': ^1.7.0
     resolution:
       integrity: sha1-JWr24l5EZ3eUJ0Vyac8u/2KDOBY=
-  /@bentley/webpack-tools/1.7.0_30d46c88778096a2312ace349a9af723:
+  /@bentley/ui-framework/1.7.0_00f6606e83746db5906cc3c0ec6fdbe6:
+    dependencies:
+      '@bentley/bentleyjs-core': 1.7.0
+      '@bentley/geometry-core': 1.7.0_@bentley+bentleyjs-core@1.7.0
+      '@bentley/icons-generic': 0.0.31
+      '@bentley/icons-generic-webfont': 0.0.31
+      '@bentley/imodeljs-clients': 1.7.0_42e27e787110f5bd72a7a6b2a891bc5f
+      '@bentley/imodeljs-common': 1.7.0_80ea8b4c9868852cf2659c4e06a9ec50
+      '@bentley/imodeljs-frontend': 1.7.0_0cf667edf63e898aa7ddcead4644ac67
+      '@bentley/imodeljs-i18n': 1.7.0_@bentley+bentleyjs-core@1.7.0
+      '@bentley/presentation-common': 1.7.0_ba8c4fc368027589cedaf1685aa3a368
+      '@bentley/presentation-components': 1.7.0_1072b1522d435036e02a92a18792c4bc
+      '@bentley/presentation-frontend': 1.7.0_1e362ce80a4aff38d14c4412409922ac
+      '@bentley/ui-components': 1.7.0_bd36ea15d66e95b02975ee8489f8ee45
+      '@bentley/ui-core': 1.7.0_5c3f72175d025818bdd6f70fb0cbaf2f
+      '@bentley/ui-ninezone': 1.7.0_@bentley+ui-core@1.7.0
+      classnames: 2.2.6
+      lodash: 4.17.15
+      oidc-client: 1.9.1
+      react: 16.11.0
+      react-dnd: 5.0.0_react@16.11.0
+      react-dnd-html5-backend: 5.0.1
+      react-dom: 16.11.0_react@16.11.0
+      react-redux: 5.1.2_react@16.11.0+redux@4.0.4
+      react-resize-detector: 3.4.0_react@16.11.0
+      react-split-pane: 0.1.77
+      redux: 4.0.4
+      svg-sprite-loader: 3.9.2
+    dev: false
+    peerDependencies:
+      '@bentley/bentleyjs-core': ^1.7.0
+      '@bentley/geometry-core': ^1.7.0
+      '@bentley/imodeljs-clients': ^1.7.0
+      '@bentley/imodeljs-common': ^1.7.0
+      '@bentley/imodeljs-frontend': ^1.7.0
+      '@bentley/imodeljs-i18n': ^1.7.0
+      '@bentley/presentation-common': ^1.7.0
+      '@bentley/presentation-frontend': ^1.7.0
+      '@bentley/ui-components': ^1.7.0
+      '@bentley/ui-core': ^1.7.0
+      '@bentley/ui-ninezone': ^1.7.0
+    resolution:
+      integrity: sha1-4JQ0juJ6Lo3UJ3F9/JzZmhr5GGU=
+  /@bentley/ui-ninezone/1.7.0_@bentley+ui-core@1.7.0:
+    dependencies:
+      '@bentley/ui-core': 1.7.0_5c3f72175d025818bdd6f70fb0cbaf2f
+      classnames: 2.2.6
+      react: 16.11.0
+      react-dom: 16.11.0_react@16.11.0
+    dev: false
+    peerDependencies:
+      '@bentley/ui-core': ^1.7.0
+    resolution:
+      integrity: sha1-QMXswR/ki75WZXMXzo9RqYpf4J4=
+  /@bentley/webpack-tools/1.7.0_782b05e5ba540be83a3cdfe05c055abe:
     dependencies:
       '@bentley/config-loader': 1.7.0
       '@types/chai': 4.2.4
@@ -628,7 +709,7 @@ packages:
       '@types/mocha': 5.2.7
       '@types/node': 10.14.1
       '@types/react': 16.9.11
-      '@types/react-dom': 16.0.7
+      '@types/react-dom': 16.9.4
       '@types/sinon': 5.0.7
       app-root-path: 2.2.1
       autoprefixer: 8.6.5
@@ -672,6 +753,7 @@ packages:
       react: 16.11.0
       react-dev-utils: 6.1.1
       react-dom: 16.11.0_react@16.11.0
+      react-test-renderer: 16.11.0_react@16.11.0
       readline: 1.3.0
       sass-loader: 7.3.1_webpack@4.41.2
       sinon: 7.5.0
@@ -974,6 +1056,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-aRnpPa7ysx3aNW60hTiCtLHlQaIFsXFCgQlpakNgDNVFzbtusSY8PwjAQgRWfSk0ekNoBjO51eQRB6upA9uuyw==
+  /@types/electron-devtools-installer/2.2.0:
+    dev: false
+    resolution:
+      integrity: sha512-HJNxpaOXuykCK4rQ6FOMxAA0NLFYsf7FiPFGmab0iQmtVBHSAfxzy3MRFpLTTDDWbV0yD2YsHOQvdu8yCqtCfw==
   /@types/enzyme/3.9.3:
     dependencies:
       '@types/cheerio': 0.22.13
@@ -1124,13 +1210,25 @@ packages:
     dev: false
     resolution:
       integrity: sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
-  /@types/react-dom/16.0.7:
+  /@types/react-dom/16.9.4:
     dependencies:
-      '@types/node': 10.17.4
       '@types/react': 16.9.11
     dev: false
     resolution:
-      integrity: sha512-vaq4vMaJOaNgFff1t3LnHYr6vRa09vRspMkmLdXtFZmO1fwDI2snP+dpOkwrtlU8UC8qsqemCu4RmVM2OLq/fA==
+      integrity: sha512-fya9xteU/n90tda0s+FtN5Ym4tbgxpq/hb/Af24dvs6uYnYn+fspaxw5USlw0R8apDNwxsqumdRoCoKitckQqw==
+  /@types/react-redux/6.0.14:
+    dependencies:
+      '@types/react': 16.9.11
+      redux: 4.0.4
+    dev: false
+    resolution:
+      integrity: sha512-bvpWqBOvz2V+EfZ9Qu1d3gFKYCIn/BYoGWAVt1c526tbiI9rtfaBbjutbbapmtEZaEfLuHj3Ljg9qho0SBSwUg==
+  /@types/react-resize-detector/3.1.1:
+    dependencies:
+      '@types/react': 16.9.11
+    dev: false
+    resolution:
+      integrity: sha512-3FVExywb3kC0p+dKRd2IC6wmUlfurx/9J0b1mtHd0rigwZWNJC79fnbTJaMmLNM8PhhgqDwaNOhFdv0u9YGAzA==
   /@types/react/16.9.11:
     dependencies:
       '@types/prop-types': 15.7.3
@@ -2093,6 +2191,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-aN/1++YMUes3cl6p4+0xDcwed24=
+  /bowser/1.9.4:
+    dev: false
+    resolution:
+      integrity: sha512-9IdMmj2KjigRq6oWhmwv1W36pDuA4STQZ8q6YO9um+x07xgYNCD3Oou+WP/3L1HNz7iqythGet3/p4wvc8AAwQ==
   /boxen/1.3.0:
     dependencies:
       ansi-align: 2.0.0
@@ -3334,6 +3436,10 @@ packages:
       node: '>= 8'
     resolution:
       integrity: sha512-u7v4o84SwFpD32Z8IIcPZ6z1/ie24O6RU3RbtL5Y316l3KuHVPx9ItBgWQ6VlfAFnRnTtMUrsQ9MUUTuEZjogg==
+  /cross-unzip/0.0.2:
+    dev: false
+    resolution:
+      integrity: sha1-UYO8R6CVWb78+YzEZXlkmZNZNy8=
   /crypt/0.0.2:
     dev: false
     resolution:
@@ -3377,6 +3483,13 @@ packages:
       node: '>4'
     resolution:
       integrity: sha512-BcxQSKTSEEQUftYpBVnsH4SF05NTuBokb19/sBt6asXGKZ/6VP7PLG1CBCkFDYOnhXhPh0jMhO6xZ71oYHXHBA==
+  /css-in-js-utils/2.0.1:
+    dependencies:
+      hyphenate-style-name: 1.0.3
+      isobject: 3.0.1
+    dev: false
+    resolution:
+      integrity: sha512-PJF0SpJT+WdbVVt0AOYp9C8GnuruRlL/UFW7932nLWmFLQTaWEzTBQEx7/hn4BuV+WON75iAViSUJLiU3PKbpA==
   /css-loader/2.1.1_webpack@4.41.2:
     dependencies:
       camelcase: 5.3.1
@@ -4104,6 +4217,15 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-Hduygws4bFRxOPybIp4i5lziQPP5/xZulVRnnwKK4j6VJcF3MID+lC+3K+JSH2QG0NAUCZTkjtPOYZFzpO4eWA==
+  /electron-devtools-installer/2.2.4:
+    dependencies:
+      7zip: 0.0.6
+      cross-unzip: 0.0.2
+      rimraf: 2.7.1
+      semver: 5.7.1
+    dev: false
+    resolution:
+      integrity: sha512-b5kcM3hmUqn64+RUcHjjr8ZMpHS2WJ5YO0pnG9+P/RTdx46of/JrEjuciHWux6pE+On6ynWhHJF53j/EDJN0PA==
   /electron-download/4.1.1:
     dependencies:
       debug: 3.2.6
@@ -6007,6 +6129,10 @@ packages:
       node: '>= 4.5.0'
     resolution:
       integrity: sha512-+ML2Rbh6DAuee7d07tYGEKOEi2voWPUGan+ExdPbPW6Z3svq+JCqr0v8WmKPOkz1vOVykPCBSuobe7G8GJUtVg==
+  /hyphenate-style-name/1.0.3:
+    dev: false
+    resolution:
+      integrity: sha512-EcuixamT82oplpoJ2XU4pDtKGWQ7b00CD9f1ug9IaQ3p1bkHMiKCZ9ut9QDI6qsa6cpUuB+A/I+zLtdNK4n2DQ==
   /i18next-browser-languagedetector/2.2.4:
     dev: false
     resolution:
@@ -6190,6 +6316,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
+  /inline-style-prefixer/3.0.8:
+    dependencies:
+      bowser: 1.9.4
+      css-in-js-utils: 2.0.1
+    dev: false
+    resolution:
+      integrity: sha1-hVG45bTVcyROZqNLBPfTIHaitTQ=
   /inquirer/3.3.0:
     dependencies:
       ansi-escapes: 3.2.0
@@ -10347,7 +10480,7 @@ packages:
       integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
   /react-redux/5.1.2_react@16.11.0+redux@4.0.4:
     dependencies:
-      '@babel/runtime': 7.7.1
+      '@babel/runtime': 7.7.2
       hoist-non-react-statics: 3.3.0
       invariant: 2.2.4
       loose-envify: 1.4.0
@@ -10387,6 +10520,20 @@ packages:
       react-dom: ^0.14.9 || ^15.3.0 || ^16.0.0-rc || ^16.0
     resolution:
       integrity: sha512-g/QAU1HZrzSfxkwMAo/wzi6/ezdWye302RGZevsATec07hI/iSxcpB1hejFIp7V63DJ8mwuign6KmB3VjdlinQ==
+  /react-split-pane/0.1.77:
+    dependencies:
+      inline-style-prefixer: 3.0.8
+      prop-types: 15.7.2
+      react-style-proptype: 3.2.2
+    dev: false
+    resolution:
+      integrity: sha512-xq0PPsbkNI9xEd6yTrGPr7hzf6XfIgnsxuUEdRJELq+kLPHMsO3ymFCjhiYP35wlDPn9W46+rHDsJd7LFYteMw==
+  /react-style-proptype/3.2.2:
+    dependencies:
+      prop-types: 15.7.2
+    dev: false
+    resolution:
+      integrity: sha512-ywYLSjNkxKHiZOqNlso9PZByNEY+FTyh3C+7uuziK0xFXu9xzdyfHwg4S9iyiRRoPCR4k2LqaBBsWVmSBwCWYQ==
   /react-test-renderer/16.11.0_react@16.11.0:
     dependencies:
       object-assign: 4.1.1
@@ -12287,6 +12434,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-5p44obq+lpsBCCB5eLn2K4hgSDk=
+  /three/0.93.0:
+    dev: false
+    resolution:
+      integrity: sha1-P9bDZ+9FVKu7bhataZNig+iVwSM=
   /throttleit/0.0.2:
     dev: false
     resolution:
@@ -13877,7 +14028,7 @@ packages:
       node: '>= 0.10.0'
     resolution:
       integrity: sha1-qLxF9MG0lpnGuQGYuqyqzbzUugQ=
-  'file:projects/basic-viewport-app.tgz_chai@4.2.0':
+  'file:projects/basic-viewport-app.tgz_33991a341b3e0aa3ae396a2cde7b815a':
     dependencies:
       '@bentley/bentleyjs-core': 1.7.0
       '@bentley/build-tools': 1.7.0
@@ -13896,13 +14047,13 @@ packages:
       '@bentley/ui-abstract': 1.7.0_5c3f72175d025818bdd6f70fb0cbaf2f
       '@bentley/ui-components': 1.7.0_bd36ea15d66e95b02975ee8489f8ee45
       '@bentley/ui-core': 1.7.0_5c3f72175d025818bdd6f70fb0cbaf2f
-      '@bentley/webpack-tools': 1.7.0_30d46c88778096a2312ace349a9af723
+      '@bentley/webpack-tools': 1.7.0_782b05e5ba540be83a3cdfe05c055abe
       '@types/body-parser': 1.17.1
       '@types/bunyan': 1.8.6
       '@types/chai': 4.2.4
       '@types/express': 4.17.2
       '@types/react': 16.9.11
-      '@types/react-dom': 16.0.7
+      '@types/react-dom': 16.9.4
       body-parser: 1.19.0
       chai-jest-snapshot: 2.0.0_chai@4.2.0
       env-cmd: 8.0.2
@@ -13931,8 +14082,9 @@ packages:
     name: '@rush-temp/basic-viewport-app'
     peerDependencies:
       chai: '*'
+      react-test-renderer: '*'
     resolution:
-      integrity: sha512-Sf9jujrA2ZLE6JHLEEgTJ+ZYKpD4cyF56bSeqU4GkHb9W0WXpRYuHTW/bHWIJf2P2cE4hjLnFNlrSDlH9+J0oQ==
+      integrity: sha512-gbBmerrq9WoeHHtoGCjQRsAGJBkQVyAkyiBbAqC+zN3FQa957A3fg66pZqqS3xDVphPUDmO4zrUrWMHU4aOF5A==
       tarball: 'file:projects/basic-viewport-app.tgz'
     version: 0.0.0
   'file:projects/imodel-changeset-test-utility.tgz':
@@ -13961,7 +14113,7 @@ packages:
     dev: false
     name: '@rush-temp/imodel-changeset-test-utility'
     resolution:
-      integrity: sha512-4BI5kFFKx060EllkIe0IW/0ziX710R3W6bklMcHk3sbHZZCbXiwJjdcRLBNoEHf65nzkk1YREpDQ6FkazRHJMQ==
+      integrity: sha512-NbH4fSxR10xHK0FLKGTWbGS6tlG3spIzSNET6Pc49I7CsRKhmN//5TMDc44w8/GbBTdBnQWOo7WU40xRzuninQ==
       tarball: 'file:projects/imodel-changeset-test-utility.tgz'
     version: 0.0.0
   'file:projects/imodel-query-agent.tgz':
@@ -13997,10 +14149,80 @@ packages:
     dev: false
     name: '@rush-temp/imodel-query-agent'
     resolution:
-      integrity: sha512-13WX7CZ3C+K92WFZk8qFsVgwv/E4ZbR50enZi6iIJa4QjZd5lTdwStAs2EEaw5OMfACDLZVlDTC8HvFcc1BWMw==
+      integrity: sha512-Q1eiFMZjl4CGd+K9o0MkvZNiZnxJpTphEhxdB1zAcGc7mFsM7yvldUdPlhbX1JNwWgDdzeM5lNdh9hsA3bpORA==
       tarball: 'file:projects/imodel-query-agent.tgz'
     version: 0.0.0
-  'file:projects/simple-viewer-app.tgz':
+  'file:projects/ninezone-sample-app.tgz':
+    dependencies:
+      '@bentley/bentleyjs-core': 1.7.0
+      '@bentley/build-tools': 1.7.0
+      '@bentley/config-loader': 1.7.0
+      '@bentley/electron-manager': 1.7.0_electron@4.2.12
+      '@bentley/express-server': 1.7.0
+      '@bentley/geometry-core': 1.7.0_@bentley+bentleyjs-core@1.7.0
+      '@bentley/icons-generic-webfont': 0.0.22
+      '@bentley/imodeljs-backend': 1.7.0_cedea38bc94f7a51b4d0ce448a8fc88b
+      '@bentley/imodeljs-clients': 1.7.0_42e27e787110f5bd72a7a6b2a891bc5f
+      '@bentley/imodeljs-clients-backend': 1.7.0_50c21a43abd3fb1f234173980981b8ad
+      '@bentley/imodeljs-common': 1.7.0_80ea8b4c9868852cf2659c4e06a9ec50
+      '@bentley/imodeljs-frontend': 1.7.0_0cf667edf63e898aa7ddcead4644ac67
+      '@bentley/imodeljs-i18n': 1.7.0_@bentley+bentleyjs-core@1.7.0
+      '@bentley/imodeljs-quantity': 1.7.0_@bentley+bentleyjs-core@1.7.0
+      '@bentley/imodeljs-webserver': 1.7.0
+      '@bentley/presentation-backend': 1.7.0_31d861ccc4a968c6d396b824959890fd
+      '@bentley/presentation-common': 1.7.0_ba8c4fc368027589cedaf1685aa3a368
+      '@bentley/presentation-components': 1.7.0_1072b1522d435036e02a92a18792c4bc
+      '@bentley/presentation-frontend': 1.7.0_1e362ce80a4aff38d14c4412409922ac
+      '@bentley/ui-components': 1.7.0_bd36ea15d66e95b02975ee8489f8ee45
+      '@bentley/ui-core': 1.7.0_5c3f72175d025818bdd6f70fb0cbaf2f
+      '@bentley/ui-framework': 1.7.0_00f6606e83746db5906cc3c0ec6fdbe6
+      '@bentley/ui-ninezone': 1.7.0_@bentley+ui-core@1.7.0
+      '@bentley/webpack-tools': 1.7.0_782b05e5ba540be83a3cdfe05c055abe
+      '@types/body-parser': 1.17.1
+      '@types/bunyan': 1.8.6
+      '@types/electron-devtools-installer': 2.2.0
+      '@types/express': 4.17.2
+      '@types/react': 16.9.11
+      '@types/react-dom': 16.9.4
+      '@types/react-redux': 6.0.14
+      '@types/react-resize-detector': 3.1.1
+      body-parser: 1.19.0
+      bunyan: 1.8.12
+      electron: 4.2.12
+      electron-chromedriver: 4.2.0
+      electron-devtools-installer: 2.2.4
+      env-cmd: 8.0.2
+      express: 4.17.1
+      file-loader: 1.1.11_webpack@4.41.2
+      inspire-tree: 5.0.2
+      lodash: 4.17.15
+      nodemon: 1.19.4
+      npm-run-all: 4.1.5
+      react: 16.11.0
+      react-dnd: 5.0.0_react@16.11.0
+      react-dnd-html5-backend: 5.0.1
+      react-dom: 16.11.0_react@16.11.0
+      react-redux: 5.1.2_react@16.11.0+redux@4.0.4
+      react-resize-detector: 3.4.0_react@16.11.0
+      react-test-renderer: 16.11.0_react@16.11.0
+      redux: 4.0.4
+      rimraf: 2.7.1
+      source-map-loader: 0.2.4
+      spectron: 5.0.0
+      strip-json-comments-cli: 1.0.1
+      svg-sprite-loader: 3.9.2
+      three: 0.93.0
+      tslint: 5.20.1_typescript@3.7.2
+      typescript: 3.7.2
+      webpack: 4.41.2_webpack@4.41.2
+      webpack-cli: 3.3.10_webpack@4.41.2
+    dev: false
+    name: '@rush-temp/ninezone-sample-app'
+    resolution:
+      integrity: sha512-ItUH5ctAeh5XNTyPnb/ck6G+b3/HKTN5owHp4AeVsh/KO+eKH+3WCDkXgItaoDseCeNP/xmS8gHLBKaFzNk3/w==
+      tarball: 'file:projects/ninezone-sample-app.tgz'
+    version: 0.0.0
+  'file:projects/simple-viewer-app.tgz_react-test-renderer@16.11.0':
     dependencies:
       '@bentley/bentleyjs-core': 1.7.0
       '@bentley/build-tools': 1.7.0
@@ -14025,7 +14247,7 @@ packages:
       '@bentley/ui-abstract': 1.7.0_5c3f72175d025818bdd6f70fb0cbaf2f
       '@bentley/ui-components': 1.7.0_bd36ea15d66e95b02975ee8489f8ee45
       '@bentley/ui-core': 1.7.0_5c3f72175d025818bdd6f70fb0cbaf2f
-      '@bentley/webpack-tools': 1.7.0_30d46c88778096a2312ace349a9af723
+      '@bentley/webpack-tools': 1.7.0_782b05e5ba540be83a3cdfe05c055abe
       '@testing-library/dom': 5.6.1
       '@testing-library/react': 8.0.9_react-dom@16.11.0+react@16.11.0
       '@types/body-parser': 1.17.1
@@ -14038,7 +14260,7 @@ packages:
       '@types/node': 10.17.4
       '@types/puppeteer': 1.20.2
       '@types/react': 16.9.11
-      '@types/react-dom': 16.0.7
+      '@types/react-dom': 16.9.4
       '@types/webdriverio': 4.13.3
       body-parser: 1.19.0
       bunyan: 1.8.12
@@ -14079,9 +14301,12 @@ packages:
       webpack-cli: 3.3.10_webpack@4.41.2
       xmlhttprequest: 1.8.0
     dev: false
+    id: 'file:projects/simple-viewer-app.tgz'
     name: '@rush-temp/simple-viewer-app'
+    peerDependencies:
+      react-test-renderer: '*'
     resolution:
-      integrity: sha512-wppqjSbRYXRmp6XOyarbZb6R8h52XJ8sq1xuUnfKra73OoRahqK/arXBaDwOnSod33axESnhSaQ5rcDCteQ7WQ==
+      integrity: sha512-FopwzCqVlsA7I1tzKJfnUH4j0XuAagpSigX+2ysSBxag1gllzIcNIFXObrJAZpiVOqO9iD+5bCmfURiO6vDnsw==
       tarball: 'file:projects/simple-viewer-app.tgz'
     version: 0.0.0
 registry: ''
@@ -14109,10 +14334,13 @@ specifiers:
   '@bentley/ui-abstract': 1.7.0
   '@bentley/ui-components': 1.7.0
   '@bentley/ui-core': 1.7.0
+  '@bentley/ui-framework': 1.7.0
+  '@bentley/ui-ninezone': 1.7.0
   '@bentley/webpack-tools': 1.7.0
   '@rush-temp/basic-viewport-app': 'file:./projects/basic-viewport-app.tgz'
   '@rush-temp/imodel-changeset-test-utility': 'file:./projects/imodel-changeset-test-utility.tgz'
   '@rush-temp/imodel-query-agent': 'file:./projects/imodel-query-agent.tgz'
+  '@rush-temp/ninezone-sample-app': 'file:./projects/ninezone-sample-app.tgz'
   '@rush-temp/simple-viewer-app': 'file:./projects/simple-viewer-app.tgz'
   '@testing-library/dom': ^5.5.0
   '@testing-library/react': ^8.0.4
@@ -14120,14 +14348,17 @@ specifiers:
   '@types/bunyan': ^1.8
   '@types/chai': ^4.1.7
   '@types/chai-jest-snapshot': ^1.3.0
+  '@types/electron-devtools-installer': ^2.2.0
   '@types/express': ^4.16.0
   '@types/jsdom': ^12.2.0
   '@types/minimist': ^1.2.0
   '@types/mocha': ^5.2.5
   '@types/node': ^10.5.7
   '@types/puppeteer': ^1.10.0
-  '@types/react': ^16.4.14
-  '@types/react-dom': 16.0.7
+  '@types/react': ^16.8.0
+  '@types/react-dom': ^16.8.0
+  '@types/react-redux': ^6.0.14
+  '@types/react-resize-detector': ^3.1.0
   '@types/supertest': ^2.0.5
   '@types/webdriverio': ^4.13.0
   body-parser: ^1.18.3
@@ -14136,8 +14367,9 @@ specifiers:
   chai-jest-snapshot: ^2.0.0
   chromedriver: ^75.0.0
   debug: ^3.1.0
-  electron: ^4.0.0
+  electron: ^4.0.1
   electron-chromedriver: ^4.0.0
+  electron-devtools-installer: ^2.2.3
   env-cmd: ^8.0.2
   express: ^4.16.3
   file-loader: 1.1.11
@@ -14154,21 +14386,26 @@ specifiers:
   nyc: ^14.0.0
   path: ^0.12.7
   puppeteer: ^1.10.0
-  react: ^16.4.2
+  react: ^16.8.0
   react-dnd: ^5.0.0
   react-dnd-html5-backend: ^5.0.1
-  react-dom: ^16.4.2
-  react-redux: ^5.0.7
+  react-dom: ^16.8.0
+  react-redux: ^5.1.0
+  react-resize-detector: ^3.4.0
+  react-test-renderer: ^16.4.2
   redux: ^4.0.0
   rimraf: ^2.6.2
   sinon: ^7.2.0
+  source-map-loader: ^0.2.3
   source-map-support: ^0.5.6
   spectron: ^5.0.0
   start-server-and-test: ^1.7.11
   strip-json-comments-cli: ^1.0.1
   supertest: ^4.0.2
+  svg-sprite-loader: ^3.8.0
+  three: ^0.93
   ts-node: ^7.0.1
-  tslint: ^5.11.0
+  tslint: ^5.16.0
   typemoq: ^2.1.0
   typescript: ^3.5.0
   webpack: ^4.20.2

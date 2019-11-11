@@ -1,0 +1,22 @@
+{
+  "welcome-message": "Welcome to 9-Zone Sample App",
+  "signing-in": "Signing-in",
+  "components": {
+    "imodel-picker": {
+      "open-imodel": "Open Sample iModel"
+    },
+    "properties": "Properties",
+    "table": "Table",
+    "tree": "Tree"
+  },
+  "buttons": {
+    "switchLayouts": "Switch Layouts",
+    "switchToLayout1": "One graphics view",
+    "switchToLayout2": "Two graphics views"
+  },
+  "no-content": "No data for this content view",
+  "backstage": {
+    "sampleFrontstage": "Single View Frontstage",
+    "sampleFrontstage2": "Multiple Views Frontstage"
+  }
+}
