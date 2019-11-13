@@ -28,6 +28,22 @@
     {
       "packageName": "imodel-changeset-test-utility",
       "projectFolder": "tools/imodel-changeset-test-utility"
+    },
+    {
+      "packageName": "@bentley/frontend-sample-base",
+      "projectFolder": "tools/frontend-sample-base"
+    },
+    {
+      "packageName": "viewer-only-sample",
+      "projectFolder": "frontend-samples/viewer-only-sample"
+    },
+    {
+      "packageName": "heatmap-decorator-sample",
+      "projectFolder": "frontend-samples/heatmap-decorator-sample"
+    },
+    {
+      "packageName": "tooltip-customize-sample",
+      "projectFolder": "frontend-samples/tooltip-customize-sample"
     }
   ]
 }
