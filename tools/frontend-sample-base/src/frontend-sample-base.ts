@@ -5,3 +5,4 @@
 export * from "./SampleBaseApp";
 export * from "./Startup/Startup";
 export * from "./Viewport/ViewportAndNavigation";
+export * from "./GithubLink";

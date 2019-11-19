@@ -10,7 +10,7 @@ import { Range2d } from "@bentley/geometry-core";
 import HeatmapDecorator from "./HeatmapDecorator";
 import { BasePointGenerator, RandomPointGenerator, CirclePointGenerator, CrossPointGenerator } from "./PointGenerators";
 import { ColorDef } from "@bentley/imodeljs-common";
-import { ViewportAndNavigation } from "@bentley/frontend-sample-base";
+import { ViewportAndNavigation, GithubLink } from "@bentley/frontend-sample-base";
 import { Id64String } from "@bentley/bentleyjs-core";
 import "@bentley/frontend-sample-base/src/SampleBase.scss";
 
@@ -144,6 +144,11 @@ export class Sample extends React.Component<{}, SampleState> {
           <>
             { /* Add specific sample UI here */ }
             <div className="sample-ui">
+              <div className="sample-instructions">
+                <span>Use the options below to control the heatmap visualization.</span>
+                <GithubLink linkTarget="https://github.com/imodeljs/imodeljs-samples/tree/master/frontend-samples/heatmap-decorator-sample"/>
+              </div>
+              <hr></hr>
               <div className="sample-options-2col">
                 <span>Show Heatmap</span>
                 <Toggle isOn={undefined !== this.state.heatmapDecorator} showCheckmark={true} onChange={this._onChangeShowHeatmap} />

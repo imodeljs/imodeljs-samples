@@ -5,8 +5,9 @@
 import * as React from "react";
 import "@bentley/icons-generic-webfont/dist/bentley-icons-generic-webfont.css";
 import { IModelConnection } from "@bentley/imodeljs-frontend";
-import { ViewportAndNavigation } from "@bentley/frontend-sample-base";
+import { ViewportAndNavigation, GithubLink } from "@bentley/frontend-sample-base";
 import { Id64String } from "@bentley/bentleyjs-core";
+import "@bentley/frontend-sample-base/src/SampleBase.scss";
 
 // cSpell:ignore imodels
 
@@ -20,7 +21,7 @@ interface SampleState {
 /** A component the renders the UI for the sample */
 export class Sample extends React.Component<{}, SampleState> {
 
-  /** Creates an Sample instance */
+  /** Creates a Sample instance */
   constructor(props?: any, context?: any) {
     super(props, context);
     }
@@ -28,10 +29,15 @@ export class Sample extends React.Component<{}, SampleState> {
   /** The sample's render method */
   public render() {
     return (
-          <>
-            { /* Add specific sample UI here */ }
-          </>
-           );
+      <>
+      <div className="sample-ui">
+        <div>
+          <span>Use the toolbar at the right to navigate the model.</span>
+          <GithubLink linkTarget="https://github.com/imodeljs/imodeljs-samples/tree/master/frontend-samples/viewer-only-sample"/>
+        </div>
+      </div>
+      </>
+      );
     }
   }
 

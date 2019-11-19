@@ -34,6 +34,10 @@
         {
           "source": "./public/**/*",
           "dest": "./lib/webresources"
+        },
+        {
+          "source": "./node_modules/@bentley/frontend-sample-base/public/**/*",
+          "dest": "./lib/webresources"
         }
       ],
       "webpack": {

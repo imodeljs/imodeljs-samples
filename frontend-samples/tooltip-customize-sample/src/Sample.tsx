@@ -5,7 +5,7 @@
 import * as React from "react";
 import "@bentley/icons-generic-webfont/dist/bentley-icons-generic-webfont.css";
 import { IModelConnection, ToolAdmin, IModelAppOptions, HitDetail, imageElementFromUrl, IModelApp } from "@bentley/imodeljs-frontend";
-import { ViewportAndNavigation } from "@bentley/frontend-sample-base";
+import { ViewportAndNavigation, GithubLink } from "@bentley/frontend-sample-base";
 import { Id64String } from "@bentley/bentleyjs-core";
 import { Toggle } from "@bentley/ui-core";
 import "@bentley/frontend-sample-base/src/SampleBase.scss";
@@ -126,7 +126,7 @@ interface SampleState {
 /** A component the renders the UI for the sample */
 export class Sample extends React.Component<{}, SampleState> {
 
-  /** Creates an Sample instance */
+  /** Creates a Sample instance */
   constructor(props?: any, context?: any) {
     super(props, context);
     const toolAdmin = IModelApp.toolAdmin as SampleToolAdmin;
@@ -185,6 +185,7 @@ export class Sample extends React.Component<{}, SampleState> {
       <div className="sample-ui">
         <div className="sample-instructions">
           <span>Hover the mouse pointer over an element to see the tooltip.  Use these options to control it.</span>
+          <GithubLink linkTarget="https://github.com/imodeljs/imodeljs-samples/tree/master/frontend-samples/tooltip-customize-sample"/>
         </div>
         <hr></hr>
         <div className="sample-options-3col">
