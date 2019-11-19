@@ -4,6 +4,8 @@ Copyright © 2019 Bentley Systems, Incorporated. All rights reserved.
 
 An iModel.js sample application that only displays a viewport and a navigation toolbar.
 
+[![Click to run the demo](./docs/try-it-now.png)](https://vieweronlysample.z13.web.core.windows.net/)
+
 This is a 'frontend-only' sample.  It utilizes frontend-sample-base which supplies the viewport and view navigation tools. See http://imodeljs.org for comprehensive documentation on the iModel.js API and the various constructs used in this sample.
 
 ## Purpose
