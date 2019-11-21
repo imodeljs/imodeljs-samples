@@ -125,7 +125,7 @@ export default class App extends React.Component<{}, State> {
     }
     try {
       // attempt to get ViewState for the first two available view definitions
-      const viewStates = imodel ? await this.getFirstTwoViewDefinitions(imodel) : undefined;
+      const viewStates = await this.getFirstTwoViewDefinitions(imodel);
       if (viewStates) {
         this.setState(
           { imodel, viewStates },

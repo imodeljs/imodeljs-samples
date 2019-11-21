@@ -39,7 +39,7 @@ export class App extends React.Component<{}, AppState> {
 
   private _onIModelReady = async (imodel: IModelConnection, viewDefinitionId: Id64String) => {
     this.setState ({imodel, viewDefinitionId});
-    }
+  }
 
   public render() {
     let ui: React.ReactNode;
@@ -53,6 +53,6 @@ export class App extends React.Component<{}, AppState> {
       <div>
         {ui}
       </div>
-        );
+      );
     }
   }

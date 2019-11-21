@@ -101,6 +101,7 @@ dependencies:
   tooltip.js: 1.3.3
   ts-node: 7.0.1
   tslint: 5.20.1_typescript@3.7.2
+  tslint-etc: 1.9.2_tslint@5.20.1+typescript@3.7.2
   typemoq: 2.1.0
   typescript: 3.7.2
   webpack: 4.41.2_webpack@4.41.2
@@ -12832,7 +12833,7 @@ packages:
       integrity: sha512-EcMxhzCFt8k+/UP5r8waCf/lzmeSyVlqxqMEDQE7rWYiQky8KpIBz1JAoYXfROHrPZ1XXd43q8yQnULOLiBRQg==
   /tsutils-etc/1.1.0_tsutils@3.17.1:
     dependencies:
-      tsutils: 3.17.1_typescript@3.6.4
+      tsutils: 3.17.1_typescript@3.7.2
     dev: false
     peerDependencies:
       tsutils: ^3.0.0
@@ -14261,6 +14262,7 @@ packages:
       redux: 4.0.4
       rimraf: 2.7.1
       tslint: 5.20.1_typescript@3.7.2
+      tslint-etc: 1.9.2_tslint@5.20.1+typescript@3.7.2
       typescript: 3.7.2
       webpack: 4.41.2_webpack@4.41.2
       webpack-cli: 3.3.10_webpack@4.41.2
@@ -14272,7 +14274,7 @@ packages:
       chai: '*'
       react-test-renderer: '*'
     resolution:
-      integrity: sha512-OTmVIWZA43QJyvY2W8t35zOIuegai4+2eulb6WC73NgEpKhF3kFF3Kh5lvXyjhW2EcqDYmnxR7TwH5fU3AoKsw==
+      integrity: sha512-4LcIEFG4elt5sAfHQq9XUXnjFrCSnlnBF0oy1hS1fYSyh2kJk47xRhXZaFyP1++HKIrwtTbx0xtNKXZBC/XXdA==
       tarball: 'file:projects/heatmap-decorator-sample.tgz'
     version: 0.0.0
   'file:projects/imodel-changeset-test-utility.tgz':
@@ -14614,6 +14616,7 @@ packages:
       integrity: sha512-dn9hFOXV3LehYp2PQcidvvVah043tXqrwYABFsr/fHDrZnoHZxiZr/Nycx/Bc6iji+920XhgfniehPnCQeZqFg==
       tarball: 'file:projects/viewer-only-sample.tgz'
     version: 0.0.0
+registry: ''
 specifiers:
   '@bentley/bentleyjs-core': 1.7.0
   '@bentley/build-tools': 1.7.0
@@ -14717,6 +14720,7 @@ specifiers:
   tooltip.js: ^1.2.0
   ts-node: ^7.0.1
   tslint: ^5.16.0
+  tslint-etc: ^1.5.2
   typemoq: ^2.1.0
   typescript: ^3.5.0
   webpack: ^4.20.2

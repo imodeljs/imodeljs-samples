@@ -92,7 +92,7 @@ export default class App extends React.Component<{}, AppState> {
     }
     try {
       // attempt to get a view definition
-      const viewDefinitionId = imodel ? await this.getFirstViewDefinitionId(imodel) : undefined;
+      const viewDefinitionId = await this.getFirstViewDefinitionId(imodel);
       this.setState({ imodel, viewDefinitionId });
     } catch (e) {
       // if failed, close the imodel and reset the state

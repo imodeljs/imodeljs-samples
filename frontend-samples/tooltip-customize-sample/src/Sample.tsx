@@ -10,57 +10,60 @@ import { Id64String } from "@bentley/bentleyjs-core";
 import { Toggle } from "@bentley/ui-core";
 import "@bentley/frontend-sample-base/src/SampleBase.scss";
 
+/** This file contains the user interface and main logic that is specific to this sample. */
+
 enum ElemProperty {
   Origin = "Origin",
   LastModified = "LastMod",
   CodeValue = "CodeValue",
 }
 
-class SampleToolAdmin extends ToolAdmin {
-  public showImage: boolean;
-  public showCustomText: boolean;
-  public showElementProperty: boolean;
-  public showDefaultToolTip: boolean;
-  public customText: string;
-  public elemProperty: ElemProperty;
+interface SampleSettings {
+  showImage: boolean;
+  showCustomText: boolean;
+  showElementProperty: boolean;
+  showDefaultToolTip: boolean;
+  customText: string;
+  elemProperty: ElemProperty;
+}
 
-  constructor() {
-    super();
-    this.showImage = true;
-    this.showCustomText = false;
-    this.showElementProperty = true;
-    this.showDefaultToolTip = true;
-    this.customText = "Sample custom string";
-    this.elemProperty = ElemProperty.Origin;
-  }
+class SampleToolAdmin extends ToolAdmin {
+  public settings: SampleSettings = {
+    showImage: true,
+    showCustomText: false,
+    showElementProperty: true,
+    showDefaultToolTip: true,
+    customText: "Sample custom string",
+    elemProperty: ElemProperty.Origin,
+  };
 
   public async getToolTip(hit: HitDetail): Promise<HTMLElement | string> {
 
-    if ( ! this.showImage && ! this.showCustomText && ! this.showElementProperty && ! this.showDefaultToolTip)
+    if (!this.settings.showImage && !this.settings.showCustomText && !this.settings.showElementProperty && !this.settings.showDefaultToolTip)
       return "";
 
     const tip = document.createElement("div") as HTMLDivElement;
     let needHR = false;
-    if (this.showImage) {
-      const img = await imageElementFromUrl (".\\iModeljs-logo.png");
-      tip.appendChild (img);
+    if (this.settings.showImage) {
+      const img = await imageElementFromUrl(".\\iModeljs-logo.png");
+      tip.appendChild(img);
       needHR = true;
     }
 
-    if (this.showCustomText) {
+    if (this.settings.showCustomText) {
       if (needHR)
-        tip.appendChild (document.createElement("hr"));
+        tip.appendChild(document.createElement("hr"));
       const customText = document.createElement("span") as HTMLSpanElement;
-      customText.innerHTML = this.customText;
-      tip.appendChild (customText);
+      customText.innerHTML = this.settings.customText;
+      tip.appendChild(customText);
       needHR = true;
     }
 
-    if (this.showElementProperty) {
+    if (this.settings.showElementProperty) {
       if (needHR)
-        tip.appendChild (document.createElement("hr"));
+        tip.appendChild(document.createElement("hr"));
 
-      const propertyName = this.elemProperty as string;
+      const propertyName = this.settings.elemProperty as string;
       let msg = "<b>" + propertyName + ":</b> ";
 
       if (hit.isElementHit) {
@@ -69,10 +72,10 @@ class SampleToolAdmin extends ToolAdmin {
 
         const rows = hit.viewport.iModel.query(query);
         for await (const row of rows) {
-          switch (this.elemProperty) {
+          switch (this.settings.elemProperty) {
             default:
-                msg += row.val;
-                break;
+              msg += row.val;
+              break;
             case ElemProperty.LastModified:
               const date = new Date(row.val);
               msg += date.toLocaleString();
@@ -90,55 +93,34 @@ class SampleToolAdmin extends ToolAdmin {
 
       const htmlTip = document.createElement("span") as HTMLSpanElement;
       htmlTip.innerHTML = msg;
-      tip.appendChild (htmlTip);
+      tip.appendChild(htmlTip);
       needHR = true;
     }
 
-    if (this.showDefaultToolTip) {
+    if (this.settings.showDefaultToolTip) {
       if (needHR)
-        tip.appendChild (document.createElement("hr"));
-      let defaultTip = await super.getToolTip (hit);
+        tip.appendChild(document.createElement("hr"));
+      let defaultTip = await super.getToolTip(hit);
       if (typeof defaultTip === "string") {
         const htmlTip = document.createElement("span") as HTMLSpanElement;
         htmlTip.innerHTML = defaultTip;
         defaultTip = htmlTip;
       }
-      tip.appendChild (defaultTip);
+      tip.appendChild(defaultTip);
     }
 
     return tip;
   }
 }
 
-/** This file contains the user interface that is specific for this sample. */
-
-/** React state of the Sample component */
-interface SampleState {
-  toolAdmin: SampleToolAdmin;
-  showImage: boolean;
-  showCustomText: boolean;
-  showElementProperty: boolean;
-  showDefaultToolTip: boolean;
-  customText: string;
-  elemProperty: ElemProperty;
-}
-
-/** A component the renders the UI for the sample */
-export class Sample extends React.Component<{}, SampleState> {
+/** A React component that renders the UI specific for this sample */
+export class Sample extends React.Component<{}, SampleSettings> {
 
   /** Creates a Sample instance */
   constructor(props?: any, context?: any) {
     super(props, context);
     const toolAdmin = IModelApp.toolAdmin as SampleToolAdmin;
-    this.state = {
-      toolAdmin,
-      showImage: toolAdmin.showImage,
-      showCustomText: toolAdmin.showCustomText,
-      showElementProperty: toolAdmin.showElementProperty,
-      showDefaultToolTip: toolAdmin.showDefaultToolTip,
-      customText: toolAdmin.customText,
-      elemProperty: toolAdmin.elemProperty,
-    };
+    this.state = { ...toolAdmin.settings };
   }
 
   public static getIModelAppOptions(): IModelAppOptions {
@@ -147,73 +129,86 @@ export class Sample extends React.Component<{}, SampleState> {
   }
 
   private _onChangeShowImage = (checked: boolean) => {
-    this.setState ({showImage: checked});
-    this.state.toolAdmin.showImage = checked;
+    this.setState({ showImage: checked }, () => {
+      const toolAdmin = IModelApp.toolAdmin as SampleToolAdmin;
+      toolAdmin.settings.showImage = checked;
+    });
   }
 
   private _onChangeShowCustomText = (checked: boolean) => {
-    this.setState ({showCustomText: checked});
-    this.state.toolAdmin.showCustomText = checked;
+    this.setState({ showCustomText: checked }, () => {
+      const toolAdmin = IModelApp.toolAdmin as SampleToolAdmin;
+      toolAdmin.settings.showCustomText = checked;
+    });
   }
 
   private _onChangeShowElementProperty = (checked: boolean) => {
-    this.setState ({showElementProperty: checked});
-    this.state.toolAdmin.showElementProperty = checked;
+    this.setState({ showElementProperty: checked }, () => {
+      const toolAdmin = IModelApp.toolAdmin as SampleToolAdmin;
+      toolAdmin.settings.showElementProperty = checked;
+    });
   }
 
   private _onChangeShowDefaultToolTip = (checked: boolean) => {
-    this.setState ({showDefaultToolTip: checked});
-    this.state.toolAdmin.showDefaultToolTip = checked;
+    this.setState({ showDefaultToolTip: checked }, () => {
+      const toolAdmin = IModelApp.toolAdmin as SampleToolAdmin;
+      toolAdmin.settings.showDefaultToolTip = checked;
+    });
   }
 
   private _onChangeCustomText = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value: string = event.target.value;
-    this.setState ({customText: value});
-    this.state.toolAdmin.customText = value;
+    this.setState({ customText: value }, () => {
+      const toolAdmin = IModelApp.toolAdmin as SampleToolAdmin;
+      toolAdmin.settings.customText = value;
+    });
   }
 
   private _onChangeElementProperty = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value as ElemProperty;
-    this.setState ({elemProperty: value});
-    this.state.toolAdmin.elemProperty = value;
+    this.setState({ elemProperty: value }, () => {
+      const toolAdmin = IModelApp.toolAdmin as SampleToolAdmin;
+      toolAdmin.settings.elemProperty = value;
+    });
   }
 
   /** The sample's render method */
   public render() {
     return (
       <>
-      <div className="sample-ui">
-        <div className="sample-instructions">
-          <span>Hover the mouse pointer over an element to see the tooltip.  Use these options to control it.</span>
-          <GithubLink linkTarget="https://github.com/imodeljs/imodeljs-samples/tree/master/frontend-samples/tooltip-customize-sample"/>
+        { /* This is the ui specific for this sample.*/}
+        <div className="sample-ui">
+          <div className="sample-instructions">
+            <span>Hover the mouse pointer over an element to see the tooltip.  Use these options to control it.</span>
+            <GithubLink linkTarget="https://github.com/imodeljs/imodeljs-samples/tree/master/frontend-samples/tooltip-customize-sample" />
+          </div>
+          <hr></hr>
+          <div className="sample-options-3col">
+            <span>Show Image</span>
+            <Toggle isOn={this.state.showImage} onChange={this._onChangeShowImage} />
+            <span></span>
+            <span>Show Custom Text</span>
+            <Toggle isOn={this.state.showCustomText} onChange={this._onChangeShowCustomText} />
+            <input type="text" value={this.state.customText} onChange={this._onChangeCustomText} disabled={!this.state.showCustomText} />
+            <span>Show Element Property</span>
+            <Toggle isOn={this.state.showElementProperty} onChange={this._onChangeShowElementProperty} />
+            <select onChange={this._onChangeElementProperty} value={this.state.elemProperty} disabled={!this.state.showElementProperty}>
+              <option value={ElemProperty.Origin}> Origin </option>
+              <option value={ElemProperty.LastModified}> Last Modified </option>
+              <option value={ElemProperty.CodeValue}> Code value </option>
+            </select>
+            <span>Show Default ToolTip</span>
+            <Toggle isOn={this.state.showDefaultToolTip} onChange={this._onChangeShowDefaultToolTip} />
+            <span></span>
+          </div>
         </div>
-        <hr></hr>
-        <div className="sample-options-3col">
-          <span>Show Image</span>
-          <Toggle isOn={this.state.showImage} onChange={this._onChangeShowImage}/>
-          <span></span>
-          <span>Show Custom Text</span>
-          <Toggle isOn={this.state.showCustomText} onChange={this._onChangeShowCustomText}/>
-          <input type="text" value={this.state.customText} onChange={this._onChangeCustomText} disabled={!this.state.showCustomText}/>
-          <span>Show Element Property</span>
-          <Toggle isOn={this.state.showElementProperty} onChange={this._onChangeShowElementProperty}/>
-          <select onChange={this._onChangeElementProperty} disabled={!this.state.showElementProperty}>
-            <option value={ElemProperty.Origin}> Origin </option>
-            <option value={ElemProperty.LastModified}> Last Modified </option>
-            <option value={ElemProperty.CodeValue}> Code value </option>
-          </select>
-          <span>Show Default ToolTip</span>
-          <Toggle isOn={this.state.showDefaultToolTip} onChange={this._onChangeShowDefaultToolTip}/>
-          <span></span>
-        </div>
-      </div>
       </>
-      );
-    }
+    );
   }
+}
 
 /*
- * From here down is boiler plate.  You don't need to touch this when creating a new sample.
+ * From here down is boiler plate common to all front-end samples.
  *********************************************************************************************/
 
 /** React props for Sample component */
@@ -222,15 +217,15 @@ interface SampleProps {
   viewDefinitionId: Id64String;
 }
 
-/** A component the renders the UI for the sample */
+/** A React component that renders the UI for the sample */
 export class SampleContainer extends React.Component<SampleProps> {
 
   /** The sample's render method */
   public render() {
     return (
       <>
-      <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} />,
-      <Sample/>;
+        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} />,
+      <Sample />;
       </>
     );
   }

@@ -1,7 +1,13 @@
 {
-    "files.associations": {
-        "*.snap": "javascript",
-        ".nycrc": "json",
-        "certa.json": "jsonc"
-      },
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.rush": true
+  },
+  "files.associations": {
+    "*.snap": "javascript",
+    ".nycrc": "json",
+    "certa.json": "jsonc"
+  },
 }

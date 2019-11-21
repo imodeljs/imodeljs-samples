@@ -27,7 +27,7 @@ export class ViewportAndNavigation extends React.PureComponent<ViewportAndNaviga
           style={{ height: "1200px" }}
           imodel={this.props.imodel}
           viewDefinitionId={this.props.viewDefinitionId} />
-        { toolbar() }
+        {toolbar()}
       </>
     );
   }

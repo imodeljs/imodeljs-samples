@@ -9,7 +9,7 @@ import { XAndY } from "@bentley/geometry-core";
 import ToolTip from "tooltip.js";
 import "./ToolTip.scss";
 
-export class SampleLibNotificationManager extends NotificationManager {
+export class SampleBaseNotificationManager extends NotificationManager {
   private _toolTip?: ToolTip;
   private _el?: HTMLElement;
   private _tooltipDiv?: HTMLDivElement;
@@ -52,6 +52,3 @@ export class SampleLibNotificationManager extends NotificationManager {
     this._toolTip!.show();
   }
 }
-
-
-

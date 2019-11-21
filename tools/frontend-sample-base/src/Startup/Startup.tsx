@@ -74,17 +74,17 @@ export class StartupComponent extends React.Component<StartupProps, StartupState
       return defaultViewId;
 
     // Return first spatial view definition (if any)
-    const spatialViews: IModelConnection.ViewSpec[] = await imodel.views.getViewList({ from: SpatialViewState.classFullName});
+    const spatialViews: IModelConnection.ViewSpec[] = await imodel.views.getViewList({ from: SpatialViewState.classFullName });
     if (spatialViews.length > 0)
       return spatialViews[0].id!;
 
     // Return first drawing view definition (if any)
-    const drawingViews: IModelConnection.ViewSpec[] = await imodel.views.getViewList({ from: DrawingViewState.classFullName});
+    const drawingViews: IModelConnection.ViewSpec[] = await imodel.views.getViewList({ from: DrawingViewState.classFullName });
     if (drawingViews.length > 0)
       return drawingViews[0].id!;
 
     throw new Error("No valid view definitions in imodel");
-    }
+  }
 
   /** Handle iModel open event */
   private _onIModelSelected = async (imodel: IModelConnection | undefined) => {
@@ -95,7 +95,7 @@ export class StartupComponent extends React.Component<StartupProps, StartupState
     }
     try {
       // attempt to get a view definition
-      const viewDefinitionId = imodel ? await this.getFirstViewDefinitionId(imodel) : undefined;
+      const viewDefinitionId = await this.getFirstViewDefinitionId(imodel);
       this.setState({ imodel, viewDefinitionId });
 
       if (viewDefinitionId)
@@ -118,7 +118,7 @@ export class StartupComponent extends React.Component<StartupProps, StartupState
       ui = `signing-in...`;
     } else if (!this.state.user.accessToken) {
       // if user doesn't have and access token, show sign in page
-      ui = (<SignIn onSignIn={this._onStartSignin}/>);
+      ui = (<SignIn onSignIn={this._onStartSignin} />);
     } else if (!this.state.imodel || !this.state.viewDefinitionId) {
       // if we don't have an imodel / view definition id - render a button that initiates imodel open
       ui = (<OpenIModelButton accessToken={this.state.user.accessToken} onIModelSelected={this._onIModelSelected} />);

@@ -7,7 +7,7 @@ import { IModelApp, OidcBrowserClient, FrontendRequestContext, IModelAppOptions 
 import { BentleyCloudRpcManager, BentleyCloudRpcParams, IModelReadRpcInterface, IModelTileRpcInterface } from "@bentley/imodeljs-common";
 import { UiCore } from "@bentley/ui-core";
 import { UiComponents } from "@bentley/ui-components";
-import { SampleLibNotificationManager } from "./Notifications/NotificationManager";
+import { SampleBaseNotificationManager } from "./Notifications/NotificationManager";
 
 // Boiler plate code
 export class SampleBaseApp {
@@ -22,10 +22,10 @@ export class SampleBaseApp {
   public static startup(optsIn?: IModelAppOptions) {
     let opts: IModelAppOptions = {};
     if (optsIn)
-      opts = optsIn
+      opts = optsIn;
 
-    if (! opts.notifications)
-      opts.notifications = new SampleLibNotificationManager;
+    if (!opts.notifications)
+      opts.notifications = new SampleBaseNotificationManager();
 
     IModelApp.startup(opts);
 
@@ -64,9 +64,9 @@ export class SampleBaseApp {
   }
 
   private static async initializeOidc() {
-    const clientId =    Config.App.get("imjs_frontend_sample_client_id");
+    const clientId = Config.App.get("imjs_frontend_sample_client_id");
     const redirectUri = Config.App.get("imjs_frontend_sample_redirect_uri");
-    const scope =       Config.App.get("imjs_frontend_sample_scope");
+    const scope = Config.App.get("imjs_frontend_sample_scope");
     const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope };
 
     this._oidcClient = new OidcBrowserClient(oidcConfig);

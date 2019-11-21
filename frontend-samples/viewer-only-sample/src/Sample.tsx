@@ -11,55 +11,56 @@ import "@bentley/frontend-sample-base/src/SampleBase.scss";
 
 // cSpell:ignore imodels
 
-/** This file contains the user interface that is specific for this sample. */
+/** This file contains the user interface and main logic that is specific to this sample. */
 
 /** React state of the Sample component */
 interface SampleState {
   _placeholder: boolean; // This is here because lint doesn't like empty interfaces
 }
 
-/** A component the renders the UI for the sample */
+/** A React component that renders the UI specific for this sample */
 export class Sample extends React.Component<{}, SampleState> {
 
   /** Creates a Sample instance */
   constructor(props?: any, context?: any) {
     super(props, context);
-    }
+  }
 
   /** The sample's render method */
   public render() {
     return (
       <>
-      <div className="sample-ui">
-        <div>
-          <span>Use the toolbar at the right to navigate the model.</span>
-          <GithubLink linkTarget="https://github.com/imodeljs/imodeljs-samples/tree/master/frontend-samples/viewer-only-sample"/>
+        { /* This is the ui specific for this sample.*/}
+        <div className="sample-ui">
+          <div>
+            <span>Use the toolbar at the right to navigate the model.</span>
+            <GithubLink linkTarget="https://github.com/imodeljs/imodeljs-samples/tree/master/frontend-samples/viewer-only-sample" />
+          </div>
         </div>
-      </div>
       </>
-      );
-    }
+    );
   }
+}
 
 /*
- * From here down is boiler plate.  You don't need to touch this when creating a new sample.
+ * From here down is boiler plate common to all front-end samples.
  *********************************************************************************************/
 
-/** React props for Sample component */
+/** React props for Sample container */
 interface SampleProps {
   imodel: IModelConnection;
   viewDefinitionId: Id64String;
 }
 
-/** A component the renders the UI for the sample */
+/** A React component that renders the UI for the sample */
 export class SampleContainer extends React.Component<SampleProps> {
 
   /** The sample's render method */
   public render() {
     return (
       <>
-      <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} />,
-      <Sample/>;
+        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} />,
+        <Sample />;
       </>
     );
   }

@@ -5,18 +5,17 @@
 import * as React from "react";
 
 export interface GithubLinkProps {
-  linkTarget: string
+  linkTarget: string;
 }
 
 export class GithubLink extends React.PureComponent<GithubLinkProps> {
   public render() {
     return (
       <>
-        <a href={this.props.linkTarget} target="_blank">
-            <img src="GitHub-Mark-32px.png" alt="Github Link" title="View source on Github"/>
+        <a href={this.props.linkTarget} target="_blank" rel="noopener noreferrer">
+          <img src="GitHub-Mark-32px.png" alt="Github Link" title="View source on Github" />
         </a>
       </>
     );
   }
 }
-

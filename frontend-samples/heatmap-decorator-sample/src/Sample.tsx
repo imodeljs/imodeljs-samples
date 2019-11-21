@@ -16,7 +16,7 @@ import "@bentley/frontend-sample-base/src/SampleBase.scss";
 
 // cSpell:ignore imodels
 
-/** This file contains the user interface that is specific for this sample. */
+/** This file contains the user interface and main logic that is specific to this sample. */
 
 enum PointMode {
   Random = "1",
@@ -28,28 +28,28 @@ enum PointMode {
 interface SampleState {
   range?: Range2d;
   height?: number;
-  heatmapDecorator?: HeatmapDecorator;
   pointGenerator: BasePointGenerator;
   pointCount: number;
   spreadFactor: number;
 }
 
-/** A component the renders the UI for the sample */
+/** A React component that renders the UI specific for this sample */
 export class Sample extends React.Component<{}, SampleState> {
+  private _heatmapDecorator?: HeatmapDecorator;
 
   /** Creates an Sample instance */
   constructor(props?: any, context?: any) {
     super(props, context);
     this.state = {
-      pointGenerator: new RandomPointGenerator (),
+      pointGenerator: new RandomPointGenerator(),
       range: undefined,
       pointCount: 25,
       spreadFactor: 10,
     };
 
-    IModelApp.viewManager.onViewOpen.addOnce ((vp: Viewport) => {
+    IModelApp.viewManager.onViewOpen.addOnce((vp: Viewport) => {
       // To make the heatmap look better, we want a top view, with a white background, etc.
-      vp.setStandardRotation (StandardViewId.Top);
+      vp.setStandardRotation(StandardViewId.Top);
 
       const range = vp.view.computeFitRange();
       const aspect = vp.viewRect.aspect;
@@ -62,47 +62,45 @@ export class Sample extends React.Component<{}, SampleState> {
       vp.displayStyle = style;
 
       /* Grab the range of the contents of the view.  We'll use this to size the heatmap. */
-      const range2d = Range2d.createFrom (range);
-      this.setState({range: range2d, height: range.zHigh}, () => this._setupHeatmapDecorator());
+      const range2d = Range2d.createFrom(range);
+      this.setState({ range: range2d, height: range.zHigh }, () => this.setupHeatmapDecorator());
     });
   }
 
-  private _setupHeatmapDecorator () {
-    const points = this.state.pointGenerator.generatePoints (this.state.pointCount, this.state.range!);
-    const heatmapDecorator = new HeatmapDecorator (points, this.state.range!, this.state.spreadFactor, this.state.height!);
+  private setupHeatmapDecorator() {
+    const points = this.state.pointGenerator.generatePoints(this.state.pointCount, this.state.range!);
+    this._heatmapDecorator = new HeatmapDecorator(points, this.state.range!, this.state.spreadFactor, this.state.height!);
 
-    IModelApp.viewManager.addDecorator(heatmapDecorator);
-
-    this.setState({ heatmapDecorator });
+    IModelApp.viewManager.addDecorator(this._heatmapDecorator);
   }
 
-  private _teardownHeatmapDecorator () {
-    if (undefined === this.state.heatmapDecorator)
+  private teardownHeatmapDecorator() {
+    if (undefined === this._heatmapDecorator)
       return;
 
-    IModelApp.viewManager.dropDecorator(this.state.heatmapDecorator);
-    this.setState({ heatmapDecorator: undefined });
+    IModelApp.viewManager.dropDecorator(this._heatmapDecorator);
+    this._heatmapDecorator = undefined;
   }
 
-  private _updateHeatmapPoints () {
-    if (undefined === this.state.heatmapDecorator)
+  private updateHeatmapPoints() {
+    if (undefined === this._heatmapDecorator)
       return;
 
-    const points = this.state.pointGenerator.generatePoints (this.state.pointCount, this.state.range!);
-    this.state.heatmapDecorator.setPoints(points);
+    const points = this.state.pointGenerator.generatePoints(this.state.pointCount, this.state.range!);
+    this._heatmapDecorator.setPoints(points);
   }
 
   private _onChangePointMode = (event: React.ChangeEvent<HTMLSelectElement>) => {
     let pointGenerator: BasePointGenerator;
 
     switch (event.target.value) {
-      case PointMode.Circle: { pointGenerator = new CirclePointGenerator (); break; }
-      case PointMode.Cross:  { pointGenerator = new CrossPointGenerator (); break; }
+      case PointMode.Circle: { pointGenerator = new CirclePointGenerator(); break; }
+      case PointMode.Cross: { pointGenerator = new CrossPointGenerator(); break; }
       default:
-      case PointMode.Random: { pointGenerator = new RandomPointGenerator (); break; }
+      case PointMode.Random: { pointGenerator = new RandomPointGenerator(); break; }
     }
 
-    this.setState({ pointGenerator }, () => this._updateHeatmapPoints () );
+    this.setState({ pointGenerator }, () => this.updateHeatmapPoints());
   }
 
   /** Selector for mode of input points */
@@ -118,55 +116,55 @@ export class Sample extends React.Component<{}, SampleState> {
 
   private _onChangePointCount = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ pointCount: Number(event.target.value) }, () => {
-      if (undefined !== this.state.heatmapDecorator)
-        this._updateHeatmapPoints ();
-      });
-    }
+      if (undefined !== this._heatmapDecorator)
+        this.updateHeatmapPoints();
+    });
+  }
 
   private _onChangeSpreadFactor = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ spreadFactor: Number(event.target.value) }, () => {
-      if (undefined !== this.state.heatmapDecorator)
-        this.state.heatmapDecorator.setSpreadFactor(this.state.spreadFactor);
-      });
-    }
+      if (undefined !== this._heatmapDecorator)
+        this._heatmapDecorator.setSpreadFactor(this.state.spreadFactor);
+    });
+  }
 
   private _onChangeShowHeatmap = (_checked: boolean) => {
-    if (undefined !== this.state.heatmapDecorator) {
-      this._teardownHeatmapDecorator();
+    if (undefined !== this._heatmapDecorator) {
+      this.teardownHeatmapDecorator();
     } else {
-      this._setupHeatmapDecorator();
+      this.setupHeatmapDecorator();
     }
   }
 
   /** The sample's render method */
   public render() {
     return (
-          <>
-            { /* Add specific sample UI here */ }
-            <div className="sample-ui">
-              <div className="sample-instructions">
-                <span>Use the options below to control the heatmap visualization.</span>
-                <GithubLink linkTarget="https://github.com/imodeljs/imodeljs-samples/tree/master/frontend-samples/heatmap-decorator-sample"/>
-              </div>
-              <hr></hr>
-              <div className="sample-options-2col">
-                <span>Show Heatmap</span>
-                <Toggle isOn={undefined !== this.state.heatmapDecorator} showCheckmark={true} onChange={this._onChangeShowHeatmap} />
-                <span>Mode</span>
-                { this._pointModeSelector() }
-                <span>Point Count</span>
-                <input type="range" min="1" max="500" value={this.state.pointCount} onChange={this._onChangePointCount}></input>
-                <span>Spread Factor</span>
-                <input type="range" min="1" max="100" value={this.state.spreadFactor} onChange={this._onChangeSpreadFactor}></input>
-              </div>
-            </div>
-          </>
-           );
-    }
+      <>
+        { /* This is the ui specific for this sample.*/}
+        <div className="sample-ui">
+          <div className="sample-instructions">
+            <span>Use the options below to control the heatmap visualization.</span>
+            <GithubLink linkTarget="https://github.com/imodeljs/imodeljs-samples/tree/master/frontend-samples/heatmap-decorator-sample" />
+          </div>
+          <hr></hr>
+          <div className="sample-options-2col">
+            <span>Show Heatmap</span>
+            <Toggle isOn={undefined !== this._heatmapDecorator} showCheckmark={true} onChange={this._onChangeShowHeatmap} />
+            <span>Mode</span>
+            {this._pointModeSelector()}
+            <span>Point Count</span>
+            <input type="range" min="1" max="500" value={this.state.pointCount} onChange={this._onChangePointCount}></input>
+            <span>Spread Factor</span>
+            <input type="range" min="1" max="100" value={this.state.spreadFactor} onChange={this._onChangeSpreadFactor}></input>
+          </div>
+        </div>
+      </>
+    );
   }
+}
 
-  /*
- * From here down is boiler plate.  You don't need to touch this when creating a new sample.
+/*
+ * From here down is boiler plate common to all front-end samples.
  *********************************************************************************************/
 
 /** React props for Sample component */
@@ -175,15 +173,15 @@ interface SampleProps {
   viewDefinitionId: Id64String;
 }
 
-/** A component the renders the UI for the sample */
+/** A React component that renders the UI for the sample */
 export class SampleContainer extends React.Component<SampleProps> {
 
   /** The sample's render method */
   public render() {
     return (
       <>
-      <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} />,
-      <Sample/>;
+        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} />,
+      <Sample />;
       </>
     );
   }
