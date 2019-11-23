@@ -16,7 +16,7 @@ See http://imodeljs.org for comprehensive documentation on the iModel.js API and
 
 ## Development Setup
 
-Follow the [App Development Setup](../../README.md0) section under Sample Interactive Apps to configure, install dependencies, build, and run the app.
+Follow the [App Development Setup](../../README.md) section under Sample Interactive Apps to configure, install dependencies, build, and run the app.
 
 ## Testing
 
