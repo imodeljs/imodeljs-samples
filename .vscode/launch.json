@@ -3,12 +3,14 @@
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
-  "configurations": [
-    {
+  "configurations": [{
       "type": "node",
       "request": "attach",
       "name": "Attach to node process",
       "processId": "${command:PickProcess}"
+    },
+    {
+      "name": "--------Tests--------"
     },
     {
       "type": "node",
@@ -83,6 +85,151 @@
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"
-    }
+    },
+    {
+      "name": "--------Frontend Samples--------"
+    },
+    {
+      "name": "Heatmap Decorator Sample Browser (frontend)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/frontend-samples/heatmap-decorator-sample/node_modules/@bentley/imodeljs-webserver/lib/WebServer.js",
+      "cwd": "${workspaceFolder}",
+      "args": ["--port=3000", "--resources=./frontend-samples/heatmap-decorator-sample/lib/webresources/"],
+      "smartStep": true,
+      "serverReadyAction": {
+        "pattern": "listening on http:localHost:([0-9]+)",
+        "uriFormat": "http://localhost:%s",
+        "action": "debugWithChrome"
+      }
+    },
+    {
+      "name": "Tooltip Customize Sample Browser (frontend)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/frontend-samples/tooltip-customize-sample/node_modules/@bentley/imodeljs-webserver/lib/WebServer.js",
+      "cwd": "${workspaceFolder}",
+      "args": ["--port=3000", "--resources=./frontend-samples/tooltip-customize-sample/lib/webresources/"],
+      "smartStep": true,
+      "serverReadyAction": {
+        "pattern": "listening on http:localHost:([0-9]+)",
+        "uriFormat": "http://localhost:%s",
+        "action": "debugWithChrome"
+      }
+    },
+    {
+      "name": "Viewer Only Sample Browser (frontend)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/frontend-samples/viewer-only-sample/node_modules/@bentley/imodeljs-webserver/lib/WebServer.js",
+      "cwd": "${workspaceFolder}",
+      "args": ["--port=3000", "--resources=./frontend-samples/viewer-only-sample/lib/webresources/"],
+      "smartStep": true,
+      "serverReadyAction": {
+        "pattern": "listening on http:localHost:([0-9]+)",
+        "uriFormat": "http://localhost:%s",
+        "action": "debugWithChrome"
+      }
+    },
+    {
+      "name": "--------Basic ViewPort--------"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Basic ViewPort App Browser (backend)",
+      "runtimeExecutable": "node",
+      "program": "${workspaceFolder}/interactive-app/basic-viewport-app/lib/backend/main.js",
+      "cwd": "${workspaceFolder}/interactive-app/basic-viewport-app",
+    },
+    {
+      "name": "Basic ViewPort App Browser (frontend)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/interactive-app/basic-viewport-app/node_modules/@bentley/imodeljs-webserver/lib/WebServer.js",
+      "cwd": "${workspaceFolder}",
+      "args": ["--port=3000", "--resources=./interactive-app/basic-viewport-app/lib/webresources/"],
+      "smartStep": true,
+      "serverReadyAction": {
+        "pattern": "listening on http:localHost:([0-9]+)",
+        "uriFormat": "http://localhost:%s",
+        "action": "debugWithChrome"
+      }
+    },
+    {
+      "name": "--------Nine Zone Sample--------"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Nine Zone Sample App Browser (backend)",
+      "runtimeExecutable": "node",
+      "program": "${workspaceRoot}/interactive-app/ninezone-sample-app/lib/backend/main.js",
+      "cwd": "${workspaceRoot}/interactive-app/ninezone-sample-app",
+    },
+    {
+      "name": "Nine Zone Sample App Browser (frontend)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/interactive-app/ninezone-sample-app/node_modules/@bentley/imodeljs-webserver/lib/WebServer.js",
+      "cwd": "${workspaceFolder}",
+      "args": ["--port=3000", "--resources=./interactive-app/ninezone-sample-app/lib/webresources/"],
+      "smartStep": true,
+      "serverReadyAction": {
+        "pattern": "listening on http:localHost:([0-9]+)",
+        "uriFormat": "http://localhost:%s",
+        "action": "debugWithChrome"
+      }
+    },
+    {
+      "name": "--------Simple Viewer--------"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Simple Viewer App Browser (backend)",
+      "runtimeExecutable": "node",
+      "program": "${workspaceRoot}/interactive-app/simple-viewer-app/lib/backend/main.js",
+      "cwd": "${workspaceRoot}/interactive-app/simple-viewer-app",
+    },
+    {
+      "name": "Simple Viewer App Browser (frontend)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/interactive-app/simple-viewer-app/node_modules/@bentley/imodeljs-webserver/lib/WebServer.js",
+      "cwd": "${workspaceFolder}",
+      "args": ["--port=3000", "--resources=./interactive-app/simple-viewer-app/lib/webresources/"],
+      "smartStep": true,
+      "serverReadyAction": {
+        "pattern": "listening on http:localHost:([0-9]+)",
+        "uriFormat": "http://localhost:%s",
+        "action": "debugWithChrome"
+      }
+    },
+    {
+      "name": "--------Backend + Frontend--------"
+    },
+  ],
+  "compounds": [{
+      "name": "Basic ViewPort App Browser (frontend + backend)",
+      "configurations": [
+        "Basic ViewPort App Browser (backend)",
+        "Basic ViewPort App Browser (frontend)"
+      ]
+    },
+    {
+      "name": "Nine Zone Sample App Browser (frontend + backend)",
+      "configurations": [
+        "Nine Zone Sample App Browser (backend)",
+        "Nine Zone Sample App Browser (frontend)"
+      ]
+    },
+    {
+      "name": "Simple Viewer App Browser (frontend + backend)",
+      "configurations": [
+        "Simple Viewer App Browser (backend)",
+        "Simple Viewer App Browser (frontend)"
+      ]
+    },
   ]
 }
