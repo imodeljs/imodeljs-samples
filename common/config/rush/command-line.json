@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/command-line.schema.json",
-  "commands": [ 
+  "commands": [
     {
       "name": "clean",
       "commandKind": "bulk",
@@ -33,7 +33,7 @@
       "summary": "Run integration tests for each package",
       "description": "Iterates through each package in the monorepo and runs the 'test:integration' script",
       "enableParallelism": true,
-      "ignoreMissingScript": false,
+      "ignoreMissingScript": true,
       "allowWarningsInSuccessfulBuild": true
     },
   ]

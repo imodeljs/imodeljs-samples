@@ -35,6 +35,7 @@ temp
 # Rush files
 common/temp/**
 package-deps.json
+.rush
 
 # Build output
 lib
