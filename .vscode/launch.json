@@ -207,6 +207,28 @@
       }
     },
     {
+      "type": "node",
+      "request": "launch",
+      "name": "Simple Viewer App Electron (backend)",
+      "protocol": "inspector",
+      "runtimeExecutable": "${workspaceFolder}/interactive-app/simple-viewer-app/node_modules/.bin/electron",
+      "runtimeArgs": [
+        "--remote-debugging-port=9223",
+        "${workspaceFolder}/interactive-app/simple-viewer-app/lib/backend/main.js"
+      ],
+      "windows": {
+        "runtimeExecutable": "${workspaceFolder}/interactive-app/simple-viewer-app/node_modules/.bin/electron.cmd"
+      }
+    },
+    {
+      "name": "Simple Viewer App Electron (frontend)",
+      "type": "chrome",
+      "request": "attach",
+      "port": 9223,
+      "webRoot": "${workspaceFolder}/interactive-app/simple-viewer-app/lib/webresources/",
+      "timeout": 30000
+    },
+    {
       "name": "--------Backend + Frontend--------"
     },
   ],
@@ -229,6 +251,13 @@
       "configurations": [
         "Simple Viewer App Browser (backend)",
         "Simple Viewer App Browser (frontend)"
+      ]
+    },
+    {
+      "name": "Simple Viewer App Electron (frontend + backend)",
+      "configurations": [
+        "Simple Viewer App Electron (backend)",
+        "Simple Viewer App Electron (frontend)"
       ]
     },
   ]

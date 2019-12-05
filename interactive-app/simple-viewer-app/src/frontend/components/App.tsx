@@ -3,10 +3,11 @@
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 import * as React from "react";
+import { ElectronRpcConfiguration } from "@bentley/imodeljs-common";
 import { Id64, Id64String, OpenMode } from "@bentley/bentleyjs-core";
 import { ConnectClient, IModelQuery, Project, Config } from "@bentley/imodeljs-clients";
 import { IModelApp, IModelConnection, FrontendRequestContext, AuthorizedFrontendRequestContext, SpatialViewState, DrawingViewState } from "@bentley/imodeljs-frontend";
-import { Presentation, SelectionChangeEventArgs, ISelectionProvider } from "@bentley/presentation-frontend";
+import { Presentation, SelectionChangeEventArgs, ISelectionProvider, IFavoritePropertiesStorage, FavoriteProperties, FavoritePropertiesManager } from "@bentley/presentation-frontend";
 import { Button, ButtonSize, ButtonType, Spinner, SpinnerSize } from "@bentley/ui-core";
 import { SignIn } from "@bentley/ui-components";
 import { SimpleViewerApp } from "../api/SimpleViewerApp";
@@ -137,6 +138,29 @@ export default class App extends React.Component<{}, AppState> {
     return split[split.length - 1];
   }
 
+  private delayedInitialization() {
+
+    if (this.state.offlineIModel) {
+      // WORKAROUND: create 'local' FavoritePropertiesManager when in 'offline' or snapshot mode. Otherwise,
+      //             the PresentationManager will try to use the Settings service online and fail.
+      const storage: IFavoritePropertiesStorage = {
+        loadProperties: async (_?: string, __?: string) => ( {
+          nestedContentInfos: new Set<string>(),
+          propertyInfos: new Set<string>(),
+          baseFieldInfos: new Set<string>(),
+        }),
+        async saveProperties(_: FavoriteProperties, __?: string, ___?: string) {},
+      };
+      Presentation.favoriteProperties = new FavoritePropertiesManager({storage});
+
+      // WORKAROUND: Clear authorization client if operating in offline mode
+      IModelApp.authorizationClient = undefined;
+    }
+
+    // initialize Presentation
+    Presentation.initialize({activeLocale: IModelApp.i18n.languageList()[0]});
+  }
+
   /** The component's render method */
   public render() {
     let ui: React.ReactNode;
@@ -145,9 +169,15 @@ export default class App extends React.Component<{}, AppState> {
       // if user is currently being loaded, just tell that
       ui = `${IModelApp.i18n.translate("SimpleViewer:signing-in")}...`;
     } else if (!SimpleViewerApp.oidcClient.hasSignedIn && !this.state.offlineIModel) {
-      // if user doesn't have and access token, show sign in page
-      ui = (<SignIn onSignIn={this._onStartSignin} onRegister={this._onRegister} onOffline={this._onOffline} />);
+      // if user doesn't have an access token, show sign in page
+      // Only call with onOffline prop for electron mode since this is not a valid option for Web apps
+      if (ElectronRpcConfiguration.isElectron)
+        ui = (<SignIn onSignIn={this._onStartSignin} onRegister={this._onRegister} onOffline={this._onOffline} />);
+      else
+        ui = (<SignIn onSignIn={this._onStartSignin} onRegister={this._onRegister} />);
     } else if (!this.state.imodel || !this.state.viewDefinitionId) {
+      // NOTE: We needed to delay some initialization until now so we know if we are opening a snapshot or an imodel.
+      this.delayedInitialization();
       // if we don't have an imodel / view definition id - render a button that initiates imodel open
       ui = (<OpenIModelButton offlineIModel={this.state.offlineIModel} onIModelSelected={this._onIModelSelected} />);
     } else {
