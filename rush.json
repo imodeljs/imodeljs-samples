@@ -44,6 +44,10 @@
     {
       "packageName": "tooltip-customize-sample",
       "projectFolder": "frontend-samples/tooltip-customize-sample"
+    },
+    {
+      "packageName": "emphasize-elements-sample",
+      "projectFolder": "frontend-samples/emphasize-elements-sample"
     }
   ]
 }

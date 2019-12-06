@@ -10,12 +10,21 @@ import {
 
 import { Id64String } from "@bentley/bentleyjs-core";
 import { ViewportComponent } from "@bentley/ui-components";
+import { viewWithUnifiedSelection } from "@bentley/presentation-components";
 import "./Toolbar.scss";
+
+// create a HOC viewport component that supports unified selection
+// tslint:disable-next-line:variable-name
+const SimpleViewport = viewWithUnifiedSelection(ViewportComponent);
 
 /** React props for [[ViewportAndNavigationComponents]] component */
 export interface ViewportAndNavigationProps {
+  /** iModel whose contents should be displayed in the viewport */
   imodel: IModelConnection;
+  /** View definition to use when the viewport is first loaded */
   viewDefinitionId: Id64String;
+  /** ID of the presentation rule set to use for unified selection */
+  rulesetId: string;
 }
 
 /** Renders viewport, toolbar, and associated elements */
@@ -23,10 +32,11 @@ export class ViewportAndNavigation extends React.PureComponent<ViewportAndNaviga
   public render() {
     return (
       <>
-        <ViewportComponent
+        <SimpleViewport
           style={{ height: "1200px" }}
           imodel={this.props.imodel}
-          viewDefinitionId={this.props.viewDefinitionId} />
+          viewDefinitionId={this.props.viewDefinitionId}
+          ruleset={this.props.rulesetId} />
         {toolbar()}
       </>
     );

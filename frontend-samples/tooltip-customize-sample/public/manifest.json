@@ -1,6 +1,6 @@
 {
-  "short_name": "heatmap-sample-app",
-  "name": "Heatmap Sample App",
+  "short_name": "tooltip-customize-sample",
+  "name": "Tooltip Customize Sample",
   "icons": [
     {
       "src": "favicon.ico",

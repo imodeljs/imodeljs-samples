@@ -222,9 +222,12 @@ export class SampleContainer extends React.Component<SampleProps> {
 
   /** The sample's render method */
   public render() {
+    // ID of the presentation ruleset used by all of the controls; the ruleset
+    // can be found at `assets/presentation_rules/Default.PresentationRuleSet.xml`
+    const rulesetId = "Default";
     return (
       <>
-        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} />,
+        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} rulesetId={rulesetId} />,
       <Sample />;
       </>
     );

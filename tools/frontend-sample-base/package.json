@@ -8,10 +8,6 @@
     "name": "Bentley Systems, Inc.",
     "url": "http://www.bentley.com"
   },
-  "os": [
-    "win32",
-    "linux"
-  ],
   "version": "1.8.0",
   "private": true,
   "scripts": {
@@ -23,7 +19,7 @@
   "iModelJs": {
     "buildModule": {
       "type": "system",
-      "tscOptions": "-build",      
+      "tscOptions": "-build",
       "sourceResources": [
         {
           "source": "./src/**/*.css",
@@ -38,7 +34,7 @@
         "dest": "./lib/module",
         "entry": "./lib/frontend-sample-base.js",
         "bundleName": "frontend-sample-base",
-        "styleSheets" : true
+        "styleSheets": true
       }
     }
   },
@@ -54,6 +50,9 @@
     "@bentley/imodeljs-quantity": "1.8.0",
     "@bentley/ui-components": "1.8.0",
     "@bentley/ui-core": "1.8.0",
+    "@bentley/presentation-frontend": "1.8.0",
+    "@bentley/presentation-common": "1.8.0",
+    "@bentley/presentation-components": "1.8.0",
     "body-parser": "^1.18.3",
     "chai-jest-snapshot": "^2.0.0",
     "express": "^4.16.3",
@@ -63,7 +62,7 @@
     "react-dnd": "^5.0.0",
     "react-dnd-html5-backend": "^5.0.1",
     "react-dom": "^16.8.0",
-    "tooltip.js": "^1.2.0"    
+    "tooltip.js": "^1.2.0"
   },
   "devDependencies": {
     "@bentley/build-tools": "1.8.0",

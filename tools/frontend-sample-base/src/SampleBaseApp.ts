@@ -5,9 +5,11 @@
 import { OidcFrontendClientConfiguration, IOidcFrontendClient, UrlDiscoveryClient, Config } from "@bentley/imodeljs-clients";
 import { IModelApp, OidcBrowserClient, FrontendRequestContext, IModelAppOptions } from "@bentley/imodeljs-frontend";
 import { BentleyCloudRpcManager, BentleyCloudRpcParams, IModelReadRpcInterface, IModelTileRpcInterface } from "@bentley/imodeljs-common";
+import { PresentationRpcInterface } from "@bentley/presentation-common";
 import { UiCore } from "@bentley/ui-core";
 import { UiComponents } from "@bentley/ui-components";
 import { SampleBaseNotificationManager } from "./Notifications/NotificationManager";
+import { Presentation } from "@bentley/presentation-frontend";
 
 // Boiler plate code
 export class SampleBaseApp {
@@ -39,6 +41,11 @@ export class SampleBaseApp {
     // initialize UiComponents
     initPromises.push(UiComponents.initialize(IModelApp.i18n));
 
+    // initialize Presentation
+    Presentation.initialize({
+      activeLocale: IModelApp.i18n.languageList()[0],
+    });
+
     // initialize RPC communication
     initPromises.push(SampleBaseApp.initializeRpc());
 
@@ -50,7 +57,7 @@ export class SampleBaseApp {
   }
 
   private static async initializeRpc(): Promise<void> {
-    const rpcInterfaces = [IModelReadRpcInterface, IModelTileRpcInterface];
+    const rpcInterfaces = [IModelReadRpcInterface, IModelTileRpcInterface, PresentationRpcInterface];
 
     // initialize RPC for web apps
     let rpcParams: BentleyCloudRpcParams;

@@ -1,6 +1,6 @@
 {
-  "short_name": "heatmap-sample-app",
-  "name": "Heatmap Sample App",
+  "short_name": "viewer-only-sample",
+  "name": "Viewer Only Sample",
   "icons": [
     {
       "src": "favicon.ico",

@@ -28,6 +28,7 @@ enum PointMode {
 interface SampleState {
   range?: Range2d;
   height?: number;
+  showDecorator: boolean;
   pointGenerator: BasePointGenerator;
   pointCount: number;
   spreadFactor: number;
@@ -42,6 +43,7 @@ export class Sample extends React.Component<{}, SampleState> {
     super(props, context);
     this.state = {
       pointGenerator: new RandomPointGenerator(),
+      showDecorator: true,
       range: undefined,
       pointCount: 25,
       spreadFactor: 10,
@@ -52,7 +54,9 @@ export class Sample extends React.Component<{}, SampleState> {
       vp.setStandardRotation(StandardViewId.Top);
 
       const range = vp.view.computeFitRange();
+      const height = range.zHigh;
       const aspect = vp.viewRect.aspect;
+      range.expandInPlace(1);
 
       vp.view.lookAtVolume(range, aspect);
       vp.synchWithView(false);
@@ -63,7 +67,7 @@ export class Sample extends React.Component<{}, SampleState> {
 
       /* Grab the range of the contents of the view.  We'll use this to size the heatmap. */
       const range2d = Range2d.createFrom(range);
-      this.setState({ range: range2d, height: range.zHigh }, () => this.setupHeatmapDecorator());
+      this.setState({ range: range2d, height, showDecorator: true }, () => this.setupHeatmapDecorator());
     });
   }
 
@@ -128,11 +132,11 @@ export class Sample extends React.Component<{}, SampleState> {
     });
   }
 
-  private _onChangeShowHeatmap = (_checked: boolean) => {
-    if (undefined !== this._heatmapDecorator) {
-      this.teardownHeatmapDecorator();
+  private _onChangeShowHeatmap = (checked: boolean) => {
+    if (checked) {
+      this.setState({ showDecorator: true }, () => this.setupHeatmapDecorator());
     } else {
-      this.setupHeatmapDecorator();
+      this.setState({ showDecorator: false }, () => this.teardownHeatmapDecorator());
     }
   }
 
@@ -149,7 +153,7 @@ export class Sample extends React.Component<{}, SampleState> {
           <hr></hr>
           <div className="sample-options-2col">
             <span>Show Heatmap</span>
-            <Toggle isOn={undefined !== this._heatmapDecorator} showCheckmark={true} onChange={this._onChangeShowHeatmap} />
+            <Toggle isOn={this.state.showDecorator} onChange={this._onChangeShowHeatmap} />
             <span>Mode</span>
             {this._pointModeSelector()}
             <span>Point Count</span>
@@ -178,9 +182,12 @@ export class SampleContainer extends React.Component<SampleProps> {
 
   /** The sample's render method */
   public render() {
+    // ID of the presentation ruleset used by all of the controls; the ruleset
+    // can be found at `assets/presentation_rules/Default.PresentationRuleSet.xml`
+    const rulesetId = "Default";
     return (
       <>
-        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} />,
+        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} rulesetId={rulesetId} />,
       <Sample />;
       </>
     );
