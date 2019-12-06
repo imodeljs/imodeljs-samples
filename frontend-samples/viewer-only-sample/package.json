@@ -10,7 +10,7 @@
   "private": true,
   "scripts": {
     "build": "buildIModelJsModule",
-    "start:webserver": "node ./node_modules/@bentley/imodeljs-webserver/lib/WebServer.js --port=3000 --resources=./lib/webresources/",
+    "start": "node ./node_modules/@bentley/imodeljs-webserver/lib/WebServer.js --port=3000 --resources=./lib/webresources/",
     "lint": "tslint --project . 1>&2",
     "test": "",
     "clean": "rimraf lib .rush"

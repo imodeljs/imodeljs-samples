@@ -16,15 +16,19 @@ Each of the samples are self-contained and, as such, can be copied out of the cl
 
 1. [agent-app](#sample-agent-apps)
 
-    A collection of backend agent apps
+    Start here to create a new agent.  This folder contains a collection of backend agent apps.  These are suitable to be copied and used as a template to produce a new agent application.
 
 2. [interactive-app](#sample-interactive-apps)
 
-    A collection of sample apps which include both the frontend and backend
+    Start here to create a new web, desktop, or mobile app.  This folder contains a collection of sample apps which include both the frontend and backend.  These are suitable to be copied and used as a template to produce a new interactive application.
 
-3. [tools](#sample-tools)
+3. [frontend-samples](#front-end-samples)
+    
+    Explore these samples to learn how to use specific APIs.  This folder contains a collection of small apps that each demonstrate a single frontend feature.  These are intended to isolate the relevant API calls.  Do *not* use as a template for a new application.
 
-    A collection of tools
+4. [tools](#sample-tools)
+
+    A collection of tools.
 
 To run these samples, you need to first get the [required tools](https://imodeljs.github.io/iModelJs-docs-output/getting-started/#1-get-the-tools) and ensure you have _Node.js 10.x LTS_ installed on your machine.
 
@@ -83,6 +87,41 @@ To run these samples, you need to first get the [required tools](https://imodelj
     ```sh
     cd [sample app subfolder]
     npm run start:servers
+    ```
+
+6. Open a web browser (e.g., Chrome or Edge), and browse to localhost:3000.
+
+## Frontend Samples
+
+1. [Viewer Only](./frontend-samples/viewer-only-sample/README.md)
+
+    Stub to be used as a template for building feature specific samples. 
+
+2. [Emphasize Elements](./frontend-samples/emphasize-elements-sample/README.md)
+
+    Demonstrates emphasizing, hiding, isolating, and colorizing the display of element graphics.
+
+3. [Heatmap Decorator](./frontend-samples/heatmap-decorator-sample/README.md)
+
+    Demonstrates how to display heatmap graphics that overlay the iModel.
+
+3. [Tooltip Customize](./frontend-samples/tooltip-customize-sample/README.md)
+
+    Demonstrates how to change the contents of the element hover tooltip.
+
+### Frontend Sample Development Setup
+
+1. (Optional) Create a sample project using the procedure at [Developer Registration](https://imodeljs.github.io/iModelJs-docs-output/getting-started/#developer-registration).  This step is not needed if you already have a project to test with.
+
+2. Configure your app using the values you obtained from the registration process.  In the specific sample subfolder, edit src/config.json to refer to the project and iModel.
+
+3. Follow the [steps](#building-samples) to build the samples.
+
+4. Start the webserver for the app locally:
+
+    ```sh
+    cd [sample app subfolder]
+    npm run start
     ```
 
 6. Open a web browser (e.g., Chrome or Edge), and browse to localhost:3000.

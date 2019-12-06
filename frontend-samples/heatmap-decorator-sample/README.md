@@ -19,7 +19,7 @@ The purpose of this application is to demonstrate the following:
 
 ## Development Setup
 
-Follow the [App Development Setup](../../README.md) section under Sample Interactive Apps to configure, install dependencies, build, and run the app.
+Follow the instructions under [Frontend Sample Development Setup](../../README.md#frontend-sample-development-setup) to configure, install dependencies, build, and run the app.
 
 ## Description
 
