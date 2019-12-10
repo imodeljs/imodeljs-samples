@@ -22,7 +22,7 @@ Each of the samples are self-contained and, as such, can be copied out of the cl
 
     Start here to create a new web, desktop, or mobile app.  This folder contains a collection of sample apps which include both the frontend and backend.  These are suitable to be copied and used as a template to produce a new interactive application.
 
-3. [frontend-samples](#front-end-samples)
+3. [frontend-samples](#frontend-samples)
     
     Explore these samples to learn how to use specific APIs.  This folder contains a collection of small apps that each demonstrate a single frontend feature.  These are intended to isolate the relevant API calls.  Do *not* use as a template for a new application.
 
