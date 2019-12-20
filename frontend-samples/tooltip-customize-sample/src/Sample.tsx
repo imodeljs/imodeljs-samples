@@ -184,21 +184,21 @@ export class Sample extends React.Component<{}, SampleSettings> {
           </div>
           <hr></hr>
           <div className="sample-options-3col">
-            <span>Show Image</span>
             <Toggle isOn={this.state.showImage} onChange={this._onChangeShowImage} />
+            <span>Show Image</span>
             <span></span>
-            <span>Show Custom Text</span>
             <Toggle isOn={this.state.showCustomText} onChange={this._onChangeShowCustomText} />
+            <span>Show Custom Text</span>
             <input type="text" value={this.state.customText} onChange={this._onChangeCustomText} disabled={!this.state.showCustomText} />
-            <span>Show Element Property</span>
             <Toggle isOn={this.state.showElementProperty} onChange={this._onChangeShowElementProperty} />
+            <span>Show Element Property</span>
             <select onChange={this._onChangeElementProperty} value={this.state.elemProperty} disabled={!this.state.showElementProperty}>
               <option value={ElemProperty.Origin}> Origin </option>
               <option value={ElemProperty.LastModified}> Last Modified </option>
               <option value={ElemProperty.CodeValue}> Code value </option>
             </select>
-            <span>Show Default ToolTip</span>
             <Toggle isOn={this.state.showDefaultToolTip} onChange={this._onChangeShowDefaultToolTip} />
+            <span>Show Default ToolTip</span>
             <span></span>
           </div>
         </div>

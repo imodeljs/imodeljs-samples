@@ -1,0 +1,23 @@
+/*---------------------------------------------------------------------------------------------
+* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+*--------------------------------------------------------------------------------------------*/
+.table-wrapper > select {
+  flex: 1;
+  margin: 3px;
+}
+.table-wrapper {
+  display: flex;
+}
+
+.table-button-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-caption {
+  margin: 4px 0 4px 8px;
+  color: rgba(0,0,0,0.65);
+  font-size: 12px;
+  font-style: italic;
+}

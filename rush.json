@@ -48,6 +48,10 @@
     {
       "packageName": "emphasize-elements-sample",
       "projectFolder": "frontend-samples/emphasize-elements-sample"
+    },
+    {
+      "packageName": "zoom-to-elements-sample",
+      "projectFolder": "frontend-samples/zoom-to-elements-sample"
     }
   ]
 }

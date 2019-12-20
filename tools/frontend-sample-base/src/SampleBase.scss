@@ -41,7 +41,7 @@
   display: grid;
   row-gap: 8px;
   column-gap: 8px;
-  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-columns: 1fr 2fr 2fr;
   align-items: center;
 }
 
@@ -52,11 +52,6 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
 }
-
-//.sample-options-4col .override-container {
-//  display: flex;
-//  align-items: center;
-//}
 
 .sample-options-4col .override-container {
   display: grid;
