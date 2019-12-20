@@ -4,7 +4,7 @@
 *--------------------------------------------------------------------------------------------*/
 import * as React from "react";
 import { ElectronRpcConfiguration } from "@bentley/imodeljs-common";
-import { Id64, Id64String, OpenMode } from "@bentley/bentleyjs-core";
+import { ClientRequestContext, Id64, Id64String, OpenMode } from "@bentley/bentleyjs-core";
 import { ConnectClient, IModelQuery, Project, Config } from "@bentley/imodeljs-clients";
 import { IModelApp, IModelConnection, FrontendRequestContext, AuthorizedFrontendRequestContext, SpatialViewState, DrawingViewState } from "@bentley/imodeljs-frontend";
 import { Presentation, SelectionChangeEventArgs, ISelectionProvider, IFavoritePropertiesStorage, FavoriteProperties, FavoritePropertiesManager } from "@bentley/presentation-frontend";
@@ -239,7 +239,7 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
     this.setState({ isLoading: false });
   }
 
-  private _onClick = async () => {
+  private _onClickOpen = async () => {
     this.setState({ isLoading: true });
     let imodel: IModelConnection | undefined;
     try {
@@ -257,12 +257,27 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
     await this.onIModelSelected(imodel);
   }
 
+  private _onClickSignOut = async () => {
+    if (SimpleViewerApp.oidcClient)
+      SimpleViewerApp.oidcClient.signOut(new ClientRequestContext()); // tslint:disable-line:no-floating-promises
+  }
+
   public render() {
     return (
-      <Button size={ButtonSize.Large} buttonType={ButtonType.Primary} className="button-open-imodel" onClick={this._onClick}>
-        <span>{IModelApp.i18n.translate("SimpleViewer:components.imodel-picker.open-imodel")}</span>
-        {this.state.isLoading ? <span style={{ marginLeft: "8px" }}><Spinner size={SpinnerSize.Small} /></span> : undefined}
-      </Button>
+      <div>
+        <div>
+          <Button size={ButtonSize.Large} buttonType={ButtonType.Primary} className="button-open-imodel" onClick={this._onClickOpen}>
+            <span>{IModelApp.i18n.translate("SimpleViewer:components.imodel-picker.open-imodel")}</span>
+            {this.state.isLoading ? <span style={{ marginLeft: "8px" }}><Spinner size={SpinnerSize.Small} /></span> : undefined}
+          </Button>
+        </div>
+        <div>
+          <Button size={ButtonSize.Large} buttonType={ButtonType.Primary} className="button-signout" onClick={this._onClickSignOut}>
+            <span>{IModelApp.i18n.translate("SimpleViewer:components.imodel-picker.signout")}</span>
+            {this.state.isLoading ? <span style={{ marginLeft: "8px"}}><Spinner size={SpinnerSize.Small} /></span> : undefined}
+          </Button>
+        </div>
+      </div>
     );
   }
 }

@@ -61,19 +61,20 @@ export class SimpleViewerApp {
   }
 
   private static async initializeOidc() {
-    let clientId, redirectUri;
+    let clientId, redirectUri, postSignoutRedirectUri;
     if (ElectronRpcConfiguration.isElectron) {
       // We are running in an electron context
-      clientId = Config.App.get("imjs_electron_test_client_id");
-      redirectUri = Config.App.get("imjs_electron_test_redirect_uri");
+      clientId = Config.App.getString("imjs_electron_test_client_id");
+      redirectUri = Config.App.getString("imjs_electron_test_redirect_uri");
     } else {
       // We are running in a web context
-      clientId = Config.App.get("imjs_browser_test_client_id");
+      clientId = Config.App.getString("imjs_browser_test_client_id");
       redirectUri = Config.App.getString("imjs_browser_test_redirect_uri");
+      postSignoutRedirectUri = Config.App.get("imjs_browser_test_post_signout_redirect_uri");
     }
     const scope = Config.App.getString("imjs_browser_test_scope");
     const responseType = "code";
-    const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope, responseType };
+    const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope, postSignoutRedirectUri, responseType };
 
     this._oidcClient = new OidcBrowserClient(oidcConfig);
 

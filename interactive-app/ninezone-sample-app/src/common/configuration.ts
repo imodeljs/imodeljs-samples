@@ -42,6 +42,9 @@ export default function setupEnv() {
     // Note: "http://localhost:3000/signin-callback" is setup to work with the (default) web clientId above
     imjs_browser_test_redirect_uri: "http://localhost:3000/signin-callback",
 
+    // Set this to be the registered post signout redirect URI
+    imjs_browser_test_post_signout_redirect_uri: "http://localhost:3000/",
+
     // This redirect uri is set up to be used with the electron clientId above
     imjs_electron_test_redirect_uri: "electron://frontend/signin-callback",
 

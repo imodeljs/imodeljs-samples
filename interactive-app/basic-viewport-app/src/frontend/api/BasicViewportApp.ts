@@ -52,9 +52,10 @@ export class BasicViewportApp {
   private static async initializeOidc() {
     const clientId = "imodeljs-spa-samples-2686";
     const redirectUri = "http://localhost:3000/signin-callback";
+    const postSignoutRedirectUri = "http://localhost:3000/";
     const scope = "openid email profile organization imodelhub context-registry-service:read-only product-settings-service";
     const responseType = "code";
-    const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope, responseType };
+    const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope, postSignoutRedirectUri, responseType };
 
     this._oidcClient = new OidcBrowserClient(oidcConfig);
 

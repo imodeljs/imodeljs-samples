@@ -3,7 +3,7 @@
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 import * as React from "react";
-import { Id64, Id64String, OpenMode } from "@bentley/bentleyjs-core";
+import { ClientRequestContext, Id64, Id64String, OpenMode } from "@bentley/bentleyjs-core";
 import { AccessToken, ConnectClient, IModelQuery, Project, Config } from "@bentley/imodeljs-clients";
 import { IModelApp, IModelConnection, FrontendRequestContext, AuthorizedFrontendRequestContext, SpatialViewState, DrawingViewState } from "@bentley/imodeljs-frontend";
 import { Button, ButtonSize, ButtonType, Spinner, SpinnerSize } from "@bentley/ui-core";
@@ -11,6 +11,7 @@ import { SignIn, ViewportComponent } from "@bentley/ui-components";
 import { BasicViewportApp } from "../api/BasicViewportApp";
 import Toolbar from "./Toolbar";
 import "@bentley/icons-generic-webfont/dist/bentley-icons-generic-webfont.css";
+import "./App.css";
 
 // cSpell:ignore imodels
 
@@ -123,7 +124,7 @@ export default class App extends React.Component<{}, AppState> {
 
     // render the app
     return (
-      <div>
+      <div className="app">
         {ui}
       </div>
     );
@@ -172,7 +173,7 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
     this.setState({ isLoading: false });
   }
 
-  private _onClick = async () => {
+  private _onClickOpen = async () => {
     this.setState({ isLoading: true });
     let imodel: IModelConnection | undefined;
     try {
@@ -185,12 +186,27 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
     await this.onIModelSelected(imodel);
   }
 
+  private _onClickSignOut = async () => {
+    if (BasicViewportApp.oidcClient)
+    BasicViewportApp.oidcClient.signOut(new ClientRequestContext()); // tslint:disable-line:no-floating-promises
+  }
+
   public render() {
     return (
-      <Button size={ButtonSize.Large} buttonType={ButtonType.Primary} onClick={this._onClick}>
-        <span>Open iModel</span>
-        {this.state.isLoading ? <span style={{ marginLeft: "8px" }}><Spinner size={SpinnerSize.Small} /></span> : undefined}
-      </Button>
+      <div>
+        <div>
+          <Button size={ButtonSize.Large} buttonType={ButtonType.Primary} className="button-open-imodel" onClick={this._onClickOpen}>
+            <span>Open iModel</span>
+            {this.state.isLoading ? <span style={{ marginLeft: "8px" }}><Spinner size={SpinnerSize.Small} /></span> : undefined}
+          </Button>
+        </div>
+        <div>
+          <Button size={ButtonSize.Large} buttonType={ButtonType.Primary} className="button-signout" onClick={this._onClickSignOut}>
+            <span>Sign Out?</span>
+            {this.state.isLoading ? <span style={{ marginLeft: "8px"}}><Spinner size={SpinnerSize.Small} /></span> : undefined}
+          </Button>
+        </div>
+      </div>
     );
   }
 }
@@ -207,7 +223,7 @@ class IModelComponents extends React.PureComponent<IModelComponentsProps> {
     return (
       <>
         <ViewportComponent
-          style={{ height: "600px" }}
+          style={{ height: "100vh" }}
           imodel={this.props.imodel}
           viewDefinitionId={this.props.viewDefinitionId} />
         <Toolbar />
