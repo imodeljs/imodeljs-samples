@@ -63,6 +63,7 @@ export class ChangesetGenerator {
         Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Sleeping for ${testChangesetSequence.changesetPushDelay} ms...`);
         await pause(testChangesetSequence.changesetPushDelay);
       } catch (error) {
+        this._currentLevel++;
         Logger.logError(ChangesetGenerationConfig.loggingCategory, `Error pushing changeset: ${JSON.stringify(error)}`);
       }
     }

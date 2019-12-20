@@ -2,7 +2,7 @@
 * Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
-import { Config } from "@bentley/imodeljs-clients";
+import { Config, AuthorizedClientRequestContext, AccessToken } from "@bentley/imodeljs-clients";
 import { ChangesetGenerationHarness } from "../ChangesetGenerationHarness";
 import { TestChangesetSequence } from "../TestChangesetSequence";
 import { TestMockObjects } from "./TestMockObjects";
@@ -10,6 +10,7 @@ import { ChangesetGenerator } from "../ChangesetGenerator";
 import { main } from "../IModelChangesetCLUtility";
 import { expect } from "chai";
 import { ChangesetGenerationConfig } from "../ChangesetGenerationConfig";
+import { HubUtility } from "../HubUtility";
 
 describe("TestChangesetSequence", () => {
   const changesetCount = 10;
@@ -101,15 +102,27 @@ describe("IModelChangesetCLUtility", () => {
 ChangesetGenerationConfig.setupConfig();
 /** Basic Integration test for change set creation and pushing into IModelHub. */
 describe("ChangesetGenerationHarnessIntegration (#integration)", () => {
+  let hubUtility: HubUtility = new HubUtility();
+  let accessToken: AccessToken;
+  let requestContext: AuthorizedClientRequestContext;
 
-  before(() => {
+  before(async () => {
     (Config.App as any).appendSystemVars();
     ChangesetGenerationConfig.setupConfig();
+    accessToken = await hubUtility.login();
+    requestContext = new AuthorizedClientRequestContext(accessToken!);
+  });
+
+  after(async () => {
+    if (requestContext) {
+      // Purge briefcases that are close to reaching the aquire limit
+      await hubUtility.purgeAcquiredBriefcases(requestContext, ChangesetGenerationConfig.projectName, ChangesetGenerationConfig.iModelName);
+    }
   });
 
   it("Generates configured changeset sequence", async () => {
     const harness: ChangesetGenerationHarness = new ChangesetGenerationHarness();
-    const changesetSequence: TestChangesetSequence = new TestChangesetSequence(10, 20, 10);
+    const changesetSequence: TestChangesetSequence = new TestChangesetSequence(5, 20, 10);
     expect(await harness.generateChangesets(changesetSequence)).equals(true);
   });
 });

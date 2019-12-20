@@ -91,8 +91,9 @@ export class NineZoneSampleApp {
       clientId = Config.App.get("imjs_browser_test_client_id");
       redirectUri = Config.App.getString("imjs_browser_test_redirect_uri");
     }
+    const responseType = "code";
     const scope = Config.App.getString("imjs_browser_test_scope");
-    const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope };
+    const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope, responseType };
 
     // create an OIDC client that helps with the sign-in / sign-out process
     const requestContext = new FrontendRequestContext();

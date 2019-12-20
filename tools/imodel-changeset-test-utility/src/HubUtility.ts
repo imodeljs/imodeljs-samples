@@ -4,10 +4,11 @@
 *--------------------------------------------------------------------------------------------*/
 
 import { ChangesetGenerationConfig } from "./ChangesetGenerationConfig";
-import { AccessToken, ConnectClient, HubIModel, IModelHubClient, Project, IModelQuery, Version, AuthorizedClientRequestContext } from "@bentley/imodeljs-clients";
+import { AccessToken, ConnectClient, HubIModel, IModelHubClient, Project, IModelQuery, Version, AuthorizedClientRequestContext, BriefcaseQuery, Briefcase as HubBriefcase } from "@bentley/imodeljs-clients";
 import { IModelVersion } from "@bentley/imodeljs-common";
 import { OidcAgentClient, AzureFileHandler } from "@bentley/imodeljs-clients-backend";
 import { Logger, ClientRequestContext } from "@bentley/bentleyjs-core";
+import { BriefcaseManager } from "@bentley/imodeljs-backend";
 
 const actx = new ClientRequestContext("");
 
@@ -85,4 +86,22 @@ export class HubUtility {
     return iModels[0];
   }
 
+  /**
+   * Purges all acquired briefcases for the specified iModel (and user), if the specified threshold of acquired briefcases is exceeded
+   */
+  public async purgeAcquiredBriefcases(requestContext: AuthorizedClientRequestContext, projectName: string, iModelName: string, acquireThreshold: number = 16): Promise<void> {
+    const projectId: string = await this.queryProjectIdByName(requestContext, projectName);
+    const iModelId: string = await this.queryIModelIdByName(requestContext, projectId, iModelName);
+
+    const briefcases: HubBriefcase[] = await BriefcaseManager.imodelClient.briefcases.get(requestContext, iModelId, new BriefcaseQuery().ownedByMe());
+    if (briefcases.length > acquireThreshold) {
+      Logger.logInfo(ChangesetGenerationConfig.loggingCategory, `Reached limit of maximum number of briefcases for ${projectName}:${iModelName}. Purging all briefcases.`);
+
+      const promises = new Array<Promise<void>>();
+      briefcases.forEach((briefcase: HubBriefcase) => {
+        promises.push(BriefcaseManager.imodelClient.briefcases.delete(requestContext, iModelId, briefcase.briefcaseId!));
+      });
+      await Promise.all(promises);
+    }
+  }
 }

@@ -7,8 +7,6 @@ jobs:
       matrix:
         'Windows':
           os: vs2017-win2016
-        'Linux':
-          os: ubuntu-16.04
     pool:
       vmImage: $(os)
     steps:

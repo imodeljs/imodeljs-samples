@@ -43,17 +43,18 @@ export class BasicViewportApp {
   }
 
   private static async initializeRpc(): Promise<void> {
-      const rpcInterfaces = getSupportedRpcs();
-      // initialize RPC for web apps
-      const rpcParams: BentleyCloudRpcParams = { info: { title: "basic-viewport-app", version: "v1.0" }, uriPrefix: "http://localhost:3001" };
-      BentleyCloudRpcManager.initializeClient(rpcParams, rpcInterfaces);
+    const rpcInterfaces = getSupportedRpcs();
+    // initialize RPC for web apps
+    const rpcParams: BentleyCloudRpcParams = { info: { title: "basic-viewport-app", version: "v1.0" }, uriPrefix: "http://localhost:3001" };
+    BentleyCloudRpcManager.initializeClient(rpcParams, rpcInterfaces);
   }
 
   private static async initializeOidc() {
-    const clientId =    "imodeljs-spa-test-2686";
+    const clientId = "imodeljs-spa-samples-2686";
     const redirectUri = "http://localhost:3000/signin-callback";
-    const scope =       "openid email profile organization imodelhub context-registry-service:read-only product-settings-service";
-    const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope };
+    const scope = "openid email profile organization imodelhub context-registry-service:read-only product-settings-service";
+    const responseType = "code";
+    const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope, responseType };
 
     this._oidcClient = new OidcBrowserClient(oidcConfig);
 

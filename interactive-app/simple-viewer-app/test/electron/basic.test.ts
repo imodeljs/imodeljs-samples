@@ -38,9 +38,9 @@ describe("Application", () => {
 
   it("opens sign-in page", async () => {
     return testApp.client
-      .waitForExist(".components-signin-prompt", 15000)
+      .waitForExist(".components-signin-prompt", 55000)
       .element(".components-signin-button").click()
-      .waitForExist(".form-signin", 15000);
+      .waitForExist(".form-signin", 55000);
   });
 
   it("can sign-in to bentley ims", async () => {
@@ -48,6 +48,6 @@ describe("Application", () => {
       .setValue("#EmailAddress", Config.App.getString("imjs_test_regular_user_name")) // 1st sign in page
       .setValue("#Password", Config.App.getString("imjs_test_regular_user_password"))
       .element("#submitLogon").click()
-      .waitForExist(".button-open-imodel", 15000); // Passes when open iModel button appears
+      .waitForExist(".button-open-imodel", 55000); // Passes when open iModel button appears
   });
 });

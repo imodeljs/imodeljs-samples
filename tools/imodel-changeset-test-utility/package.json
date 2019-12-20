@@ -1,6 +1,6 @@
 {
   "name": "imodel-changeset-test-utility",
-  "version": "0.0.56",
+  "version": "0.0.57",
   "main": "lib/index.js",
   "typings": "lib/index",
   "description": "Creates and pushes configurable change sets to iModels",

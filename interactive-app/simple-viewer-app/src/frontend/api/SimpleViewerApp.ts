@@ -72,7 +72,8 @@ export class SimpleViewerApp {
       redirectUri = Config.App.getString("imjs_browser_test_redirect_uri");
     }
     const scope = Config.App.getString("imjs_browser_test_scope");
-    const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope };
+    const responseType = "code";
+    const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope, responseType };
 
     this._oidcClient = new OidcBrowserClient(oidcConfig);
 

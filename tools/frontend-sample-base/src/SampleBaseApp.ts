@@ -74,7 +74,8 @@ export class SampleBaseApp {
     const clientId = Config.App.get("imjs_frontend_sample_client_id");
     const redirectUri = Config.App.get("imjs_frontend_sample_redirect_uri");
     const scope = Config.App.get("imjs_frontend_sample_scope");
-    const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope };
+    const responseType = "code";
+    const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope, responseType };
 
     this._oidcClient = new OidcBrowserClient(oidcConfig);
 

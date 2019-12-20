@@ -4,11 +4,11 @@
 *--------------------------------------------------------------------------------------------*/
 
 import { expect } from "chai";
-import { Config } from "@bentley/imodeljs-clients";
+import { Config, AuthorizedClientRequestContext, AccessToken } from "@bentley/imodeljs-clients";
 import { QueryAgent } from "../QueryAgent";
 import { QueryAgentWebServer } from "../QueryAgentWebServer";
 import { QueryAgentConfig } from "../QueryAgentConfig";
-import { ChangesetGenerationHarness, TestChangesetSequence } from "imodel-changeset-test-utility";
+import { ChangesetGenerationHarness, TestChangesetSequence, HubUtility, ChangesetGenerationConfig } from "imodel-changeset-test-utility";
 import { Logger } from "@bentley/bentleyjs-core";
 import { TestMockObjects } from "./TestMockObjects";
 import { main } from "../Main";
@@ -185,11 +185,15 @@ describe("Main (#integration)", () => {
 describe("IModelQueryAgent Running with Changesets (#integration)", () => {
   let changesetHarness: ChangesetGenerationHarness;
   let agentWebServer: QueryAgentWebServer;
+  let requestContext: AuthorizedClientRequestContext;
+  let hubUtility: HubUtility = new HubUtility();
+  let accessToken: AccessToken;
 
   before(async () => {
     (Config.App as any).appendSystemVars();
     QueryAgentConfig.setupConfig();
-
+    accessToken = await hubUtility.login();
+    requestContext = new AuthorizedClientRequestContext(accessToken!);
     // Set up changeset generation harness and agent web server
     changesetHarness = new ChangesetGenerationHarness(undefined, undefined, QueryAgentConfig.outputDir);
     // initialize iModel in the hub before listening for changesets on it
@@ -197,9 +201,16 @@ describe("IModelQueryAgent Running with Changesets (#integration)", () => {
     agentWebServer = new QueryAgentWebServer();
   });
 
-  after(() => {
+  afterEach(() => {
     Logger.logTrace(QueryAgentConfig.loggingCategory, "Cleaning up test resources, may take some time...");
+  });
+
+  after(async () => {
     agentWebServer.close();
+    if (requestContext) {
+      // Purge briefcases that are close to reaching the aquire limit
+      await hubUtility.purgeAcquiredBriefcases(requestContext, ChangesetGenerationConfig.projectName, ChangesetGenerationConfig.iModelName);
+    }
   });
 
   it("Extracts changeset information published to an iModel", async () => {

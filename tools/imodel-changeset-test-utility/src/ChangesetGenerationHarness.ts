@@ -106,20 +106,24 @@ export class ChangesetGenerationHarness {
         Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Successful Async Initialization`);
         this._isInitialized = true;
       } catch (error) {
-        Logger.logError(ChangesetGenerationConfig.loggingCategory, `Error with async initialization: ${error} Ensure variables are set properly in ChangesetGenerationConfig.ts or enviroment variables.`);
+        Logger.logError(ChangesetGenerationConfig.loggingCategory, `Error with async initialization: ${error} Ensure variables are set properly in ChangesetGenerationConfig.ts or environment variables.`);
       }
     }
   }
   public async generateChangesets(changesetSequence: TestChangesetSequence): Promise<boolean> {
-    await this.initialize();
-    const authCtx = new AuthorizedClientRequestContext(this._accessToken!);
-    if (!this._isInitialized) {
-      Logger.logError(ChangesetGenerationConfig.loggingCategory, "Unable to Generate ChangeSets when async initializtion fails");
-      return false;
+    try {
+      await this.initialize();
+      if (!this._isInitialized) {
+        Logger.logError(ChangesetGenerationConfig.loggingCategory, "Unable to Generate ChangeSets when async initializtion fails");
+        return false;
+      }
+      const retVal = await this._changeSetGenerator!.pushTestChangeSetsAndVersions(this._projectId!, this._iModelId!, changesetSequence);
+      return retVal;
+    } finally {
+      const authCtx = new AuthorizedClientRequestContext(this._accessToken!);
+      if (this._iModelDb && this._iModelDb.isOpen)
+        await this._iModelDb.close(authCtx, KeepBriefcase.No);
     }
-    const retVal = await this._changeSetGenerator!.pushTestChangeSetsAndVersions(this._projectId!, this._iModelId!, changesetSequence);
-    await this._iModelDb!.close(authCtx, KeepBriefcase.No);
-    return retVal;
   }
 
   private _initializeLogger(): void {
