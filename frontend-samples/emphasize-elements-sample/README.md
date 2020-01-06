@@ -1,6 +1,6 @@
 # Emphasize Elements Sample
 
-Copyright © 2019 Bentley Systems, Incorporated. All rights reserved.
+Copyright © Bentley Systems, Incorporated. All rights reserved.
 
 An iModel.js sample application that demonstrates how to use the EmphasizeElements API.  The API allows for elements to be hidden, emphasized, and colorized.
 

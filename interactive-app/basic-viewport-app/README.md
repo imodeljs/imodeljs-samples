@@ -1,6 +1,6 @@
 # Basic Viewport App
 
-Copyright © 2019 Bentley Systems, Incorporated. All rights reserved.
+Copyright © Bentley Systems, Incorporated. All rights reserved.
 
 An iModel.js sample application that demonstrates the minimum setup for opening an iModel and viewing its graphics in a viewport with basic viewing tools.
 

@@ -1,6 +1,6 @@
 # imodel-query-agent
 
-Copyright © 2019 Bentley Systems, Incorporated. All rights reserved.
+Copyright © Bentley Systems, Incorporated. All rights reserved.
 
 imodel-query-agent is an example of an [agent](https://imodeljs.github.io/iModelJs-docs-output//learning/app/#imodel-agents) that illustrates use of the iModel.js API to listen and query changes made to iModels on the iModelHub. A separate optional [imodel-changeset-test-utility](../../tools/imodel-changeset-test-utility/README.md) can be used to generate sample change sets that can then be consumed by this sample.
 

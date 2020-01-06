@@ -1,6 +1,6 @@
 # Heatmap Decorator Sample
 
-Copyright © 2019 Bentley Systems, Incorporated. All rights reserved.
+Copyright © Bentley Systems, Incorporated. All rights reserved.
 
 An iModel.js sample application that demonstrates how to create custom decorator graphics.  Those graphics are used as an overlay to embellish the default iModel based graphics.
 

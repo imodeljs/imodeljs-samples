@@ -1,6 +1,6 @@
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) 2019 Bentley Systems, Incorporated. All rights reserved.
-* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
+* Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+* See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
 import * as React from "react";
 import * as ReactDOM from "react-dom";
@@ -14,7 +14,7 @@ import "./index.css";
 SampleBaseApp.startup();
 
 // tslint:disable-next-line:no-floating-promises
-SampleBaseApp.ready.then(() =>  {
+SampleBaseApp.ready.then(() => {
 
   // when initialization is complete, render
   ReactDOM.render(
@@ -38,21 +38,21 @@ export class App extends React.Component<{}, AppState> {
   }
 
   private _onIModelReady = async (imodel: IModelConnection, viewDefinitionId: Id64String) => {
-    this.setState ({imodel, viewDefinitionId});
+    this.setState({ imodel, viewDefinitionId });
   }
 
   public render() {
     let ui: React.ReactNode;
 
-    if (! this.state.imodel || ! this.state.viewDefinitionId)
-      ui = <StartupComponent onIModelReady={this._onIModelReady}/>;
+    if (!this.state.imodel || !this.state.viewDefinitionId)
+      ui = <StartupComponent onIModelReady={this._onIModelReady} />;
     else
-      ui = <SampleContainer imodel={this.state.imodel} viewDefinitionId={this.state.viewDefinitionId}/>;
+      ui = <SampleContainer imodel={this.state.imodel} viewDefinitionId={this.state.viewDefinitionId} />;
 
     return (
       <div>
         {ui}
       </div>
-        );
-    }
+    );
   }
+}

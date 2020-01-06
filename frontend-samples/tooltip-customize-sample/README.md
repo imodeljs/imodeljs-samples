@@ -1,6 +1,6 @@
 # Tooltip Customize Sample
 
-Copyright © 2019 Bentley Systems, Incorporated. All rights reserved.
+Copyright © Bentley Systems, Incorporated. All rights reserved.
 
 An iModel.js sample application that demonstrates how to customize the element tooltip.  The customized tooltip is shown when the user hovers the mouse pointer over a spatial element within the iModel.js viewport.
 
