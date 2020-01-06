@@ -105,9 +105,13 @@ To run these samples, you need to first get the [required tools](https://imodelj
 
     Demonstrates how to display heatmap graphics that overlay the iModel.
 
-3. [Tooltip Customize](./frontend-samples/tooltip-customize-sample/README.md)
+4. [Tooltip Customize](./frontend-samples/tooltip-customize-sample/README.md)
 
     Demonstrates how to change the contents of the element hover tooltip.
+
+5. [Zoom To Elements](./frontend-samples/zoom-to-elements-sample/README.md)
+
+    Demonstrates how to simply change the viewport to focus on a set of elements.
 
 ### Frontend Sample Development Setup
 
