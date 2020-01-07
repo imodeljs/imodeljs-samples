@@ -3,6 +3,7 @@
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
 export * from "./SampleBaseApp";
+export * from "./App/App";
 export * from "./Startup/Startup";
 export * from "./Viewport/ViewportAndNavigation";
 export * from "./GithubLink";

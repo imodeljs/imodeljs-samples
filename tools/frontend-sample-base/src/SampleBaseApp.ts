@@ -2,8 +2,9 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
+import { Id64String } from "@bentley/bentleyjs-core";
 import { OidcFrontendClientConfiguration, IOidcFrontendClient, UrlDiscoveryClient, Config } from "@bentley/imodeljs-clients";
-import { IModelApp, OidcBrowserClient, FrontendRequestContext, IModelAppOptions } from "@bentley/imodeljs-frontend";
+import { IModelApp, OidcBrowserClient, FrontendRequestContext, IModelAppOptions, IModelConnection } from "@bentley/imodeljs-frontend";
 import { BentleyCloudRpcManager, BentleyCloudRpcParams, IModelReadRpcInterface, IModelTileRpcInterface } from "@bentley/imodeljs-common";
 import { PresentationRpcInterface } from "@bentley/presentation-common";
 import { UiCore } from "@bentley/ui-core";
@@ -12,16 +13,31 @@ import { SampleBaseNotificationManager } from "./Notifications/NotificationManag
 import { Presentation } from "@bentley/presentation-frontend";
 
 // Boiler plate code
+export interface SampleContext {
+  imodel: IModelConnection;
+  viewDefinitionId: Id64String;
+}
+
+export interface SampleUIProvider {
+  getSampleUI(parentState: SampleContext): React.ReactNode;
+}
+
 export class SampleBaseApp {
 
   private static _isReady: Promise<void>;
   private static _oidcClient: IOidcFrontendClient;
+  private static _sampleUIProvider: SampleUIProvider;
 
   public static get oidcClient() { return this._oidcClient; }
 
   public static get ready(): Promise<void> { return this._isReady; }
 
-  public static startup(optsIn?: IModelAppOptions) {
+  public static getSampleUI(context: SampleContext): React.ReactNode { return this._sampleUIProvider.getSampleUI(context); }
+
+  public static startup(uiProvider: SampleUIProvider, optsIn?: IModelAppOptions) {
+
+    this._sampleUIProvider = uiProvider;
+
     let opts: IModelAppOptions = {};
     if (optsIn)
       opts = optsIn;

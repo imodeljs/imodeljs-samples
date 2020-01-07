@@ -41,7 +41,7 @@
         "entry": "./lib/index.js",
         "bundleName": "main",
         "styleSheets": true,
-        "htmlTemplate": "./src/index.html"
+        "htmlTemplate": "../../tools/frontend-sample-base/src/index.html"
       },
       "makeConfig": {
         "dest": "./lib/webresources/config.json",

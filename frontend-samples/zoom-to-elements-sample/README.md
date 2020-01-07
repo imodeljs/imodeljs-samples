@@ -4,7 +4,7 @@ Copyright © Bentley Systems, Incorporated. All rights reserved.
 
 An iModel.js sample application that demonstrates how to use the [Viewport.ZoomToElements](https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-frontend/views/viewport/zoomtoelements/) API.  The API changes the camera so it is pointing at a specified set of elements.
 
-[![Click to run the demo](./docs/try-it-now.png)](https://zoomtoelementssample.z13.web.core.windows.net/)
+[![Click to run the demo](../../tools/frontend-sample-base/docs/try-it-now.png)](https://zoomtoelementssample.z13.web.core.windows.net/)
 
 This is a 'frontend-only' sample.  It utilizes frontend-sample-base which supplies the viewport and view navigation tools. See http://imodeljs.org for comprehensive documentation on the iModel.js API and the various constructs used in this sample.
 

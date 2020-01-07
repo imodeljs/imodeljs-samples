@@ -4,14 +4,78 @@
 *--------------------------------------------------------------------------------------------*/
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { StartupComponent, SampleBaseApp } from "@bentley/frontend-sample-base";
-import { SampleContainer } from "./Sample";
-import { IModelConnection } from "@bentley/imodeljs-frontend";
+import "@bentley/icons-generic-webfont/dist/bentley-icons-generic-webfont.css";
+import { IModelConnection, IModelAppOptions } from "@bentley/imodeljs-frontend";
+import { ViewportAndNavigation, GithubLink, SampleBaseApp, SampleUIProvider, App, SampleContext } from "@bentley/frontend-sample-base";
 import { Id64String } from "@bentley/bentleyjs-core";
-import "./index.css";
+import "@bentley/frontend-sample-base/src/SampleBase.scss";
+
+// cSpell:ignore imodels
+
+/** This file contains the user interface and main logic that is specific to this sample. */
+
+/** React state of the Sample component */
+interface SampleState {
+  _placeholder: boolean; // This is here because lint doesn't like empty interfaces
+}
+
+/** A React component that renders the UI specific for this sample */
+export class Sample extends React.Component<{}, SampleState> {
+
+  /** Creates a Sample instance */
+  constructor(props?: any, context?: any) {
+    super(props, context);
+  }
+
+  public static getIModelAppOptions(): IModelAppOptions {
+    return {};
+  }
+
+  /** The sample's render method */
+  public render() {
+    return (
+      <>
+        { /* This is the ui specific for this sample.*/}
+        <div className="sample-ui">
+          <div>
+            <span>Use the toolbar at the right to navigate the model.</span>
+            <GithubLink linkTarget="https://github.com/imodeljs/imodeljs-samples/tree/master/frontend-samples/viewer-only-sample" />
+          </div>
+        </div>
+      </>
+    );
+  }
+}
+
+/*
+ * From here down is boiler plate common to all front-end samples.
+ *********************************************************************************************/
+/** React props for Sample container */
+interface SampleProps {
+  imodel: IModelConnection;
+  viewDefinitionId: Id64String;
+}
+
+/** A React component that renders the UI for the sample */
+export class SampleContainer extends React.Component<SampleProps> {
+
+  /** The sample's render method */
+  public render() {
+    // ID of the presentation ruleset used by all of the controls; the ruleset
+    // can be found at `assets/presentation_rules/Default.PresentationRuleSet.xml`
+    const rulesetId = "Default";
+    return (
+      <>
+        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} rulesetId={rulesetId} />,
+        <Sample />;
+      </>
+    );
+  }
+}
 
 // initialize the application
-SampleBaseApp.startup();
+const uiProvider: SampleUIProvider = { getSampleUI: (context: SampleContext) => < SampleContainer imodel={context.imodel} viewDefinitionId={context.viewDefinitionId} /> };
+SampleBaseApp.startup(uiProvider, Sample.getIModelAppOptions());
 
 // tslint:disable-next-line:no-floating-promises
 SampleBaseApp.ready.then(() => {
@@ -22,37 +86,3 @@ SampleBaseApp.ready.then(() => {
     document.getElementById("root") as HTMLElement,
   );
 });
-
-/** React state for App component */
-interface AppState {
-  imodel?: IModelConnection;
-  viewDefinitionId?: Id64String;
-}
-
-export class App extends React.Component<{}, AppState> {
-
-  /** Creates an App instance */
-  constructor(props?: any, context?: any) {
-    super(props, context);
-    this.state = {};
-  }
-
-  private _onIModelReady = async (imodel: IModelConnection, viewDefinitionId: Id64String) => {
-    this.setState({ imodel, viewDefinitionId });
-  }
-
-  public render() {
-    let ui: React.ReactNode;
-
-    if (!this.state.imodel || !this.state.viewDefinitionId)
-      ui = <StartupComponent onIModelReady={this._onIModelReady} />;
-    else
-      ui = <SampleContainer imodel={this.state.imodel} viewDefinitionId={this.state.viewDefinitionId} />;
-
-    return (
-      <div>
-        {ui}
-      </div>
-    );
-  }
-}

@@ -4,7 +4,7 @@ Copyright © Bentley Systems, Incorporated. All rights reserved.
 
 An iModel.js sample application that demonstrates how to customize the element tooltip.  The customized tooltip is shown when the user hovers the mouse pointer over a spatial element within the iModel.js viewport.
 
-[![Click to run the demo](./docs/try-it-now.png)](https://tooltipcustomizesample.z13.web.core.windows.net/)
+[![Click to run the demo](../../tools/frontend-sample-base/docs/try-it-now.png)](https://tooltipcustomizesample.z13.web.core.windows.net/)
 
 This is a 'frontend-only' sample.  It utilizes frontend-sample-base which supplies the viewport and view navigation tools. See http://imodeljs.org for comprehensive documentation on the iModel.js API and the various constructs used in this sample.
 
