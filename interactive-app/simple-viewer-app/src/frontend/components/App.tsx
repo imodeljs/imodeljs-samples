@@ -274,7 +274,6 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
         <div>
           <Button size={ButtonSize.Large} buttonType={ButtonType.Primary} className="button-signout" onClick={this._onClickSignOut}>
             <span>{IModelApp.i18n.translate("SimpleViewer:components.imodel-picker.signout")}</span>
-            {this.state.isLoading ? <span style={{ marginLeft: "8px"}}><Spinner size={SpinnerSize.Small} /></span> : undefined}
           </Button>
         </div>
       </div>
