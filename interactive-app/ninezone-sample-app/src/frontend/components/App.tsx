@@ -11,7 +11,8 @@ import { ConnectClient, IModelQuery, Project, Config } from "@bentley/imodeljs-c
 import { IModelApp, IModelConnection, FrontendRequestContext, AuthorizedFrontendRequestContext, ViewState } from "@bentley/imodeljs-frontend";
 import { Presentation, SelectionChangeEventArgs, ISelectionProvider, IFavoritePropertiesStorage, FavoriteProperties, FavoritePropertiesManager } from "@bentley/presentation-frontend";
 import { Button, ButtonSize, ButtonType, Spinner, SpinnerSize } from "@bentley/ui-core";
-import { ConfigurableUiContent, UiFramework, BackstageItem } from "@bentley/ui-framework";
+import { ConfigurableUiContent, UiFramework } from "@bentley/ui-framework";
+import { BackstageItem } from "@bentley/ui-abstract";
 import { SignIn } from "@bentley/ui-components";
 
 import { AppUi } from "../app-ui/AppUi";
@@ -152,21 +153,21 @@ export default class App extends React.Component<{}, State> {
       // WORKAROUND: create 'local' FavoritePropertiesManager when in 'offline' or snapshot mode. Otherwise,
       //             the PresentationManager will try to use the Settings service online and fail.
       const storage: IFavoritePropertiesStorage = {
-        loadProperties: async (_?: string, __?: string) => ( {
+        loadProperties: async (_?: string, __?: string) => ({
           nestedContentInfos: new Set<string>(),
           propertyInfos: new Set<string>(),
           baseFieldInfos: new Set<string>(),
         }),
-        async saveProperties(_: FavoriteProperties, __?: string, ___?: string) {},
+        async saveProperties(_: FavoriteProperties, __?: string, ___?: string) { },
       };
-      Presentation.favoriteProperties = new FavoritePropertiesManager({storage});
+      Presentation.favoriteProperties = new FavoritePropertiesManager({ storage });
 
       // WORKAROUND: Clear authorization client if operating in offline mode
       IModelApp.authorizationClient = undefined;
     }
 
     // initialize Presentation
-    Presentation.initialize({activeLocale: IModelApp.i18n.languageList()[0]});
+    Presentation.initialize({ activeLocale: IModelApp.i18n.languageList()[0] });
   }
 
   /** The component's render method */
