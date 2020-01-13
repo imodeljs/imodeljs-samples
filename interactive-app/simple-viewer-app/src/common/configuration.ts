@@ -11,8 +11,8 @@ export enum UseBackend {
   /** Use local simple-viewer-app backend */
   Local = 0,
 
-  /** Use deployed Navigator backend */
-  Navigator = 1,
+  /** Use deployed general-purpose backend */
+  GeneralPurpose = 1,
 }
 
 /**
@@ -43,13 +43,13 @@ export default function setupEnv() {
 
     // Set this to be the registered redirect URI
     // Note: "http://localhost:3000/signin-callback" is setup to work with the (default) web clientId above
-    imjs_browser_test_redirect_uri: "http://localhost:3000/signin-callback",
+    imjs_browser_test_redirect_uri: "http://localhost:3000/signin-callback.html",
 
     // This redirect uri is set up to be used with the electron clientId above
     imjs_electron_test_redirect_uri: "electron://frontend/signin-callback",
 
     // Set this to be the scopes of services the application needs to access
     // Note: The default value set above ensures the minimal working of the application
-    imjs_browser_test_scope: "openid email profile organization imodelhub context-registry-service:read-only product-settings-service",
+    imjs_browser_test_scope: "openid email profile organization imodelhub context-registry-service:read-only product-settings-service general-purpose-imodeljs-backend imodeljs-router",
   });
 }

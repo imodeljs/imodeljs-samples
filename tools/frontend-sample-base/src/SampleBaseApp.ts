@@ -80,8 +80,8 @@ export class SampleBaseApp {
 
     const urlClient = new UrlDiscoveryClient();
     const requestContext = new FrontendRequestContext();
-    const orchestratorUrl = await urlClient.discoverUrl(requestContext, "iModelJsOrchestrator.SF", undefined);
-    rpcParams = { info: { title: "navigator-backend", version: "v1.0" }, uriPrefix: orchestratorUrl };
+    const orchestratorUrl = await urlClient.discoverUrl(requestContext, "iModelJsOrchestrator.K8S", undefined);
+    rpcParams = { info: { title: "general-purpose-imodeljs-backend", version: "v1.0" }, uriPrefix: orchestratorUrl };
 
     BentleyCloudRpcManager.initializeClient(rpcParams, rpcInterfaces);
   }

@@ -72,12 +72,12 @@ export default class App extends React.Component<{}, AppState> {
       return defaultViewId;
 
     // Return first spatial view definition (if any)
-    const spatialViews: IModelConnection.ViewSpec[] = await imodel.views.getViewList({ from: SpatialViewState.classFullName});
+    const spatialViews: IModelConnection.ViewSpec[] = await imodel.views.getViewList({ from: SpatialViewState.classFullName });
     if (spatialViews.length > 0)
       return spatialViews[0].id!;
 
     // Return first drawing view definition (if any)
-    const drawingViews: IModelConnection.ViewSpec[] = await imodel.views.getViewList({ from: DrawingViewState.classFullName});
+    const drawingViews: IModelConnection.ViewSpec[] = await imodel.views.getViewList({ from: DrawingViewState.classFullName });
     if (drawingViews.length > 0)
       return drawingViews[0].id!;
 
@@ -107,13 +107,12 @@ export default class App extends React.Component<{}, AppState> {
   public render() {
     let ui: React.ReactNode;
 
-    const signInRedirectUri = "localhost:3000/signin-callback";
-    if (this.state.user.isLoading || window.location.href.includes(signInRedirectUri)) {
+    if (this.state.user.isLoading) {
       // if user is currently being loaded, just tell that
       ui = `signing-in...`;
     } else if (!this.state.user.accessToken) {
       // if user doesn't have and access token, show sign in page
-      ui = (<SignIn onSignIn={this._onStartSignin}/>);
+      ui = (<SignIn onSignIn={this._onStartSignin} />);
     } else if (!this.state.imodel || !this.state.viewDefinitionId) {
       // if we don't have an imodel / view definition id - render a button that initiates imodel open
       ui = (<OpenIModelButton accessToken={this.state.user.accessToken} onIModelSelected={this._onIModelSelected} />);
@@ -188,7 +187,7 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
 
   private _onClickSignOut = async () => {
     if (BasicViewportApp.oidcClient)
-    BasicViewportApp.oidcClient.signOut(new ClientRequestContext()); // tslint:disable-line:no-floating-promises
+      BasicViewportApp.oidcClient.signOut(new ClientRequestContext()); // tslint:disable-line:no-floating-promises
   }
 
   public render() {

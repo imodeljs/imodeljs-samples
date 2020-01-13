@@ -2,12 +2,23 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import { OidcFrontendClientConfiguration, IOidcFrontendClient } from "@bentley/imodeljs-clients";
+import { OidcFrontendClientConfiguration, IOidcFrontendClient, Config, UrlDiscoveryClient } from "@bentley/imodeljs-clients";
 import { IModelApp, OidcBrowserClient, FrontendRequestContext } from "@bentley/imodeljs-frontend";
 import { BentleyCloudRpcManager, BentleyCloudRpcParams } from "@bentley/imodeljs-common";
 import { UiCore } from "@bentley/ui-core";
 import { UiComponents } from "@bentley/ui-components";
 import getSupportedRpcs from "../../common/rpcs";
+
+/**
+ * List of possible backends that basic-viewport-app can use
+ */
+export enum UseBackend {
+  /** Use local basic-viewport-app backend */
+  Local = 0,
+
+  /** Use deployed general-purpose backend */
+  GeneralPurpose = 1,
+}
 
 // Boiler plate code
 export class BasicViewportApp {
@@ -43,19 +54,19 @@ export class BasicViewportApp {
   }
 
   private static async initializeRpc(): Promise<void> {
+    let rpcParams = await this.getConnectionInfo();
     const rpcInterfaces = getSupportedRpcs();
     // initialize RPC for web apps
-    const rpcParams: BentleyCloudRpcParams = { info: { title: "basic-viewport-app", version: "v1.0" }, uriPrefix: "http://localhost:3001" };
+    if (!rpcParams) rpcParams = { info: { title: "basic-viewport-app", version: "v1.0" }, uriPrefix: "http://localhost:3001" };
     BentleyCloudRpcManager.initializeClient(rpcParams, rpcInterfaces);
   }
 
   private static async initializeOidc() {
-    const clientId = "imodeljs-spa-samples-2686";
-    const redirectUri = "http://localhost:3000/signin-callback";
-    const postSignoutRedirectUri = "http://localhost:3000/";
-    const scope = "openid email profile organization imodelhub context-registry-service:read-only product-settings-service";
+    const clientId = Config.App.getString("imjs_browser_test_client_id");
+    const redirectUri = Config.App.getString("imjs_browser_test_redirect_uri");
+    const scope = Config.App.getString("imjs_browser_test_scope");
     const responseType = "code";
-    const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope, postSignoutRedirectUri, responseType };
+    const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope, responseType };
 
     this._oidcClient = new OidcBrowserClient(oidcConfig);
 
@@ -63,6 +74,22 @@ export class BasicViewportApp {
     await this._oidcClient.initialize(requestContext);
 
     IModelApp.authorizationClient = this._oidcClient;
+  }
+
+  private static async getConnectionInfo(): Promise<BentleyCloudRpcParams | undefined> {
+    const usedBackend = Config.App.getNumber("imjs_backend", UseBackend.Local);
+
+    if (usedBackend === UseBackend.GeneralPurpose) {
+      const urlClient = new UrlDiscoveryClient();
+      const requestContext = new FrontendRequestContext();
+      const orchestratorUrl = await urlClient.discoverUrl(requestContext, "iModelJsOrchestrator.K8S", undefined);
+      return { info: { title: "general-purpose-imodeljs-backend", version: "v1.0" }, uriPrefix: orchestratorUrl };
+    }
+
+    if (usedBackend === UseBackend.Local)
+      return undefined;
+
+    throw new Error(`Invalid backend "${usedBackend}" specified in configuration`);
   }
 
   public static shutdown() {

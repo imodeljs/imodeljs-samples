@@ -112,8 +112,7 @@ export class StartupComponent extends React.Component<StartupProps, StartupState
   public render() {
     let ui: React.ReactNode;
 
-    const signInRedirectUri = "localhost:3000/signin-callback";
-    if (this.state.user.isLoading || window.location.href.includes(signInRedirectUri)) {
+    if (this.state.user.isLoading) {
       // if user is currently being loaded, just tell that
       ui = `signing-in...`;
     } else if (!this.state.user.accessToken) {

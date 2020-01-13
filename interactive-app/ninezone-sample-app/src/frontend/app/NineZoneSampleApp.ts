@@ -113,11 +113,11 @@ export class NineZoneSampleApp {
   private static async getConnectionInfo(): Promise<BentleyCloudRpcParams | undefined> {
     const usedBackend = Config.App.get("imjs_backend", UseBackend.Local);
 
-    if (usedBackend === UseBackend.Navigator) {
+    if (usedBackend === UseBackend.GeneralPurpose) {
       const urlClient = new UrlDiscoveryClient();
       const requestContext = new FrontendRequestContext();
-      const orchestratorUrl = await urlClient.discoverUrl(requestContext, "iModelJsOrchestrator.SF", undefined);
-      return { info: { title: "navigator-backend", version: "v1.0" }, uriPrefix: orchestratorUrl };
+      const orchestratorUrl = await urlClient.discoverUrl(requestContext, "iModelJsOrchestrator.K8S", undefined);
+      return { info: { title: "general-purpose-imodeljs-backend", version: "v1.0" }, uriPrefix: orchestratorUrl };
     }
 
     if (usedBackend === UseBackend.Local)
