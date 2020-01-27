@@ -89,7 +89,7 @@ class SampleGridBuilder {
             // general cubic bezier on 4 control values a0,a1,a2,a3 is
             // v^3 a0 + 3 v^2 u a1 + 3 v u^2 a2 + u^3 a3
             // here a0 = a1 = 1, a2 = a3 = 0
-            f = v * v * ( v + 3 * u);
+            f = v * v * (v + 3 * u);
             this.setGridZToMax(iMid + i, jMid + j, zNew * f);
           }
         }
@@ -112,14 +112,14 @@ export default class HeatmapDecorator implements Decorator {
   constructor(points: Point3d[], range: Range2d, spreadFactor: number, height: number) {
     this._height = height;
     this._points = points;
-    this._range = HeatmapDecorator._computeSquareRange (range);
+    this._range = HeatmapDecorator._computeSquareRange(range);
     this._spreadFactor = spreadFactor;
-    }
+  }
 
   /** When the inputs change we have to throw away the current graphics.  Also tell the
    * viewport that the exiting decoration need to be redrawn.
    */
-  private _decorationChanged () {
+  private _decorationChanged() {
     this._graphics = dispose(this._graphics);
     const vp = IModelApp.viewManager.selectedView;
     if (undefined !== vp)
@@ -130,34 +130,34 @@ export default class HeatmapDecorator implements Decorator {
    * * All the points will be inside the range.
    * * The range's xLength === yLength.
    */
-  private static _computeSquareRange (inRange: Range2d): Range3d {
+  private static _computeSquareRange(inRange: Range2d): Range3d {
     const rectangularRange = Range3d.createRange2d(inRange);
     const xLen = rectangularRange.xLength();
     const yLen = rectangularRange.yLength();
     const offset = yLen > xLen ? (yLen - xLen) / 2 : (xLen - yLen) / 2;
-    const offsetDir = yLen > xLen ? Point3d.create (1, 0, 0) : Point3d.create (0, 1, 0);
+    const offsetDir = yLen > xLen ? Point3d.create(1, 0, 0) : Point3d.create(0, 1, 0);
 
     const squareRange = rectangularRange;
 
     let point = rectangularRange.low;
-    point = point.plusScaled (offsetDir, -offset);
-    squareRange.extend (point);
+    point = point.plusScaled(offsetDir, -offset);
+    squareRange.extend(point);
 
     point = rectangularRange.high;
-    point = point.plusScaled (offsetDir, offset);
-    squareRange.extend (point);
+    point = point.plusScaled(offsetDir, offset);
+    squareRange.extend(point);
 
     return squareRange;
   }
 
   /* Change the heatmap points */
-  public setPoints (points: Point3d[]) {
+  public setPoints(points: Point3d[]) {
     this._points = points;
     this._decorationChanged();
   }
 
   /* Change the spread factor */
-  public setSpreadFactor (spreadFactor: number) {
+  public setSpreadFactor(spreadFactor: number) {
     if (0 < spreadFactor && 100 >= spreadFactor) {
       this._spreadFactor = spreadFactor;
       this._decorationChanged();
@@ -183,25 +183,25 @@ export default class HeatmapDecorator implements Decorator {
     return grid.data;
   }
 
-/** Convert grid of values to an image array
- * * each pixel is represented by four Uint8 values -> RGBA
- * * each value is converted to a color using a thematic gradient
- */
-  private gridToImageBuffer (valueGrid: number[][], gridSize: number): ImageBuffer|undefined {
+  /** Convert grid of values to an image array
+   * * each pixel is represented by four Uint8 values -> RGBA
+   * * each value is converted to a color using a thematic gradient
+   */
+  private gridToImageBuffer(valueGrid: number[][], gridSize: number): ImageBuffer | undefined {
     /* Build a gradient to define a smoothly varying set of colors that we will use to represent intensities */
     const marginColor = ColorDef.from(0, 0, 255, 255);
     const thematicSettings = Gradient.ThematicSettings.fromJSON({ colorScheme: Gradient.ThematicColorScheme.Custom, mode: Gradient.ThematicMode.Smooth, stepCount: 0, rangeLow: 0.0, rangeHigh: 1.0, marginColor });
     const gradient = Gradient.Symb.createThematic(thematicSettings);
-    gradient.keys.push(new Gradient.KeyColor({value: 0.0, color: marginColor}));
-    gradient.keys.push(new Gradient.KeyColor({value: 0.5, color: ColorDef.from(0, 255, 0, 150)}));
-    gradient.keys.push(new Gradient.KeyColor({value: 0.75, color: ColorDef.from(255, 255, 0, 100)}));
-    gradient.keys.push(new Gradient.KeyColor({value: 1.0, color: ColorDef.from(255, 0, 0, 50)}));
+    gradient.keys.push(new Gradient.KeyColor({ value: 0.0, color: marginColor }));
+    gradient.keys.push(new Gradient.KeyColor({ value: 0.5, color: ColorDef.from(0, 255, 0, 150) }));
+    gradient.keys.push(new Gradient.KeyColor({ value: 0.75, color: ColorDef.from(255, 255, 0, 100) }));
+    gradient.keys.push(new Gradient.KeyColor({ value: 1.0, color: ColorDef.from(255, 0, 0, 50) }));
 
     /* Form the image here.  For each grid point, map the intensity to a colorDef and then extract the r,g,b,a values. */
     const imageArray = new Uint8Array(4 * gridSize * gridSize);
     for (let j = 0; j <= gridSize; j++) {
       for (let i = 0; i <= gridSize; i++) {
-        const colorDef = gradient.mapColor (valueGrid [i][j]);
+        const colorDef = gradient.mapColor(valueGrid[i][j]);
         const colors = colorDef.colors;
 
         const baseIndex = 4 * ((j * gridSize) + i);
@@ -212,7 +212,7 @@ export default class HeatmapDecorator implements Decorator {
       }
     }
 
-    return ImageBuffer.create (imageArray, ImageBufferFormat.Rgba, gridSize);
+    return ImageBuffer.create(imageArray, ImageBufferFormat.Rgba, gridSize);
   }
 
   /* Create the graphics that represent the heatmap */
@@ -222,27 +222,27 @@ export default class HeatmapDecorator implements Decorator {
 
     /* Step 1: Build a grid of numbers to represent the intensities of the heatmap */
     const gridSizePowerOf2: number = 8;  // 2^8 (256x256)
-    const gridSize = Math.pow (2, gridSizePowerOf2);
-    const valueGrid = this.buildSampledGrid (gridSize);
+    const gridSize = Math.pow(2, gridSizePowerOf2);
+    const valueGrid = this.buildSampledGrid(gridSize);
 
     /* Step 2: Convert the grid to an image buffer */
-    const imageBuffer = this.gridToImageBuffer (valueGrid, gridSize);
+    const imageBuffer = this.gridToImageBuffer(valueGrid, gridSize);
 
     if (undefined === imageBuffer)
       return undefined;
 
     /* Step 3: Convert the image buffer to a texture */
-    const textureParams = new RenderTexture.Params (undefined, RenderTexture.Type.Normal, false);
-    const texture = IModelApp.renderSystem.createTextureFromImageBuffer (imageBuffer, context.viewport.iModel, textureParams);
+    const textureParams = new RenderTexture.Params(undefined, RenderTexture.Type.Normal, false);
+    const texture = IModelApp.renderSystem.createTextureFromImageBuffer(imageBuffer, context.viewport.iModel, textureParams);
 
     if (undefined === texture)
       return undefined;
 
     /* Step 4: Create a render material that can be used to map the texture onto a surface. */
     const mappingParams = new TextureMapping.Params();
-    const textureMapping = new TextureMapping (texture, mappingParams);
+    const textureMapping = new TextureMapping(texture, mappingParams);
 
-    const materialParams = new RenderMaterial.Params ();
+    const materialParams = new RenderMaterial.Params();
     materialParams.textureMapping = textureMapping;
 
     const material = IModelApp.renderSystem.createMaterial(materialParams, context.viewport.iModel);
@@ -252,17 +252,17 @@ export default class HeatmapDecorator implements Decorator {
     /* Step 5: activate the render material and then create a square shape.  The material will be displayed at the
        location of the shape. */
     const builder = context.createGraphicBuilder(GraphicType.WorldOverlay);
-    builder.activateGraphicParams (graphicParams);
+    builder.activateGraphicParams(graphicParams);
 
     const corners = this._range.corners();
     for (const corner of corners) { corner.z = this._height; }
 
     const shapePoints: Point3d[] = [];
-    shapePoints.push (corners[0]);
-    shapePoints.push (corners[2]);
-    shapePoints.push (corners[3]);
-    shapePoints.push (corners[1]);
-    shapePoints.push (corners[0]);
+    shapePoints.push(corners[0]);
+    shapePoints.push(corners[2]);
+    shapePoints.push(corners[3]);
+    shapePoints.push(corners[1]);
+    shapePoints.push(corners[0]);
 
     builder.addShape(shapePoints);
 
@@ -276,7 +276,7 @@ export default class HeatmapDecorator implements Decorator {
        don't typically change.  If they do change, we invalidate the graphics and then regenerate them here for
        the next frame. */
     if (undefined === this._graphics) {
-      this._graphics = this._createGraphics (context);
+      this._graphics = this._createGraphics(context);
     }
 
     if (undefined !== this._graphics) {

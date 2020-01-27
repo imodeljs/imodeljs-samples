@@ -94,7 +94,7 @@ export class Sample extends React.Component<ZoomToProps, SampleState> {
         toAdd.push(e);
       }
     }
-    this.setState({ elementList: [...this.state.elementList, ...toAdd] });
+    this.setState((prevState) => ({ elementList: [...prevState.elementList, ...toAdd] }));
     this.props.imodel.selectionSet.emptyAll();
   }
 
@@ -157,16 +157,16 @@ export class Sample extends React.Component<ZoomToProps, SampleState> {
           <span className="table-caption">{this.state.elementList.length} elementIds in list</span>
           <hr></hr>
           <div className="sample-options-3col">
-            <Toggle isOn={this.state.animateEnable} onChange={() => this.setState({ animateEnable: !this.state.animateEnable })} />
+            <Toggle isOn={this.state.animateEnable} onChange={() => this.setState((prevState) => ({ animateEnable: !prevState.animateEnable }))} />
             <span>Animate</span>
-            <Toggle isOn={this.state.animateVal} onChange={() => this.setState({ animateVal: !this.state.animateVal })} disabled={!this.state.animateEnable} />
-            <Toggle isOn={this.state.marginEnable} onChange={() => this.setState({ marginEnable: !this.state.marginEnable })} />
+            <Toggle isOn={this.state.animateVal} onChange={() => this.setState((prevState) => ({ animateVal: !prevState.animateVal }))} disabled={!this.state.animateEnable} />
+            <Toggle isOn={this.state.marginEnable} onChange={() => this.setState((prevState) => ({ marginEnable: !prevState.marginEnable }))} />
             <span>Margin</span>
             <input type="range" min="0" max="0.25" step="0.01" value={this.state.marginVal} onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.setState({ marginVal: Number(event.target.value) })} disabled={!this.state.marginEnable}></input>
-            <Toggle isOn={this.state.standardViewEnable} onChange={() => this.setState({ standardViewEnable: !this.state.standardViewEnable })} />
+            <Toggle isOn={this.state.standardViewEnable} onChange={() => this.setState((prevState) => ({ standardViewEnable: !prevState.standardViewEnable }))} />
             <span>Standard View</span>
             <ViewPicker onViewPick={(viewId: StandardViewId) => { this.setState({ standardViewVal: viewId }); }} disabled={!this.state.standardViewEnable} />
-            <Toggle isOn={this.state.relativeViewEnable} onChange={() => this.setState({ relativeViewEnable: !this.state.relativeViewEnable })} />
+            <Toggle isOn={this.state.relativeViewEnable} onChange={() => this.setState((prevState) => ({ relativeViewEnable: !prevState.relativeViewEnable }))} />
             <span>Relative View</span>
             <ViewPicker onViewPick={(viewId: StandardViewId) => { this.setState({ relativeViewVal: viewId }); }} disabled={!this.state.relativeViewEnable} />
           </div>
