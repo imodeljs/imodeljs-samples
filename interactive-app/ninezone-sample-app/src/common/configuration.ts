@@ -36,7 +36,7 @@ export default function setupEnv() {
     imjs_browser_test_client_id: "imodeljs-spa-samples-2686",
 
     // Use this client id when running electron app
-    imjs_electron_test_client_id: "imodeljs-spa-samples-2686",
+    imjs_electron_test_client_id: "imodeljs-electron-samples",
 
     // Set this to be the registered redirect URI
     // Note: "http://localhost:3000/signin-callback" is setup to work with the (default) web clientId above
@@ -46,7 +46,7 @@ export default function setupEnv() {
     imjs_browser_test_post_signout_redirect_uri: "http://localhost:3000/",
 
     // This redirect uri is set up to be used with the electron clientId above
-    imjs_electron_test_redirect_uri: "electron://frontend/signin-callback",
+    imjs_electron_test_redirect_uri: "http://localhost:3000/signin-callback",
 
     // Set this to be the scopes of services the application needs to access
     // Note: The default value set above ensures the minimal working of the application

@@ -2,9 +2,9 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import { BentleyCloudRpcParams, ElectronRpcConfiguration } from "@bentley/imodeljs-common";
+import { BentleyCloudRpcParams, OidcDesktopClientConfiguration } from "@bentley/imodeljs-common";
 import { Config, UrlDiscoveryClient, OidcFrontendClientConfiguration, IOidcFrontendClient } from "@bentley/imodeljs-clients";
-import { IModelApp, FrontendRequestContext, OidcBrowserClient, IModelAppOptions } from "@bentley/imodeljs-frontend";
+import { IModelApp, FrontendRequestContext, OidcBrowserClient, IModelAppOptions, OidcDesktopClientRenderer } from "@bentley/imodeljs-frontend";
 import { I18NNamespace } from "@bentley/imodeljs-i18n";
 import { Presentation } from "@bentley/presentation-frontend";
 import { UiCore } from "@bentley/ui-core";
@@ -15,6 +15,7 @@ import { UseBackend } from "../../common/configuration";
 import initLogging from "../api/logging";
 import initRpc from "../api/rpc";
 import { AppState, AppStore } from "./AppState";
+import { isElectronRenderer } from "@bentley/bentleyjs-core";
 
 // initialize logging
 initLogging();
@@ -81,28 +82,31 @@ export class NineZoneSampleApp {
   }
 
   private static async initializeOidc() {
-    let clientId, redirectUri, postSignoutRedirectUri;
-    if (ElectronRpcConfiguration.isElectron) {
-      // We are running in an electron context
-      clientId = Config.App.getString("imjs_electron_test_client_id");
-      redirectUri = Config.App.getString("imjs_electron_test_redirect_uri");
-    } else {
-      // We are running in a web context
-      clientId = Config.App.getString("imjs_browser_test_client_id");
-      redirectUri = Config.App.getString("imjs_browser_test_redirect_uri");
-      postSignoutRedirectUri = Config.App.getString("imjs_browser_test_post_signout_redirect_uri");
-    }
-    const responseType = "code";
-    const scope = Config.App.getString("imjs_browser_test_scope");
-    const oidcConfig: OidcFrontendClientConfiguration = { clientId, redirectUri, scope, postSignoutRedirectUri, responseType };
-
     // create an OIDC client that helps with the sign-in / sign-out process
     const requestContext = new FrontendRequestContext();
-    this._oidcClient = new OidcBrowserClient(oidcConfig);
+    this._oidcClient = this.getOidcClient();
     await this._oidcClient.initialize(requestContext);
 
     IModelApp.authorizationClient = this._oidcClient;
     UiFramework.oidcClient = this._oidcClient;
+  }
+
+  private static getOidcClient(): IOidcFrontendClient {
+    const scope = "openid email profile organization imodelhub context-registry-service:read-only product-settings-service urlps-third-party";
+    if (isElectronRenderer) {
+      const clientId = Config.App.getString("imjs_electron_test_client_id");
+      const redirectUri = Config.App.getString("imjs_electron_test_redirect_uri");
+      const oidcConfiguration: OidcDesktopClientConfiguration = { clientId, redirectUri, scope: scope + " offline_access" };
+      const oidcClient = new OidcDesktopClientRenderer(oidcConfiguration);
+      return oidcClient;
+    } else {
+      const clientId = Config.App.getString("imjs_browser_test_client_id");
+      const redirectUri = Config.App.getString("imjs_browser_test_redirect_uri");
+      const postSignoutRedirectUri = Config.App.get("imjs_browser_test_post_signout_redirect_uri");
+      const oidcConfiguration: OidcFrontendClientConfiguration = { clientId, redirectUri, postSignoutRedirectUri, scope: scope + " imodeljs-router", responseType: "code" };
+      const oidcClient = new OidcBrowserClient(oidcConfiguration);
+      return oidcClient;
+    }
   }
 
   public static shutdown() {

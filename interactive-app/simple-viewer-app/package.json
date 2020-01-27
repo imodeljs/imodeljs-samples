@@ -20,6 +20,7 @@
     "start:webserver": "node ./node_modules/@bentley/imodeljs-webserver/lib/WebServer.js --port=3000 --resources=./lib/webresources/",
     "start:backend": "node lib/backend/main.js",
     "start:servers": "env-cmd ./lib/webresources/config.json run-p \"start:webserver\" \"start:backend\"",
+    "start": "npm run start:servers",
     "electron": "electron lib/backend/main.js",
     "clean": "rimraf lib .rush",
     "lint": "tslint --project . 1>&2",

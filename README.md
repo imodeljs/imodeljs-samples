@@ -72,9 +72,9 @@ To run these samples, you need to first get the [required tools](https://imodelj
 
 2. (Recommended) Register your application at [Developer Registration](https://imodeljs.github.io/iModelJs-docs-output/getting-started/#developer-registration).
 
-    For the purpose of running a sample on localhost, ensure your registration includes http://localhost:3000/signin-callback as a valid redirect URI.
+    For the purpose of running a sample on localhost, ensure your *SPA* app registration includes http://localhost:3000/signin-callback as a valid redirect URI. The client ID should start with spa-.
 
-    If you would like to run a sample in electron, another application should be registered which includes [electron://frontend/signin-callback]() as a valid redirect URI.
+    If you would like to run a sample in Electron, create a *Desktop* app registration with http://localhost:3000/signin-callback as a valid redirect URI. The client ID should start with native-.
 
     Note: If you are just testing on localhost you can use the default registration included in the sample. However, it's recommended that you complete the registration, especially since registration is a requirement before the application can be deployed. For more information, see the section on [authorization](https://imodeljs.github.io/iModelJs-docs-output/learning/common/accesstoken/).
 
@@ -82,12 +82,17 @@ To run these samples, you need to first get the [required tools](https://imodelj
 
 4. Follow the [steps](#building-samples) to build the samples.
 
-5. There are two servers, a web server that delivers the static web resources (the frontend Javascript, localizable strings, fonts, cursors, etc.), and the backend RPC server that opens the iModel on behalf of the application. Start them both running locally:
+5. a. Web App - There are two servers, a web server that delivers the static web resources (the frontend Javascript, localizable strings, fonts, cursors, etc.), and the backend RPC server that opens the iModel on behalf of the application. Start them both running locally:
 
     ```sh
     cd [sample app subfolder]
     npm run start:servers
     ```
+
+    b. Electron App
+     ```sh 
+     npm run start:electron
+     ```
 
 6. Open a web browser (e.g., Chrome or Edge), and browse to localhost:3000.
 

@@ -52,6 +52,7 @@ export default class App extends React.Component<{}, State> {
   }
 
   public componentDidMount() {
+    NineZoneSampleApp.oidcClient.onUserStateChanged.addListener(this._onUserStateChanged);
     // subscribe for unified selection changes
     Presentation.selection.selectionChange.addListener(this._onSelectionChanged);
   }
@@ -59,6 +60,10 @@ export default class App extends React.Component<{}, State> {
   public componentWillUnmount() {
     // unsubscribe from unified selection changes
     Presentation.selection.selectionChange.removeListener(this._onSelectionChanged);
+  }
+
+  private _onUserStateChanged = () => {
+    this.setState((prev) => ({ user: { ...prev.user, isLoading: false } }));
   }
 
   private _onSelectionChanged = (evt: SelectionChangeEventArgs, selectionProvider: ISelectionProvider) => {
