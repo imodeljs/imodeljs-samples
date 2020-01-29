@@ -7,7 +7,7 @@ import * as Puppeteer from "puppeteer";
 export let browser: Puppeteer.Browser;
 
 before(async () => {
-  browser = await Puppeteer.launch();
+  browser = await Puppeteer.launch({ headless: false });
 });
 
 after(async () => {
@@ -17,11 +17,10 @@ after(async () => {
 export let page: Puppeteer.Page;
 
 beforeEach(async () => {
-  page = await browser.newPage();
+  const context = await browser.createIncognitoBrowserContext();
+  page = await context.newPage();
   await page.setViewport({ height: 1080, width: 1920 });
   await page.goto("http://localhost:3000");
-  await page.setCacheEnabled(false);
-  await page.target().createCDPSession().then((session) => session.send("Network.clearBrowserCookies"));
 });
 
 afterEach(async () => {

@@ -5,7 +5,11 @@ jobs:
     strategy:
       maxParallel: 2
       matrix:
-        'Windows':
+        'GP-Backend':
+          imjs_backend: 1
+          os: vs2017-win2016
+        'Local-Backend':
+          imjs_backend: 0
           os: vs2017-win2016
     pool:
       vmImage: $(os)

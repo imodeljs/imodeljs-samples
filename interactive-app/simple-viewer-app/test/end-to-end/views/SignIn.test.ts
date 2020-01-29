@@ -15,9 +15,6 @@ describe("Sign in view", () => {
 
     // Verify that "Register" link exists
     await page.waitForSelector(".components-signin-register a");
-
-    // Verify that "Work offline" link exists
-    await page.waitForSelector(".components-signin-offline");
   });
 
 });

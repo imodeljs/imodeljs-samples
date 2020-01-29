@@ -10,6 +10,7 @@ import { signIn, findByText } from "../helpers";
 import { Config } from "@bentley/imodeljs-clients";
 
 async function openIModel() {
+
   // Wait for "Open iModel" button to appear
   await page.waitForSelector(".button-open-imodel");
 
@@ -19,14 +20,14 @@ async function openIModel() {
   // Open iModel
   await page.click(".button-open-imodel");
 
-  // If there's an alert with an error message, catch it earlier than 5 mins
+  // If there's an alert with an error message, catch it earlier than 1 min
   await Promise.race([
     dialogPromise.then((dialog) => { throw new Error((dialog as Puppeteer.Dialog).message()); }),
     page.waitFor(5000),
   ]);
 
   // Wait for at least one node to show up in the tree
-  await page.waitForSelector(`[data-testid="tree-node"]`, {timeout: 300000}); // 5 min. timeout, IModel may take a long time to load
+  await page.waitForSelector(`[data-testid="tree-node"]`, { timeout: 60000 }); // 1 min. timeout, IModel may take a long time to load
 }
 
 async function findNode(text: string) {
@@ -87,11 +88,10 @@ describe("Content view", () => {
 
     // Find and select 'lc1' node
     const nodeHandle = await findNode("lc1");
-    await nodeHandle.hover(); // Ensure that mouse is over the node
     await nodeHandle.click();
 
     // Wait for table to load
-    await page.waitForSelector(".components-table .components-table-cell");
+    await page.waitForSelector(".components-table .components-table-cell", { timeout: 50000 });
 
     // Limit search to table
     const tableHandle = await page.$(".components-table");

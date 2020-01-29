@@ -47,7 +47,7 @@ export async function fillInSignin(page: Puppeteer.Page) {
         }
       }
       return false;
-    }, {}, errorSelectors);
+    }, { timeout: 2000 }, errorSelectors);
     const selector = await jsHandle.jsonValue();
 
     // If .consent-buttons is found. Click the consent button

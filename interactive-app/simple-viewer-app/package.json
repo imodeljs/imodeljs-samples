@@ -26,10 +26,10 @@
     "lint": "tslint --project . 1>&2",
     "test": "npm run test:unit",
     "test:unit": "mocha --opts ./test/utils/mocha.opts \"./test/unit/**/*.test.ts*\"",
-    "test:integration": "npm run test:electron",
+    "test:integration": "npm run test:electron && npm run test:e2e",
     "test:e2e": "start-server-and-test test:e2e:start-app http-get://localhost:3000 test:e2e:test-app",
     "test:e2e:start-app": "env-cmd ./lib/webresources/config.json run-p \"start:webserver\" \"start:backend\"",
-    "test:e2e:test-app": "mocha --opts ./test/end-to-end/mocha.opts \"test/end-to-end/**/*.test.ts*\"",
+    "test:e2e:test-app": "mocha --opts ./test/utils/mocha.opts \"test/end-to-end/**/*.test.ts*\"",
     "test:electron": "mocha --opts ./test/utils/mocha.opts \"test/electron/**/*.test.ts*\""
   },
   "iModelJs": {

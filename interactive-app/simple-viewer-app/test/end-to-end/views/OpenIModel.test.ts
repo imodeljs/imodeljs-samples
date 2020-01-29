@@ -10,7 +10,7 @@ describe("Open iModel view", () => {
 
   it("renders after sign in", async () => {
     await signIn(page);
-    await page.waitForSelector(".button-open-imodel", {timeout: 5000});
+    await page.waitForSelector(".button-open-imodel", { timeout: 5000 });
   });
 
 });

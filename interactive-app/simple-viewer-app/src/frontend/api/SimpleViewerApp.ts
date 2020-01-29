@@ -70,7 +70,7 @@ export class SimpleViewerApp {
   }
 
   private static getOidcClient(): IOidcFrontendClient {
-    const scope = "openid email profile organization imodelhub context-registry-service:read-only product-settings-service urlps-third-party";
+    const scope = Config.App.getString("imjs_browser_test_scope");
     if (isElectronRenderer) {
       const clientId = Config.App.getString("imjs_electron_test_client_id");
       const redirectUri = Config.App.getString("imjs_electron_test_redirect_uri");
