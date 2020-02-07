@@ -32,6 +32,16 @@ Each of the samples are self-contained and, as such, can be copied out of the cl
 
 To run these samples, you need to first get the [required tools](https://imodeljs.github.io/iModelJs-docs-output/getting-started/#1-get-the-tools) and ensure you have _Node.js 10.x LTS_ installed on your machine.
 
+## Prerequisites
+
+* [Git](https://git-scm.com/)
+* [Node](https://nodejs.org/en/): an installation of the latest security patch of Node 10 or 12. The Node installation also includes the **npm** package manager.
+* [Rush](https://github.com/Microsoft/web-build-tools/wiki/Rush): to install `npm install -g @microsoft/rush`
+* [TypeScript](https://www.typescriptlang.org/): this is listed as a devDependency, so if you're building it from source, you will get it with `rush install`.
+* [Visual Studio Code](https://code.visualstudio.com/): an optional dependency, but the repository structure is optimized for its use
+
+> See [supported platforms](https://www.imodeljs.org/learning/supportedplatforms/) for further information.
+
 ## Sample Agent Apps
 
 1. [Query Agent](./agent-app/query-agent/README.md)
