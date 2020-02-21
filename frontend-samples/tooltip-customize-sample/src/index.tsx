@@ -228,8 +228,8 @@ export class SampleContainer extends React.Component<SampleProps> {
     const rulesetId = "Default";
     return (
       <>
-        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} rulesetId={rulesetId} />,
-        <Sample />;
+        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} rulesetId={rulesetId} />
+        <Sample />
       </>
     );
   }

@@ -33,7 +33,7 @@ export class ViewportAndNavigation extends React.PureComponent<ViewportAndNaviga
     return (
       <>
         <SimpleViewport
-          style={{ height: "1200px" }}
+          style={{ height: "100vh" }}
           imodel={this.props.imodel}
           viewDefinitionId={this.props.viewDefinitionId}
           ruleset={this.props.rulesetId} />
