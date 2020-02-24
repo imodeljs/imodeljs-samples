@@ -52,6 +52,10 @@
     {
       "packageName": "zoom-to-elements-sample",
       "projectFolder": "frontend-samples/zoom-to-elements-sample"
+    },
+    {
+      "packageName": "marker-pin-sample",
+      "projectFolder": "frontend-samples/marker-pin-sample"
     }
   ]
 }

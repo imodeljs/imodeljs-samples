@@ -4,31 +4,31 @@
 *--------------------------------------------------------------------------------------------*/
 import { Point3d, Range2d, Range3d } from "@bentley/geometry-core";
 
-/** For the purposes of the heatmap sample, we provide three methods to generate
- * the points.  Those are 'random', 'circle', and 'cross'.  For each of those
- * methods this file contains a PointGenerator class.
+/** For the purposes of the frontend samples, we provide three methods to generate
+ * a collection of points.  Those are 'random', 'circle', and 'cross'.  This file contains
+ * a PointGenerator class for each of those methods.
  */
 
 /** Base class for point generators */
 export abstract class BasePointGenerator {
-  public abstract generatePoints (numPoints: number, range: Range2d): Point3d[];
+  public abstract generatePoints(numPoints: number, range: Range2d): Point3d[];
 }
 
 /** Create an array of points arranged in a circle */
 export class CirclePointGenerator extends BasePointGenerator {
-  public generatePoints (numPoints: number, range: Range2d): Point3d[] {
+  public generatePoints(numPoints: number, range: Range2d): Point3d[] {
     const points: Point3d[] = [];
     const radius: number = range.xLength() < range.yLength() ? range.xLength() * (2 / 5) : range.yLength() * (2 / 5);
-    const range3d = Range3d.createRange2d (range);
+    const range3d = Range3d.createRange2d(range);
     const midPt = range3d.center;
 
     for (let i = 0; i < numPoints; i++) {
       const angle = (2 * Math.PI) * (i / numPoints);
-      const circlePt = new Point3d (radius * Math.cos (angle), radius * Math.sin (angle), 0.0);
-      const point = circlePt.plus (midPt);
+      const circlePt = new Point3d(radius * Math.cos(angle), radius * Math.sin(angle), 0.0);
+      const point = circlePt.plus(midPt);
       point.z = (i + 1) / numPoints;
 
-      points.push (point);
+      points.push(point);
     }
 
     return points;
@@ -38,7 +38,7 @@ export class CirclePointGenerator extends BasePointGenerator {
 /** Create an array of points arranged in an X */
 export class CrossPointGenerator extends BasePointGenerator {
 
-  private generateFractions (count: number): number[] {
+  private generateFractions(count: number): number[] {
     // Examples:
     // 1 === count: 1/2
     // 2 === count: 1/4, 3/4
@@ -47,28 +47,28 @@ export class CrossPointGenerator extends BasePointGenerator {
     return Array.from({ length: count }, (_el, i) => 1 / (2 * count) + i / count);
   }
 
-  public generatePoints (numPoints: number, range: Range2d): Point3d[] {
+  public generatePoints(numPoints: number, range: Range2d): Point3d[] {
     const points: Point3d[] = [];
-    const range3d = Range3d.createRange2d (range);
+    const range3d = Range3d.createRange2d(range);
 
     // Add half the points on the diagonal from lower left to upper right
-    const count1 = Math.floor (numPoints / 2);
-    const fractions1 = this.generateFractions (count1);
+    const count1 = Math.floor(numPoints / 2);
+    const fractions1 = this.generateFractions(count1);
 
     for (const fraction of fractions1) {
-      const point = range3d.fractionToPoint (fraction, fraction, 0);
+      const point = range3d.fractionToPoint(fraction, fraction, 0);
       point.z = 1.0;
-      points.push (point);
+      points.push(point);
     }
 
     // Add the other half on the diagonal from upper left to the lower right
     const count2 = numPoints - count1;
-    const fractions2 = this.generateFractions (count2);
+    const fractions2 = this.generateFractions(count2);
 
     for (const fraction of fractions2) {
-      const point = range3d.fractionToPoint (fraction, 1 - fraction, 0);
+      const point = range3d.fractionToPoint(fraction, 1 - fraction, 0);
       point.z = 1.0;
-      points.push (point);
+      points.push(point);
     }
 
     return points;
@@ -89,11 +89,11 @@ class BasicPRNG {
     this._startingSeed = this._seed = seed;
   }
 
-  public reset (): void {
+  public reset(): void {
     this._seed = this._startingSeed;
   }
 
-  public random (): number {
+  public random(): number {
     const x = Math.sin(this._seed++) * 10000;
     return x - Math.floor(x);
   }
@@ -103,19 +103,19 @@ class BasicPRNG {
 export class RandomPointGenerator extends BasePointGenerator {
   private _rng: BasicPRNG;
 
-  constructor () {
+  constructor() {
     super();
-    this._rng = new BasicPRNG (Math.random() * 10000);
+    this._rng = new BasicPRNG(Math.random() * 10000);
   }
 
-  public generatePoints (numPoints: number, range: Range2d): Point3d[] {
+  public generatePoints(numPoints: number, range: Range2d): Point3d[] {
     const points: Point3d[] = [];
-    const range3d = Range3d.createRange2d (range);
+    const range3d = Range3d.createRange2d(range);
 
     for (let i = 0; i < numPoints; i++) {
-      const point = range3d.fractionToPoint (this._rng.random(), this._rng.random(), 0);
+      const point = range3d.fractionToPoint(this._rng.random(), this._rng.random(), 0);
       point.z = this._rng.random();
-      points.push (point);
+      points.push(point);
     }
 
     this._rng.reset();

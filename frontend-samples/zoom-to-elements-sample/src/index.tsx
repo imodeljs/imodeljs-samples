@@ -66,7 +66,11 @@ export class Sample extends React.Component<ZoomToProps, SampleState> {
     this.setState({ elementsAreSelected: !selection.isEmpty });
   }
 
+  /** This method is called as the app initializes.  This gives us a chance to supply options to
+   * be passed to IModelApp.startup.
+   */
   public static getIModelAppOptions(): IModelAppOptions {
+    // This sample doesn't supply any special options.
     return {};
   }
 

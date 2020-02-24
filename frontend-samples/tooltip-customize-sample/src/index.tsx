@@ -124,6 +124,9 @@ export class Sample extends React.Component<{}, SampleSettings> {
     this.state = { ...toolAdmin.settings };
   }
 
+  /** This method is called as the app initializes.  This gives us a chance to supply options to
+   * be passed to IModelApp.startup.
+   */
   public static getIModelAppOptions(): IModelAppOptions {
     const toolAdmin = new SampleToolAdmin();
     return { toolAdmin };

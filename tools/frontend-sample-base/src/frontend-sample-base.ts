@@ -7,3 +7,4 @@ export * from "./App/App";
 export * from "./Startup/Startup";
 export * from "./Viewport/ViewportAndNavigation";
 export * from "./GithubLink";
+export * from "./PointSelector/PointSelector";

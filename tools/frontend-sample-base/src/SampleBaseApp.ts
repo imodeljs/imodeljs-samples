@@ -4,7 +4,7 @@
 *--------------------------------------------------------------------------------------------*/
 import { Id64String } from "@bentley/bentleyjs-core";
 import { OidcFrontendClientConfiguration, IOidcFrontendClient, UrlDiscoveryClient, Config } from "@bentley/imodeljs-clients";
-import { IModelApp, OidcBrowserClient, FrontendRequestContext, IModelAppOptions, IModelConnection } from "@bentley/imodeljs-frontend";
+import { IModelApp, OidcBrowserClient, FrontendRequestContext, IModelAppOptions, IModelConnection, TileAdmin } from "@bentley/imodeljs-frontend";
 import { BentleyCloudRpcManager, BentleyCloudRpcParams, IModelReadRpcInterface, IModelTileRpcInterface } from "@bentley/imodeljs-common";
 import { PresentationRpcInterface } from "@bentley/presentation-common";
 import { UiCore } from "@bentley/ui-core";
@@ -41,6 +41,8 @@ export class SampleBaseApp {
     let opts: IModelAppOptions = {};
     if (optsIn)
       opts = optsIn;
+
+    opts.tileAdmin = TileAdmin.create({ useProjectExtents: false });
 
     if (!opts.notifications)
       opts.notifications = new SampleBaseNotificationManager();

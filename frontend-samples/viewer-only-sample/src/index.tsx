@@ -27,6 +27,9 @@ export class Sample extends React.Component<{}, SampleState> {
     super(props, context);
   }
 
+  /** This method is called as the app initializes.  This gives us a chance to supply options to
+   * be passed to IModelApp.startup.
+   */
   public static getIModelAppOptions(): IModelAppOptions {
     return {};
   }
