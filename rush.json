@@ -50,6 +50,10 @@
       "projectFolder": "frontend-samples/emphasize-elements-sample"
     },
     {
+      "packageName": "view-attributes-sample",
+      "projectFolder": "frontend-samples/view-attributes-sample"
+    },
+    {
       "packageName": "zoom-to-elements-sample",
       "projectFolder": "frontend-samples/zoom-to-elements-sample"
     },

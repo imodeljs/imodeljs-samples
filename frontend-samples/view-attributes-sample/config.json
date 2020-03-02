@@ -1,0 +1,9 @@
+{
+  // -----------------------------------------------------------------------------------------------------------
+  // Project and iModel (REQUIRED)
+  // Must un-comment the lines below and set these variables before testing - create a new project and
+  // iModel with the developer registration procedure here - https://git.io/fx8YP
+  // -----------------------------------------------------------------------------------------------------------
+  // "imjs_test_project" : "<Name of Project>", // Set this to the name of the sample project
+  // "imjs_test_imodel"  : "<Name of iModel>" // Set this to the name of the sample iModel
+}

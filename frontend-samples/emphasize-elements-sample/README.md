@@ -12,8 +12,8 @@ This is a 'frontend-only' sample.  It utilizes frontend-sample-base which suppli
 
 The purpose of this application is to demonstrate the following:
 
-* Emphasize - call attention to specific elements while fading the rest to the background.
-* Hide - prevent display of specific elements.
+- Emphasize - call attention to specific elements while fading the rest to the background.
+- Hide - prevent display of specific elements.
 - Isolate - display only specific elements while hiding the rest.
 - Override - change the color of specific elements.
 
