@@ -16,15 +16,15 @@
   cursor: pointer;
   border-radius: 5px;
   border-color: black;
-  border-style: solid;    
+  border-style: solid;
   padding: 10px;
 }
 
 .sample-instructions {
-  display:flex;
+  display: flex;
 }
 
-.sample-instructions >span {
+.sample-instructions>span {
   flex-grow: 1;
   width: 0;
 }
@@ -49,6 +49,10 @@
   column-gap: 8px;
   grid-template-columns: 1fr 2fr 2fr;
   align-items: center;
+}
+
+.even-3col {
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .sample-options-4col {

@@ -56,6 +56,10 @@
     {
       "packageName": "marker-pin-sample",
       "projectFolder": "frontend-samples/marker-pin-sample"
+    },
+    {
+      "packageName": "view-clip-sample",
+      "projectFolder": "frontend-samples/view-clip-sample"
     }
   ]
 }
