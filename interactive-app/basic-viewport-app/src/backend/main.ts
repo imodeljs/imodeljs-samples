@@ -2,9 +2,15 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
+import { Logger, LogLevel } from "@bentley/bentleyjs-core";
 import { IModelHost } from "@bentley/imodeljs-backend";
-import getSupportedRpcs from "../common/rpcs";
 import { RpcInterfaceDefinition } from "@bentley/imodeljs-common";
+
+import getSupportedRpcs from "../common/rpcs";
+
+Logger.initializeToConsole();
+Logger.setLevelDefault(LogLevel.Warning);
+Logger.setLevel("basic-viewport-app", LogLevel.Info);
 
 // initialize imodeljs-backend
 IModelHost.startup();

@@ -4,17 +4,21 @@
 *--------------------------------------------------------------------------------------------*/
 import * as path from "path";
 import { app as electron } from "electron";
-import { Logger } from "@bentley/bentleyjs-core";
+import { Logger, LogLevel } from "@bentley/bentleyjs-core";
 import { IModelHost } from "@bentley/imodeljs-backend";
 import { Presentation } from "@bentley/presentation-backend";
-import getSupportedRpcs from "../common/rpcs";
 import { RpcInterfaceDefinition } from "@bentley/imodeljs-common";
-import setupEnv from "../common/configuration";
+
+import getSupportedRpcs from "../common/rpcs";
+import setupEnv, { AppLoggerCategory } from "../common/configuration";
+
 // setup environment
 setupEnv();
 
 // initialize logging
 Logger.initializeToConsole();
+Logger.setLevelDefault(LogLevel.Warning);
+Logger.setLevel(AppLoggerCategory.Backend, LogLevel.Info);
 
 // initialize imodeljs-backend
 IModelHost.startup();

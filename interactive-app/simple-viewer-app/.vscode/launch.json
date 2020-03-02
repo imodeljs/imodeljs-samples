@@ -7,7 +7,6 @@
     {
       "name": "Web: All",
       "configurations": [
-        "Make config",
         "Web: Server (webserver)",
         "Web: Chrome (frontend)",
       ]
@@ -51,21 +50,6 @@
       "restart": true
     },
     {
-      "name": "Make config",
-      "type": "node",
-      "request": "launch",
-      "protocol": "inspector",
-      "program": "${workspaceFolder}/node_modules/strip-json-comments-cli/cli.js",
-      "cwd": "${workspaceFolder}",
-      "args": [
-        "--no-whitespace",
-        "${workspaceFolder}/src/common/config.json",
-        ">",
-        "${workspaceFolder}/lib/webresources/config.json",
-        "${workspaceFolder}/test/unit/**/*.test.ts*"
-      ]
-    },
-    {
       "type": "node",
       "request": "launch",
       "name": "Web: Server (backend) for tests",
@@ -73,9 +57,8 @@
       "program": "${workspaceFolder}/lib/backend/main.js",
       "cwd": "${workspaceFolder}",
       "env": {
-        "imjs_test_project": "Retail Building Sample QA",
-        "imjs_test_imodel": "Retail Building Sample QA",
-        "imjs_buddi_resolve_url_using_region": "102"
+        "imjs_test_project": "Retail Building Sample",
+        "imjs_test_imodel": "Retail Building Sample",
       },
       "showAsyncStacks": true,
       "smartStep": true,

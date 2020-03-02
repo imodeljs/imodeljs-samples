@@ -6,7 +6,7 @@ import * as React from "react";
 import { Provider } from "react-redux";
 
 import { ElectronRpcConfiguration } from "@bentley/imodeljs-common";
-import { OpenMode, ClientRequestContext } from "@bentley/bentleyjs-core";
+import { OpenMode, ClientRequestContext, Logger } from "@bentley/bentleyjs-core";
 import { ConnectClient, IModelQuery, Project, Config } from "@bentley/imodeljs-clients";
 import { IModelApp, IModelConnection, FrontendRequestContext, AuthorizedFrontendRequestContext, ViewState } from "@bentley/imodeljs-frontend";
 import { Presentation, SelectionChangeEventArgs, ISelectionProvider, IFavoritePropertiesStorage, FavoriteProperties, FavoritePropertiesManager } from "@bentley/presentation-frontend";
@@ -15,19 +15,18 @@ import { ConfigurableUiContent, UiFramework } from "@bentley/ui-framework";
 import { BackstageItem } from "@bentley/ui-abstract";
 import { SignIn } from "@bentley/ui-components";
 
-import { AppUi } from "../app-ui/AppUi";
 import { NineZoneSampleApp } from "../app/NineZoneSampleApp";
+import { AppUi } from "../app-ui/AppUi";
+import { AppBackstageItemProvider } from "../app-ui/backstage/AppBackstageItemProvider";
+import { AppBackstageComposer } from "../app-ui/backstage/AppBackstageComposer";
+import { AppLoggerCategory } from "../../common/configuration";
 
 // make sure webfont brings in the icons and css files.
 import "@bentley/icons-generic-webfont/dist/bentley-icons-generic-webfont.css";
 import "./App.css";
-import { AppBackstageItemProvider } from "../app-ui/backstage/AppBackstageItemProvider";
-import { AppBackstageComposer } from "../app-ui/backstage/AppBackstageComposer";
-
-// tslint:disable: no-console
 
 /** React state of the App component */
-export interface State {
+export interface AppState {
   user: {
     isLoading?: boolean;
   };
@@ -37,7 +36,7 @@ export interface State {
 }
 
 /** A component the renders the whole application UI */
-export default class App extends React.Component<{}, State> {
+export default class App extends React.Component<{}, AppState> {
 
   /** Creates an App instance */
   constructor(props?: any, context?: any) {
@@ -62,34 +61,30 @@ export default class App extends React.Component<{}, State> {
     Presentation.selection.selectionChange.removeListener(this._onSelectionChanged);
   }
 
-  private _onUserStateChanged = () => {
-    this.setState((prev) => ({ user: { ...prev.user, isLoading: false } }));
-  }
-
   private _onSelectionChanged = (evt: SelectionChangeEventArgs, selectionProvider: ISelectionProvider) => {
     const selection = selectionProvider.getSelection(evt.imodel, evt.level);
     if (selection.isEmpty) {
-      console.log("========== Selection cleared ==========");
+      Logger.logInfo(AppLoggerCategory.Frontend, "========== Selection cleared ==========");
     } else {
-      console.log("========== Selection change ===========");
+      Logger.logInfo(AppLoggerCategory.Frontend, "========== Selection change ==========");
       if (selection.instanceKeys.size !== 0) {
         // log all selected ECInstance ids grouped by ECClass name
-        console.log("ECInstances:");
+        Logger.logInfo(AppLoggerCategory.Frontend, "ECInstances:");
         selection.instanceKeys.forEach((ids, ecclass) => {
-          console.log(`${ecclass}: [${[...ids].join(",")}]`);
+          Logger.logInfo(AppLoggerCategory.Frontend, `${ecclass}: [${[...ids].join(",")}]`);
         });
       }
       if (selection.nodeKeys.size !== 0) {
         // log all selected node keys
-        console.log("Nodes:");
-        selection.nodeKeys.forEach((key) => console.log(JSON.stringify(key)));
+        Logger.logInfo(AppLoggerCategory.Frontend, "Nodes:");
+        selection.nodeKeys.forEach((key) => Logger.logInfo(AppLoggerCategory.Frontend, JSON.stringify(key)));
       }
-      console.log("=======================================");
+      Logger.logInfo(AppLoggerCategory.Frontend, "=======================================");
     }
   }
 
   private _onRegister = () => {
-    window.open("https://imodeljs.github.io/iModelJs-docs-output/getting-started/#developer-registration", "_blank");
+    window.open("https://git.io/fx8YP", "_blank");
   }
 
   private _onOffline = () => {
@@ -99,6 +94,10 @@ export default class App extends React.Component<{}, State> {
   private _onStartSignin = async () => {
     this.setState((prev) => ({ user: { ...prev.user, isLoading: true } }));
     await NineZoneSampleApp.oidcClient.signIn(new FrontendRequestContext());
+  }
+
+  private _onUserStateChanged = () => {
+    this.setState((prev) => ({ user: { ...prev.user, isLoading: false } }));
   }
 
   /** Pick the first two available spatial, orthographic or drawing view definitions in the imodel */
@@ -152,6 +151,11 @@ export default class App extends React.Component<{}, State> {
     }
   }
 
+  private get _signInRedirectUri() {
+    const split = (Config.App.get("imjs_browser_test_redirect_uri") as string).split("://");
+    return split[split.length - 1];
+  }
+
   private delayedInitialization() {
 
     if (this.state.offlineIModel) {
@@ -180,7 +184,7 @@ export default class App extends React.Component<{}, State> {
     let ui: React.ReactNode;
     let style: React.CSSProperties = {};
 
-    if (this.state.user.isLoading) {
+    if (this.state.user.isLoading || window.location.href.includes(this._signInRedirectUri)) {
       // if user is currently being loaded, just tell that
       ui = `${IModelApp.i18n.translate("NineZoneSample:signing-in")}...`;
     } else if (!NineZoneSampleApp.oidcClient.hasSignedIn && !this.state.offlineIModel) {
@@ -198,8 +202,7 @@ export default class App extends React.Component<{}, State> {
         onIModelSelected={this._onIModelSelected}
         offlineIModel={this.state.offlineIModel} />);
     } else {
-      // if we do have an imodel and view definition id - render
-      // imodel components
+      // if we do have an imodel and view definition id - render imodel components
       ui = <IModelComponents />;
       style = { display: "none" };
     }

@@ -2,30 +2,24 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
+import { isElectronRenderer } from "@bentley/bentleyjs-core";
 import { BentleyCloudRpcParams, OidcDesktopClientConfiguration } from "@bentley/imodeljs-common";
 import { Config, UrlDiscoveryClient, OidcFrontendClientConfiguration, IOidcFrontendClient } from "@bentley/imodeljs-clients";
-import { IModelApp, FrontendRequestContext, OidcBrowserClient, IModelAppOptions, OidcDesktopClientRenderer } from "@bentley/imodeljs-frontend";
-import { I18NNamespace } from "@bentley/imodeljs-i18n";
+import { IModelApp, OidcBrowserClient, FrontendRequestContext, OidcDesktopClientRenderer, IModelAppOptions } from "@bentley/imodeljs-frontend";
 import { Presentation } from "@bentley/presentation-frontend";
 import { UiCore } from "@bentley/ui-core";
 import { UiComponents } from "@bentley/ui-components";
 import { UiFramework, AppNotificationManager } from "@bentley/ui-framework";
 
 import { UseBackend } from "../../common/configuration";
-import initLogging from "../api/logging";
 import initRpc from "../api/rpc";
 import { AppState, AppStore } from "./AppState";
-import { isElectronRenderer } from "@bentley/bentleyjs-core";
-
-// initialize logging
-initLogging();
 
 // subclass of IModelApp needed to use imodeljs-frontend
 export class NineZoneSampleApp {
   private static _isReady: Promise<void>;
   private static _oidcClient: IOidcFrontendClient;
   private static _appState: AppState;
-  private static _i18nAppNamespace: I18NNamespace;
 
   public static get ready(): Promise<void> { return this._isReady; }
 
@@ -46,8 +40,7 @@ export class NineZoneSampleApp {
     const initPromises = new Array<Promise<any>>();
 
     // initialize localization for the app
-    this._i18nAppNamespace = IModelApp.i18n.registerNamespace("NineZoneSample");
-    initPromises.push(this._i18nAppNamespace.readFinished);
+    initPromises.push(IModelApp.i18n.registerNamespace("NineZoneSample").readFinished);
 
     // create the application state store for Redux
     this._appState = new AppState();
@@ -82,9 +75,8 @@ export class NineZoneSampleApp {
   }
 
   private static async initializeOidc() {
-    // create an OIDC client that helps with the sign-in / sign-out process
-    const requestContext = new FrontendRequestContext();
     this._oidcClient = this.getOidcClient();
+    const requestContext = new FrontendRequestContext();
     await this._oidcClient.initialize(requestContext);
 
     IModelApp.authorizationClient = this._oidcClient;
@@ -92,6 +84,7 @@ export class NineZoneSampleApp {
   }
 
   private static getOidcClient(): IOidcFrontendClient {
+    // TODO: Make this the same as SVA
     const scope = "openid email profile organization imodelhub context-registry-service:read-only product-settings-service urlps-third-party";
     if (isElectronRenderer) {
       const clientId = Config.App.getString("imjs_electron_test_client_id");

@@ -9,10 +9,9 @@ import { Logger, LogLevel } from "@bentley/bentleyjs-core";
 
 import { NineZoneSampleApp } from "./app/NineZoneSampleApp";
 import App from "./components/App";
-import setupEnv from "../common/configuration";
-import { AppUi } from "./app-ui/AppUi";
-
 import "./index.scss";
+import setupEnv, { AppLoggerCategory } from "../common/configuration";
+import { AppUi } from "./app-ui/AppUi";
 
 // setup environment
 setupEnv();
@@ -20,6 +19,7 @@ setupEnv();
 // initialize logging
 Logger.initializeToConsole();
 Logger.setLevelDefault(LogLevel.Warning);
+Logger.setLevel(AppLoggerCategory.Frontend, LogLevel.Info);
 
 // Start the app.
 NineZoneSampleApp.startup();

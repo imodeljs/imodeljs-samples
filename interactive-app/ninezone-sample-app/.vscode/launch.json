@@ -23,12 +23,6 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Sam's Launch Program",
-      "program": "D:/iModelTechnologies/ninezone-sample-app/lib/main.js"
-    },
-    {
-      "type": "node",
-      "request": "launch",
       "name": "Web: Server (backend)",
       "protocol": "inspector",
       "runtimeExecutable": "node",

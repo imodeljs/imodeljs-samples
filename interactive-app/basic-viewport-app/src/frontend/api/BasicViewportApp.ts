@@ -2,6 +2,7 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
+import { Logger, LogLevel } from "@bentley/bentleyjs-core";
 import { OidcFrontendClientConfiguration, IOidcFrontendClient, Config, UrlDiscoveryClient } from "@bentley/imodeljs-clients";
 import { IModelApp, OidcBrowserClient, FrontendRequestContext } from "@bentley/imodeljs-frontend";
 import { BentleyCloudRpcManager, BentleyCloudRpcParams } from "@bentley/imodeljs-common";
@@ -19,6 +20,11 @@ export enum UseBackend {
   /** Use deployed general-purpose backend */
   GeneralPurpose = 1,
 }
+
+// initialize logging to the console
+Logger.initializeToConsole();
+Logger.setLevelDefault(LogLevel.Warning); // Set all logging to a default of Warning
+Logger.setLevel("basic-viewport-app", LogLevel.Info); // Override the above default and set only App level logging to Info.
 
 // Boiler plate code
 export class BasicViewportApp {

@@ -14,6 +14,7 @@ dependencies:
   '@bentley/imodeljs-i18n': 1.12.0_@bentley+bentleyjs-core@1.12.0
   '@bentley/imodeljs-quantity': 1.12.0_@bentley+bentleyjs-core@1.12.0
   '@bentley/imodeljs-webserver': 1.12.0
+  '@bentley/logger-config': 1.12.0_20d9db3d09ad0ae8658f7bf92d6a9572
   '@bentley/presentation-backend': 1.12.0_fb110e97881b8e67069b64e46bdf418f
   '@bentley/presentation-common': 1.12.0_b0407b2e9b83225a8e30274f74b0dfd6
   '@bentley/presentation-components': 1.12.0_c82efc661168b74e421bcffa1a4dc200
@@ -469,6 +470,19 @@ packages:
     dev: false
     resolution:
       integrity: sha512-wA80Fe5JsXR3MtD9Ewfr/XGne8kKcxVo4NM8oVOmYPX9G9tTANLJBuymuMhDugU3SbKArQV9uKoSxsD2ikH76w==
+  /@bentley/logger-config/1.12.0_20d9db3d09ad0ae8658f7bf92d6a9572:
+    dependencies:
+      '@bentley/bentleyjs-core': 1.12.0
+      bunyan: 1.8.12
+    dev: false
+    peerDependencies:
+      '@bentley/bentleyjs-core': ^1.12.0
+      bunyan: ^1.8.12
+      bunyan-seq: ^0.2.0
+      request: ^2.88.0
+      request-promise: ^4.2.0
+    resolution:
+      integrity: sha512-SZEBJoaB09YaX4gpLQRFCg7lm2zZNAOK0XxkAoOA491E59mfGrZwK76yJ7LaPqID0/A5gqACVFVjIOoPpAaxXQ==
   /@bentley/presentation-backend/1.12.0_fb110e97881b8e67069b64e46bdf418f:
     dependencies:
       '@bentley/bentleyjs-core': 1.12.0
@@ -14774,6 +14788,7 @@ packages:
       '@bentley/imodeljs-i18n': 1.12.0_@bentley+bentleyjs-core@1.12.0
       '@bentley/imodeljs-quantity': 1.12.0_@bentley+bentleyjs-core@1.12.0
       '@bentley/imodeljs-webserver': 1.12.0
+      '@bentley/logger-config': 1.12.0_20d9db3d09ad0ae8658f7bf92d6a9572
       '@bentley/presentation-backend': 1.12.0_fb110e97881b8e67069b64e46bdf418f
       '@bentley/presentation-common': 1.12.0_b0407b2e9b83225a8e30274f74b0dfd6
       '@bentley/presentation-components': 1.12.0_c82efc661168b74e421bcffa1a4dc200
@@ -14844,7 +14859,7 @@ packages:
     peerDependencies:
       react-test-renderer: '*'
     resolution:
-      integrity: sha512-kjkSN6MGuenb6NbYvDANaz/tKQw+FJBh5AMWag106K0gtK0iEAUNdU8kmhriiMbJmTR1xhQai9SnZ+FV8+iRFg==
+      integrity: sha512-Z4AX9DNhs+taYrBHUAlVyyQD2cBQqO8KG8ZAsIMoUMpwJNSEgIMXJUSgs2jArHQfZt4FTSQO3wjH/JSCpisJbg==
       tarball: 'file:projects/simple-viewer-app.tgz'
     version: 0.0.0
   'file:projects/tooltip-customize-sample.tgz_react-test-renderer@16.12.0':
@@ -14994,6 +15009,7 @@ packages:
       integrity: sha512-MAajhVInvoOtl+1PkXwj7yXBolQ2dFpECEXOmhGjAg1ztsVbT9Gk3pmFdfvbLtu3Gv2Bz5eupFd/eccgftHAcg==
       tarball: 'file:projects/zoom-to-elements-sample.tgz'
     version: 0.0.0
+registry: ''
 specifiers:
   '@bentley/bentleyjs-core': 1.12.0
   '@bentley/build-tools': 1.12.0
@@ -15010,6 +15026,7 @@ specifiers:
   '@bentley/imodeljs-i18n': 1.12.0
   '@bentley/imodeljs-quantity': 1.12.0
   '@bentley/imodeljs-webserver': 1.12.0
+  '@bentley/logger-config': 1.12.0
   '@bentley/presentation-backend': 1.12.0
   '@bentley/presentation-common': 1.12.0
   '@bentley/presentation-components': 1.12.0

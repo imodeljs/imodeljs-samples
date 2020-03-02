@@ -10,11 +10,7 @@ import { Presentation } from "@bentley/presentation-frontend";
 import { UiCore } from "@bentley/ui-core";
 import { UiComponents } from "@bentley/ui-components";
 import { UseBackend } from "../../common/configuration";
-import initLogging from "./logging";
 import initRpc from "./rpc";
-
-// initialize logging
-initLogging();
 
 export class SimpleViewerApp {
 

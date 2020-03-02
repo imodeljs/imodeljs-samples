@@ -3,23 +3,25 @@
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
 import * as React from "react";
+
 import { ElectronRpcConfiguration } from "@bentley/imodeljs-common";
-import { ClientRequestContext, Id64, Id64String, OpenMode } from "@bentley/bentleyjs-core";
+import { OpenMode, ClientRequestContext, Logger, Id64, Id64String } from "@bentley/bentleyjs-core";
 import { ConnectClient, IModelQuery, Project, Config } from "@bentley/imodeljs-clients";
 import { IModelApp, IModelConnection, FrontendRequestContext, AuthorizedFrontendRequestContext, SpatialViewState, DrawingViewState } from "@bentley/imodeljs-frontend";
 import { Presentation, SelectionChangeEventArgs, ISelectionProvider, IFavoritePropertiesStorage, FavoriteProperties, FavoritePropertiesManager } from "@bentley/presentation-frontend";
 import { Button, ButtonSize, ButtonType, Spinner, SpinnerSize } from "@bentley/ui-core";
 import { SignIn } from "@bentley/ui-components";
+
 import { SimpleViewerApp } from "../api/SimpleViewerApp";
 import PropertiesWidget from "./Properties";
 import GridWidget from "./Table";
 import TreeWidget from "./Tree";
 import ViewportContentControl from "./Viewport";
+import { AppLoggerCategory } from "../../common/configuration";
+
+// make sure webfont brings in the icons and css files.
 import "@bentley/icons-generic-webfont/dist/bentley-icons-generic-webfont.css";
 import "./App.css";
-
-// tslint:disable: no-console
-// cSpell:ignore imodels
 
 /** React state of the App component */
 export interface AppState {
@@ -59,27 +61,27 @@ export default class App extends React.Component<{}, AppState> {
   private _onSelectionChanged = (evt: SelectionChangeEventArgs, selectionProvider: ISelectionProvider) => {
     const selection = selectionProvider.getSelection(evt.imodel, evt.level);
     if (selection.isEmpty) {
-      console.log("========== Selection cleared ==========");
+      Logger.logInfo(AppLoggerCategory.Frontend, "========== Selection cleared ==========");
     } else {
-      console.log("========== Selection change ===========");
+      Logger.logInfo(AppLoggerCategory.Frontend, "========== Selection change ==========");
       if (selection.instanceKeys.size !== 0) {
         // log all selected ECInstance ids grouped by ECClass name
-        console.log("ECInstances:");
+        Logger.logInfo(AppLoggerCategory.Frontend, "ECInstances:");
         selection.instanceKeys.forEach((ids, ecclass) => {
-          console.log(`${ecclass}: [${[...ids].join(",")}]`);
+          Logger.logInfo(AppLoggerCategory.Frontend, `${ecclass}: [${[...ids].join(",")}]`);
         });
       }
       if (selection.nodeKeys.size !== 0) {
         // log all selected node keys
-        console.log("Nodes:");
-        selection.nodeKeys.forEach((key) => console.log(JSON.stringify(key)));
+        Logger.logInfo(AppLoggerCategory.Frontend, "Nodes:");
+        selection.nodeKeys.forEach((key) => Logger.logInfo(AppLoggerCategory.Frontend, JSON.stringify(key)));
       }
-      console.log("=======================================");
+      Logger.logInfo(AppLoggerCategory.Frontend, "=======================================");
     }
   }
 
   private _onRegister = () => {
-    window.open("https://imodeljs.github.io/iModelJs-docs-output/getting-started/#developer-registration", "_blank");
+    window.open("https://git.io/fx8YP", "_blank");
   }
 
   private _onOffline = () => {
@@ -170,6 +172,7 @@ export default class App extends React.Component<{}, AppState> {
   public render() {
     let ui: React.ReactNode;
 
+    // TODO: What is the purpose of this second check?  @Will Bentley?  I added it to Ninezone app for consistency but not sure why it's needed
     if (this.state.user.isLoading || window.location.href.includes(this._signInRedirectUri)) {
       // if user is currently being loaded, just tell that
       ui = `${IModelApp.i18n.translate("SimpleViewer:signing-in")}...`;
@@ -184,10 +187,12 @@ export default class App extends React.Component<{}, AppState> {
       // NOTE: We needed to delay some initialization until now so we know if we are opening a snapshot or an imodel.
       this.delayedInitialization();
       // if we don't have an imodel / view definition id - render a button that initiates imodel open
-      ui = (<OpenIModelButton offlineIModel={this.state.offlineIModel} onIModelSelected={this._onIModelSelected} />);
+      ui = (<OpenIModelButton
+        onIModelSelected={this._onIModelSelected}
+        offlineIModel={this.state.offlineIModel} />);
     } else {
       // if we do have an imodel and view definition id - render imodel components
-      ui = (<IModelComponents imodel={this.state.imodel} viewDefinitionId={this.state.viewDefinitionId} />);
+      ui = <IModelComponents imodel={this.state.imodel} viewDefinitionId={this.state.viewDefinitionId} />;
     }
 
     // render the app
