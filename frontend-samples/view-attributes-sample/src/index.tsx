@@ -277,7 +277,7 @@ export class Sample extends React.Component<{}, SampleState> {
         <div className="sample-ui">
           <div>
             <span>Use the controls below to change the view attributes.</span>
-            <GithubLink linkTarget="https://github.com/imodeljs/imodeljs-samples/tree/master/frontend-samples/view-flags-sample" />
+            <GithubLink linkTarget="https://github.com/imodeljs/imodeljs-samples/tree/master/frontend-samples/view-attributes-sample" />
           </div>
           <hr></hr>
           <div className="sample-options-2col" style={{ gridTemplateColumns: "1fr 1fr" }}>
