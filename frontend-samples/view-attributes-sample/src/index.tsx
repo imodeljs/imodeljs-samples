@@ -16,7 +16,7 @@ import { RenderMode } from "@bentley/imodeljs-common";
 
 /** This file contains the user interface and main logic that is specific to this sample. */
 enum ViewFlag {
-  ACS, HiddenEdges, Monochrome, VisibleEdges, Shadows,
+  ACS, Grid, HiddenEdges, Monochrome, VisibleEdges, Shadows,
 }
 
 /** This class implements the interaction between the sample and the iModel.js API.  No user interface. */
@@ -26,6 +26,7 @@ class API {
   public static getViewFlag(vp: Viewport, flag: ViewFlag): boolean {
     switch (flag) {
       case ViewFlag.ACS: return vp.viewFlags.acsTriad;
+      case ViewFlag.Grid: return vp.viewFlags.grid;
       case ViewFlag.HiddenEdges: return vp.viewFlags.hiddenEdges;
       case ViewFlag.Monochrome: return vp.viewFlags.monochrome;
       case ViewFlag.Shadows: return vp.viewFlags.shadows;
@@ -37,25 +38,30 @@ class API {
 
   // Modify flag values using the Viewport API.
   public static setViewFlag(vp: Viewport, flag: ViewFlag, on: boolean) {
+    const viewFlags = vp.viewFlags.clone();
+
     switch (flag) {
       case ViewFlag.ACS:
-        vp.viewFlags.acsTriad = on;
+        viewFlags.acsTriad = on;
+        break;
+      case ViewFlag.Grid:
+        viewFlags.grid = on;
         break;
       case ViewFlag.HiddenEdges:
-        vp.viewFlags.hiddenEdges = on;
+        viewFlags.hiddenEdges = on;
         break;
       case ViewFlag.Monochrome:
-        vp.viewFlags.monochrome = on;
+        viewFlags.monochrome = on;
         break;
       case ViewFlag.Shadows:
-        vp.viewFlags.shadows = on;
+        viewFlags.shadows = on;
         break;
       case ViewFlag.VisibleEdges:
-        vp.viewFlags.visibleEdges = on;
+        viewFlags.visibleEdges = on;
         break;
     }
 
-    vp.invalidateRenderPlan();
+    vp.viewFlags = viewFlags;
   }
 
   // Query camera setting using the Viewport API.
@@ -99,8 +105,9 @@ class API {
 
   // Modify render mode setting using the Viewport API.
   public static setRenderMode(vp: Viewport, mode: RenderMode) {
-    vp.view.viewFlags.renderMode = mode;
-    vp.invalidateRenderPlan();
+    const viewFlags = vp.viewFlags.clone();
+    viewFlags.renderMode = mode;
+    vp.viewFlags = viewFlags;
   }
 
 }
@@ -114,6 +121,7 @@ interface SampleState {
   renderMode: RenderMode;
   acs: boolean;
   cameraOn: boolean;
+  grid: boolean;
   hiddenEdges: boolean;
   monochrome: boolean;
   shadows: boolean;
@@ -131,6 +139,7 @@ export class Sample extends React.Component<{}, SampleState> {
       renderMode: RenderMode.SmoothShade,
       acs: false,
       cameraOn: false,
+      grid: false,
       hiddenEdges: false,
       monochrome: false,
       shadows: false,
@@ -158,6 +167,7 @@ export class Sample extends React.Component<{}, SampleState> {
       renderMode: API.getRenderModel(vp),
       acs: API.getViewFlag(vp, ViewFlag.ACS),
       cameraOn: API.isCameraOn(vp),
+      grid: API.getViewFlag(vp, ViewFlag.Grid),
       hiddenEdges: API.getViewFlag(vp, ViewFlag.HiddenEdges),
       monochrome: API.getViewFlag(vp, ViewFlag.Monochrome),
       shadows: API.getViewFlag(vp, ViewFlag.Shadows),
@@ -259,6 +269,7 @@ export class Sample extends React.Component<{}, SampleState> {
 
     switch (flag) {
       case ViewFlag.ACS: flagValue = this.state.acs; break;
+      case ViewFlag.Grid: flagValue = this.state.grid; break;
       case ViewFlag.HiddenEdges: flagValue = this.state.hiddenEdges; break;
       case ViewFlag.Monochrome: flagValue = this.state.monochrome; break;
       case ViewFlag.Shadows: flagValue = this.state.shadows; break;
@@ -277,18 +288,19 @@ export class Sample extends React.Component<{}, SampleState> {
         <div className="sample-ui">
           <div>
             <span>Use the controls below to change the view attributes.</span>
-            <GithubLink linkTarget="https://github.com/imodeljs/imodeljs-samples/tree/master/frontend-samples/view-attributes-sample" />
+            <GithubLink linkTarget="https://github.com/imodeljs/imodeljs-samples/tree/master/frontend-samples/view-flags-sample" />
           </div>
           <hr></hr>
           <div className="sample-options-2col" style={{ gridTemplateColumns: "1fr 1fr" }}>
             {this.createRenderModePicker("Render Mode", "Controls the render mode.")}
             {this.createViewFlagToggle(ViewFlag.ACS, "ACS", "Turn on to see a visualization of the active coordinate system.")}
             {this.createCameraToggle("Camera", "Turn on for perspective view.  Turn off for orthographic view.")}
-            {this.createViewFlagToggle(ViewFlag.HiddenEdges, "Hidden Edges", "Turn on to see hidden edges.  Does not apply to wireframe.  For smooth shade render mode, does not apply when visible edges are off.")}
+            {this.createViewFlagToggle(ViewFlag.Grid, "Grid", "")}
             {this.createViewFlagToggle(ViewFlag.Monochrome, "Monochrome", "Turn on to disable colors.")}
             {this.createViewFlagToggle(ViewFlag.Shadows, "Shadows", "Turn on to see shadows.")}
             {this.createSkyboxToggle("Sky box", "Turn on to see the sky box.")}
             {this.createViewFlagToggle(ViewFlag.VisibleEdges, "Visible Edges", "Turn off to disable visible edges.  Only applies to smooth shade render mode.")}
+            {this.createViewFlagToggle(ViewFlag.HiddenEdges, "Hidden Edges", "Turn on to see hidden edges.  Does not apply to wireframe.  For smooth shade render mode, does not apply when visible edges are off.")}
           </div>
         </div>
       </>
