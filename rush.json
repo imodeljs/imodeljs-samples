@@ -38,6 +38,10 @@
       "projectFolder": "frontend-samples/viewer-only-sample"
     },
     {
+      "packageName": "viewer-only-2d-sample",
+      "projectFolder": "frontend-samples/viewer-only-2d-sample"
+    },
+    {
       "packageName": "heatmap-decorator-sample",
       "projectFolder": "frontend-samples/heatmap-decorator-sample"
     },
