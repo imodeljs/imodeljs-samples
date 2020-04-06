@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+* Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+* See LICENSE.md in the project root for license terms and full copyright notice.
+*--------------------------------------------------------------------------------------------*/
+
 import { Id64String, Id64Array } from "@bentley/bentleyjs-core";
 import { Code, IModel, ModelProps, ColorDef, ViewStateProps, ViewDefinition2dProps, SheetProps } from "@bentley/imodeljs-common";
 import { ViewState, ViewState2d, IModelConnection, DrawingViewState, DrawingModelState, SectionDrawingModelState, SheetModelState, SheetViewState } from "@bentley/imodeljs-frontend";
