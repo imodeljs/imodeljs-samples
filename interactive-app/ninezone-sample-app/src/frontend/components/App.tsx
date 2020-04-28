@@ -109,12 +109,17 @@ export default class App extends React.Component<{}, AppState> {
       "BisCore:OrthographicViewDefinition",
     ];
     const acceptedViewSpecs = viewSpecs.filter((spec) => (-1 !== acceptedViewClasses.indexOf(spec.classFullName)));
-    if (2 > acceptedViewSpecs.length)
+    if (1 > acceptedViewSpecs.length)
       throw new Error("No valid view definitions in imodel");
 
     const viewStates: ViewState[] = [];
     for (const viewDef of acceptedViewSpecs) {
       const viewState = await imodel.views.load(viewDef.id!);
+      viewStates.push(viewState);
+    }
+
+    if (1 === acceptedViewSpecs.length) {
+      const viewState = await imodel.views.load(acceptedViewSpecs[0].id!);
       viewStates.push(viewState);
     }
 
