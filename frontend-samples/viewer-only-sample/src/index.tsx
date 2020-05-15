@@ -5,8 +5,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import "@bentley/icons-generic-webfont/dist/bentley-icons-generic-webfont.css";
-import { IModelConnection, IModelAppOptions } from "@bentley/imodeljs-frontend";
-import { ViewportAndNavigation, GithubLink, SampleBaseApp, SampleUIProvider, App, SampleContext } from "@bentley/frontend-sample-base";
+import { IModelAppOptions, IModelConnection } from "@bentley/imodeljs-frontend";
+import { App, GithubLink, SampleBaseApp, SampleContext, SampleUIProvider, ViewportAndNavigation } from "@bentley/frontend-sample-base";
 import { Id64String } from "@bentley/bentleyjs-core";
 import "@bentley/frontend-sample-base/src/SampleBase.scss";
 
@@ -21,11 +21,6 @@ interface SampleState {
 
 /** A React component that renders the UI specific for this sample */
 export class Sample extends React.Component<{}, SampleState> {
-
-  /** Creates a Sample instance */
-  constructor(props?: any, context?: any) {
-    super(props, context);
-  }
 
   /** This method is called as the app initializes.  This gives us a chance to supply options to
    * be passed to IModelApp.startup.
@@ -64,28 +59,23 @@ export class SampleContainer extends React.Component<SampleProps> {
 
   /** The sample's render method */
   public render() {
-    // ID of the presentation ruleset used by all of the controls; the ruleset
-    // can be found at `assets/presentation_rules/Default.PresentationRuleSet.xml`
-    const rulesetId = "Default";
     return (
       <>
-        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} rulesetId={rulesetId} />
+        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} />
         <Sample />
       </>
     );
   }
 }
 
-// initialize the application
-const uiProvider: SampleUIProvider = { getSampleUI: (context: SampleContext) => < SampleContainer imodel={context.imodel} viewDefinitionId={context.viewDefinitionId} /> };
-SampleBaseApp.startup(uiProvider, Sample.getIModelAppOptions());
-
-// tslint:disable-next-line:no-floating-promises
-SampleBaseApp.ready.then(() => {
+(async () => {
+  // initialize the application
+  const uiProvider: SampleUIProvider = { getSampleUI: (context: SampleContext) => < SampleContainer imodel={context.imodel} viewDefinitionId={context.viewDefinitionId} /> };
+  await SampleBaseApp.startup(uiProvider, Sample.getIModelAppOptions());
 
   // when initialization is complete, render
   ReactDOM.render(
     <App />,
     document.getElementById("root") as HTMLElement,
   );
-});
+})(); // tslint:disable-line:no-floating-promises

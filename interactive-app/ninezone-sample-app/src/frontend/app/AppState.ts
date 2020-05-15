@@ -2,8 +2,8 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import { createStore, combineReducers, Store } from "redux";
-import { FrameworkState, FrameworkReducer } from "@bentley/ui-framework";
+import { FrameworkReducer, FrameworkState } from "@bentley/ui-framework";
+import { combineReducers, createStore, Store } from "redux";
 
 // React-redux interface stuff
 export interface RootState {

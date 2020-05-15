@@ -2,20 +2,17 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-
 import { expect } from "chai";
-import { Config, AuthorizedClientRequestContext, AccessToken } from "@bentley/imodeljs-clients";
-import { QueryAgent } from "../QueryAgent";
-import { QueryAgentWebServer } from "../QueryAgentWebServer";
-import { QueryAgentConfig } from "../QueryAgentConfig";
-import { ChangesetGenerationHarness, TestChangesetSequence, HubUtility, ChangesetGenerationConfig } from "imodel-changeset-test-utility";
-import { Logger } from "@bentley/bentleyjs-core";
-import { TestMockObjects } from "./TestMockObjects";
-import { main } from "../Main";
-import { ChangeSummaryExtractor } from "../ChangeSummaryExtractor";
-import * as express from "express";
-import * as request from "supertest";
 import * as path from "path";
+
+import { Config, Logger, LogLevel } from "@bentley/bentleyjs-core";
+import { AuthorizedClientRequestContext, AccessToken } from "@bentley/itwin-client";
+import { ChangesetGenerationHarness, TestChangesetSequence, HubUtility, ChangesetGenerationConfig } from "imodel-changeset-test-utility";
+
+import { QueryAgent } from "../QueryAgent";
+import { QueryAgentConfig } from "../QueryAgentConfig";
+import { TestMockObjects } from "./TestMockObjects";
+import { ChangeSummaryExtractor } from "../ChangeSummaryExtractor";
 
 // Unit Tests
 describe("QueryAgent", () => {
@@ -29,7 +26,7 @@ describe("QueryAgent", () => {
   });
 
   it("Extracts changeset information published to an iModel", async () => {
-    agent = new QueryAgent(TestMockObjects.getMockHubClient(), TestMockObjects.getMockConnectClient(), TestMockObjects.getMockBriefcaseProvider(),
+    agent = new QueryAgent(TestMockObjects.getMockHubClient(), TestMockObjects.getMockContextRegistryClient(), TestMockObjects.getMockBriefcaseProvider(),
       TestMockObjects.getMockChangeSummaryExtractor(), TestMockObjects.getMockOidcAgentClient());
     await agent.listenForAndHandleChangesets(10);
     await agent.listenForAndHandleChangesets(10);
@@ -37,7 +34,7 @@ describe("QueryAgent", () => {
 
   it("Throws error when async initialization fails", async () => {
     const throwError = true;
-    agent = new QueryAgent(TestMockObjects.getMockHubClient(), TestMockObjects.getMockConnectClient(), TestMockObjects.getMockBriefcaseProvider(),
+    agent = new QueryAgent(TestMockObjects.getMockHubClient(), TestMockObjects.getMockContextRegistryClient(), TestMockObjects.getMockBriefcaseProvider(),
       TestMockObjects.getMockChangeSummaryExtractor(), TestMockObjects.getMockOidcAgentClient(throwError));
     try {
       await agent.listenForAndHandleChangesets(10);
@@ -55,72 +52,43 @@ describe("QueryAgentConfig", () => {
     TestMockObjects.clearMockAppConfig();
   });
 
+  it("Uses the project name if the iModel name is not defined", () => {
+    TestMockObjects.clearMockAppConfigProjectName();
+    expect(QueryAgentConfig.projectName).equals(QueryAgentConfig.iModelName);
+    
+    TestMockObjects.setupMockAppConfig(); // If all the configuration variables don't exist at clean up, an error gets thrown.
+  });
+
   it("Uses __dirname/output as default output directory", () => {
     expect(QueryAgentConfig.outputDir).equals(path.join(__dirname, "../", "output"));
   });
 });
 
-describe("QueryAgentWebServer", () => {
-  let agentWebServer: QueryAgentWebServer;
+describe("QueryAgent", () => {
+  let agent: QueryAgent;
 
-  before(() => {
+  before(async () => {
     TestMockObjects.setupMockAppConfig();
-    const agent: QueryAgent = new QueryAgent(TestMockObjects.getMockHubClient(), TestMockObjects.getMockConnectClient(), TestMockObjects.getMockBriefcaseProvider(),
+    agent = new QueryAgent(TestMockObjects.getMockHubClient(), TestMockObjects.getMockContextRegistryClient(), TestMockObjects.getMockBriefcaseProvider(),
       TestMockObjects.getMockChangeSummaryExtractor(), TestMockObjects.getMockOidcAgentClient());
-    const webServer: express.Express = TestMockObjects.getMockExpressWebServer();
-    agentWebServer = new QueryAgentWebServer(webServer, agent);
+    await agent.initialize();
   });
 
   after(() => {
     TestMockObjects.clearMockAppConfig();
-    Logger.logTrace(QueryAgentConfig.loggingCategory, "Cleaning up test resources, may take some time...");
-    if (agentWebServer)
-      agentWebServer.close();
   });
 
   it("Extracts changeset information published to an iModel", async () => {
-    const listened = await agentWebServer.run(10);
-    expect(listened).equals(true);
+    await agent.run(10);
   });
 
   it("Returns false when listen for changesets routine throws error", async () => {
     const throwError = true;
-    const agent: QueryAgent = new QueryAgent(TestMockObjects.getMockHubClient(), TestMockObjects.getMockConnectClient(), TestMockObjects.getMockBriefcaseProvider(),
+    const localAgent: QueryAgent = new QueryAgent(TestMockObjects.getMockHubClient(), TestMockObjects.getMockContextRegistryClient(), TestMockObjects.getMockBriefcaseProvider(),
       TestMockObjects.getMockChangeSummaryExtractor(), TestMockObjects.getMockOidcAgentClient(throwError));
-    const webServer: express.Express = TestMockObjects.getMockExpressWebServer();
-    agentWebServer = new QueryAgentWebServer(webServer, agent);
-    const listened = await agentWebServer.run();
-    expect(listened).equals(false);
-  });
-});
-describe("Main", () => {
-  let mockQueryAgentWebServer: QueryAgentWebServer;
-  const mockProcess: NodeJS.Process = TestMockObjects.getMockProcess();
-
-  before(() => {
-    TestMockObjects.setupMockAppConfig();
-  });
-
-  after(() => {
-    TestMockObjects.clearMockAppConfig();
-  });
-
-  it("runs the Query Agent Web Server and handles process when invoked", async () => {
-    mockQueryAgentWebServer = TestMockObjects.getMockQueryAgentWebServer();
-    await main(mockProcess, mockQueryAgentWebServer);
-  });
-
-  it("Catches error thrown when running Query Agent Web Server", async () => {
-    const runThrowsError = true;
-    mockQueryAgentWebServer = TestMockObjects.getMockQueryAgentWebServer(runThrowsError);
-    await main(mockProcess, mockQueryAgentWebServer);
-  });
-
-  it("Executes properly when run result is false", async () => {
-    const runThrowsError = false;
-    const runResult = false;
-    mockQueryAgentWebServer = TestMockObjects.getMockQueryAgentWebServer(runThrowsError, runResult);
-    await main(mockProcess, mockQueryAgentWebServer);
+    await localAgent.initialize();
+    await localAgent.run(10);
+    // The should pass if it doesn't throw...
   });
 });
 
@@ -144,61 +112,31 @@ describe("ChangeSummaryExtractor", () => {
 });
 
 // Basic Code Level Integration Tests
-describe("IModelQueryAgentWebServer (#integration)", () => {
-  let agentWebServer: QueryAgentWebServer;
-
-  before(async () => {
-    (Config.App as any).appendSystemVars();
-    QueryAgentConfig.setupConfig();
-    agentWebServer = new QueryAgentWebServer();
-  });
-
-  after(() => {
-    agentWebServer.close();
-  });
-
-  it("Web server responds to '/' and '/ping'", async () => {
-    const server = agentWebServer.getServer();
-    let ret;
-    ret = await request(server).get("/");
-    expect(ret.status).equals(200);
-    ret = await request(server).get("/ping");
-    expect(ret.status).equals(200);
-  });
-
-  it("Extracts changeset information published to an iModel", async () => {
-    const listened = await agentWebServer.run(10);
-    expect(listened).equals(true);
-  });
-});
-describe("Main (#integration)", () => {
-  before(async () => {
-    (Config.App as any).appendSystemVars();
-    QueryAgentConfig.setupConfig();
-  });
-
-  it("Runs the Query Agent Web Server when invoked", async () => {
-    // Use mock process to avoid exiting the test process
-    await main(TestMockObjects.getMockProcess(), new QueryAgentWebServer(), 10);
-  });
-});
 describe("IModelQueryAgent Running with Changesets (#integration)", () => {
   let changesetHarness: ChangesetGenerationHarness;
-  let agentWebServer: QueryAgentWebServer;
   let requestContext: AuthorizedClientRequestContext;
+  let agent: QueryAgent;
   let hubUtility: HubUtility = new HubUtility();
   let accessToken: AccessToken;
 
   before(async () => {
     (Config.App as any).appendSystemVars();
     QueryAgentConfig.setupConfig();
+
+    Logger.initializeToConsole();
+    Logger.setLevelDefault(LogLevel.Trace);
+    Logger.setLevel(QueryAgentConfig.loggingCategory, LogLevel.Trace);
+
     accessToken = await hubUtility.login();
     requestContext = new AuthorizedClientRequestContext(accessToken!);
+
+    agent = new QueryAgent();
+    await agent.initialize()
+
     // Set up changeset generation harness and agent web server
     changesetHarness = new ChangesetGenerationHarness(undefined, undefined, QueryAgentConfig.outputDir);
     // initialize iModel in the hub before listening for changesets on it
     await changesetHarness.initialize();
-    agentWebServer = new QueryAgentWebServer();
   });
 
   afterEach(() => {
@@ -206,7 +144,6 @@ describe("IModelQueryAgent Running with Changesets (#integration)", () => {
   });
 
   after(async () => {
-    agentWebServer.close();
     if (requestContext) {
       // Purge briefcases that are close to reaching the aquire limit
       await hubUtility.purgeAcquiredBriefcases(requestContext, ChangesetGenerationConfig.projectName, ChangesetGenerationConfig.iModelName);
@@ -216,8 +153,9 @@ describe("IModelQueryAgent Running with Changesets (#integration)", () => {
   it("Extracts changeset information published to an iModel", async () => {
     // Listen for changeset we are generating
     const changesetSequence = new TestChangesetSequence(5, 12, 2000);
-    const [changesetGenerated, listened] = await Promise.all([changesetHarness.generateChangesets(changesetSequence), agentWebServer.run()]);
-    expect(changesetGenerated).equals(true);
-    expect(listened).equals(true);
+    const promise = agent.run();
+    const changesetGenerated = await changesetHarness.generateChangesets(changesetSequence);
+    expect(changesetGenerated).to.be.true;
+    await promise;
   });
 });

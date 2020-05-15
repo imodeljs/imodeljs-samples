@@ -7,25 +7,20 @@ import * as ReactDOM from "react-dom";
 
 import { Logger, LogLevel } from "@bentley/bentleyjs-core";
 
+import { AppLoggerCategory } from "../common/LoggerCategory";
 import { NineZoneSampleApp } from "./app/NineZoneSampleApp";
+import { AppUi } from "./app-ui/AppUi";
 import App from "./components/App";
 import "./index.scss";
-import setupEnv, { AppLoggerCategory } from "../common/configuration";
-import { AppUi } from "./app-ui/AppUi";
 
-// setup environment
-setupEnv();
-
-// initialize logging
+// Setup logging immediately to pick up any logging during NineZoneSampleApp.startup()
 Logger.initializeToConsole();
 Logger.setLevelDefault(LogLevel.Warning);
 Logger.setLevel(AppLoggerCategory.Frontend, LogLevel.Info);
 
-// Start the app.
-NineZoneSampleApp.startup();
-
-// tslint:disable-next-line:no-floating-promises
-NineZoneSampleApp.ready.then(() => {
+(async () => {
+  // Start the app.
+  await NineZoneSampleApp.startup();
 
   // Initialize the AppUi & ConfigurableUiManager
   AppUi.initialize();
@@ -35,4 +30,4 @@ NineZoneSampleApp.ready.then(() => {
     <App />,
     document.getElementById("root") as HTMLElement,
   );
-});
+})(); // tslint:disable-line:no-floating-promises

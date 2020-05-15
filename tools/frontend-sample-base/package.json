@@ -8,82 +8,47 @@
     "name": "Bentley Systems, Inc.",
     "url": "http://www.bentley.com"
   },
-  "version": "1.14.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
-    "build": "buildIModelJsModule",
+    "copy:assets": "cpx \"./src/**/*.{scss,css}\" ./lib && cpx \"./public/**/*\" ./lib/public",
+    "build": "npm run copy:assets && tsc 1>&2",
     "lint": "tslint --project . 1>&2",
     "test": "",
     "clean": "rimraf lib .rush"
   },
-  "iModelJs": {
-    "buildModule": {
-      "type": "system",
-      "tscOptions": "-build",
-      "sourceResources": [
-        {
-          "source": "./src/**/*.css",
-          "dest": "./lib"
-        },
-        {
-          "source": "./src/**/*.scss",
-          "dest": "./lib"
-        }
-      ],
-      "webpack": {
-        "dest": "./lib/module",
-        "entry": "./lib/frontend-sample-base.js",
-        "bundleName": "frontend-sample-base",
-        "styleSheets": true
-      }
-    }
-  },
   "dependencies": {
-    "@bentley/bentleyjs-core": "1.14.0",
-    "@bentley/config-loader": "1.14.0",
-    "@bentley/geometry-core": "1.14.0",
-    "@bentley/icons-generic-webfont": "^0.0.22",
-    "@bentley/imodeljs-clients": "1.14.0",
-    "@bentley/imodeljs-common": "1.14.0",
-    "@bentley/imodeljs-frontend": "1.14.0",
-    "@bentley/imodeljs-i18n": "1.14.0",
-    "@bentley/imodeljs-quantity": "1.14.0",
-    "@bentley/ui-components": "1.14.0",
-    "@bentley/ui-core": "1.14.0",
-    "@bentley/presentation-frontend": "1.14.0",
-    "@bentley/presentation-common": "1.14.0",
-    "@bentley/presentation-components": "1.14.0",
-    "body-parser": "^1.18.3",
-    "chai-jest-snapshot": "^2.0.0",
-    "express": "^4.16.3",
-    "inspire-tree": "^5.0.1",
-    "lodash": "^4.17.10",
-    "react": "^16.8.0",
+    "@bentley/bentleyjs-core": "^2.0.0",
+    "@bentley/context-registry-client": "^2.0.0",
+    "@bentley/frontend-authorization-client": "^2.0.0",
+    "@bentley/geometry-core": "^2.0.0",
+    "@bentley/icons-generic-webfont": "^1.0.0",
+    "@bentley/imodelhub-client": "^2.0.0",
+    "@bentley/imodeljs-common": "^2.0.0",
+    "@bentley/imodeljs-frontend": "^2.0.0",
+    "@bentley/imodeljs-i18n": "^2.0.0",
+    "@bentley/imodeljs-quantity": "^2.0.0",
+    "@bentley/itwin-client": "^2.0.0",
+    "@bentley/ui-components": "^2.0.0",
+    "@bentley/ui-core": "^2.0.0",
+    "@bentley/presentation-frontend": "^2.0.0",
+    "@bentley/presentation-common": "^2.0.0",
+    "@bentley/presentation-components": "^2.0.0",
+    "@bentley/product-settings-client": "^2.0.0",
+    "@bentley/orbitgt-core": "^2.0.0",
+    "react": "^16.13.0",
     "react-dnd": "^5.0.0",
     "react-dnd-html5-backend": "^5.0.1",
-    "react-dom": "^16.8.0",
+    "react-dom": "^16.13.0",
     "tooltip.js": "^1.2.0"
   },
   "devDependencies": {
-    "@bentley/build-tools": "1.14.0",
-    "@bentley/webpack-tools": "1.14.0",
-    "@types/body-parser": "^1.17.0",
-    "@types/bunyan": "^1.8",
-    "@types/chai": "^4.1.7",
-    "@types/express": "^4.16.0",
-    "@types/react": "^16.8.0",
-    "@types/react-dom": "^16.8.0",
-    "glob": "^7.1.4",
-    "ignore-styles": "^5.0.1",
-    "jsdom": "^13.0.0",
-    "jsdom-global": "^3.0.2",
-    "nodemon": "^1.18.4",
+    "@bentley/build-tools": "^2.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "cpx": "^1.5.0",
     "tslint": "^5.16.0",
-    "typescript": "^3.5.0",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.0",
-    "xmlhttprequest": "^1.8.0",
-    "rimraf": "^2.6.2",
-    "popper.js": "^1.14.4"
+    "typescript": "~3.7.4",
+    "rimraf": "^2.6.2"
   }
 }

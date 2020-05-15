@@ -3,32 +3,33 @@
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
 
-import { ChangesetGenerationConfig } from "./ChangesetGenerationConfig";
-import { AccessToken, ConnectClient, HubIModel, IModelHubClient, Project, IModelQuery, Version, AuthorizedClientRequestContext, BriefcaseQuery, Briefcase as HubBriefcase } from "@bentley/imodeljs-clients";
-import { IModelVersion } from "@bentley/imodeljs-common";
-import { OidcAgentClient, AzureFileHandler } from "@bentley/imodeljs-clients-backend";
-import { Logger, ClientRequestContext } from "@bentley/bentleyjs-core";
+import { AgentAuthorizationClient, AzureFileHandler } from "@bentley/backend-itwin-client";
+import { ClientRequestContext, Logger } from "@bentley/bentleyjs-core";
+import { ContextRegistryClient, Project } from "@bentley/context-registry-client";
+import { Briefcase as HubBriefcase, BriefcaseQuery, HubIModel, IModelHubClient, IModelQuery, Version } from "@bentley/imodelhub-client";
 import { BriefcaseManager } from "@bentley/imodeljs-backend";
+import { IModelVersion } from "@bentley/imodeljs-common";
+import { AccessToken, AuthorizedClientRequestContext } from "@bentley/itwin-client";
+import { ChangesetGenerationConfig } from "./ChangesetGenerationConfig";
 
 const actx = new ClientRequestContext("");
 
 /** Class Containing utility functions for interactions with the iModelHub */
 export class HubUtility {
-  public connectClient: ConnectClient;
+  public connectClient: ContextRegistryClient;
   private _hubClient: IModelHubClient;
   public constructor() {
-    this.connectClient = new ConnectClient();
+    this.connectClient = new ContextRegistryClient();
     this._hubClient = new IModelHubClient(new AzureFileHandler());
   }
   public getHubClient(): IModelHubClient {
     return this._hubClient;
   }
   public async login(): Promise<AccessToken> {
-    // TODO: remove openid-client.d.ts once imodeljs changes don't require it
     const oidcConfig = ChangesetGenerationConfig.oidcAgentClientConfiguration;
     Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Attempting to login to OIDC for ${oidcConfig.clientId}`);
-    const client = new OidcAgentClient(oidcConfig);
-    const jwt: AccessToken = await client.getToken(actx);
+    const client = new AgentAuthorizationClient(oidcConfig);
+    const jwt: AccessToken = await client.getAccessToken(actx);
     Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Successful login for ${oidcConfig.clientId}`);
     return jwt;
   }

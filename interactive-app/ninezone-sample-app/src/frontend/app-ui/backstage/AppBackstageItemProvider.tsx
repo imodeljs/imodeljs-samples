@@ -4,7 +4,7 @@
 *--------------------------------------------------------------------------------------------*/
 
 import { IModelApp } from "@bentley/imodeljs-frontend";
-import { BackstageItemUtilities, BackstageItem } from "@bentley/ui-abstract";
+import { BackstageItem, BackstageItemUtilities } from "@bentley/ui-abstract";
 
 export class AppBackstageItemProvider {
   /** id of provider */

@@ -2,28 +2,27 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import * as React from "react";
 import { IModelConnection } from "@bentley/imodeljs-frontend";
-import { Tree } from "@bentley/ui-components";
-import { PresentationTreeDataProvider, treeWithUnifiedSelection } from "@bentley/presentation-components";
-
-// create a HOC tree component that supports unified selection
-// tslint:disable-next-line:variable-name
-const SimpleTree = treeWithUnifiedSelection(Tree);
+import { usePresentationTreeNodeLoader, useUnifiedSelectionTreeEventHandler } from "@bentley/presentation-components";
+import { ControlledTree, SelectionMode, useVisibleTreeNodes } from "@bentley/ui-components";
+import * as React from "react";
+const RULESET_TREE = require("./Tree.ruleset.json"); // tslint:disable-line: no-var-requires
 
 /** React properties for the tree component */
 export interface Props {
   /** iModel whose contents should be displayed in the tree */
   imodel: IModelConnection;
-  /** ID of the presentation rule set to use for creating the hierarchy in the tree */
-  rulesetId: string;
 }
 
 /** Tree component for the viewer app */
-export default class SimpleTreeComponent extends React.Component<Props> {
-  public render() {
-    return (
-      <SimpleTree dataProvider={new PresentationTreeDataProvider(this.props.imodel, this.props.rulesetId)} />
-    );
-  }
+export default function SimpleTreeComponent(props: Props) {
+  const nodeLoader = usePresentationTreeNodeLoader({ imodel: props.imodel, ruleset: RULESET_TREE, pageSize: 20 });
+  return (
+    <ControlledTree
+      nodeLoader={nodeLoader}
+      visibleNodes={useVisibleTreeNodes(nodeLoader.modelSource)}
+      treeEvents={useUnifiedSelectionTreeEventHandler({ nodeLoader })}
+      selectionMode={SelectionMode.Extended}
+    />
+  );
 }

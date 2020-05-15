@@ -7,11 +7,12 @@ import * as React from "react";
 import * as moq from "typemoq";
 import { render } from "@testing-library/react";
 import { expect } from "chai";
-import PropertiesComponent from "../../../../src/frontend/components/Properties";
+import { PropertyRecord } from "@bentley/ui-abstract";
 import { IModelApp, IModelConnection } from "@bentley/imodeljs-frontend";
-import { IPresentationPropertyDataProvider } from "@bentley/presentation-components";
 import { PropertyData, PropertyDataChangeEvent } from "@bentley/ui-components";
 import { KeySet } from "@bentley/presentation-common";
+import { IPresentationPropertyDataProvider } from "@bentley/presentation-components";
+import PropertiesComponent from "../../../../src/frontend/components/Properties";
 
 const iModelConnectionMock = moq.Mock.ofType<IModelConnection>();
 
@@ -23,7 +24,7 @@ class EmptyPropertyDataProvider implements IPresentationPropertyDataProvider {
   public rulesetId = "";
 
   protected _data: PropertyData = {
-    label: "Empty data",
+    label: PropertyRecord.fromString("Empty data"),
     categories: [],
     records: { test: [] },
   };

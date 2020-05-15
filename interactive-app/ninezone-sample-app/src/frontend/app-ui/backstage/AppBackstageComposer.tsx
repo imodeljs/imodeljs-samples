@@ -2,11 +2,12 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
+import { UserInfo } from "@bentley/itwin-client";
+import { BackstageComposer, UserProfileBackstageItem } from "@bentley/ui-framework";
 import * as React from "react";
 import { connect } from "react-redux";
-import { AccessToken } from "@bentley/imodeljs-clients";
-import { UserProfileBackstageItem, BackstageComposer } from "@bentley/ui-framework";
 import { RootState } from "../../app/AppState";
+import { AppBackstageItemProvider } from "./AppBackstageItemProvider";
 
 function mapStateToProps(state: RootState) {
   const frameworkState = state.frameworkState;
@@ -14,19 +15,21 @@ function mapStateToProps(state: RootState) {
   if (!frameworkState)
     return undefined;
 
-  return { accessToken: frameworkState.sessionState.accessToken };
+  return { userInfo: frameworkState.sessionState.userInfo };
 }
 
 interface AppBackstageComposerProps {
   /** AccessToken from sign-in */
-  accessToken: AccessToken | undefined;
+  userInfo: UserInfo | undefined;
 }
 
 export class AppBackstageComposerComponent extends React.PureComponent<AppBackstageComposerProps> {
+  private _itemsProvider = new AppBackstageItemProvider();
   public render() {
     return (
       <BackstageComposer
-        header={this.props.accessToken && <UserProfileBackstageItem accessToken={this.props.accessToken} />}
+        header={this.props.userInfo && <UserProfileBackstageItem userInfo={this.props.userInfo} />}
+        items={[...this._itemsProvider.backstageItems]}
       />
     );
   }

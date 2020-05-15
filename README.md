@@ -23,7 +23,7 @@ Each of the samples are self-contained and, as such, can be copied out of the cl
     Start here to create a new web, desktop, or mobile app.  This folder contains a collection of sample apps which include both the frontend and backend.  These are suitable to be copied and used as a template to produce a new interactive application.
 
 3. [frontend-samples](#frontend-samples)
-    
+
     Explore these samples to learn how to use specific APIs.  This folder contains a collection of small apps that each demonstrate a single frontend feature.  These are intended to isolate the relevant API calls.  Do *not* use as a template for a new application.
 
 4. [tools](#sample-tools)
@@ -88,7 +88,7 @@ To run these samples, you need to first get the [required tools](https://imodelj
 
     Note: If you are just testing on localhost you can use the default registration included in the sample. However, it's recommended that you complete the registration, especially since registration is a requirement before the application can be deployed. For more information, see the section on [authorization](https://imodeljs.github.io/iModelJs-docs-output/learning/common/accesstoken/).
 
-3. Configure your app using the values you obtained from the registration process.  In the interactive-app subfolder, edit src/common/config.json and src/common/configuration.ts.
+3. Configure your app using the value you obtained from the registration process.  In the interactive-app subfolder, edit src/common/config.json and src/common/configuration.ts.
 
 4. Follow the [steps](#building-samples) to build the samples.
 
@@ -100,7 +100,7 @@ To run these samples, you need to first get the [required tools](https://imodelj
     ```
 
     b. Electron App
-     ```sh 
+     ```sh
      npm run start:electron
      ```
 
@@ -110,7 +110,7 @@ To run these samples, you need to first get the [required tools](https://imodelj
 
 1. [Viewer Only](./frontend-samples/viewer-only-sample/README.md)
 
-    Stub to be used as a template for building feature specific samples. 
+    Stub to be used as a template for building feature specific samples.
 
 2. [Emphasize Elements](./frontend-samples/emphasize-elements-sample/README.md)
 
@@ -132,7 +132,7 @@ To run these samples, you need to first get the [required tools](https://imodelj
 
 1. (Optional) Create a sample project using the procedure at [Developer Registration](https://imodeljs.github.io/iModelJs-docs-output/getting-started/#developer-registration).  This step is not needed if you already have a project to test with.
 
-2. Configure your app using the values you obtained from the registration process.  In the specific sample subfolder, edit src/config.json to refer to the project and iModel.
+2. Configure your app using the value you obtained from the registration process.  In the specific sample subfolder, edit src/config.json to refer to the project.
 
 3. Follow the [steps](#building-samples) to build the samples.
 
@@ -165,13 +165,7 @@ Follow the [steps](#building-samples) to build the samples.
     node ./common/scripts/install-run-rush update
     ```
 
-2. Build all sample applications
-
-    ```sh
-    node ./common/scripts/install-run-rush build
-    ```
-
-    or to build a single application (replace app-name):
+2. Build a single application (replace app-name):
 
     ```sh
     node ./common/scripts/install-run-rush build --to app-name
@@ -194,8 +188,8 @@ The integration tests require all configuration variables to be set either in ea
 | imjs_test_regular_user_name | The user who should sign in during the test |
 | imjs_test_regular_user_password | The user's password |
 | imjs_browser_test_client_id | The OIDC client id of the registered app.  Used for Simple Viewer App tests |
-| imjs_test_project | A CONNECT Project that the user is member of |
-| imjs_test_imodel | The iModel in the above Project to use for tests. |
+| imjs_test_project | A CONNECT Project that the user is member of.  Defaults to the iModel name if not set.  |
+| imjs_test_imodel | The iModel in the above Project to use for tests.  When using a project created through the developer registration dashboard, the iModel name is the same as the project name |
 
 *Agent Apps*
 
@@ -203,8 +197,8 @@ The integration tests require all configuration variables to be set either in ea
 | - | - |
 | imjs_agent_client_id | The OIDC client id for an agent.  Used for the iModel Changeset Utility |
 | imjs_agent_client_secret | The OIDC client secret for the above agent_client_id.  Used for the iModel Changeset Utility |
-| imjs_agent_project_name | A CONNECT Project the above client ID is member of. |
-| imjs_agent_imodel_name | The iModel in the above Project to use for tests. |
+| imjs_agent_project_name | A CONNECT Project the above client ID is member of.  Defaults to the iModel name if not set. |
+| imjs_agent_imodel_name | The iModel in the above Project to use for tests.  When using a project created through the developer registration dashboard, the iModel name is the same as the project name |
 
 > All of the above variables can be setup on the registration pages on the [Getting Started](https://imodeljs.github.io/iModelJs-docs-output/getting-started/) page.
 

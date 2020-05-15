@@ -2,7 +2,7 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import { Config } from "@bentley/imodeljs-clients";
+import { Config } from "@bentley/bentleyjs-core";
 import * as Puppeteer from "puppeteer";
 
 /** Wait for the specified text to appear on the page */
@@ -22,18 +22,30 @@ export async function findByText(element: Puppeteer.Page | Puppeteer.ElementHand
 
 /** Sign in to the main page using test credentials */
 export async function signIn(page: Puppeteer.Page) {
+  const userName = Config.App.getString("imjs_test_regular_user_name");
+  const pw = Config.App.getString("imjs_test_regular_user_password");
+
   await page.waitForSelector(".components-signin-button");
   await page.click(".components-signin-button");
 
-  await fillInSignin(page);
+  await page.waitForNavigation({
+    // Need to wait for 'load' here due to slower connections. With a fast connection,
+    // the redirect happens so quickly it doesn't hit the 500 ms threshold that puppeteer expects for an idle network, "networkidle2".
+    waitUntil: "load",
+  });
+
+  if (-1 !== page.url().indexOf("/IMS/Account/Login"))
+    await fillInSignin(page, userName, pw);
+  else
+    await newSignin(page, userName, pw);
 }
 
 /** Fill in sign in form with test credentials and submit */
-export async function fillInSignin(page: Puppeteer.Page) {
+async function fillInSignin(page: Puppeteer.Page, userName: string, pw: string) {
   await page.waitForSelector("#submitLogon");
 
-  await page.type("#EmailAddress", Config.App.getString("imjs_test_regular_user_name"));
-  await page.type("#Password", Config.App.getString("imjs_test_regular_user_password"));
+  await page.type("#EmailAddress", userName);
+  await page.type("#Password", pw);
 
   await page.click("#submitLogon");
 
@@ -53,10 +65,9 @@ export async function fillInSignin(page: Puppeteer.Page) {
     // If .consent-buttons is found. Click the consent button
     if (selector === errorSelectors[1]) {
       await page.click("#connect-main > div > div > form > div.consent-buttons > div.consent-buttons-nowrap > button.bwc-button-primary");
-    }
-    else if (selector === errorSelectors[0]) {
+    } else if (selector === errorSelectors[0]) {
       // #messageControlDiv found. Throw failed login error.
-      throw new Error(`Failed login to ${page.url()} for ${Config.App.getString("imjs_test_regular_user_name")} using ${Config.App.getString("IMJS_BUDDI_RESOLVE_URL_USING_REGION")}`);
+      throw new Error(`Failed login to ${page.url()} for ${Config.App.getString("imjs_test_regular_user_name")}`);
     }
   } catch (e) {
     // Ignore Timeout errors
@@ -64,4 +75,14 @@ export async function fillInSignin(page: Puppeteer.Page) {
       throw e;
     }
   }
+}
+
+async function newSignin(page: Puppeteer.Page, userName: string, pw: string) {
+  await page.waitForSelector("#identifierInput");
+  await page.type("#identifierInput", userName);
+  await page.waitForSelector(".allow");
+  await page.$eval(".allow", (button: any) => button.click());
+  await page.waitForSelector("#password");
+  await page.type("#password", pw);
+  await page.$eval(".allow", (button: any) => button.click());
 }

@@ -5,9 +5,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import "@bentley/icons-generic-webfont/dist/bentley-icons-generic-webfont.css";
-import { Range2d, Point3d } from "@bentley/geometry-core";
-import { IModelConnection, IModelAppOptions, IModelApp, StandardViewId, Viewport, imageElementFromUrl } from "@bentley/imodeljs-frontend";
-import { ViewportAndNavigation, GithubLink, SampleUIProvider, SampleContext, SampleBaseApp, App, PointSelector } from "@bentley/frontend-sample-base";
+import { Point3d, Range2d } from "@bentley/geometry-core";
+import { imageElementFromUrl, IModelApp, IModelAppOptions, IModelConnection, StandardViewId, Viewport } from "@bentley/imodeljs-frontend";
+import { App, GithubLink, PointSelector, SampleBaseApp, SampleContext, SampleUIProvider, ViewportAndNavigation } from "@bentley/frontend-sample-base";
 import { Id64String } from "@bentley/bentleyjs-core";
 import { Button, ButtonType, Toggle } from "@bentley/ui-core";
 import { I18NNamespace } from "@bentley/imodeljs-i18n";
@@ -218,24 +218,19 @@ export class SampleContainer extends React.PureComponent<SampleProps> {
 
   /** The sample's render method */
   public render() {
-    // ID of the presentation ruleset used by all of the controls; the ruleset
-    // can be found at `assets/presentation_rules/Default.PresentationRuleSet.xml`
-    const rulesetId = "Default";
     return (
       <>
-        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} rulesetId={rulesetId} />
+        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} />
         <Sample />
       </>
     );
   }
 }
 
-// initialize the application
-const uiProvider: SampleUIProvider = { getSampleUI: (context: SampleContext) => < SampleContainer imodel={context.imodel} viewDefinitionId={context.viewDefinitionId} /> };
-SampleBaseApp.startup(uiProvider, Sample.getIModelAppOptions());
-
-// tslint:disable-next-line:no-floating-promises
-SampleBaseApp.ready.then(async () => {
+(async () => {
+  // initialize the application
+  const uiProvider: SampleUIProvider = { getSampleUI: (context: SampleContext) => < SampleContainer imodel={context.imodel} viewDefinitionId={context.viewDefinitionId} /> };
+  await SampleBaseApp.startup(uiProvider, Sample.getIModelAppOptions());
 
   // any initialization specific to this sample
   await Sample.initialize();
@@ -245,4 +240,4 @@ SampleBaseApp.ready.then(async () => {
     <App />,
     document.getElementById("root") as HTMLElement,
   );
-});
+})(); // tslint:disable-line:no-floating-promises

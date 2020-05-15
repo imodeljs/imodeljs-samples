@@ -2,24 +2,25 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import * as React from "react";
-import { ClientRequestContext, Id64, Id64String, OpenMode } from "@bentley/bentleyjs-core";
-import { AccessToken, ConnectClient, IModelQuery, Project, Config } from "@bentley/imodeljs-clients";
-import { IModelApp, IModelConnection, FrontendRequestContext, AuthorizedFrontendRequestContext, SpatialViewState, DrawingViewState } from "@bentley/imodeljs-frontend";
-import { Button, ButtonSize, ButtonType, Spinner, SpinnerSize } from "@bentley/ui-core";
-import { SignIn, ViewportComponent } from "@bentley/ui-components";
-import { BasicViewportApp } from "../api/BasicViewportApp";
-import Toolbar from "./Toolbar";
+import { Config, Id64, Id64String, OpenMode } from "@bentley/bentleyjs-core";
+import { ContextRegistryClient, Project } from "@bentley/context-registry-client";
 import "@bentley/icons-generic-webfont/dist/bentley-icons-generic-webfont.css";
+import { IModelQuery } from "@bentley/imodelhub-client";
+import { AuthorizedFrontendRequestContext, DrawingViewState, FrontendRequestContext, IModelApp, IModelConnection, RemoteBriefcaseConnection, SpatialViewState } from "@bentley/imodeljs-frontend";
+import { SignIn, ViewportComponent } from "@bentley/ui-components";
+import { Button, ButtonSize, ButtonType, Spinner, SpinnerSize } from "@bentley/ui-core";
+import * as React from "react";
+import { BasicViewportApp } from "../api/BasicViewportApp";
 import "./App.css";
+import Toolbar from "./Toolbar";
 
 // cSpell:ignore imodels
 
 /** React state of the App component */
 export interface AppState {
   user: {
-    accessToken?: AccessToken;
-    isLoading?: boolean;
+    isAuthorized: boolean;
+    isLoading: boolean;
   };
   imodel?: IModelConnection;
   viewDefinitionId?: Id64String;
@@ -33,8 +34,8 @@ export default class App extends React.Component<{}, AppState> {
     super(props, context);
     this.state = {
       user: {
+        isAuthorized: BasicViewportApp.oidcClient.isAuthorized,
         isLoading: false,
-        accessToken: undefined,
       },
     };
   }
@@ -42,12 +43,6 @@ export default class App extends React.Component<{}, AppState> {
   public componentDidMount() {
     // Initialize authorization state, and add listener to changes
     BasicViewportApp.oidcClient.onUserStateChanged.addListener(this._onUserStateChanged);
-    if (BasicViewportApp.oidcClient.isAuthorized) {
-      BasicViewportApp.oidcClient.getAccessToken(new FrontendRequestContext()) // tslint:disable-line: no-floating-promises
-        .then((accessToken: AccessToken | undefined) => {
-          this.setState((prev) => ({ user: { ...prev.user, accessToken, isLoading: false } }));
-        });
-    }
   }
 
   public componentWillUnmount() {
@@ -57,11 +52,11 @@ export default class App extends React.Component<{}, AppState> {
 
   private _onStartSignin = async () => {
     this.setState((prev) => ({ user: { ...prev.user, isLoading: true } }));
-    await BasicViewportApp.oidcClient.signIn(new FrontendRequestContext());
+    BasicViewportApp.oidcClient.signIn(new FrontendRequestContext()); // tslint:disable-line:no-floating-promises
   }
 
-  private _onUserStateChanged = (accessToken: AccessToken | undefined) => {
-    this.setState((prev) => ({ user: { ...prev.user, accessToken, isLoading: false } }));
+  private _onUserStateChanged = () => {
+    this.setState((prev) => ({ user: { ...prev.user, isAuthorized: BasicViewportApp.oidcClient.isAuthorized, isLoading: false } }));
   }
 
   /** Pick the first available spatial view definition in the imodel */
@@ -103,19 +98,24 @@ export default class App extends React.Component<{}, AppState> {
     }
   }
 
+  private get _signInRedirectUri() {
+    const split = (Config.App.get("imjs_browser_test_redirect_uri") as string).split("://");
+    return split[split.length - 1];
+  }
+
   /** The component's render method */
   public render() {
     let ui: React.ReactNode;
 
-    if (this.state.user.isLoading) {
+    if (this.state.user.isLoading || window.location.href.includes(this._signInRedirectUri)) {
       // if user is currently being loaded, just tell that
       ui = `signing-in...`;
-    } else if (!this.state.user.accessToken) {
+    } else if (!this.state.user.isAuthorized) {
       // if user doesn't have and access token, show sign in page
       ui = (<SignIn onSignIn={this._onStartSignin} />);
     } else if (!this.state.imodel || !this.state.viewDefinitionId) {
       // if we don't have an imodel / view definition id - render a button that initiates imodel open
-      ui = (<OpenIModelButton accessToken={this.state.user.accessToken} onIModelSelected={this._onIModelSelected} />);
+      ui = (<OpenIModelButton onIModelSelected={this._onIModelSelected} />);
     } else {
       // if we do have an imodel and view definition id - render imodel components
       ui = (<IModelComponents imodel={this.state.imodel} viewDefinitionId={this.state.viewDefinitionId} />);
@@ -132,7 +132,6 @@ export default class App extends React.Component<{}, AppState> {
 
 /** React props for [[OpenIModelButton]] component */
 interface OpenIModelButtonProps {
-  accessToken: AccessToken | undefined;
   onIModelSelected: (imodel: IModelConnection | undefined) => void;
 }
 /** React state for [[OpenIModelButton]] component */
@@ -145,12 +144,12 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
 
   /** Finds project and imodel ids using their names */
   private async getIModelInfo(): Promise<{ projectId: string, imodelId: string }> {
-    const projectName = Config.App.get("imjs_test_project");
     const imodelName = Config.App.get("imjs_test_imodel");
+    const projectName = Config.App.get("imjs_test_project", imodelName);
 
     const requestContext: AuthorizedFrontendRequestContext = await AuthorizedFrontendRequestContext.create();
 
-    const connectClient = new ConnectClient();
+    const connectClient = new ContextRegistryClient();
     let project: Project;
     try {
       project = await connectClient.getProject(requestContext, { $filter: `Name+eq+'${projectName}'` });
@@ -178,7 +177,7 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
     try {
       // attempt to open the imodel
       const info = await this.getIModelInfo();
-      imodel = await IModelConnection.open(info.projectId, info.imodelId, OpenMode.Readonly);
+      imodel = await RemoteBriefcaseConnection.open(info.projectId, info.imodelId, OpenMode.Readonly);
     } catch (e) {
       alert(e.message);
     }
@@ -187,7 +186,7 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
 
   private _onClickSignOut = async () => {
     if (BasicViewportApp.oidcClient)
-      BasicViewportApp.oidcClient.signOut(new ClientRequestContext()); // tslint:disable-line:no-floating-promises
+      BasicViewportApp.oidcClient.signOut(new FrontendRequestContext()); // tslint:disable-line:no-floating-promises
   }
 
   public render() {

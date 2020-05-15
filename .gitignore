@@ -39,9 +39,11 @@ package-deps.json
 
 # Build output
 lib
+build
 *.tsbuildinfo
 output
 env_vars.*
+react-app-env.d.ts
 
 # misc
 *.TileCache*

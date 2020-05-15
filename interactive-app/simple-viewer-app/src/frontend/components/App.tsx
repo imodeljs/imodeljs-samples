@@ -2,30 +2,30 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import * as React from "react";
+import { ClientRequestContext, Config, Id64, Id64String, Logger, OpenMode } from "@bentley/bentleyjs-core";
+import { ContextRegistryClient, Project } from "@bentley/context-registry-client";
 
+// make sure webfont brings in the icons and css files.
+import "@bentley/icons-generic-webfont/dist/bentley-icons-generic-webfont.css";
+import { IModelQuery } from "@bentley/imodelhub-client";
 import { ElectronRpcConfiguration } from "@bentley/imodeljs-common";
-import { OpenMode, ClientRequestContext, Logger, Id64, Id64String } from "@bentley/bentleyjs-core";
-import { ConnectClient, IModelQuery, Project, Config } from "@bentley/imodeljs-clients";
-import { IModelApp, IModelConnection, FrontendRequestContext, AuthorizedFrontendRequestContext, SpatialViewState, DrawingViewState } from "@bentley/imodeljs-frontend";
-import { Presentation, SelectionChangeEventArgs, ISelectionProvider, IFavoritePropertiesStorage, FavoriteProperties, FavoritePropertiesManager } from "@bentley/presentation-frontend";
-import { Button, ButtonSize, ButtonType, Spinner, SpinnerSize } from "@bentley/ui-core";
+import { AuthorizedFrontendRequestContext, DrawingViewState, FrontendRequestContext, IModelApp, IModelConnection, RemoteBriefcaseConnection, SnapshotConnection, SpatialViewState } from "@bentley/imodeljs-frontend";
+import { ISelectionProvider, Presentation, SelectionChangeEventArgs } from "@bentley/presentation-frontend";
 import { SignIn } from "@bentley/ui-components";
-
+import { Button, ButtonSize, ButtonType, Spinner, SpinnerSize } from "@bentley/ui-core";
+import * as React from "react";
+import { AppLoggerCategory } from "../../common/LoggerCategory";
 import { SimpleViewerApp } from "../api/SimpleViewerApp";
+import "./App.css";
 import PropertiesWidget from "./Properties";
 import GridWidget from "./Table";
 import TreeWidget from "./Tree";
 import ViewportContentControl from "./Viewport";
-import { AppLoggerCategory } from "../../common/configuration";
-
-// make sure webfont brings in the icons and css files.
-import "@bentley/icons-generic-webfont/dist/bentley-icons-generic-webfont.css";
-import "./App.css";
 
 /** React state of the App component */
 export interface AppState {
   user: {
+    isAuthorized: boolean;
     isLoading?: boolean;
   };
   offlineIModel: boolean;
@@ -41,6 +41,7 @@ export default class App extends React.Component<{}, AppState> {
     super(props, context);
     this.state = {
       user: {
+        isAuthorized: SimpleViewerApp.oidcClient.isAuthorized,
         isLoading: false,
       },
       offlineIModel: false,
@@ -48,14 +49,32 @@ export default class App extends React.Component<{}, AppState> {
   }
 
   public componentDidMount() {
-    SimpleViewerApp.oidcClient.onUserStateChanged.addListener(this._onUserStateChanged);
     // subscribe for unified selection changes
     Presentation.selection.selectionChange.addListener(this._onSelectionChanged);
+    SimpleViewerApp.oidcClient.onUserStateChanged.addListener(this._onUserStateChanged);
   }
 
   public componentWillUnmount() {
     // unsubscribe from unified selection changes
     Presentation.selection.selectionChange.removeListener(this._onSelectionChanged);
+    SimpleViewerApp.oidcClient.onUserStateChanged.removeListener(this._onUserStateChanged);
+  }
+
+  private _onUserStateChanged = () => {
+    this.setState((prev) => ({ user: { ...prev.user, isAuthorized: SimpleViewerApp.oidcClient.isAuthorized, isLoading: false } }));
+  }
+
+  private _onRegister = () => {
+    window.open("https://git.io/fx8YP", "_blank");
+  }
+
+  private _onOffline = () => {
+    this.setState((prev) => ({ user: { ...prev.user, isLoading: false }, offlineIModel: true }));
+  }
+
+  private _onStartSignin = async () => {
+    this.setState((prev) => ({ user: { ...prev.user, isLoading: true } }));
+    SimpleViewerApp.oidcClient.signIn(new FrontendRequestContext());  // tslint:disable-line:no-floating-promises
   }
 
   private _onSelectionChanged = (evt: SelectionChangeEventArgs, selectionProvider: ISelectionProvider) => {
@@ -78,23 +97,6 @@ export default class App extends React.Component<{}, AppState> {
       }
       Logger.logInfo(AppLoggerCategory.Frontend, "=======================================");
     }
-  }
-
-  private _onRegister = () => {
-    window.open("https://git.io/fx8YP", "_blank");
-  }
-
-  private _onOffline = () => {
-    this.setState((prev) => ({ user: { ...prev.user, isLoading: false }, offlineIModel: true }));
-  }
-
-  private _onStartSignin = async () => {
-    this.setState((prev) => ({ user: { ...prev.user, isLoading: true } }));
-    await SimpleViewerApp.oidcClient.signIn(new FrontendRequestContext());
-  }
-
-  private _onUserStateChanged = () => {
-    this.setState((prev) => ({ user: { ...prev.user, isLoading: false } }));
   }
 
   /** Pick the first available spatial view definition in the imodel */
@@ -130,11 +132,7 @@ export default class App extends React.Component<{}, AppState> {
       this.setState({ imodel, viewDefinitionId });
     } catch (e) {
       // if failed, close the imodel and reset the state
-      if (this.state.offlineIModel) {
-        await imodel.closeSnapshot();
-      } else {
-        await imodel.close();
-      }
+      await imodel.close();
       this.setState({ imodel: undefined, viewDefinitionId: undefined });
       alert(e.message);
     }
@@ -146,37 +144,20 @@ export default class App extends React.Component<{}, AppState> {
   }
 
   private delayedInitialization() {
-
     if (this.state.offlineIModel) {
-      // WORKAROUND: create 'local' FavoritePropertiesManager when in 'offline' or snapshot mode. Otherwise,
-      //             the PresentationManager will try to use the Settings service online and fail.
-      const storage: IFavoritePropertiesStorage = {
-        loadProperties: async (_?: string, __?: string) => ({
-          nestedContentInfos: new Set<string>(),
-          propertyInfos: new Set<string>(),
-          baseFieldInfos: new Set<string>(),
-        }),
-        async saveProperties(_: FavoriteProperties, __?: string, ___?: string) { },
-      };
-      Presentation.favoriteProperties = new FavoritePropertiesManager({ storage });
-
       // WORKAROUND: Clear authorization client if operating in offline mode
       IModelApp.authorizationClient = undefined;
     }
-
-    // initialize Presentation
-    Presentation.initialize({ activeLocale: IModelApp.i18n.languageList()[0] });
   }
 
   /** The component's render method */
   public render() {
     let ui: React.ReactNode;
 
-    // TODO: What is the purpose of this second check?  @Will Bentley?  I added it to Ninezone app for consistency but not sure why it's needed
     if (this.state.user.isLoading || window.location.href.includes(this._signInRedirectUri)) {
       // if user is currently being loaded, just tell that
       ui = `${IModelApp.i18n.translate("SimpleViewer:signing-in")}...`;
-    } else if (!SimpleViewerApp.oidcClient.hasSignedIn && !this.state.offlineIModel) {
+    } else if (!this.state.user.isAuthorized && !this.state.offlineIModel) {
       // if user doesn't have an access token, show sign in page
       // Only call with onOffline prop for electron mode since this is not a valid option for Web apps
       if (ElectronRpcConfiguration.isElectron)
@@ -222,12 +203,12 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
 
   /** Finds project and imodel ids using their names */
   private async getIModelInfo(): Promise<{ projectId: string, imodelId: string }> {
-    const projectName = Config.App.get("imjs_test_project");
     const imodelName = Config.App.get("imjs_test_imodel");
+    const projectName = Config.App.get("imjs_test_project", imodelName);
 
     const requestContext: AuthorizedFrontendRequestContext = await AuthorizedFrontendRequestContext.create();
 
-    const connectClient = new ConnectClient();
+    const connectClient = new ContextRegistryClient();
     let project: Project;
     try {
       project = await connectClient.getProject(requestContext, { $filter: `Name+eq+'${projectName}'` });
@@ -256,10 +237,10 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
       // attempt to open the imodel
       if (this.props.offlineIModel) {
         const offlineIModel = Config.App.getString("imjs_offline_imodel");
-        imodel = await IModelConnection.openSnapshot(offlineIModel);
+        imodel = await SnapshotConnection.openFile(offlineIModel);
       } else {
         const info = await this.getIModelInfo();
-        imodel = await IModelConnection.open(info.projectId, info.imodelId, OpenMode.Readonly);
+        imodel = await RemoteBriefcaseConnection.open(info.projectId, info.imodelId, OpenMode.Readonly);
       }
     } catch (e) {
       alert(e.message);
@@ -299,24 +280,21 @@ interface IModelComponentsProps {
 /** Renders a viewport, a tree, a property grid and a table */
 class IModelComponents extends React.PureComponent<IModelComponentsProps> {
   public render() {
-    // ID of the presentation ruleset used by all of the controls; the ruleset
-    // can be found at `assets/presentation_rules/Default.PresentationRuleSet.xml`
-    const rulesetId = "Default";
     return (
       <div className="app-content">
         <div className="top-left">
-          <ViewportContentControl imodel={this.props.imodel} rulesetId={rulesetId} viewDefinitionId={this.props.viewDefinitionId} />
+          <ViewportContentControl imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} />
         </div>
         <div className="right">
           <div className="top">
-            <TreeWidget imodel={this.props.imodel} rulesetId={rulesetId} />
+            <TreeWidget imodel={this.props.imodel} />
           </div>
           <div className="bottom">
-            <PropertiesWidget imodel={this.props.imodel} rulesetId={rulesetId} />
+            <PropertiesWidget imodel={this.props.imodel} />
           </div>
         </div>
         <div className="bottom">
-          <GridWidget imodel={this.props.imodel} rulesetId={rulesetId} />
+          <GridWidget imodel={this.props.imodel} />
         </div>
       </div>
     );

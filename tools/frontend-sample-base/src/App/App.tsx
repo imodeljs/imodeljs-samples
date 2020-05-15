@@ -3,10 +3,11 @@
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
 import * as React from "react";
-import { StartupComponent } from "../Startup/Startup";
-import { SampleBaseApp } from "../SampleBaseApp";
-import { IModelConnection } from "@bentley/imodeljs-frontend";
 import { Id64String } from "@bentley/bentleyjs-core";
+import { IModelConnection } from "@bentley/imodeljs-frontend";
+import { SampleBaseApp } from "../SampleBaseApp";
+import { StartupComponent } from "../Startup/Startup";
+
 import "./App.css";
 
 /** React state for App component */

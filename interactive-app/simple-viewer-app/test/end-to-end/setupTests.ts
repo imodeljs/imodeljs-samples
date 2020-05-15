@@ -4,25 +4,25 @@
 *--------------------------------------------------------------------------------------------*/
 
 import * as Puppeteer from "puppeteer";
-export let browser: Puppeteer.Browser;
-
-before(async () => {
-  browser = await Puppeteer.launch({ headless: false });
-});
-
-after(async () => {
-  await browser.close();
-});
+import * as os from "os";
 
 export let page: Puppeteer.Page;
+export let browser: Puppeteer.Browser;
 
 beforeEach(async () => {
-  const context = await browser.createIncognitoBrowserContext();
-  page = await context.newPage();
+  let launchOptions: Puppeteer.LaunchOptions = { dumpio: true }; // , headless: false, slowMo: 500 };
+  if (os.platform() === "linux") {
+    launchOptions = {
+      args: ["--no-sandbox"], // , "--disable-setuid-sandbox"],
+    };
+  }
+  browser = await Puppeteer.launch(launchOptions);
+  page = await browser.newPage();
   await page.setViewport({ height: 1080, width: 1920 });
-  await page.goto("http://localhost:3000");
+  await page.goto("http://localhost:3000", { timeout: 0, waitUntil: "domcontentloaded"});
 });
 
 afterEach(async () => {
   await page.close();
+  await browser.close();
 });

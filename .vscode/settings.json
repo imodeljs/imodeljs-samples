@@ -4,6 +4,11 @@
     "**/node_modules": true,
     "**/.rush": true
   },
+  "files.exclude": {
+    "**/.rush": true,
+    "**/*.build.log": true,
+    "**/*.build.error.log": true,
+  },
   "files.associations": {
     "*.snap": "javascript",
     ".nycrc": "json",

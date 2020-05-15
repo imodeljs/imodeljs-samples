@@ -17,7 +17,6 @@ The purpose of this application is to demonstrate the following:
 - Isolate - display only specific elements while hiding the rest.
 - Override - change the color of specific elements.
 
-
 ![Screenshot of the application](./docs/overview.png)
 
 ## Development Setup
@@ -26,7 +25,7 @@ Follow the instructions under [Frontend Sample Development Setup](../../README.m
 
 ## Description
 
-The EmphasizeElements class is a wrapper that provides an easy-to-call interface to allow common element appearence overrides.  The four treatments (Emphasize, Hide, Isolate, and Override) cover the most common requirements while lower level APIs allow for more direct control.
+The EmphasizeElements class is a wrapper that provides an easy-to-call interface to allow common element appearance overrides.  The four treatments (Emphasize, Hide, Isolate, and Override) cover the most common requirements while lower level APIs allow for more direct control.
 
 This sample works in concert with the SelectElement tool to allow the user to apply each of the four treatments to elements of the user's choosing.  Simply select one or more elements and click one of the four apply buttons.  This triggers a call to one of the following methods:
   EmphasizeElements.emphasizeSelectedElements

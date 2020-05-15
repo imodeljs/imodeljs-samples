@@ -2,10 +2,13 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import { Decorator, DecorateContext, GraphicBranch, IModelApp, GraphicType, RenderGraphic } from "@bentley/imodeljs-frontend";
-import { Geometry, Point3d, Range3d, Transform, Range2d } from "@bentley/geometry-core";
-import { ColorDef, Gradient, ImageBuffer, ImageBufferFormat, RenderTexture, RenderMaterial, TextureMapping, GraphicParams } from "@bentley/imodeljs-common";
 import { dispose } from "@bentley/bentleyjs-core";
+import { Geometry, Point3d, Range2d, Range3d, Transform } from "@bentley/geometry-core";
+import {
+  ColorDef, ColorDefProps, Gradient, GraphicParams, ImageBuffer, ImageBufferFormat,
+  RenderMaterial, RenderTexture, TextureMapping, ThematicGradientColorScheme, ThematicGradientMode, ThematicGradientSettings,
+} from "@bentley/imodeljs-common";
+import { DecorateContext, Decorator, GraphicBranch, GraphicType, IModelApp, RenderGraphic } from "@bentley/imodeljs-frontend";
 
 /** This file contains the code that implements the heatmap decorator including
  * logic which generates the graphics of the heatmap.
@@ -189,13 +192,20 @@ export default class HeatmapDecorator implements Decorator {
    */
   private gridToImageBuffer(valueGrid: number[][], gridSize: number): ImageBuffer | undefined {
     /* Build a gradient to define a smoothly varying set of colors that we will use to represent intensities */
-    const marginColor = ColorDef.from(0, 0, 255, 255);
-    const thematicSettings = Gradient.ThematicSettings.fromJSON({ colorScheme: Gradient.ThematicColorScheme.Custom, mode: Gradient.ThematicMode.Smooth, stepCount: 0, rangeLow: 0.0, rangeHigh: 1.0, marginColor });
+    const marginColor: ColorDefProps = ColorDef.computeTbgrFromComponents(0, 0, 255, 255);
+    const thematicSettings = ThematicGradientSettings.fromJSON({
+      colorScheme: ThematicGradientColorScheme.Custom,
+      mode: ThematicGradientMode.Smooth,
+      stepCount: 0,
+      marginColor,
+      customKeys: [
+        { value: 0.0, color: marginColor },
+        { value: 0.5, color: ColorDef.computeTbgrFromComponents(0, 255, 0, 150) },
+        { value: 0.75, color: ColorDef.computeTbgrFromComponents(255, 255, 0, 100) },
+        { value: 1.0, color: ColorDef.computeTbgrFromComponents(255, 0, 0, 50) },
+      ],
+    });
     const gradient = Gradient.Symb.createThematic(thematicSettings);
-    gradient.keys.push(new Gradient.KeyColor({ value: 0.0, color: marginColor }));
-    gradient.keys.push(new Gradient.KeyColor({ value: 0.5, color: ColorDef.from(0, 255, 0, 150) }));
-    gradient.keys.push(new Gradient.KeyColor({ value: 0.75, color: ColorDef.from(255, 255, 0, 100) }));
-    gradient.keys.push(new Gradient.KeyColor({ value: 1.0, color: ColorDef.from(255, 0, 0, 50) }));
 
     /* Form the image here.  For each grid point, map the intensity to a colorDef and then extract the r,g,b,a values. */
     const imageArray = new Uint8Array(4 * gridSize * gridSize);

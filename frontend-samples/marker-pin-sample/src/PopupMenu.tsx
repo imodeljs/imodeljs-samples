@@ -2,8 +2,8 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
+import { ContextMenuItem, GlobalContextMenu, UiEvent } from "@bentley/ui-core";
 import * as React from "react";
-import { GlobalContextMenu, ContextMenuItem, UiEvent } from "@bentley/ui-core";
 
 export interface PopupMenuEntry {
   label: string;

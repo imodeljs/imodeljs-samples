@@ -2,18 +2,17 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-
-import { HubUtility } from "../HubUtility";
+import { Config, Id64, Id64String } from "@bentley/bentleyjs-core";
+import { BriefcaseDb, ConcurrencyControl, GeometricElement3d, IModelDb } from "@bentley/imodeljs-backend";
+import { Version } from "@bentley/imodelhub-client";
+import { AccessToken, AuthorizedClientRequestContext, UserInfo } from "@bentley/itwin-client";
+import { CodeSpec } from "@bentley/imodeljs-common";
+import * as TypeMoq from "typemoq";
 import { ChangesetGenerationConfig } from "../ChangesetGenerationConfig";
 import { ChangesetGenerationHarness } from "../ChangesetGenerationHarness";
+import { HubUtility } from "../HubUtility";
 import { IModelDbHandler } from "../IModelDbHandler";
-import { Id64, Id64String } from "@bentley/bentleyjs-core";
-import { AccessToken, AuthorizedClientRequestContext } from "@bentley/imodeljs-clients";
-import { IModelDb, GeometricElement3d, ConcurrencyControl } from "@bentley/imodeljs-backend";
-import { Version } from "@bentley/imodeljs-clients";
-import * as TypeMoq from "typemoq";
-import { CodeSpec } from "@bentley/imodeljs-common";
-import { Config } from "@bentley/imodeljs-clients";
+
 export class TestMockObjects {
   public static readonly fakeAccessToken: string = "FAKE_ACCESS_TOKEN";
   public static readonly fakeIModelName: string = "FAKE_IMODEL";
@@ -70,8 +69,8 @@ export class TestMockObjects {
 
     return mockHubUtility.object;
   }
-  public static getMockIModelDb(): IModelDb {
-    const mockIModelDb = TypeMoq.Mock.ofType<IModelDb>();
+  public static getMockIModelDb(): BriefcaseDb {
+    const mockIModelDb = TypeMoq.Mock.ofType<BriefcaseDb>();
     mockIModelDb.setup((_) => _.saveChanges(TypeMoq.It.isAny())).returns(() => { });
     mockIModelDb.setup((_) => _.pushChanges(TypeMoq.It.isAny(), TypeMoq.It.isAny())).returns(async () => { });
     mockIModelDb.setup((_) => _.elements).returns(() => this.getMockIModelDbElements());
@@ -123,7 +122,7 @@ export class TestMockObjects {
     return mockAccessToken.object;
   }
   public static getFakeAccessToken(): AccessToken {
-    const token = AccessToken.fromForeignProjectAccessTokenJson(this.fakeAccessToken);
+    const token = DummyAccessToken.fromForeignProjectAccessTokenJson(this.fakeAccessToken);
     return token!;
   }
   public static getFakeIModelId(): string {
@@ -143,5 +142,26 @@ export class TestMockObjects {
   }
   public static getFakeProjectId(): string {
     return "FakePhysicalModelId";
+  }
+}
+
+class DummyAccessToken extends AccessToken {
+  public static foreignProjectAccessTokenJsonProperty = "ForeignProjectAccessToken";
+
+  /** Sets up a new AccessToken based on some generic token abstraction used for iModelBank use cases
+   * @internal
+   */
+  public static fromForeignProjectAccessTokenJson(foreignJsonStr: string): AccessToken | undefined {
+    if (!foreignJsonStr.startsWith(`{\"${this.foreignProjectAccessTokenJsonProperty}\":`))
+      return undefined;
+    const props: any = JSON.parse(foreignJsonStr);
+    if (props[this.foreignProjectAccessTokenJsonProperty] === undefined)
+      return undefined;
+    const tok = new DummyAccessToken(foreignJsonStr);
+
+    const userInfoJson = props[this.foreignProjectAccessTokenJsonProperty].userInfo;
+    const userInfo = UserInfo.fromJson(userInfoJson);
+    tok.setUserInfo(userInfo);
+    return tok;
   }
 }

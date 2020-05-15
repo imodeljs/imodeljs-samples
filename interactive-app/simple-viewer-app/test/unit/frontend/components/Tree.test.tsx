@@ -8,10 +8,12 @@ import * as moq from "typemoq";
 import { render } from "@testing-library/react";
 import { waitForElement } from "@testing-library/dom";
 import { expect } from "chai";
-import TreeComponent from "../../../../src/frontend/components/Tree";
+
 import { IModelApp, IModelConnection } from "@bentley/imodeljs-frontend";
-import { TreeNodeItem } from "@bentley/ui-components";
 import { IPresentationTreeDataProvider } from "@bentley/presentation-components";
+import { PropertyRecord } from "@bentley/ui-abstract";
+import { TreeNodeItem } from "@bentley/ui-components";
+import TreeComponent from "../../../../src/frontend/components/Tree";
 
 const iModelConnectionMock = moq.Mock.ofType<IModelConnection>();
 
@@ -24,7 +26,8 @@ class EmptyTreeDataProvider implements IPresentationTreeDataProvider {
   public getNodeKey = () => ({ type: "testType", pathFromRoot: ["root"] });
   public getNodes = async () => this._nodes;
   public getNodesCount = async () => this._nodes.length;
-  public loadHierarchy = async () => { return; }
+  public loadHierarchy = async () => { return; };
+  public dispose() {return; }
 }
 
 describe("Tree", () => {
@@ -39,7 +42,16 @@ describe("Tree", () => {
   describe("Tree content", () => {
 
     class DataProvider extends EmptyTreeDataProvider {
-      protected _nodes: TreeNodeItem[] = [{ id: "1", label: "Node 1" }, { id: "2", label: "Node 2" }];
+      protected _nodes: TreeNodeItem[] = [
+        {
+          id: "1",
+          label: PropertyRecord.fromString("Node 1"),
+        },
+        {
+          id: "2",
+          label: PropertyRecord.fromString("Node 2"),
+        },
+      ];
     }
 
     before(() => {

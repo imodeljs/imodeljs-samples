@@ -2,17 +2,18 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
+import * as fs from "fs";
+
+import { Config, Id64String, Logger, LogLevel } from "@bentley/bentleyjs-core";
+import { BriefcaseDb, BriefcaseManager, IModelHost, IModelHostConfiguration } from "@bentley/imodeljs-backend";
+import { AccessToken, AuthorizedClientRequestContext } from "@bentley/itwin-client";
+import { CodeScopeSpec, ColorDef, IModel, IModelVersion } from "@bentley/imodeljs-common";
 
 import { ChangesetGenerationConfig } from "./ChangesetGenerationConfig";
+import { ChangesetGenerator } from "./ChangesetGenerator";
 import { HubUtility } from "./HubUtility";
 import { IModelDbHandler } from "./IModelDbHandler";
-import { ChangesetGenerator } from "./ChangesetGenerator";
 import { TestChangesetSequence } from "./TestChangesetSequence";
-import { Id64String, Logger, LogLevel } from "@bentley/bentleyjs-core";
-import { IModelDb, IModelHost, IModelHostConfiguration, KeepBriefcase } from "@bentley/imodeljs-backend";
-import { AccessToken, Config, AuthorizedClientRequestContext } from "@bentley/imodeljs-clients";
-import * as fs from "fs";
-import { ColorDef, CodeScopeSpec, IModelVersion, IModel } from "@bentley/imodeljs-common";
 
 /** Harness used to facilitate changeset generation */
 export class ChangesetGenerationHarness {
@@ -20,7 +21,7 @@ export class ChangesetGenerationHarness {
   private _localIModelDbPath?: string;
   private _isInitialized: boolean = false;
   private _iModelId?: string;
-  private _iModelDb?: IModelDb;
+  private _iModelDb?: BriefcaseDb;
   private _hubUtility?: HubUtility;
   private _accessToken?: AccessToken;
   private _projectId?: string;
@@ -38,16 +39,21 @@ export class ChangesetGenerationHarness {
     if (hubUtility)
       this._hubUtility = hubUtility;
     this._localIModelDbPath = localIModelDbPath ? localIModelDbPath : __dirname;
-
-    if (!IModelHost.configuration)
-      this._initializeIModelHost();
   }
   // Async Initialization
   public async initialize(): Promise<void> {
     if (!this._isInitialized) {
+      // Always initialize logger first
+      this._initializeLogger();
+
+      if (!IModelHost.configuration) {
+        const configuration = new IModelHostConfiguration();
+        await IModelHost.startup(configuration);
+      }
+
+      this._initializeOutputDirectory();
+
       try {
-        this._initializeOutputDirectory();
-        this._initializeLogger();
         if (!this._hubUtility)
           this._hubUtility = new HubUtility();
         this._accessToken = await this._hubUtility.login();
@@ -80,7 +86,7 @@ export class ChangesetGenerationHarness {
         const spatialCategory = this._iModelDbHandler.getSpatialCategory(this._iModelDb, this._spatialCategoryName);
         if (!spatialCategory) {
           Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Inserting ChangeSet Spatial Category`);
-          this._categoryId = this._iModelDbHandler.insertSpatialCategory(this._iModelDb, definitionModelId, this._categoryName, new ColorDef("blanchedAlmond"));
+          this._categoryId = this._iModelDbHandler.insertSpatialCategory(this._iModelDb, definitionModelId, this._categoryName, ColorDef.create("blanchedAlmond"));
           needToPrePush = true;
         } else
           this._categoryId = spatialCategory.id;
@@ -91,17 +97,17 @@ export class ChangesetGenerationHarness {
           await this._iModelDb.concurrencyControl.request(authCtx);
           this._iModelDb.saveChanges();
           await this._iModelDb.pullAndMergeChanges(authCtx, IModelVersion.latest());
-          await this._iModelDb.pushChanges(authCtx);
+          await this._iModelDb.pushChanges(authCtx, "");
         }
         if (await this._iModelDbHandler.deletePhysModelElements(this._iModelDb, this._physicalModelId, authCtx)) {
           await this._iModelDb.concurrencyControl.request(authCtx);
           this._iModelDb.saveChanges();
           await this._iModelDb.pullAndMergeChanges(authCtx, IModelVersion.latest());
-          await this._iModelDb.pushChanges(authCtx);
+          await this._iModelDb.pushChanges(authCtx, "");
         } else {
           await this._changeSetGenerator.pushFirstChangeSetTransaction(this._iModelDb);
           await this._iModelDb.pullAndMergeChanges(authCtx);
-          await this._iModelDb.pushChanges(authCtx);
+          await this._iModelDb.pushChanges(authCtx, "");
         }
         Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Successful Async Initialization`);
         this._isInitialized = true;
@@ -114,15 +120,21 @@ export class ChangesetGenerationHarness {
     try {
       await this.initialize();
       if (!this._isInitialized) {
-        Logger.logError(ChangesetGenerationConfig.loggingCategory, "Unable to Generate ChangeSets when async initializtion fails");
+        Logger.logError(ChangesetGenerationConfig.loggingCategory, "Unable to Generate ChangeSets when async initialization fails");
         return false;
       }
       const retVal = await this._changeSetGenerator!.pushTestChangeSetsAndVersions(this._projectId!, this._iModelId!, changesetSequence);
       return retVal;
     } finally {
       const authCtx = new AuthorizedClientRequestContext(this._accessToken!);
-      if (this._iModelDb && this._iModelDb.isOpen)
-        await this._iModelDb.close(authCtx, KeepBriefcase.No);
+      if (this._iModelDb && this._iModelDb.isOpen) {
+        this._iModelDb.close();
+        try {
+          await BriefcaseManager.delete(authCtx, this._iModelDb.briefcaseKey);
+        } catch (error) {
+          Logger.logError(ChangesetGenerationConfig.loggingCategory, error);
+        }
+      }
     }
   }
 
@@ -133,10 +145,7 @@ export class ChangesetGenerationHarness {
     Logger.logTrace(ChangesetGenerationConfig.loggingCategory, "Logger initialized...");
     Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Configuration: ${JSON.stringify(Config.App)}`);
   }
-  private _initializeIModelHost(): void {
-    const configuration = new IModelHostConfiguration();
-    IModelHost.startup(configuration);
-  }
+
   /** Clean up the test output directory to prepare for fresh output */
   private _initializeOutputDirectory(): void {
     if (!fs.existsSync(this._localIModelDbPath!))

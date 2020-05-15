@@ -1,5 +1,0 @@
-{
-  "imjs_frontend_sample_client_id": "imodeljs-spa-samples-2686",
-  "imjs_frontend_sample_redirect_uri": "http://localhost:3000/signin-callback.html",
-  "imjs_frontend_sample_scope": "openid email profile organization imodelhub context-registry-service:read-only product-settings-service general-purpose-imodeljs-backend imodeljs-router"
-}

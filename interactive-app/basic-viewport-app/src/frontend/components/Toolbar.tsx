@@ -3,13 +3,11 @@
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
 
+import { FitViewTool, IModelApp, PanViewTool, RotateViewTool, SelectionTool, ZoomViewTool } from "@bentley/imodeljs-frontend";
 import * as React from "react";
-import {
-  IModelApp,
-  ZoomViewTool, PanViewTool, RotateViewTool, SelectionTool, FitViewTool,
-} from "@bentley/imodeljs-frontend";
-
 import "./Components.scss";
+
+/* eslint-disable jsx-a11y/anchor-is-valid */
 
 /** Toolbar containing simple navigation tools */
 const toolbar = () => {
@@ -25,7 +23,7 @@ const toolbar = () => {
 };
 
 /**
- * See the https://imodeljs.github.io/iModelJs-docs-output/learning/frontend/tools/
+ * See the https://imodeljs.org/learning/frontend/tools/
  * for more details and available tools.
  */
 

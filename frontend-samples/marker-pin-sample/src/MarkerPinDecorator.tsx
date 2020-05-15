@@ -2,8 +2,8 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import { Point2d, Point3d, XYAndZ, XAndY } from "@bentley/geometry-core";
-import { Decorator, DecorateContext, Marker, MarkerSet, Cluster, IModelApp, BeButtonEvent, BeButton } from "@bentley/imodeljs-frontend";
+import { Point2d, Point3d, XAndY, XYAndZ } from "@bentley/geometry-core";
+import { BeButton, BeButtonEvent, Cluster, DecorateContext, Decorator, IModelApp, Marker, MarkerSet } from "@bentley/imodeljs-frontend";
 import { PopupMenu, PopupMenuEntry } from "./PopupMenu";
 
 /**

@@ -14,6 +14,13 @@ const chaiJestSnapshot = require("chai-jest-snapshot");
 
 chai.use(chaiJestSnapshot);
 
+// Fix node's module loader to strip ?sprite from SVG imports
+const m = require("module");
+const origLoader = m._load;
+m._load = (request, parent, isMain) => {
+  return origLoader(request.replace("?sprite", ""), parent, isMain);
+};
+
 beforeEach(function () {
   const sourceFilePath = this.currentTest.file.replace("lib\\test", "src\\test").replace(/\.(jsx?|tsx?)$/, "");
   const snapPath = sourceFilePath + ".snap";

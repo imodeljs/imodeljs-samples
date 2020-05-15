@@ -3,8 +3,9 @@
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
 import * as React from "react";
+import { useCallback } from "react"; // tslint:disable-line: no-duplicate-imports
 import { IModelApp, IModelConnection } from "@bentley/imodeljs-frontend";
-import { Orientation } from "@bentley/ui-core";
+import { Orientation, useOptionalDisposable } from "@bentley/ui-core";
 import { PropertyGrid } from "@bentley/ui-components";
 import {
   IPresentationPropertyDataProvider,
@@ -20,8 +21,6 @@ const SimplePropertyGrid = propertyGridWithUnifiedSelection(PropertyGrid);
 export interface IModelConnectionProps {
   /** iModel whose contents should be displayed in the property pane */
   imodel: IModelConnection;
-  /** ID of the presentation rule set to use for creating the hierarchy in the property pane */
-  rulesetId: string;
 }
 
 /** React properties for the property pane component, that accepts a data provider */
@@ -34,28 +33,23 @@ export interface DataProviderProps {
 export type Props = IModelConnectionProps | DataProviderProps;
 
 /** Property grid component for the viewer app */
-export default class SimplePropertiesComponent extends React.PureComponent<Props> {
-  private getDataProvider(props: Props) {
-    if ((props as any).dataProvider) {
-      const providerProps = props as DataProviderProps;
-      return providerProps.dataProvider;
-    } else {
-      const imodelProps = props as IModelConnectionProps;
-      return new PresentationPropertyDataProvider(imodelProps.imodel, imodelProps.rulesetId);
-    }
-  }
-
-  public render() {
-    return (
-      <>
-        <h3 data-testid="property-pane-component-header">{IModelApp.i18n.translate("SimpleViewer:components.properties")}</h3>
-        <div style={{ flex: "1", height: "calc(100% - 50px)" }}>
-          <SimplePropertyGrid
-            orientation={Orientation.Horizontal}
-            dataProvider={this.getDataProvider(this.props)}
-          />
-        </div>
-      </>
-    );
-  }
+export default function SimplePropertiesComponent(props: Props) {
+  const imodel = (props as IModelConnectionProps).imodel;
+  const imodelDataProvider = useOptionalDisposable(useCallback(() => {
+    if (imodel)
+      return new PresentationPropertyDataProvider({ imodel });
+    return undefined;
+  }, [imodel]));
+  const dataProvider: IPresentationPropertyDataProvider = imodelDataProvider ?? (props as any).dataProvider;
+  return (
+    <>
+      <h3 data-testid="property-pane-component-header">{IModelApp.i18n.translate("SimpleViewer:components.properties")}</h3>
+      <div style={{ flex: "1", height: "calc(100% - 50px)" }}>
+        <SimplePropertyGrid
+          orientation={Orientation.Horizontal}
+          dataProvider={dataProvider}
+        />
+      </div>
+    </>
+  );
 }

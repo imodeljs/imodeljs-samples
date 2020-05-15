@@ -4,18 +4,23 @@
 *--------------------------------------------------------------------------------------------*/
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { Logger, LogLevel } from "@bentley/bentleyjs-core";
 import { BasicViewportApp } from "./api/BasicViewportApp";
 import App from "./components/App";
 import "./index.css";
 
-// initialize the application
-BasicViewportApp.startup();
+// Setup logging immediately to pick up any logging during BasicViewportApp.startup()
+Logger.initializeToConsole();
+Logger.setLevelDefault(LogLevel.Warning); // Set all logging to a default of Warning
+Logger.setLevel("basic-viewport-app", LogLevel.Info); // Override the above default and set only App level logging to Info.
 
-// tslint:disable-next-line:no-floating-promises
-BasicViewportApp.ready.then(() => {
+(async () => {
+  // initialize the application
+  await BasicViewportApp.startup();
+
   // when initialization is complete, render
   ReactDOM.render(
     <App />,
     document.getElementById("root") as HTMLElement,
   );
-});
+})(); // tslint:disable-line:no-floating-promises

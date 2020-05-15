@@ -2,32 +2,27 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import * as React from "react";
-import { Provider } from "react-redux";
-
-import { ElectronRpcConfiguration } from "@bentley/imodeljs-common";
-import { OpenMode, ClientRequestContext, Logger } from "@bentley/bentleyjs-core";
-import { ConnectClient, IModelQuery, Project, Config } from "@bentley/imodeljs-clients";
-import { IModelApp, IModelConnection, FrontendRequestContext, AuthorizedFrontendRequestContext, ViewState } from "@bentley/imodeljs-frontend";
-import { Presentation, SelectionChangeEventArgs, ISelectionProvider, IFavoritePropertiesStorage, FavoriteProperties, FavoritePropertiesManager } from "@bentley/presentation-frontend";
-import { Button, ButtonSize, ButtonType, Spinner, SpinnerSize } from "@bentley/ui-core";
-import { ConfigurableUiContent, UiFramework } from "@bentley/ui-framework";
-import { BackstageItem } from "@bentley/ui-abstract";
-import { SignIn } from "@bentley/ui-components";
-
-import { NineZoneSampleApp } from "../app/NineZoneSampleApp";
-import { AppUi } from "../app-ui/AppUi";
-import { AppBackstageItemProvider } from "../app-ui/backstage/AppBackstageItemProvider";
-import { AppBackstageComposer } from "../app-ui/backstage/AppBackstageComposer";
-import { AppLoggerCategory } from "../../common/configuration";
-
+import { ClientRequestContext, Config, OpenMode } from "@bentley/bentleyjs-core";
+import { ContextRegistryClient, Project } from "@bentley/context-registry-client";
 // make sure webfont brings in the icons and css files.
 import "@bentley/icons-generic-webfont/dist/bentley-icons-generic-webfont.css";
+import { IModelQuery } from "@bentley/imodelhub-client";
+import { ElectronRpcConfiguration } from "@bentley/imodeljs-common";
+import { AuthorizedFrontendRequestContext, FrontendRequestContext, IModelApp, IModelConnection, RemoteBriefcaseConnection, SnapshotConnection, ViewState } from "@bentley/imodeljs-frontend";
+import { SignIn } from "@bentley/ui-components";
+import { Button, ButtonSize, ButtonType, Spinner, SpinnerSize } from "@bentley/ui-core";
+import { ConfigurableUiContent, UiFramework } from "@bentley/ui-framework";
+import * as React from "react";
+import { Provider } from "react-redux";
+import { AppUi } from "../app-ui/AppUi";
+import { AppBackstageComposer } from "../app-ui/backstage/AppBackstageComposer";
+import { NineZoneSampleApp } from "../app/NineZoneSampleApp";
 import "./App.css";
 
 /** React state of the App component */
 export interface AppState {
   user: {
+    isAuthorized: boolean;
     isLoading?: boolean;
   };
   offlineIModel: boolean;
@@ -43,6 +38,7 @@ export default class App extends React.Component<{}, AppState> {
     super(props, context);
     this.state = {
       user: {
+        isAuthorized: NineZoneSampleApp.oidcClient.isAuthorized,
         isLoading: false,
       },
       offlineIModel: false,
@@ -52,35 +48,15 @@ export default class App extends React.Component<{}, AppState> {
 
   public componentDidMount() {
     NineZoneSampleApp.oidcClient.onUserStateChanged.addListener(this._onUserStateChanged);
-    // subscribe for unified selection changes
-    Presentation.selection.selectionChange.addListener(this._onSelectionChanged);
   }
 
   public componentWillUnmount() {
     // unsubscribe from unified selection changes
-    Presentation.selection.selectionChange.removeListener(this._onSelectionChanged);
+    NineZoneSampleApp.oidcClient.onUserStateChanged.removeListener(this._onUserStateChanged);
   }
 
-  private _onSelectionChanged = (evt: SelectionChangeEventArgs, selectionProvider: ISelectionProvider) => {
-    const selection = selectionProvider.getSelection(evt.imodel, evt.level);
-    if (selection.isEmpty) {
-      Logger.logInfo(AppLoggerCategory.Frontend, "========== Selection cleared ==========");
-    } else {
-      Logger.logInfo(AppLoggerCategory.Frontend, "========== Selection change ==========");
-      if (selection.instanceKeys.size !== 0) {
-        // log all selected ECInstance ids grouped by ECClass name
-        Logger.logInfo(AppLoggerCategory.Frontend, "ECInstances:");
-        selection.instanceKeys.forEach((ids, ecclass) => {
-          Logger.logInfo(AppLoggerCategory.Frontend, `${ecclass}: [${[...ids].join(",")}]`);
-        });
-      }
-      if (selection.nodeKeys.size !== 0) {
-        // log all selected node keys
-        Logger.logInfo(AppLoggerCategory.Frontend, "Nodes:");
-        selection.nodeKeys.forEach((key) => Logger.logInfo(AppLoggerCategory.Frontend, JSON.stringify(key)));
-      }
-      Logger.logInfo(AppLoggerCategory.Frontend, "=======================================");
-    }
+  private _onUserStateChanged = () => {
+    this.setState((prev) => ({ user: { ...prev.user, isAuthorized: NineZoneSampleApp.oidcClient.isAuthorized, isLoading: false } }));
   }
 
   private _onRegister = () => {
@@ -94,10 +70,6 @@ export default class App extends React.Component<{}, AppState> {
   private _onStartSignin = async () => {
     this.setState((prev) => ({ user: { ...prev.user, isLoading: true } }));
     await NineZoneSampleApp.oidcClient.signIn(new FrontendRequestContext());
-  }
-
-  private _onUserStateChanged = () => {
-    this.setState((prev) => ({ user: { ...prev.user, isLoading: false } }));
   }
 
   /** Pick the first two available spatial, orthographic or drawing view definitions in the imodel */
@@ -145,12 +117,7 @@ export default class App extends React.Component<{}, AppState> {
       }
     } catch (e) {
       // if failed, close the imodel and reset the state
-      if (this.state.offlineIModel) {
-        await imodel.closeSnapshot();
-      } else {
-        await imodel.close();
-      }
-
+      await imodel.close();
       this.setState({ imodel: undefined, viewStates: undefined });
       alert(e.message);
     }
@@ -162,26 +129,10 @@ export default class App extends React.Component<{}, AppState> {
   }
 
   private delayedInitialization() {
-
     if (this.state.offlineIModel) {
-      // WORKAROUND: create 'local' FavoritePropertiesManager when in 'offline' or snapshot mode. Otherwise,
-      //             the PresentationManager will try to use the Settings service online and fail.
-      const storage: IFavoritePropertiesStorage = {
-        loadProperties: async (_?: string, __?: string) => ({
-          nestedContentInfos: new Set<string>(),
-          propertyInfos: new Set<string>(),
-          baseFieldInfos: new Set<string>(),
-        }),
-        async saveProperties(_: FavoriteProperties, __?: string, ___?: string) { },
-      };
-      Presentation.favoriteProperties = new FavoritePropertiesManager({ storage });
-
       // WORKAROUND: Clear authorization client if operating in offline mode
       IModelApp.authorizationClient = undefined;
     }
-
-    // initialize Presentation
-    Presentation.initialize({ activeLocale: IModelApp.i18n.languageList()[0] });
   }
 
   /** The component's render method */
@@ -192,7 +143,7 @@ export default class App extends React.Component<{}, AppState> {
     if (this.state.user.isLoading || window.location.href.includes(this._signInRedirectUri)) {
       // if user is currently being loaded, just tell that
       ui = `${IModelApp.i18n.translate("NineZoneSample:signing-in")}...`;
-    } else if (!NineZoneSampleApp.oidcClient.hasSignedIn && !this.state.offlineIModel) {
+    } else if (!this.state.user.isAuthorized && !this.state.offlineIModel) {
       // if user doesn't have an access token, show sign in page
       // Only call with onOffline prop for electron mode since this is not a valid option for Web apps
       if (ElectronRpcConfiguration.isElectron)
@@ -241,12 +192,12 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
 
   /** Finds project and imodel ids using their names */
   private async getIModelInfo(): Promise<{ projectId: string, imodelId: string }> {
-    const projectName = Config.App.get("imjs_test_project");
     const imodelName = Config.App.get("imjs_test_imodel");
+    const projectName = Config.App.get("imjs_test_project", imodelName);
 
     const requestContext: AuthorizedFrontendRequestContext = await AuthorizedFrontendRequestContext.create();
 
-    const connectClient = new ConnectClient();
+    const connectClient = new ContextRegistryClient();
     let project: Project;
     try {
       project = await connectClient.getProject(requestContext, { $filter: `Name+eq+'${projectName}'` });
@@ -276,10 +227,10 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
       // attempt to open the imodel
       if (this.props.offlineIModel) {
         const offlineIModel = Config.App.getString("imjs_offline_imodel");
-        imodel = await IModelConnection.openSnapshot(offlineIModel);
+        imodel = await SnapshotConnection.openFile(offlineIModel);
       } else {
         const info = await this.getIModelInfo();
-        imodel = await IModelConnection.open(info.projectId, info.imodelId, OpenMode.Readonly);
+        imodel = await RemoteBriefcaseConnection.open(info.projectId, info.imodelId, OpenMode.Readonly);
       }
     } catch (e) {
       alert(e.message);
@@ -313,17 +264,6 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
 
 /** Renders a viewport, a tree, a property grid and a table */
 class IModelComponents extends React.PureComponent {
-  private _provider = new AppBackstageItemProvider();
-
-  public componentDidMount() {
-    UiFramework.backstageManager.itemsManager.add(this._provider.backstageItems);
-  }
-
-  public componentWillUnmount() {
-    const items = this._provider.backstageItems.map((item: BackstageItem) => item.id);
-    UiFramework.backstageManager.itemsManager.remove(items);
-  }
-
   public render() {
     return (
       <ConfigurableUiContent appBackstage={<AppBackstageComposer />} />

@@ -3,10 +3,9 @@
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
 import { Logger } from "@bentley/bentleyjs-core";
-import { RpcInterfaceDefinition, BentleyCloudRpcManager } from "@bentley/imodeljs-common";
 import { IModelJsExpressServer } from "@bentley/express-server";
-
-import { AppLoggerCategory } from "../../common/configuration";
+import { BentleyCloudRpcManager, RpcInterfaceDefinition } from "@bentley/imodeljs-common";
+import { AppLoggerCategory } from "../../common/LoggerCategory";
 
 /**
  * Initializes Web Server backend

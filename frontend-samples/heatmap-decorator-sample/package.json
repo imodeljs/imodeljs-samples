@@ -9,102 +9,52 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "buildIModelJsModule && ncp ./lib/webresources/index.html ./lib/webresources/signin-callback.html",
-    "start": "node ./node_modules/@bentley/imodeljs-webserver/lib/WebServer.js --port=3000 --resources=./lib/webresources/",
+    "build": "cross-env GENERATE_SOURCEMAP=false USE_FAST_SASS=true react-scripts build",
+    "start": "cross-env USE_FAST_SASS=true react-scripts start",
     "lint": "tslint --project . 1>&2",
     "test": "",
-    "clean": "rimraf lib .rush"
-  },
-  "iModelJs": {
-    "buildModule": {
-      "type": "application",
-      "sourceResources": [
-        {
-          "source": "./src/**/*.scss",
-          "dest": "./lib"
-        },
-        {
-          "source": "./src/**/*.css",
-          "dest": "./lib"
-        },
-        {
-          "source": "./public/**/*",
-          "dest": "./lib/webresources"
-        },
-        {
-          "source": "./node_modules/@bentley/frontend-sample-base/public/**/*",
-          "dest": "./lib/webresources"
-        }
-      ],
-      "webpack": {
-        "dest": "./lib/webresources",
-        "entry": "./lib/index.js",
-        "bundleName": "main",
-        "styleSheets": true,
-        "htmlTemplate": "../../tools/frontend-sample-base/src/index.html"
-      },
-      "makeConfig": {
-        "dest": "./lib/webresources/config.json",
-        "sources": [
-          {
-            "file": "process.env",
-            "filter": "^(i|I)(m|M)(j|J)(s|S)_"
-          },
-          {
-            "file": "./config.json",
-            "filter": "^(i|I)(m|M)(j|J)(s|S)_"
-          },
-          {
-            "file": "./node_modules/@bentley/frontend-sample-base/config.json",
-            "filter": "^(i|I)(m|M)(j|J)(s|S)_"
-          }
-        ]
-      }
-    }
+    "clean": "rimraf build .rush"
   },
   "dependencies": {
-    "@bentley/bentleyjs-core": "1.14.0",
-    "@bentley/config-loader": "1.14.0",
-    "@bentley/geometry-core": "1.14.0",
-    "@bentley/icons-generic-webfont": "^0.0.22",
-    "@bentley/imodeljs-clients": "1.14.0",
-    "@bentley/imodeljs-common": "1.14.0",
-    "@bentley/imodeljs-frontend": "1.14.0",
-    "@bentley/imodeljs-i18n": "1.14.0",
-    "@bentley/imodeljs-quantity": "1.14.0",
-    "@bentley/imodeljs-webserver": "1.14.0",
-    "@bentley/ui-abstract": "1.14.0",
-    "@bentley/ui-components": "1.14.0",
-    "@bentley/ui-core": "1.14.0",
-    "@bentley/presentation-components": "1.14.0",
-    "@bentley/presentation-frontend": "1.14.0",
-    "@bentley/presentation-common": "1.14.0",
-    "@bentley/frontend-sample-base": "1.14.0",
-    "express": "^4.16.3",
-    "inspire-tree": "^5.0.1",
-    "lodash": "^4.17.10",
-    "react": "^16.8.0",
-    "react-dnd": "^5.0.0",
-    "react-dnd-html5-backend": "^5.0.1",
-    "react-dom": "^16.8.0",
-    "react-redux": "^5.1.0",
-    "redux": "^4.0.0"
+    "@bentley/bentleyjs-core": "^2.0.0",
+    "@bentley/geometry-core": "^2.0.0",
+    "@bentley/icons-generic-webfont": "^1.0.0",
+    "@bentley/imodeljs-common": "^2.0.0",
+    "@bentley/imodeljs-frontend": "^2.0.0",
+    "@bentley/imodeljs-i18n": "^2.0.0",
+    "@bentley/imodeljs-quantity": "^2.0.0",
+    "@bentley/ui-abstract": "^2.0.0",
+    "@bentley/ui-components": "^2.0.0",
+    "@bentley/ui-core": "^2.0.0",
+    "@bentley/presentation-components": "^2.0.0",
+    "@bentley/presentation-frontend": "^2.0.0",
+    "@bentley/presentation-common": "^2.0.0",
+    "@bentley/frontend-sample-base": "^2.0.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   },
   "devDependencies": {
-    "@bentley/build-tools": "1.14.0",
-    "@bentley/webpack-tools": "1.14.0",
-    "@types/express": "^4.16.0",
-    "@types/react": "^16.8.0",
-    "@types/react-dom": "^16.8.0",
-    "ignore-styles": "^5.0.1",
-    "ncp": "^2.0.0",
+    "@bentley/build-tools": "^2.0.0",
+    "@bentley/react-scripts": "3.4.1",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "cpx": "^1.5.0",
+    "cross-env": "^5.1.4",
     "tslint": "^5.16.0",
-    "typescript": "^3.5.0",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.0",
-    "xmlhttprequest": "^1.8.0",
+    "typescript": "~3.7.4",
+    "webpack": "4.42.0",
     "rimraf": "^2.6.2"
   },
   "homepage": "http://localhost:3000/",
-  "proxy": "http://localhost:5000"
+  "browserslist": [
+    "electron 6.0.0",
+    "last 4 chrome version",
+    "last 4 firefox version",
+    "last 4 safari version",
+    "last 4 ios version",
+    "last 4 ChromeAndroid version",
+    "last 4 edge version",
+    "not dead",
+    "not <0.2%"
+  ]
 }

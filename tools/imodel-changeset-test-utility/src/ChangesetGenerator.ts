@@ -2,16 +2,15 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-
+import { assert, Guid, Id64String, Logger } from "@bentley/bentleyjs-core";
+import { Box, Point3d, Vector3d, YawPitchRollAngles } from "@bentley/geometry-core";
+import { BriefcaseDb, GeometricElement } from "@bentley/imodeljs-backend";
+import { AccessToken, AuthorizedClientRequestContext } from "@bentley/itwin-client";
+import { Code, GeometricElement3dProps, GeometryStreamBuilder, GeometryStreamProps, IModelVersion } from "@bentley/imodeljs-common";
 import { ChangesetGenerationConfig } from "./ChangesetGenerationConfig";
 import { HubUtility } from "./HubUtility";
 import { IModelDbHandler } from "./IModelDbHandler";
 import { TestChangesetSequence } from "./TestChangesetSequence";
-import { Id64String, Logger, assert, Guid } from "@bentley/bentleyjs-core";
-import { IModelDb, GeometricElement } from "@bentley/imodeljs-backend";
-import { AccessToken, AuthorizedClientRequestContext } from "@bentley/imodeljs-clients";
-import { YawPitchRollAngles, Point3d, Box, Vector3d } from "@bentley/geometry-core";
-import { GeometryStreamBuilder, GeometryStreamProps, IModelVersion, GeometricElement3dProps, Code } from "@bentley/imodeljs-common";
 
 /** Sleep for ms */
 const pause = async (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -25,7 +24,7 @@ const pause = async (ms: number) => new Promise((resolve) => setTimeout(resolve,
  */
 export class ChangesetGenerator {
   private _currentLevel: number = 0;
-  private _iModelDb?: IModelDb;
+  private _iModelDb?: BriefcaseDb;
   private _codeSeed: number = Date.now();
   private _updateIds?: Id64String[];
   private _deleteIds?: Id64String[];
@@ -38,7 +37,7 @@ export class ChangesetGenerator {
     Logger.logTrace(ChangesetGenerationConfig.loggingCategory, "Initialized Changeset Generator");
     Logger.logTrace(ChangesetGenerationConfig.loggingCategory, "--------------------------------------------------------------------------------------------");
   }
-  public async pushFirstChangeSetTransaction(iModelDb: IModelDb): Promise<void> {
+  public async pushFirstChangeSetTransaction(iModelDb: BriefcaseDb): Promise<void> {
     this._iModelDb = iModelDb;
     this.insertElement(`${Guid.createValue()}`, `FIRST ELEMENT: ${Guid.createValue()}`, new Point3d(-1000, -1000, -10000 * Math.random()));
     await this._iModelDb.concurrencyControl.request(this._authCtx);
@@ -99,7 +98,7 @@ export class ChangesetGenerator {
     await this._iModelDb!.concurrencyControl.request(this._authCtx);
     this._iModelDb!.saveChanges("Pushed First Change");
     await this._iModelDb!.pullAndMergeChanges(this._authCtx, IModelVersion.latest());
-    await this._iModelDb!.pushChanges(this._authCtx, () => description);
+    await this._iModelDb!.pushChanges(this._authCtx, description);
   }
 
   private async createNamedVersion(iModelId: string) {

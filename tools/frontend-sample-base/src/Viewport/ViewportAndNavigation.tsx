@@ -4,8 +4,8 @@
 *--------------------------------------------------------------------------------------------*/
 import * as React from "react";
 import {
-  IModelApp, IModelConnection,
-  ZoomViewTool, PanViewTool, RotateViewTool, SelectionTool, FitViewTool,
+  FitViewTool, IModelApp, IModelConnection,
+  PanViewTool, RotateViewTool, SelectionTool, ZoomViewTool,
 } from "@bentley/imodeljs-frontend";
 
 import { Id64String } from "@bentley/bentleyjs-core";
@@ -23,8 +23,6 @@ export interface ViewportAndNavigationProps {
   imodel: IModelConnection;
   /** View definition to use when the viewport is first loaded */
   viewDefinitionId: Id64String;
-  /** ID of the presentation rule set to use for unified selection */
-  rulesetId: string;
 }
 
 /** Renders viewport, toolbar, and associated elements */
@@ -36,7 +34,7 @@ export class ViewportAndNavigation extends React.PureComponent<ViewportAndNaviga
           style={{ height: "100vh" }}
           imodel={this.props.imodel}
           viewDefinitionId={this.props.viewDefinitionId}
-          ruleset={this.props.rulesetId} />
+        />
         {toolbar()}
       </>
     );

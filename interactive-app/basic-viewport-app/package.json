@@ -14,110 +14,60 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "buildIModelJsModule && ncp ./lib/webresources/index.html ./lib/webresources/signin-callback.html",
-    "start:webserver": "node ./node_modules/@bentley/imodeljs-webserver/lib/WebServer.js --port=3000 --resources=./lib/webresources/",
-    "start:backend": "node lib/backend/main.js",
-    "start:servers": "env-cmd ./lib/webresources/config.json run-p \"start:webserver\" \"start:backend\"",
+    "build": "npm run build:backend & npm run build:frontend",
+    "build:frontend": "cross-env GENERATE_SOURCEMAP=false USE_FAST_SASS=true react-scripts build",
+    "build:backend": "tsc -p tsconfig.backend.json",
+    "clean": "rimraf build lib .rush",
     "lint": "tslint --project . 1>&2",
-    "test": "",
-    "test:integration": "",
-    "clean": "rimraf lib .rush"
-  },
-  "iModelJs": {
-    "buildModule": {
-      "type": "application",
-      "sourceResources": [
-        {
-          "source": "./src/**/*.scss",
-          "dest": "./lib"
-        },
-        {
-          "source": "./src/**/*.css",
-          "dest": "./lib"
-        },
-        {
-          "source": "./public/**/*",
-          "dest": "./lib/webresources"
-        },
-        {
-          "source": "./src/frontend/plugins/public/**/*",
-          "dest": "./lib/webresources"
-        }
-      ],
-      "webpack": {
-        "dest": "./lib/webresources",
-        "entry": "./lib/frontend/index.js",
-        "bundleName": "main",
-        "styleSheets": true,
-        "htmlTemplate": "./src/frontend/index.html"
-      },
-      "makeConfig": {
-        "dest": "./lib/webresources/config.json",
-        "sources": [
-          {
-            "file": "process.env",
-            "filter": "^(i|I)(m|M)(j|J)(s|S)_"
-          },
-          {
-            "file": "./src/common/config.json",
-            "filter": "^(i|I)(m|M)(j|J)(s|S)_"
-          }
-        ]
-      }
-    }
+    "start": "npm run start:servers",
+    "start:webserver": "cross-env USE_FAST_SASS=true react-scripts start",
+    "start:backend": "node lib/backend/main.js",
+    "start:servers": "run-p \"start:webserver\" \"start:backend\"",
+    "test": ""
   },
   "dependencies": {
-    "@bentley/bentleyjs-core": "1.14.0",
-    "@bentley/config-loader": "1.14.0",
-    "@bentley/express-server": "1.14.0",
-    "@bentley/geometry-core": "1.14.0",
-    "@bentley/icons-generic-webfont": "^0.0.22",
-    "@bentley/imodeljs-backend": "1.14.0",
-    "@bentley/imodeljs-clients": "1.14.0",
-    "@bentley/imodeljs-clients-backend": "1.14.0",
-    "@bentley/imodeljs-common": "1.14.0",
-    "@bentley/imodeljs-frontend": "1.14.0",
-    "@bentley/imodeljs-i18n": "1.14.0",
-    "@bentley/imodeljs-quantity": "1.14.0",
-    "@bentley/imodeljs-webserver": "1.14.0",
-    "@bentley/ui-abstract": "1.14.0",
-    "@bentley/ui-components": "1.14.0",
-    "@bentley/ui-core": "1.14.0",
-    "body-parser": "^1.18.3",
-    "chai-jest-snapshot": "^2.0.0",
-    "express": "^4.16.3",
-    "inspire-tree": "^5.0.1",
-    "lodash": "^4.17.10",
-    "react": "^16.8.0",
-    "react-dnd": "^5.0.0",
-    "react-dnd-html5-backend": "^5.0.1",
-    "react-dom": "^16.8.0",
-    "react-redux": "^5.1.0",
-    "redux": "^4.0.0",
-    "tslint": "^5.16.0"
+    "@bentley/bentleyjs-core": "^2.0.0",
+    "@bentley/context-registry-client": "^2.0.0",
+    "@bentley/express-server": "^2.0.0",
+    "@bentley/frontend-authorization-client": "^2.0.0",
+    "@bentley/geometry-core": "^2.0.0",
+    "@bentley/icons-generic-webfont": "^1.0.0",
+    "@bentley/imodelhub-client": "^2.0.0",
+    "@bentley/imodeljs-backend": "^2.0.0",
+    "@bentley/backend-itwin-client": "^2.0.0",
+    "@bentley/imodeljs-common": "^2.0.0",
+    "@bentley/imodeljs-frontend": "^2.0.0",
+    "@bentley/imodeljs-i18n": "^2.0.0",
+    "@bentley/imodeljs-quantity": "^2.0.0",
+    "@bentley/itwin-client": "^2.0.0",
+    "@bentley/ui-abstract": "^2.0.0",
+    "@bentley/ui-components": "^2.0.0",
+    "@bentley/ui-core": "^2.0.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   },
   "devDependencies": {
-    "@bentley/build-tools": "1.14.0",
-    "@bentley/webpack-tools": "1.14.0",
-    "@types/body-parser": "^1.17.0",
-    "@types/bunyan": "^1.8",
-    "@types/chai": "^4.1.7",
-    "@types/express": "^4.16.0",
-    "@types/react": "^16.8.0",
-    "@types/react-dom": "^16.8.0",
-    "env-cmd": "^8.0.2",
-    "file-loader": "1.1.11",
-    "ignore-styles": "^5.0.1",
-    "jsdom": "^13.0.0",
-    "jsdom-global": "^3.0.2",
-    "ncp": "^2.0.0",
-    "nodemon": "^1.18.4",
+    "@bentley/build-tools": "^2.0.0",
+    "@bentley/react-scripts": "3.4.1",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "cross-env": "^5.1.4",
     "npm-run-all": "^4.1.5",
-    "typescript": "^3.5.0",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.0",
-    "xmlhttprequest": "^1.8.0"
+    "rimraf": "^2.6.2",
+    "tslint": "^5.16.0",
+    "typescript": "~3.7.4",
+    "webpack": "4.42.0"
   },
   "homepage": "http://localhost:3000/",
-  "proxy": "http://localhost:5000"
+  "browserslist": [
+    "electron 6.0.0",
+    "last 4 chrome version",
+    "last 4 firefox version",
+    "last 4 safari version",
+    "last 4 ios version",
+    "last 4 ChromeAndroid version",
+    "last 4 edge version",
+    "not dead",
+    "not <0.2%"
+  ]
 }

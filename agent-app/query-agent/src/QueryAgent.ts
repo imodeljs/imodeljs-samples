@@ -2,60 +2,53 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
+import * as fs from "fs";
+import * as path from "path";
+
+import { ClientRequestContext, Logger } from "@bentley/bentleyjs-core";
+import { ContextRegistryClient } from "@bentley/context-registry-client";
+import { ChangeSetPostPushEvent, IModelHubClient, IModelQuery, NamedVersionCreatedEvent } from "@bentley/imodelhub-client";
+import { BriefcaseDb, BriefcaseManager, IModelHost, IModelHostConfiguration } from "@bentley/imodeljs-backend";
+import { AgentAuthorizationClient, AzureFileHandler, RequestHost } from "@bentley/backend-itwin-client";
+import { ChangeOpCode } from "@bentley/imodeljs-common";
+import { AccessToken, AuthorizedClientRequestContext } from "@bentley/itwin-client";
 
 import { BriefcaseProvider } from "./BriefcaseProvider";
 import { ChangeSummaryExtractor } from "./ChangeSummaryExtractor";
-import { Logger, LogLevel, ClientRequestContext } from "@bentley/bentleyjs-core";
-import { AccessToken, ChangeSetPostPushEvent, NamedVersionCreatedEvent, ConnectClient, IModelHubClient, IModelQuery, AuthorizedClientRequestContext } from "@bentley/imodeljs-clients";
-import { ChangeOpCode } from "@bentley/imodeljs-common";
-import { IModelHost, IModelHostConfiguration, IModelDb } from "@bentley/imodeljs-backend";
 import { QueryAgentConfig } from "./QueryAgentConfig";
-import { OidcAgentClient, AzureFileHandler } from "@bentley/imodeljs-clients-backend";
-import * as fs from "fs";
-import * as path from "path";
 
 const actx = new ClientRequestContext("");
 
 /** Sleep for ms */
 const pause = async (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 /** Agent for querying changesets. Contains backend iModelJs engine. */
 export class QueryAgent {
   private _accessToken?: AccessToken;
   private _projectId?: string;
   private _iModelId?: string;
-  private _iModelDb?: IModelDb;
+  private _iModelDb?: BriefcaseDb;
   private _isInitialized: boolean = false;
   public constructor(
     private _hubClient: IModelHubClient = new IModelHubClient(new AzureFileHandler()),
-    private _connectClient: ConnectClient = new ConnectClient(),
+    private _connectClient: ContextRegistryClient = new ContextRegistryClient(),
     private _briefcaseProvider: BriefcaseProvider = new BriefcaseProvider(),
     private _changeSummaryExtractor: ChangeSummaryExtractor = new ChangeSummaryExtractor(),
-    private _oidcClient?: OidcAgentClient) {
+    private _oidcClient?: AgentAuthorizationClient) { }
 
-    QueryAgentConfig.setupConfig();
-
-    Logger.initializeToConsole();
-    Logger.setLevelDefault(LogLevel.Error);
-    Logger.setLevel(QueryAgentConfig.loggingCategory, LogLevel.Trace);
-
-    // Following must be done before calling any API in imodeljs
-    if (!this._oidcClient)
-      this._oidcClient = new OidcAgentClient(QueryAgentConfig.oidcAgentClientConfiguration);
-    // Startup IModel Host if we need to
-    const configuration = new IModelHostConfiguration();
-    if (!IModelHost.configuration)
-      IModelHost.startup(configuration);
-  }
   private async _login(): Promise<AccessToken> {
-    // TODO: remove openid-client.d.ts once imodeljs changes are received
     Logger.logTrace(QueryAgentConfig.loggingCategory, `Getting JWT access token`);
-    const jwt: AccessToken = await this._oidcClient!.getToken(actx);
+    const jwt: AccessToken = await this._oidcClient!.getAccessToken(actx);
     Logger.logTrace(QueryAgentConfig.loggingCategory, `Got JWT access token`);
     return jwt;
   }
+
+  public async run(listenFor?: number/*ms*/): Promise<void> {
+    return this.listenForAndHandleChangesets(listenFor === undefined ? QueryAgentConfig.listenTime : listenFor );
+  }
+
   /** Create listeners and respond to changesets */
   public async listenForAndHandleChangesets(listenFor: number/*ms*/) {
-    await this._initialize();
     // Subscribe to change set and named version events
     Logger.logTrace(QueryAgentConfig.loggingCategory, "Setting up changeset and named version listeners...");
     const authCtx = new AuthorizedClientRequestContext(this._accessToken!);
@@ -79,8 +72,10 @@ export class QueryAgent {
     // Wait for callbacks from events in the iModelHub
     await pause(listenFor);
 
-    if (this._iModelDb && this._iModelDb.isOpen)
-      await this._iModelDb.close(authCtx);
+    if (this._iModelDb && this._iModelDb.isOpen) {
+      this._iModelDb.close();
+      await BriefcaseManager.delete(authCtx, this._iModelDb.briefcaseKey);
+    }
     // Unsubscribe from events (if necessary)
     if (deleteChangeSetListener)
       deleteChangeSetListener();
@@ -88,43 +83,56 @@ export class QueryAgent {
       deleteNamedVersionListener();
     Logger.logTrace(QueryAgentConfig.loggingCategory, `Finished listening for changesets for ${listenFor} ms.`);
   }
-  /** Asynchronous initialization */
-  private async _initialize(): Promise<void> {
-    if (!this._isInitialized) {
-      try {
-        // Initialize (cleanup) output directory
-        this._initializeOutputDirectory();
-        this._accessToken = await this._login();
-        Logger.logTrace(QueryAgentConfig.loggingCategory, `Attempting to find Ids for iModel and Project`);
-        let projectId, iModelId: string | undefined;
-        const authCtx = new AuthorizedClientRequestContext(this._accessToken!);
-        try {
-          projectId = (await this._connectClient.getProject(authCtx, {
-            $select: "*",
-            $filter: "Name+eq+'" + QueryAgentConfig.projectName + "'",
-          }))!.wsgId;
-          Logger.logTrace(QueryAgentConfig.loggingCategory, `Project ${QueryAgentConfig.projectName} has id: ${projectId}`);
-          const iModels = await this._hubClient.iModels.get(authCtx, projectId, new IModelQuery().byName(QueryAgentConfig.iModelName));
-          if (iModels.length === 1)
-            iModelId = iModels[0].wsgId;
-        } catch (error) {
-          Logger.logTrace(QueryAgentConfig.loggingCategory, `Error: ${error}`);
-          throw error;
-        }
-        if (projectId && iModelId) {
-          this._projectId = projectId;
-          this._iModelId = iModelId;
-          Logger.logTrace(QueryAgentConfig.loggingCategory, `Query Agent Initialized with event subscriptions for ${QueryAgentConfig.iModelName}`);
-          this._isInitialized = true;
-        }
-      } catch (error) {
-        const errorStr = `Unable to verify IModel:'${QueryAgentConfig.iModelName}', for project '${QueryAgentConfig.projectName}' exists in the iModel Hub: ${error}`;
-        Logger.logError(QueryAgentConfig.loggingCategory, errorStr);
-        throw errorStr;
-      }
 
+  /** Asynchronous initialization */
+  public async initialize(): Promise<void> {
+    if (this._isInitialized)
+      return;
+
+    await RequestHost.initialize();
+
+    // Following must be done before calling any API in imodeljs
+    if (!this._oidcClient)
+      this._oidcClient = new AgentAuthorizationClient(QueryAgentConfig.oidcAgentClientConfiguration);
+
+    // Startup IModel Host if we need to
+    const configuration = new IModelHostConfiguration();
+    if (!IModelHost.configuration)
+      await IModelHost.startup(configuration);
+
+    try {
+      // Initialize (cleanup) output directory
+      this._initializeOutputDirectory();
+      this._accessToken = await this._login();
+      Logger.logTrace(QueryAgentConfig.loggingCategory, `Attempting to find Ids for iModel and Project`);
+      let projectId, iModelId: string | undefined;
+      const authCtx = new AuthorizedClientRequestContext(this._accessToken!);
+      try {
+        projectId = (await this._connectClient.getProject(authCtx, {
+          $select: "*",
+          $filter: "Name+eq+'" + QueryAgentConfig.projectName + "'",
+        }))!.wsgId;
+        Logger.logTrace(QueryAgentConfig.loggingCategory, `Project ${QueryAgentConfig.projectName} has id: ${projectId}`);
+        const iModels = await this._hubClient.iModels.get(authCtx, projectId, new IModelQuery().byName(QueryAgentConfig.iModelName));
+        if (iModels.length === 1)
+          iModelId = iModels[0].wsgId;
+      } catch (error) {
+        Logger.logTrace(QueryAgentConfig.loggingCategory, `Error: ${error}`);
+        throw error;
+      }
+      if (projectId && iModelId) {
+        this._projectId = projectId;
+        this._iModelId = iModelId;
+        Logger.logTrace(QueryAgentConfig.loggingCategory, `Query Agent Initialized with event subscriptions for ${QueryAgentConfig.iModelName}`);
+        this._isInitialized = true;
+      }
+    } catch (error) {
+      const errorStr = `Unable to verify IModel:'${QueryAgentConfig.iModelName}', for project '${QueryAgentConfig.projectName}' exists in the iModel Hub: ${error}`;
+      Logger.logError(QueryAgentConfig.loggingCategory, errorStr);
+      throw errorStr;
     }
   }
+
   /** Extract a summary of information in the change set - who changed it, when it was changed, what was changed, how it was changed, and write it to a JSON file */
   private async _extractChangeSummary(changeSetId: string) {
     this._iModelDb = await this._briefcaseProvider.getBriefcase(this._accessToken!, this._projectId!, this._iModelId!, changeSetId);
@@ -159,6 +167,7 @@ export class QueryAgent {
 
     Logger.logTrace(QueryAgentConfig.loggingCategory, `Wrote contents of change summary to ${filePath}`);
   }
+
   /** Utility to delete a directory that contains files */
   private _deleteDirectory(folderPath: string) {
     if (!fs.existsSync(folderPath))

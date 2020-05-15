@@ -2,13 +2,14 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import { Config, AuthorizedClientRequestContext, AccessToken } from "@bentley/imodeljs-clients";
+import { expect } from "chai";
+import { Config } from "@bentley/bentleyjs-core";
+import { AuthorizedClientRequestContext, AccessToken } from "@bentley/itwin-client";
 import { ChangesetGenerationHarness } from "../ChangesetGenerationHarness";
 import { TestChangesetSequence } from "../TestChangesetSequence";
 import { TestMockObjects } from "./TestMockObjects";
 import { ChangesetGenerator } from "../ChangesetGenerator";
 import { main } from "../IModelChangesetCLUtility";
-import { expect } from "chai";
 import { ChangesetGenerationConfig } from "../ChangesetGenerationConfig";
 import { HubUtility } from "../HubUtility";
 

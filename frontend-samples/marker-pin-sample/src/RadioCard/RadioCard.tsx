@@ -20,10 +20,6 @@ interface RadioCardProps {
 /** A React component that renders the UI specific for this component */
 export class RadioCard extends React.Component<RadioCardProps, {}> {
 
-  constructor(props?: any, context?: any) {
-    super(props, context);
-  }
-
   private _onCardSelected = (event: any) => {
     this.props.onChange(event.target.id);
   }

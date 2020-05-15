@@ -4,8 +4,8 @@
 *--------------------------------------------------------------------------------------------*/
 
 import * as path from "path";
-import { Config } from "@bentley/imodeljs-clients";
-import { OidcAgentClientConfiguration } from "@bentley/imodeljs-clients-backend";
+import { Config } from "@bentley/bentleyjs-core";
+import { AgentAuthorizationClientConfiguration } from "@bentley/backend-itwin-client";
 
 /**
  * Configuration for Query Agent: uses provided command if necessary first, second it will attempt to look
@@ -25,18 +25,18 @@ export class QueryAgentConfig {
       // imjs_agent_client_secret: "Set this to the client secret",
 
       // -----------------------------------------------------------------------------------------------------------
-      // Test project and iModel (REQUIRED)
+      // Test iModel (REQUIRED)
       // Must set these variables before testing - create a new project and iModel with the
       // developer registration procedure here - https://git.io/fx8YP
-      // Note: These can be set in the environment also - e.g., "set imjs_agent_project_name=MyProject"
+      // Note: This can be set in the environment also - e.g., "set imjs_agent_imodel_name=MyiModel"
       // -----------------------------------------------------------------------------------------------------------
-      // imjs_agent_project_name: "Set this to the name of the sample project",
       // imjs_agent_imodel_name: "Set this to the name of the sample iModel",
 
       // -----------------------------------------------------------------------------------------------------------
       // Other application settings (NOT REQUIRED)
       // Note: These can be set in the environment also - e.g., "set agent_app_port=3000"
       // -----------------------------------------------------------------------------------------------------------
+      // imjs_agent_project_name: "Set this to the name of the sample project", // In most cases, this will match the test iModel name
       agent_app_port: process.env.AGENT_APP_PORT || 3000,
       agent_app_listen_time: process.env.AGENT_APP_LISTEN_TIME || 40000,
       imjs_buddi_resolve_url_using_region: process.env.IMJS_BUDDI_RESOLVE_URL_USING_REGION,
@@ -49,10 +49,10 @@ export class QueryAgentConfig {
   }
 
   public static get projectName(): string {
-    return Config.App.getString("imjs_agent_project_name");
+    return Config.App.getString("imjs_agent_project_name", QueryAgentConfig.iModelName);
   }
 
-  public static get oidcAgentClientConfiguration(): OidcAgentClientConfiguration {
+  public static get oidcAgentClientConfiguration(): AgentAuthorizationClientConfiguration {
     return {
       clientId: Config.App.getString("imjs_agent_client_id"),
       clientSecret: Config.App.getString("imjs_agent_client_secret"),

@@ -1,29 +1,32 @@
-
 jobs:
   - job:
     condition: succeeded()
     strategy:
       maxParallel: 2
       matrix:
-        'GP-Backend':
+        'GP-Backend - MacOS':
           imjs_backend: 1
-          os: vs2017-win2016
-        'Local-Backend':
+          os: macOS-latest
+        'Local-Backend - MacOS':
           imjs_backend: 0
-          os: vs2017-win2016
+          os: macOS-latest
     pool:
       vmImage: $(os)
     steps:
       - checkout: self
         clean: all
       - task: NodeTool@0
-        displayName: 'Install Node 10.15.x'
+        displayName: 'Install Node 12.x'
         inputs:
-          versionSpec: 10.15.0
+          versionSpec: 12.x
           checkLatest: true
       - script: node ./common/scripts/install-run-rush.js install
         displayName: Rush install
-      - script: node ./common/scripts/install-run-rush.js build
-        displayName: Rush build
+      - script: node ./common/scripts/install-run-rush.js build -v --to simple-viewer-app
+        displayName: Rush build - Simple Viewer
+      - script: node ./common/scripts/install-run-rush.js build -v --to imodel-query-agent
+        displayName: Rush build - iModel Query Agent
+      - script: node ./common/scripts/install-run-rush.js build -v --to imodel-changeset-test-utility
+        displayName: Rush build - iModel Changeset Utility
       - script: node ./common/scripts/install-run-rush.js test:integration -v
         displayName: Rush Integration Test

@@ -73,7 +73,8 @@
       "sourceMapPathOverrides": {
         "webpack:///src/*": "${webRoot}/*"
       },
-      "smartStep": true
+      "smartStep": true,
+      "sourceMaps": true
     },
     {
       "type": "node",

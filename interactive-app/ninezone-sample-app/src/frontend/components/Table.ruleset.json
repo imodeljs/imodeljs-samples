@@ -1,0 +1,74 @@
+{
+  "$schema": "../../../node_modules/@bentley/presentation-common/Ruleset.schema.json",
+  "id": "ninezone-sample-app/Table",
+  "rules": [
+    {
+      "ruleType": "Content",
+      "condition": "SelectedNode.IsOfClass(\"Model\", \"BisCore\")",
+      "onlyIfNotHandled": true,
+      "specifications": [
+        {
+          "specType": "ContentRelatedInstances",
+          "relationshipPaths": [
+            {
+              "relationship": {
+                "schemaName": "BisCore",
+                "className": "ModelContainsElements"
+              },
+              "direction": "Forward"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ruleType": "Content",
+      "condition": "SelectedNode.IsOfClass(\"Category\", \"BisCore\")",
+      "onlyIfNotHandled": true,
+      "specifications": [
+        {
+          "specType": "ContentRelatedInstances",
+          "relationshipPaths": [
+            {
+              "relationship": {
+                "schemaName": "BisCore",
+                "className": "GeometricElement2dIsInCategory"
+              },
+              "direction": "Backward"
+            },
+            {
+              "relationship": {
+                "schemaName": "BisCore",
+                "className": "GeometricElement3dIsInCategory"
+              },
+              "direction": "Backward"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ruleType": "Content",
+      "condition": "SelectedNode.IsOfClass(\"Element\", \"BisCore\")",
+      "onlyIfNotHandled": true,
+      "specifications": [
+        {
+          "specType": "ContentRelatedInstances",
+          "relationshipPaths": [
+            {
+              "relationship": {
+                "schemaName": "BisCore",
+                "className": "ElementOwnsChildElements"
+              },
+              "direction": "Forward",
+              "count": "*"
+            }
+          ]
+        },
+        {
+          "specType": "SelectedNodeInstances"
+        }
+      ]
+    }
+  ]
+}

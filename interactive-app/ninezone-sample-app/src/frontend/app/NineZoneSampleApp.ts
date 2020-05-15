@@ -2,42 +2,52 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import { isElectronRenderer } from "@bentley/bentleyjs-core";
-import { BentleyCloudRpcParams, OidcDesktopClientConfiguration } from "@bentley/imodeljs-common";
-import { Config, UrlDiscoveryClient, OidcFrontendClientConfiguration, IOidcFrontendClient } from "@bentley/imodeljs-clients";
-import { IModelApp, OidcBrowserClient, FrontendRequestContext, OidcDesktopClientRenderer, IModelAppOptions } from "@bentley/imodeljs-frontend";
+import { ClientRequestContext, Config, isElectronRenderer } from "@bentley/bentleyjs-core";
+import { BrowserAuthorizationCallbackHandler, BrowserAuthorizationClient, BrowserAuthorizationClientConfiguration, FrontendAuthorizationClient } from "@bentley/frontend-authorization-client";
+import { BentleyCloudRpcParams, DesktopAuthorizationClientConfiguration } from "@bentley/imodeljs-common";
+import { DesktopAuthorizationClient, FrontendRequestContext, IModelApp, IModelAppOptions } from "@bentley/imodeljs-frontend";
+import { UrlDiscoveryClient } from "@bentley/itwin-client";
 import { Presentation } from "@bentley/presentation-frontend";
-import { UiCore } from "@bentley/ui-core";
-import { UiComponents } from "@bentley/ui-components";
-import { UiFramework, AppNotificationManager } from "@bentley/ui-framework";
-
-import { UseBackend } from "../../common/configuration";
-import initRpc from "../api/rpc";
+import { AppNotificationManager, UiFramework } from "@bentley/ui-framework";
+import { initRpc } from "../api/rpc";
 import { AppState, AppStore } from "./AppState";
+
+/**
+ * List of possible backends that ninezone-sample-app can use
+ */
+export enum UseBackend {
+  /** Use local ninezone-sample-app backend */
+  Local = 0,
+
+  /** Use deployed general-purpose backend */
+  GeneralPurpose = 1,
+}
 
 // subclass of IModelApp needed to use imodeljs-frontend
 export class NineZoneSampleApp {
-  private static _isReady: Promise<void>;
-  private static _oidcClient: IOidcFrontendClient;
   private static _appState: AppState;
 
-  public static get ready(): Promise<void> { return this._isReady; }
-
-  public static get oidcClient(): IOidcFrontendClient { return this._oidcClient; }
+  public static get oidcClient(): FrontendAuthorizationClient { return IModelApp.authorizationClient as FrontendAuthorizationClient; }
 
   public static get store(): AppStore { return this._appState.store; }
 
-  public static startup(opts?: IModelAppOptions): void {
-    opts = opts ? opts : {};
+  public static async startup(): Promise<void> {
 
     // Use the AppNotificationManager subclass from ui-framework to get prompts and messages
+    const opts: IModelAppOptions = {};
     opts.notifications = new AppNotificationManager();
 
-    IModelApp.startup(opts);
+    await IModelApp.startup(opts);
+
+    // initialize OIDC
+    await NineZoneSampleApp.initializeOidc();
 
     // contains various initialization promises which need
     // to be fulfilled before the app is ready
     const initPromises = new Array<Promise<any>>();
+
+    // initialize RPC communication
+    initPromises.push(NineZoneSampleApp.initializeRpc());
 
     // initialize localization for the app
     initPromises.push(IModelApp.i18n.registerNamespace("NineZoneSample").readFinished);
@@ -45,28 +55,16 @@ export class NineZoneSampleApp {
     // create the application state store for Redux
     this._appState = new AppState();
 
-    // initialize UiCore
-    initPromises.push(UiCore.initialize(IModelApp.i18n));
-
-    // initialize UiComponents
-    initPromises.push(UiComponents.initialize(IModelApp.i18n));
-
     // initialize UiFramework
     initPromises.push(UiFramework.initialize(this.store, IModelApp.i18n));
 
     // initialize Presentation
-    Presentation.initialize({
+    initPromises.push(Presentation.initialize({
       activeLocale: IModelApp.i18n.languageList()[0],
-    });
-
-    // initialize RPC communication
-    initPromises.push(NineZoneSampleApp.initializeRpc());
-
-    // initialize OIDC
-    initPromises.push(NineZoneSampleApp.initializeOidc());
+    }));
 
     // the app is ready when all initialization promises are fulfilled
-    this._isReady = Promise.all(initPromises).then(() => { });
+    await Promise.all(initPromises);
   }
 
   private static async initializeRpc(): Promise<void> {
@@ -75,36 +73,24 @@ export class NineZoneSampleApp {
   }
 
   private static async initializeOidc() {
-    this._oidcClient = this.getOidcClient();
-    const requestContext = new FrontendRequestContext();
-    await this._oidcClient.initialize(requestContext);
+    const scope = "openid email profile organization imodelhub context-registry-service:read-only product-settings-service projectwise-share urlps-third-party";
 
-    IModelApp.authorizationClient = this._oidcClient;
-    UiFramework.oidcClient = this._oidcClient;
-  }
-
-  private static getOidcClient(): IOidcFrontendClient {
-    // TODO: Make this the same as SVA
-    const scope = "openid email profile organization imodelhub context-registry-service:read-only product-settings-service urlps-third-party";
     if (isElectronRenderer) {
       const clientId = Config.App.getString("imjs_electron_test_client_id");
       const redirectUri = Config.App.getString("imjs_electron_test_redirect_uri");
-      const oidcConfiguration: OidcDesktopClientConfiguration = { clientId, redirectUri, scope: scope + " offline_access" };
-      const oidcClient = new OidcDesktopClientRenderer(oidcConfiguration);
-      return oidcClient;
+      const oidcConfiguration: DesktopAuthorizationClientConfiguration = { clientId, redirectUri, scope: scope + " offline_access" };
+      IModelApp.authorizationClient = new DesktopAuthorizationClient(oidcConfiguration);
     } else {
       const clientId = Config.App.getString("imjs_browser_test_client_id");
       const redirectUri = Config.App.getString("imjs_browser_test_redirect_uri");
       const postSignoutRedirectUri = Config.App.get("imjs_browser_test_post_signout_redirect_uri");
-      const oidcConfiguration: OidcFrontendClientConfiguration = { clientId, redirectUri, postSignoutRedirectUri, scope: scope + " imodeljs-router", responseType: "code" };
-      const oidcClient = new OidcBrowserClient(oidcConfiguration);
-      return oidcClient;
+      const oidcConfiguration: BrowserAuthorizationClientConfiguration = { clientId, redirectUri, postSignoutRedirectUri, scope: scope + " imodeljs-router", responseType: "code" };
+      await BrowserAuthorizationCallbackHandler.handleSigninCallback(oidcConfiguration.redirectUri);
+      IModelApp.authorizationClient = new BrowserAuthorizationClient(oidcConfiguration);
+      try {
+        await (NineZoneSampleApp.oidcClient as BrowserAuthorizationClient).signInSilent(new ClientRequestContext());
+      } catch (err) { }
     }
-  }
-
-  public static shutdown() {
-    this._oidcClient.dispose();
-    IModelApp.shutdown();
   }
 
   private static async getConnectionInfo(): Promise<BentleyCloudRpcParams | undefined> {
@@ -114,7 +100,7 @@ export class NineZoneSampleApp {
       const urlClient = new UrlDiscoveryClient();
       const requestContext = new FrontendRequestContext();
       const orchestratorUrl = await urlClient.discoverUrl(requestContext, "iModelJsOrchestrator.K8S", undefined);
-      return { info: { title: "general-purpose-imodeljs-backend", version: "v1.0" }, uriPrefix: orchestratorUrl };
+      return { info: { title: "general-purpose-imodeljs-backend", version: "v2.0" }, uriPrefix: orchestratorUrl };
     }
 
     if (usedBackend === UseBackend.Local)

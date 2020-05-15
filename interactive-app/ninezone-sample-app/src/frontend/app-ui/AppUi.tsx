@@ -2,15 +2,8 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import {
-  ConfigurableUiManager,
-  FrontstageManager,
-  SyncUiEventDispatcher,
-  Backstage,
-  UiFramework,
-} from "@bentley/ui-framework";
-
 import { IModelConnection, ViewState } from "@bentley/imodeljs-frontend";
+import { Backstage, ConfigurableUiManager, FrontstageManager, SyncUiEventDispatcher, UiFramework } from "@bentley/ui-framework";
 import { SampleFrontstage } from "./frontstages/SampleFrontstage";
 import { SampleFrontstage2 } from "./frontstages/SampleFrontstage2";
 

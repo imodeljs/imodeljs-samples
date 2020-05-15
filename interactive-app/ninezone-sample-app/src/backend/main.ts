@@ -2,46 +2,43 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import * as path from "path";
 import { app as electron } from "electron";
 import { Logger, LogLevel } from "@bentley/bentleyjs-core";
 import { IModelHost } from "@bentley/imodeljs-backend";
 import { Presentation } from "@bentley/presentation-backend";
 import { RpcInterfaceDefinition } from "@bentley/imodeljs-common";
 
-import getSupportedRpcs from "../common/rpcs";
-import setupEnv, { AppLoggerCategory } from "../common/configuration";
+import { getSupportedRpcs } from "../common/rpcs";
+import { AppLoggerCategory } from "../common/LoggerCategory";
 
-// setup environment
-setupEnv();
-
-// initialize logging
+// Setup logging immediately to pick up any logging during IModelHost.startup()
 Logger.initializeToConsole();
 Logger.setLevelDefault(LogLevel.Warning);
 Logger.setLevel(AppLoggerCategory.Backend, LogLevel.Info);
 
-// initialize imodeljs-backend
-IModelHost.startup();
-
-// initialize presentation-backend
-Presentation.initialize({
-  // Specify location of where application's presentation rule sets are located.
-  // May be omitted if application doesn't have any presentation rules.
-  rulesetDirectories: [path.join("assets", "presentation_rules")],
-});
-
-// invoke platform-specific initialization
-// tslint:disable-next-line:no-floating-promises
 (async () => {
-  // get platform-specific initialization function
-  let init: (rpcs: RpcInterfaceDefinition[]) => void;
-  if (electron) {
-    init = (await import("./electron/main")).default;
-  } else {
-    init = (await import("./web/BackendServer")).default;
+  try {
+    // Initialize iModelHost
+    await IModelHost.startup();
+
+    // Initialize Presentation
+    Presentation.initialize();
+
+    // Get platform-specific initialization function
+    let init: (rpcs: RpcInterfaceDefinition[]) => void;
+    if (electron) {
+      init = (await import("./electron/main")).default;
+    } else {
+      init = (await import("./web/BackendServer")).default;
+    }
+
+    // Get RPCs supported by this backend
+    const rpcs = getSupportedRpcs();
+
+    // Invoke platform-specific initialization
+    init(rpcs);
+  } catch (error) {
+    Logger.logError(AppLoggerCategory.Backend, error);
+    process.exitCode = 1;
   }
-  // get RPCs supported by this backend
-  const rpcs = getSupportedRpcs();
-  // do initialize
-  init(rpcs);
-})();
+})(); // tslint:disable-line:no-floating-promises

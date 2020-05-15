@@ -3,14 +3,14 @@
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
 
-import { Id64String, Id64Array } from "@bentley/bentleyjs-core";
-import { Code, IModel, ModelProps, ColorDef, ViewStateProps, ViewDefinition2dProps, SheetProps } from "@bentley/imodeljs-common";
-import { ViewState, ViewState2d, IModelConnection, DrawingViewState, DrawingModelState, SectionDrawingModelState, SheetModelState, SheetViewState } from "@bentley/imodeljs-frontend";
+import { Id64Array, Id64String } from "@bentley/bentleyjs-core";
+import { Code, ColorDef, IModel, ModelProps, SheetProps, ViewDefinition2dProps, ViewStateProps } from "@bentley/imodeljs-common";
+import { DrawingModelState, DrawingViewState, IModelConnection, SectionDrawingModelState, SheetModelState, SheetViewState, ViewState, ViewState2d } from "@bentley/imodeljs-frontend";
 
-  /** API for creating a 2D view from a model */
+/** API for creating a 2D view from a model */
 export class ViewCreator2d {
 
-  constructor(private imodel: IModelConnection) {}
+  constructor(private _imodel: IModelConnection) {}
 
   public static drawingModelClasses = [DrawingModelState.classFullName, SectionDrawingModelState.classFullName];
   public static sheetModelClasses = [SheetModelState.classFullName];
@@ -31,11 +31,11 @@ export class ViewCreator2d {
 
     if (ViewCreator2d.drawingModelClasses.includes(modelType)) {
       const props = await this._createViewStateProps(modelId, ColorDef.white, vpAspect);
-      viewState = (DrawingViewState.createFromProps(props, this.imodel) as ViewState2d);
+      viewState = (DrawingViewState.createFromProps(props, this._imodel) as ViewState2d);
     } else if (ViewCreator2d.sheetModelClasses.includes(modelType)) {
       let props = await this._createViewStateProps(modelId, ColorDef.white, vpAspect);
       props = await this._addSheetViewProps(modelId, props);
-      viewState = (SheetViewState.createFromProps(props, this.imodel) as ViewState2d);
+      viewState = (SheetViewState.createFromProps(props, this._imodel) as ViewState2d);
     }
 
     return viewState;
@@ -47,7 +47,7 @@ export class ViewCreator2d {
     const dictionaryId = IModel.dictionaryId;
     const categories = await this._getAllCategories();
     // model extents
-    const modelRange: any = (await this.imodel.models.queryModelRanges(modelId))[0];
+    const modelRange: any = (await this._imodel.models.queryModelRanges(modelId))[0];
     let originX = modelRange.low[0];
     let originY = modelRange.low[1];
     let deltaX = modelRange.high[0] - originX;
@@ -100,7 +100,7 @@ export class ViewCreator2d {
       classFullName: "BisCore:DisplayStyle",
       jsonProperties: {
         styles: {
-          backgroundColor: bgColor,
+          backgroundColor: bgColor.toJSON(),
         },
       },
     };
@@ -111,7 +111,7 @@ export class ViewCreator2d {
 
   private async _addSheetViewProps(modelId: Id64String, props: ViewStateProps) {
 
-    const modelRange: any = (await this.imodel.models.queryModelRanges(modelId))[0];
+    const modelRange: any = (await this._imodel.models.queryModelRanges(modelId))[0];
 
     const sheetProps: SheetProps = {
       model: modelId,
@@ -145,7 +145,7 @@ export class ViewCreator2d {
 
   private _executeQuery = async (query: string) => {
     const rows = [];
-    for await (const row of this.imodel.query(query))
+    for await (const row of this._imodel.query(query))
       rows.push(row.id);
 
     return rows;

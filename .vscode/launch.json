@@ -15,6 +15,52 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Run iModel Changeset Test Utility Tests",
+      "program": "${workspaceFolder}/tools/imodel-changeset-test-utility/node_modules/@bentley/build-tools/scripts/test",
+      "cwd": "${workspaceFolder}/tools/imodel-changeset-test-utility",
+      "args": [
+        "--testDir=${workspaceFolder}/tools/imodel-changeset-test-utility/lib/test",
+        "--debug",
+        "--grep",
+        "#integration",
+        "--invert"
+      ],
+      "port": 9229,
+      "protocol": "inspector",
+      "outputCapture": "std"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run iModel Changeset Test Utility Tests (Integration)",
+      "program": "${workspaceFolder}/tools/imodel-changeset-test-utility/node_modules/@bentley/build-tools/scripts/test",
+      "cwd": "${workspaceFolder}/tools/imodel-changeset-test-utility",
+      "args": [
+        "--testDir=${workspaceFolder}/tools/imodel-changeset-test-utility/lib/test",
+        "--debug",
+        "--grep",
+        "#integration",
+      ],
+      "env": {
+        "imjs_agent_client_id": "",
+        "imjs_agent_client_secret": "",
+        "imjs_agent_scope": "",
+        "imjs_agent_imodel_name": "",
+        "imjs_agent_project_name": "",
+        "imjs_browser_test_client_id": "",
+        "imjs_electron_test_client_id": "",
+        "imjs_test_imodel": "",
+        "imjs_test_project": "",
+        "imjs_test_regular_user_name": "",
+        "imjs_test_regular_user_password": ""
+      },
+      "port": 9229,
+      "protocol": "inspector",
+      "outputCapture": "std"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Run iModel Query Agent Tests (Integration)",
       "program": "${workspaceFolder}/agent-app/query-agent/node_modules/@bentley/build-tools/scripts/test",
       "cwd": "${workspaceFolder}/agent-app/query-agent",
@@ -27,9 +73,11 @@
       "env": {
         "imjs_agent_client_id": "",
         "imjs_agent_client_secret": "",
+        "imjs_agent_scope": "",
         "imjs_agent_imodel_name": "",
         "imjs_agent_project_name": "",
         "imjs_browser_test_client_id": "",
+        "imjs_electron_test_client_id": "",
         "imjs_test_imodel": "",
         "imjs_test_project": "",
         "imjs_test_regular_user_name": "",
@@ -78,6 +126,9 @@
       "name": "Run Simple Viewer App Tests (Unit)",
       "program": "${workspaceFolder}/interactive-app/simple-viewer-app/node_modules/mocha/bin/_mocha",
       "cwd": "${workspaceFolder}/interactive-app/simple-viewer-app",
+      "env": {
+        "TS_NODE_PROJECT": "tsconfig.backend.json"
+      },
       "args": [
         "--opts",
         "${workspaceFolder}/interactive-app/simple-viewer-app/test/utils/mocha.opts",
@@ -90,13 +141,33 @@
       "name": "--------Frontend Samples--------"
     },
     {
+      "name": "Frontend Sample Browser",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/frontend-samples/${input:frontend-sample}/node_modules/@bentley/react-scripts/scripts/start.js",
+      "cwd": "${workspaceFolder}/frontend-samples/${input:frontend-sample}",
+      "smartStep": true,
+      "env": {
+        "USE_FULL_SOURCEMAPS": "true",
+        "USE_FAST_SASS": "true"
+      },
+      "serverReadyAction": {
+        "pattern": "listening on http:localHost:([0-9]+)",
+        "uriFormat": "http://localhost:%s",
+        "action": "debugWithChrome"
+      }
+    },
+    {
       "name": "Heatmap Decorator Sample Browser (frontend)",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/frontend-samples/heatmap-decorator-sample/node_modules/@bentley/imodeljs-webserver/lib/WebServer.js",
-      "cwd": "${workspaceFolder}",
-      "args": ["--port=3000", "--resources=./frontend-samples/heatmap-decorator-sample/lib/webresources/"],
+      "program": "${workspaceFolder}/frontend-samples/heatmap-decorator-sample/node_modules/@bentley/react-scripts/scripts/start.js",
+      "cwd": "${workspaceFolder}/frontend-samples/heatmap-decorator-sample",
       "smartStep": true,
+      "env": {
+        "USE_FULL_SOURCEMAPS": "true",
+        "USE_FAST_SASS": "true"
+      },
       "serverReadyAction": {
         "pattern": "listening on http:localHost:([0-9]+)",
         "uriFormat": "http://localhost:%s",
@@ -107,10 +178,13 @@
       "name": "Tooltip Customize Sample Browser (frontend)",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/frontend-samples/tooltip-customize-sample/node_modules/@bentley/imodeljs-webserver/lib/WebServer.js",
-      "cwd": "${workspaceFolder}",
-      "args": ["--port=3000", "--resources=./frontend-samples/tooltip-customize-sample/lib/webresources/"],
+      "program": "${workspaceFolder}/frontend-samples/tooltip-customize-sample/node_modules/@bentley/react-scripts/scripts/start.js",
+      "cwd": "${workspaceFolder}/frontend-samples/tooltip-customize-sample",
       "smartStep": true,
+      "env": {
+        "USE_FULL_SOURCEMAPS": "true",
+        "USE_FAST_SASS": "true"
+      },
       "serverReadyAction": {
         "pattern": "listening on http:localHost:([0-9]+)",
         "uriFormat": "http://localhost:%s",
@@ -121,10 +195,13 @@
       "name": "Viewer Only Sample Browser (frontend)",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/frontend-samples/viewer-only-sample/node_modules/@bentley/imodeljs-webserver/lib/WebServer.js",
-      "cwd": "${workspaceFolder}",
-      "args": ["--port=3000", "--resources=./frontend-samples/viewer-only-sample/lib/webresources/"],
+      "program": "${workspaceFolder}/frontend-samples/viewer-only-sample/node_modules/@bentley/react-scripts/scripts/start.js",
+      "cwd": "${workspaceFolder}/frontend-samples/viewer-only-sample",
       "smartStep": true,
+      "env": {
+        "USE_FULL_SOURCEMAPS": "true",
+        "USE_FAST_SASS": "true"
+      },
       "serverReadyAction": {
         "pattern": "listening on http:localHost:([0-9]+)",
         "uriFormat": "http://localhost:%s",
@@ -146,9 +223,13 @@
       "name": "Basic ViewPort App Browser (frontend)",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/interactive-app/basic-viewport-app/node_modules/@bentley/imodeljs-webserver/lib/WebServer.js",
-      "cwd": "${workspaceFolder}",
-      "args": ["--port=3000", "--resources=./interactive-app/basic-viewport-app/lib/webresources/"],
+      "program": "${workspaceFolder}/interactive-app/basic-viewport-app/node_modules/@bentley/react-scripts/scripts/start.js",
+      "cwd": "${workspaceFolder}/interactive-app/basic-viewport-app",
+      "env": {
+        "BROWSER": "none",
+        "USE_FULL_SOURCEMAPS": "true",
+        "USE_FAST_SASS": "true"
+      },
       "smartStep": true,
       "serverReadyAction": {
         "pattern": "listening on http:localHost:([0-9]+)",
@@ -171,9 +252,13 @@
       "name": "Nine Zone Sample App Browser (frontend)",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/interactive-app/ninezone-sample-app/node_modules/@bentley/imodeljs-webserver/lib/WebServer.js",
-      "cwd": "${workspaceFolder}",
-      "args": ["--port=3000", "--resources=./interactive-app/ninezone-sample-app/lib/webresources/"],
+      "program": "${workspaceFolder}/interactive-app/ninezone-sample-app/node_modules/@bentley/react-scripts/scripts/start.js",
+      "cwd": "${workspaceFolder}/interactive-app/ninezone-sample-app",
+      "env": {
+        "BROWSER": "none",
+        "USE_FULL_SOURCEMAPS": "true",
+        "USE_FAST_SASS": "true"
+      },
       "smartStep": true,
       "serverReadyAction": {
         "pattern": "listening on http:localHost:([0-9]+)",
@@ -196,15 +281,23 @@
       "name": "Simple Viewer App Browser (frontend)",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/interactive-app/simple-viewer-app/node_modules/@bentley/imodeljs-webserver/lib/WebServer.js",
-      "cwd": "${workspaceFolder}",
-      "args": ["--port=3000", "--resources=./interactive-app/simple-viewer-app/lib/webresources/"],
+      "program": "${workspaceFolder}/interactive-app/simple-viewer-app/node_modules/@bentley/react-scripts/scripts/start.js",
+      "cwd": "${workspaceFolder}/interactive-app/simple-viewer-app",
+      "env": {
+        "BROWSER": "none",
+        "USE_FULL_SOURCEMAPS": "true",
+        "USE_FAST_SASS": "true"
+      },
       "smartStep": true,
+      "sourceMaps": true,
       "serverReadyAction": {
         "pattern": "listening on http:localHost:([0-9]+)",
         "uriFormat": "http://localhost:%s",
         "action": "debugWithChrome"
-      }
+      },
+      "outFiles": [
+        "${workspaceRoot}/interactive-app/simple-viewer-app/**/*.js",
+      ]
     },
     {
       "type": "node",
@@ -225,7 +318,7 @@
       "type": "chrome",
       "request": "attach",
       "port": 9223,
-      "webRoot": "${workspaceFolder}/interactive-app/simple-viewer-app/lib/webresources/",
+      "webRoot": "${workspaceFolder}/interactive-app/simple-viewer-app/build/",
       "timeout": 30000
     },
     {
@@ -260,5 +353,24 @@
         "Simple Viewer App Electron (frontend)"
       ]
     },
+  ],
+  "inputs": [
+    {
+      "id": "frontend-sample",
+      "description": "Select the frontend sample",
+      "type": "pickString",
+      "default": "viewer-only-sample",
+      "options": [
+        "emphasize-elements-sample",
+        "heatmap-decorator-sample",
+        "marker-pin-sample",
+        "tooltip-customize-sample",
+        "view-attributes-sample",
+        "view-clip-sample",
+        "viewer-only-2d-sample",
+        "viewer-only-sample",
+        "zoom-to-elements-sample"
+      ]
+    }
   ]
 }

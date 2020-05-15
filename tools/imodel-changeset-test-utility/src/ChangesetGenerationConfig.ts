@@ -4,8 +4,8 @@
 *--------------------------------------------------------------------------------------------*/
 
 import * as path from "path";
-import { Config } from "@bentley/imodeljs-clients";
-import { OidcAgentClientConfiguration } from "@bentley/imodeljs-clients-backend";
+import { Config } from "@bentley/bentleyjs-core";
+import { AgentAuthorizationClientConfiguration } from "@bentley/backend-itwin-client";
 
 /**
  * Setup configuration for the application
@@ -23,16 +23,17 @@ export class ChangesetGenerationConfig {
       // imjs_agent_client_secret: "Set this to the client secret",
 
       // -----------------------------------------------------------------------------------------------------------
-      // Test project and iModel (REQUIRED)
+      // Test iModel (REQUIRED)
       // developer registration procedure here - https://git.io/fx8YP
-      // Note: These can be set in the environment also - e.g., "set imjs_agent_project_name=MyProject"
+      // Note: This can be set in the environment also - e.g., "set imjs_agent_imodel_name=MyiModel"
       // -----------------------------------------------------------------------------------------------------------
-      // imjs_agent_project_name: "Set this to the name of the sample project",
       // imjs_agent_imodel_name: "Set this to the name of the sample iModel",
 
       // -----------------------------------------------------------------------------------------------------------
       // Other application settings (NOT REQUIRED)
+      // Note: These can be set in the environment also - e.g., "set imjs_agent_project_name=MyProject"
       // -----------------------------------------------------------------------------------------------------------
+      // imjs_agent_project_name: "Set this to the name of the sample project", // In most cases, this will match the test iModel name
       imjs_default_relying_party_uri: "https://connect-wsg20.bentley.com",
       imjs_agent_scope: "urlps-third-party context-registry-service:read-only imodelhub",
     });
@@ -43,10 +44,10 @@ export class ChangesetGenerationConfig {
   }
 
   public static get projectName(): string {
-    return Config.App.getString("imjs_agent_project_name");
+    return Config.App.getString("imjs_agent_project_name", ChangesetGenerationConfig.iModelName);
   }
 
-  public static get oidcAgentClientConfiguration(): OidcAgentClientConfiguration {
+  public static get oidcAgentClientConfiguration(): AgentAuthorizationClientConfiguration {
     return {
       clientId: Config.App.getString("imjs_agent_client_id"),
       clientSecret: Config.App.getString("imjs_agent_client_secret"),

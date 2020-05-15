@@ -2,17 +2,17 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
+import { Id64String } from "@bentley/bentleyjs-core";
+import { App, GithubLink, PointSelector, SampleBaseApp, SampleContext, SampleUIProvider, ViewportAndNavigation } from "@bentley/frontend-sample-base";
+import "@bentley/frontend-sample-base/src/SampleBase.scss";
+import { Point3d, Range2d } from "@bentley/geometry-core";
+import "@bentley/icons-generic-webfont/dist/bentley-icons-generic-webfont.css";
+import { ColorDef } from "@bentley/imodeljs-common";
+import { IModelApp, IModelAppOptions, IModelConnection, StandardViewId, Viewport } from "@bentley/imodeljs-frontend";
+import { Toggle } from "@bentley/ui-core";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { IModelApp, Viewport, StandardViewId, IModelConnection, IModelAppOptions } from "@bentley/imodeljs-frontend";
-import { Toggle } from "@bentley/ui-core";
-import "@bentley/icons-generic-webfont/dist/bentley-icons-generic-webfont.css";
-import { Range2d, Point3d } from "@bentley/geometry-core";
 import HeatmapDecorator from "./HeatmapDecorator";
-import { ColorDef } from "@bentley/imodeljs-common";
-import { ViewportAndNavigation, GithubLink, PointSelector, SampleUIProvider, SampleContext, SampleBaseApp, App } from "@bentley/frontend-sample-base";
-import { Id64String } from "@bentley/bentleyjs-core";
-import "@bentley/frontend-sample-base/src/SampleBase.scss";
 
 /** This file contains the user interface and main logic that is specific to this sample. */
 
@@ -37,23 +37,26 @@ export class Sample extends React.Component<{}, SampleState> {
     };
 
     IModelApp.viewManager.onViewOpen.addOnce((vp: Viewport) => {
-      // To make the heatmap look better, we want a top view, with a white background, etc.
-      vp.setStandardRotation(StandardViewId.Top);
+      if (vp.view.is3d()) {
+        // To make the heatmap look better, lock the view to a top orientation with camera turned off.
+        vp.view.setAllow3dManipulations(false);
+        vp.view.turnCameraOff();
+        vp.setStandardRotation(StandardViewId.Top);
+      }
 
+      // We'll draw the heatmap as an overlay in the center of the view's Z extents.
       const range = vp.view.computeFitRange();
-      this._height = range.zHigh;
+      this._height = range.high.interpolate(0.5, range.low).z;
 
-      const aspect = vp.viewRect.aspect;
-      range.expandInPlace(1);
-
-      vp.view.lookAtVolume(range, aspect);
+      vp.view.lookAtVolume(range, vp.viewRect.aspect);
       vp.synchWithView(false);
 
+      // The heatmap looks better against a white background.
       const style = vp.displayStyle.clone();
-      style.backgroundColor = ColorDef.white.clone();
+      style.backgroundColor = ColorDef.white;
       vp.displayStyle = style;
 
-      /* Grab the range of the contents of the view.  We'll use this to size the heatmap. */
+      // Grab the range of the contents of the view. We'll use this to size the heatmap.
       const range2d = Range2d.createFrom(range);
       this.setState({ range: range2d, showDecorator: true });
     });
@@ -147,28 +150,23 @@ export class SampleContainer extends React.Component<SampleProps> {
 
   /** The sample's render method */
   public render() {
-    // ID of the presentation ruleset used by all of the controls; the ruleset
-    // can be found at `assets/presentation_rules/Default.PresentationRuleSet.xml`
-    const rulesetId = "Default";
     return (
       <>
-        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} rulesetId={rulesetId} />
+        <ViewportAndNavigation imodel={this.props.imodel} viewDefinitionId={this.props.viewDefinitionId} />
         <Sample />
       </>
     );
   }
 }
 
-// initialize the application
-const uiProvider: SampleUIProvider = { getSampleUI: (context: SampleContext) => < SampleContainer imodel={context.imodel} viewDefinitionId={context.viewDefinitionId} /> };
-SampleBaseApp.startup(uiProvider, Sample.getIModelAppOptions());
-
-// tslint:disable-next-line:no-floating-promises
-SampleBaseApp.ready.then(() => {
+(async () => {
+  // initialize the application
+  const uiProvider: SampleUIProvider = { getSampleUI: (context: SampleContext) => < SampleContainer imodel={context.imodel} viewDefinitionId={context.viewDefinitionId} /> };
+  await SampleBaseApp.startup(uiProvider, Sample.getIModelAppOptions());
 
   // when initialization is complete, render
   ReactDOM.render(
     <App />,
     document.getElementById("root") as HTMLElement,
   );
-});
+})(); // tslint:disable-line:no-floating-promises

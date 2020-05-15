@@ -19,7 +19,7 @@ export class TableContent extends ContentControl {
     super(info, options);
 
     if (options.iModelConnection) {
-      this.reactElement = <SimpleTableComponent imodel={options.iModelConnection} rulesetId={options.rulesetId} />;
+      this.reactNode = <SimpleTableComponent imodel={options.iModelConnection} />;
     }
   }
 }

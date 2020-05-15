@@ -2,7 +2,7 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import { RequestHost } from "@bentley/imodeljs-clients-backend";
+import { RequestHost } from "@bentley/backend-itwin-client";
 import { ChangesetGenerationHarness } from "./ChangesetGenerationHarness";
 import { TestChangesetSequence } from "./TestChangesetSequence";
 import { ChangesetGenerationConfig } from "./ChangesetGenerationConfig";

@@ -2,12 +2,13 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import * as React from "react";
-import { Id64, Id64String, OpenMode } from "@bentley/bentleyjs-core";
-import { AccessToken, ConnectClient, IModelQuery, Project, Config } from "@bentley/imodeljs-clients";
-import { IModelApp, IModelConnection, FrontendRequestContext, AuthorizedFrontendRequestContext, SpatialViewState, DrawingViewState } from "@bentley/imodeljs-frontend";
-import { Button, ButtonSize, ButtonType, Spinner, SpinnerSize } from "@bentley/ui-core";
+import { Config, Id64, Id64String, OpenMode } from "@bentley/bentleyjs-core";
+import { ContextRegistryClient, Project } from "@bentley/context-registry-client";
+import { IModelQuery } from "@bentley/imodelhub-client";
+import { AuthorizedFrontendRequestContext, DrawingViewState, FrontendRequestContext, IModelApp, IModelConnection, RemoteBriefcaseConnection, SpatialViewState } from "@bentley/imodeljs-frontend";
 import { SignIn } from "@bentley/ui-components";
+import { Button, ButtonSize, ButtonType, Spinner, SpinnerSize } from "@bentley/ui-core";
+import * as React from "react";
 import { SampleBaseApp } from "../SampleBaseApp";
 
 // cSpell:ignore imodels
@@ -20,7 +21,7 @@ export interface StartupProps {
 /** React state of the StartupComponent */
 export interface StartupState {
   user: {
-    accessToken?: AccessToken;
+    isAuthorized: boolean;
     isLoading?: boolean;
   };
   imodel?: IModelConnection;
@@ -36,7 +37,7 @@ export class StartupComponent extends React.Component<StartupProps, StartupState
     this.state = {
       user: {
         isLoading: false,
-        accessToken: undefined,
+        isAuthorized: SampleBaseApp.oidcClient.isAuthorized,
       },
     };
   }
@@ -44,12 +45,8 @@ export class StartupComponent extends React.Component<StartupProps, StartupState
   public componentDidMount() {
     // Initialize authorization state, and add listener to changes
     SampleBaseApp.oidcClient.onUserStateChanged.addListener(this._onUserStateChanged);
-    if (SampleBaseApp.oidcClient.isAuthorized) {
-      SampleBaseApp.oidcClient.getAccessToken(new FrontendRequestContext()) // tslint:disable-line: no-floating-promises
-        .then((accessToken: AccessToken | undefined) => {
-          this.setState((prev) => ({ user: { ...prev.user, accessToken, isLoading: false } }));
-        });
-    }
+    if (SampleBaseApp.oidcClient.isAuthorized)
+      this.setState((prev) => ({ user: { ...prev.user, isLoading: false } }));
   }
 
   public componentWillUnmount() {
@@ -62,8 +59,8 @@ export class StartupComponent extends React.Component<StartupProps, StartupState
     await SampleBaseApp.oidcClient.signIn(new FrontendRequestContext());
   }
 
-  private _onUserStateChanged = (accessToken: AccessToken | undefined) => {
-    this.setState((prev) => ({ user: { ...prev.user, accessToken, isLoading: false } }));
+  private _onUserStateChanged = () => {
+    this.setState((prev) => ({ user: { ...prev.user, isLoading: false, isAuthorized: SampleBaseApp.oidcClient.isAuthorized } }));
   }
 
   /** Pick the first available spatial view definition in the imodel */
@@ -115,12 +112,12 @@ export class StartupComponent extends React.Component<StartupProps, StartupState
     if (this.state.user.isLoading) {
       // if user is currently being loaded, just tell that
       ui = `signing-in...`;
-    } else if (!this.state.user.accessToken) {
+    } else if (!this.state.user.isAuthorized) {
       // if user doesn't have and access token, show sign in page
       ui = (<SignIn onSignIn={this._onStartSignin} />);
     } else if (!this.state.imodel || !this.state.viewDefinitionId) {
       // if we don't have an imodel / view definition id - render a button that initiates imodel open
-      ui = (<OpenIModelButton accessToken={this.state.user.accessToken} onIModelSelected={this._onIModelSelected} />);
+      ui = (<OpenIModelButton onIModelSelected={this._onIModelSelected} />);
     } else {
       // if we do have an imodel and view definition id - startup is finished - nothing to do
     }
@@ -136,7 +133,6 @@ export class StartupComponent extends React.Component<StartupProps, StartupState
 
 /** React props for [[OpenIModelButton]] component */
 interface OpenIModelButtonProps {
-  accessToken: AccessToken | undefined;
   onIModelSelected: (imodel: IModelConnection | undefined) => void;
 }
 /** React state for [[OpenIModelButton]] component */
@@ -149,12 +145,12 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
 
   /** Finds project and imodel ids using their names */
   private async getIModelInfo(): Promise<{ projectId: string, imodelId: string }> {
-    const projectName = Config.App.get("imjs_test_project");
     const imodelName = Config.App.get("imjs_test_imodel");
+    const projectName = Config.App.get("imjs_test_project", imodelName);
 
     const requestContext: AuthorizedFrontendRequestContext = await AuthorizedFrontendRequestContext.create();
 
-    const connectClient = new ConnectClient();
+    const connectClient = new ContextRegistryClient();
     let project: Project;
     try {
       project = await connectClient.getProject(requestContext, { $filter: `Name+eq+'${projectName}'` });
@@ -182,7 +178,7 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
     try {
       // attempt to open the imodel
       const info = await this.getIModelInfo();
-      imodel = await IModelConnection.open(info.projectId, info.imodelId, OpenMode.Readonly);
+      imodel = await RemoteBriefcaseConnection.open(info.projectId, info.imodelId, OpenMode.Readonly);
     } catch (e) {
       alert(e.message);
     }

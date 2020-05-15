@@ -2,51 +2,24 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import * as React from "react";
-
 import { ViewState } from "@bentley/imodeljs-frontend";
-
-import {
-  ToolWidget,
-  ZoneState,
-  WidgetState,
-  NavigationWidget,
-  ContentLayoutDef,
-  ContentGroup,
-  ViewSelector,
-  FrontstageProvider,
-  Frontstage,
-  Zone,
-  Widget,
-  CoreTools,
-  SyncUiEventId,
-  ContentViewManager,
-  CommandItemDef,
-  ContentLayoutManager,
-  GroupItemDef,
-  ItemList,
-  CustomItemDef,
-  StagePanel,
-  IModelViewportControl,
-  UiFramework,
-} from "@bentley/ui-framework";
-
 import { SvgPath } from "@bentley/ui-core";
-
-import { TreeWidget } from "../widgets/TreeWidget";
-import { PropertyGridWidget } from "../widgets/PropertyGridWidget";
-import { AppStatusBarWidget } from "../statusbars/AppStatusBar";
+import {
+  CommandItemDef, ContentGroup, ContentLayoutDef, ContentLayoutManager, ContentViewManager, CoreTools, CustomItemDef, Frontstage,
+  FrontstageProvider, GroupItemDef, IModelViewportControl, ItemList, NavigationWidget, StagePanel,
+  SyncUiEventId, ToolWidget, UiFramework, ViewSelector, Widget, WidgetState, Zone, ZoneState,
+} from "@bentley/ui-framework";
+import * as React from "react";
 import { AppUi } from "../AppUi";
+import { AppStatusBarWidget } from "../statusbars/AppStatusBar";
+import { PropertyGridWidget } from "../widgets/PropertyGridWidget";
 import { TableWidget } from "../widgets/TableWidget";
+import { TreeWidget } from "../widgets/TreeWidget";
 
 /**
  * Sample Frontstage for 9-Zone sample application
  */
 export class SampleFrontstage2 extends FrontstageProvider {
-  // ID of the presentation ruleset used by all of the controls; the ruleset
-  // can be found at `assets/presentation_rules/Default.PresentationRuleSet.xml`
-  private _rulesetId = "Default";
-
   // TWo content layouts for content views
   private _contentLayoutDef1: ContentLayoutDef;
   private _contentLayoutDef2: ContentLayoutDef;
@@ -56,8 +29,6 @@ export class SampleFrontstage2 extends FrontstageProvider {
 
   constructor(public viewStates: ViewState[]) {
     super();
-    // Set default Presentation Rule Set Id in Redux store
-    UiFramework.setDefaultRulesetId(this._rulesetId);
 
     // Create the content layouts.
     this._contentLayoutDef1 = new ContentLayoutDef({
@@ -146,7 +117,6 @@ export class SampleFrontstage2 extends FrontstageProvider {
                 iconSpec="icon-table-2" labelKey="NineZoneSample:components.table"
                 applicationData={{
                   iModelConnection: UiFramework.getIModelConnection(),
-                  rulesetId: this._rulesetId,
                 }}
               />,
             ]}
@@ -161,14 +131,12 @@ export class SampleFrontstage2 extends FrontstageProvider {
                 iconSpec="icon-tree" labelKey="NineZoneSample:components.tree"
                 applicationData={{
                   iModelConnection: UiFramework.getIModelConnection(),
-                  rulesetId: this._rulesetId,
                 }}
               />,
               <Widget id="Properties" control={PropertyGridWidget} defaultState={WidgetState.Closed} fillZone={true}
                 iconSpec="icon-properties-list" labelKey="NineZoneSample:components.properties"
                 applicationData={{
                   iModelConnection: UiFramework.getIModelConnection(),
-                  rulesetId: this._rulesetId,
                 }}
                 syncEventIds={[SyncUiEventId.SelectionSetChanged]}
                 stateFunc={this._determineWidgetStateForSelectionSet}

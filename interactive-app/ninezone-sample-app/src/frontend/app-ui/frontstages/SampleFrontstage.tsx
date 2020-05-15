@@ -2,46 +2,23 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import * as React from "react";
-
 import { ViewState } from "@bentley/imodeljs-frontend";
-
 import {
-  ToolWidget,
-  ZoneState,
-  WidgetState,
-  ContentLayoutDef,
-  ContentGroup,
-  FrontstageProvider,
-  Frontstage,
-  Zone,
-  Widget,
-  CoreTools,
-  SyncUiEventId,
-  ContentViewManager,
-  ItemList,
-  CustomItemDef,
-  StagePanel,
-  IModelViewportControl,
-  UiFramework,
-  IModelConnectedViewSelector,
-  IModelConnectedNavigationWidget,
+  ContentGroup, ContentLayoutDef, ContentViewManager, CoreTools, CustomItemDef, Frontstage,
+  FrontstageProvider, IModelConnectedNavigationWidget, IModelConnectedViewSelector, IModelViewportControl,
+  ItemList, StagePanel, SyncUiEventId, ToolWidget, UiFramework, Widget, WidgetState, Zone, ZoneState,
 } from "@bentley/ui-framework";
-
-import { TableContent } from "../contentviews/TableContent";
-import { TreeWidget } from "../widgets/TreeWidget";
-import { PropertyGridWidget } from "../widgets/PropertyGridWidget";
-import { AppStatusBarWidget } from "../statusbars/AppStatusBar";
+import * as React from "react";
 import { AppUi } from "../AppUi";
+import { TableContent } from "../contentviews/TableContent";
+import { AppStatusBarWidget } from "../statusbars/AppStatusBar";
+import { PropertyGridWidget } from "../widgets/PropertyGridWidget";
+import { TreeWidget } from "../widgets/TreeWidget";
 
 /**
  * Sample Frontstage for 9-Zone sample application
  */
 export class SampleFrontstage extends FrontstageProvider {
-  // ID of the presentation ruleset used by all of the controls; the ruleset
-  // can be found at `assets/presentation_rules/Default.PresentationRuleSet.xml`
-  private _rulesetId = "Default";
-
   // Content layout for content views
   private _contentLayoutDef: ContentLayoutDef;
 
@@ -50,8 +27,6 @@ export class SampleFrontstage extends FrontstageProvider {
 
   constructor(public viewStates: ViewState[]) {
     super();
-    // Set default Presentation Rule Set Id in Redux store
-    UiFramework.setDefaultRulesetId(this._rulesetId);
 
     // Create the content layouts.
     this._contentLayoutDef = new ContentLayoutDef({
@@ -72,7 +47,6 @@ export class SampleFrontstage extends FrontstageProvider {
           classId: TableContent,
           applicationData: {
             iModelConnection: UiFramework.getIModelConnection(),
-            rulesetId: this._rulesetId,
           },
         },
       ],
@@ -116,7 +90,6 @@ export class SampleFrontstage extends FrontstageProvider {
                 iconSpec="icon-tree" labelKey="NineZoneSample:components.tree"
                 applicationData={{
                   iModelConnection: UiFramework.getIModelConnection(),
-                  rulesetId: this._rulesetId,
                 }}
               />,
             ]}
@@ -136,7 +109,6 @@ export class SampleFrontstage extends FrontstageProvider {
                 iconSpec="icon-properties-list" labelKey="NineZoneSample:components.properties"
                 applicationData={{
                   iModelConnection: UiFramework.getIModelConnection(),
-                  rulesetId: this._rulesetId,
                 }}
                 syncEventIds={[SyncUiEventId.SelectionSetChanged]}
                 stateFunc={this._determineWidgetStateForSelectionSet}

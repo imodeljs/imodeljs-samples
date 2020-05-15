@@ -3,11 +3,11 @@
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
 
-import * as Puppeteer from "puppeteer";
 import { expect } from "chai";
+import * as Puppeteer from "puppeteer";
+import { Config } from "@bentley/bentleyjs-core";
+import { findByText, signIn } from "../helpers";
 import { page } from "../setupTests";
-import { signIn, findByText } from "../helpers";
-import { Config } from "@bentley/imodeljs-clients";
 
 async function openIModel() {
 
@@ -44,17 +44,7 @@ async function findNode(text: string) {
   return elementHandles[0];
 }
 
-async function findAndExpandNode(text: string) {
-  const nodeHandle = await findNode(text);
-
-  // Expand it
-  const expansionHandle = await nodeHandle.$(`[data-testid="tree-node-expansion-toggle"]`);
-  if (!expansionHandle)
-    throw Error(`Expansion handle for node "${text}" not found!`);
-  await expansionHandle.click();
-}
-
-describe("Content view", () => {
+describe.skip("Content view", () => {
 
   it("renders after loading iModel", async () => {
     await signIn(page);
@@ -81,13 +71,8 @@ describe("Content view", () => {
     expect(async () => page.$(".components-table .components-table-cell")).to.throw;
     expect(async () => page.$(".components-property-grid .components-property-category-block")).to.throw;
 
-    // Expand nodes
-    await findAndExpandNode(Config.App.getString("imjs_test_project"));
-    await findAndExpandNode("BisCore.DictionaryModel");
-    await findAndExpandNode("Line Style");
-
-    // Find and select 'lc1' node
-    const nodeHandle = await findNode("lc1");
+    // Find and select root node
+    const nodeHandle = await findNode(Config.App.getString("imjs_test_project"));
     await nodeHandle.click();
 
     // Wait for table to load
@@ -96,8 +81,8 @@ describe("Content view", () => {
     // Limit search to table
     const tableHandle = await page.$(".components-table");
     expect(tableHandle, "Table wrapper not found!").to.exist;
-    // Find "lc1" in table
-    await findByText(tableHandle!, "lc1");
+    // Find root node's content in table
+    await findByText(tableHandle!, Config.App.getString("imjs_test_project"));
 
     // Expand properties
     await page.waitFor(".uicore-expandable-blocks-block .title");
@@ -108,8 +93,8 @@ describe("Content view", () => {
     // Limit search to properties
     const propertiesHandle = await page.$(".components-property-grid-wrapper");
     expect(propertiesHandle, "Property Pane wrapper not found!").to.exist;
-    // Find "lc1" in properties
-    await findByText(propertiesHandle!, "lc1");
+    // Find root node's content in properties
+    await findByText(propertiesHandle!, Config.App.getString("imjs_test_project"));
   });
 
 });

@@ -2,25 +2,13 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
+import { ActivityCenterField, MessageCenterField, StatusBarWidgetControl, StatusBarWidgetControlArgs, ToolAssistanceField } from "@bentley/ui-framework";
 import * as React from "react";
-
-import {
-  ConfigurableCreateInfo,
-  StatusBarWidgetControl,
-  ActivityCenterField,
-  MessageCenterField,
-  ToolAssistanceField,
-  StatusBarWidgetControlArgs,
-} from "@bentley/ui-framework";
 
 /**
  * Status Bar example widget
  */
 export class AppStatusBarWidget extends StatusBarWidgetControl {
-  constructor(info: ConfigurableCreateInfo, options: any) {
-    super(info, options);
-  }
-
   public getReactNode(controlArgs: StatusBarWidgetControlArgs): React.ReactNode {
     const { isInFooterMode, onOpenWidget, openWidget, toastTargetRef } = controlArgs;
 

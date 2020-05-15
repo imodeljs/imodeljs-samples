@@ -2,11 +2,10 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-
-import { Id64String, Id64Set, Id64 } from "@bentley/bentleyjs-core";
-import { SubCategoryAppearance, CategoryProps, CodeScopeSpec, CodeSpec, ColorDef, IModel, InformationPartitionElementProps, DbResult, IModelVersion } from "@bentley/imodeljs-common";
-import { IModelDb, PhysicalModel, PhysicalElement, PhysicalPartition, SpatialCategory, OpenParams, Element, ECSqlStatement, ConcurrencyControl } from "@bentley/imodeljs-backend";
-import { AuthorizedClientRequestContext } from "@bentley/imodeljs-clients";
+import { Id64, Id64Set, Id64String } from "@bentley/bentleyjs-core";
+import { BriefcaseDb, BriefcaseManager, ConcurrencyControl, ECSqlStatement, Element, IModelDb, PhysicalElement, PhysicalModel, PhysicalPartition, SpatialCategory } from "@bentley/imodeljs-backend";
+import { AuthorizedClientRequestContext } from "@bentley/itwin-client";
+import { BriefcaseProps, CategoryProps, CodeScopeSpec, CodeSpec, ColorDef, DbResult, DownloadBriefcaseOptions, IModel, IModelVersion, InformationPartitionElementProps, SubCategoryAppearance, SyncMode } from "@bentley/imodeljs-common";
 import * as crypto from "crypto";
 
 /** Injectable handles for opening IModels andStatic functions to create Models, CodeSecs, Categories, Category Selector, Styles, and View Definitions */
@@ -14,12 +13,14 @@ export class IModelDbHandler {
   public constructor() { }
 
   public async openLatestIModelDb(authContext: AuthorizedClientRequestContext, projectId: string, iModelId: string,
-    openParams: OpenParams = OpenParams.pullAndPush(), iModelVersion: IModelVersion = IModelVersion.latest()): Promise<IModelDb> {
-    const briefcase = await IModelDb.open(authContext, projectId!, iModelId!, openParams, iModelVersion);
+    downloadOptions: DownloadBriefcaseOptions = { syncMode: SyncMode.PullAndPush }, iModelVersion: IModelVersion = IModelVersion.latest()): Promise<BriefcaseDb> {
+    const briefcaseProps: BriefcaseProps = await BriefcaseManager.download(authContext, projectId!, iModelId!, downloadOptions, iModelVersion);
+    authContext.enter();
+    const briefcase = await BriefcaseDb.open(authContext, briefcaseProps.key);
     briefcase.concurrencyControl.setPolicy(new ConcurrencyControl.OptimisticPolicy());
     return briefcase;
   }
-  public async deletePhysModelElements(iModelDb: IModelDb, modelId: Id64String, authContext: AuthorizedClientRequestContext): Promise<boolean> {
+  public async deletePhysModelElements(iModelDb: BriefcaseDb, modelId: Id64String, authContext: AuthorizedClientRequestContext): Promise<boolean> {
     const elements = this.getPhysElementsFromModel(iModelDb, modelId);
     for (const element of elements) {
       iModelDb.elements.deleteElement(element.id);
@@ -95,7 +96,7 @@ export class IModelDbHandler {
     };
     const categoryId: Id64String = iModelDb.elements.insertElement(categoryProps);
     const category: SpatialCategory = iModelDb.elements.getElement(categoryId) as SpatialCategory;
-    category.setDefaultAppearance(new SubCategoryAppearance({ color }));
+    category.setDefaultAppearance(new SubCategoryAppearance({ color: color.toJSON() }));
     iModelDb.elements.updateElement(category);
     return categoryId;
   }

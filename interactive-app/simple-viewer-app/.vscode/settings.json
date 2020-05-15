@@ -8,8 +8,6 @@
     "*.snap": "javascript"
   },
   "files.exclude": {
-    "**/lib/**": true,
-    "**/node_modules/**": true,
     "**/*.TileCache*": true,
   },
   "files.insertFinalNewline": true,
