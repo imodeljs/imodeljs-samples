@@ -28,9 +28,9 @@ Each of the samples are self-contained and, as such, can be copied out of the cl
 
 4. [tools](#sample-tools)
 
-    A collection of tools.
+    A collection of tools that assist in the creation of these samples or provide value to testing the samples.
 
-To run these samples, you need to first get the [required tools](https://imodeljs.github.io/iModelJs-docs-output/getting-started/#1-get-the-tools) and ensure you have _Node.js 10.x LTS_ installed on your machine.
+To run these samples, you need to first get the [required tools](https://imodeljs.org/getting-started/#1-get-the-tools) and ensure you have _Node.js 12.x LTS_ installed on your machine.
 
 ## Prerequisites
 
@@ -46,15 +46,15 @@ To run these samples, you need to first get the [required tools](https://imodelj
 
 1. [Query Agent](./agent-app/query-agent/README.md)
 
-    Provides an example of an [agent](https://imodeljs.github.io/iModelJs-docs-output//learning/app/#imodel-agents) that illustrates use of the iModel.js API to listen and query changes made to iModels on the iModelHub. A separate optional [imodel-changeset-test-utility](./tools/imodel-changeset-test-utility/README.md) can be used to generate sample change sets that can then be consumed by this sample.
+    Provides an example of an [agent](https://imodeljs.org/learning/app/#imodel-agents) that illustrates use of the iModel.js API to listen and query changes made to iModels on the iModelHub. A separate optional [imodel-changeset-test-utility](./tools/imodel-changeset-test-utility/README.md) can be used to generate sample change sets that can then be consumed by this sample.
 
 ### Agent Development Setup
 
-1. (Optional) Create a sample project using the procedure at [Developer Registration](https://imodeljs.github.io/iModelJs-docs-output/getting-started/registration-dashboard/?tab=1).  This step is not needed if you already have a project to test with.
+1. (Optional) Create a sample project using the procedure at [Developer Registration](https://imodeljs.org/getting-started/registration-dashboard/?tab=1).  This step is not needed if you already have a project to test with.
 
-2. (Required) Register your application at [Developer Registration](https://imodeljs.github.io/iModelJs-docs-output/getting-started/registration-dashboard/?tab=0). Select "Agent" from the app type dropdown. For more information, see the section on [authorization](https://imodeljs.github.io/iModelJs-docs-output/learning/common/accesstoken/).
+2. (Required) Register your application at [Developer Registration](https://www.imodeljs.org/getting-started/registration-dashboard?tab=0&create=AGENT_APP). For more information, see the section on [authorization](https://imodeljs.org/learning/common/accesstoken/).
 
-3. (Required) Add your agent's identity email as a project participant on your project. Edit your [sample project](https://imodeljs.github.io/iModelJs-docs-output/getting-started/registration-dashboard/?tab=1) and add {client_id}@apps.imsoidc.bentley.com as a project particpant. If adding the user does not work at first, please wait a few minutes. The identity user is being created in the background, this can take up to ten minutes.
+3. (Required) Add your agent's identity email as a project participant on your project. Edit your [sample project](https://imodeljs.org/getting-started/registration-dashboard/?tab=1) and add `{client_id}@apps.imsoidc.bentley.com` as a project participant. If adding the user does not work at first, please wait a few minutes. The identity user is being created in the background, this can take up to ten minutes.
 
 4. Configure your app using the values you obtained from the registration process. In the agent-app subfolder, edit the configuration values in src/QueryAgentConfig.ts.
 
@@ -78,17 +78,17 @@ To run these samples, you need to first get the [required tools](https://imodelj
 
 ### Interactive App Development Setup
 
-1. (Optional) Create a sample project using the procedure at [Developer Registration](https://imodeljs.github.io/iModelJs-docs-output/getting-started/#developer-registration).  This step is not needed if you already have a project to test with.
+1. (Optional) Create a sample project using the procedure at [Developer Registration](https://www.imodeljs.org/getting-started/registration-dashboard/?tab=1).  This step is not needed if you already have a project to test with.
 
-2. (Recommended) Register your application at [Developer Registration](https://imodeljs.github.io/iModelJs-docs-output/getting-started/#developer-registration).
+2. (Recommended) Register your application at [Developer Registration](https://www.imodeljs.org/getting-started/registration-dashboard/?tab=0).
 
     For the purpose of running a sample on localhost, ensure your *SPA* app registration includes http://localhost:3000/signin-callback as a valid redirect URI. The client ID should start with spa-.
 
     If you would like to run a sample in Electron, create a *Desktop* app registration with http://localhost:3000/signin-callback as a valid redirect URI. The client ID should start with native-.
 
-    Note: If you are just testing on localhost you can use the default registration included in the sample. However, it's recommended that you complete the registration, especially since registration is a requirement before the application can be deployed. For more information, see the section on [authorization](https://imodeljs.github.io/iModelJs-docs-output/learning/common/accesstoken/).
+    Note: If you are just testing on localhost you can use the default registration included in the sample. However, it's recommended that you complete the registration, especially since registration is a requirement before the application can be deployed. For more information, see the section on [authorization](https://imodeljs.org/learning/common/accesstoken/).
 
-3. Configure your app using the value you obtained from the registration process.  In the interactive-app subfolder, edit src/common/config.json and src/common/configuration.ts.
+3. Configure your app using the values you obtained from the registration process.  In the interactive-app subfolder, edit the `.env.local` file.
 
 4. Follow the [steps](#building-samples) to build the samples.
 
@@ -100,6 +100,7 @@ To run these samples, you need to first get the [required tools](https://imodelj
     ```
 
     b. Electron App
+
      ```sh
      npm run start:electron
      ```
@@ -130,7 +131,7 @@ To run these samples, you need to first get the [required tools](https://imodelj
 
 ### Frontend Sample Development Setup
 
-1. (Optional) Create a sample project using the procedure at [Developer Registration](https://imodeljs.github.io/iModelJs-docs-output/getting-started/#developer-registration).  This step is not needed if you already have a project to test with.
+1. (Optional) Create a sample project using the procedure at [Developer Registration](https://imodeljs.org/getting-started/#developer-registration).  This step is not needed if you already have a project to test with.
 
 2. Configure your app using the value you obtained from the registration process.  In the specific sample subfolder, edit src/config.json to refer to the project.
 
@@ -143,7 +144,7 @@ To run these samples, you need to first get the [required tools](https://imodelj
     npm run start
     ```
 
-6. Open a web browser (e.g., Chrome or Edge), and browse to localhost:3000.
+5. Open a web browser (e.g., Chrome or Edge), and browse to localhost:3000.
 
 ## Sample Tools
 
@@ -162,7 +163,7 @@ Follow the [steps](#building-samples) to build the samples.
 1. Install the dependencies
 
     ```sh
-    node ./common/scripts/install-run-rush update
+    node ./common/scripts/install-run-rush install
     ```
 
 2. Build a single application (replace app-name):

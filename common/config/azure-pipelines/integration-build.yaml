@@ -2,7 +2,7 @@ jobs:
   - job:
     condition: succeeded()
     strategy:
-      maxParallel: 2
+      maxParallel: 1
       matrix:
         'GP-Backend - MacOS':
           imjs_backend: 1
