@@ -5,12 +5,14 @@ jobs:
   - job:
     condition: succeeded()
     strategy:
-      maxParallel: 2
+      maxParallel: 3
       matrix:
         'Windows':
           os: vs2017-win2016
         'Linux':
           os: ubuntu-18.04
+        'Mac':
+          os: macOS-latest
     pool:
       vmImage: $(os)
     steps:

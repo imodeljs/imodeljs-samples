@@ -1,3 +1,6 @@
+trigger:
+  - master
+
 jobs:
   - job:
     condition: succeeded()
@@ -10,6 +13,7 @@ jobs:
         'Local-Backend - MacOS':
           imjs_backend: 0
           os: macOS-latest
+
     pool:
       vmImage: $(os)
     steps:

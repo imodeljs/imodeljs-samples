@@ -198,6 +198,7 @@ The integration tests require all configuration variables to be set either in ea
 | - | - |
 | imjs_agent_client_id | The OIDC client id for an agent.  Used for the iModel Changeset Utility |
 | imjs_agent_client_secret | The OIDC client secret for the above agent_client_id.  Used for the iModel Changeset Utility |
+| imjs_agent_scope | The OIDC scopes for the above agent_client_id.  Used for the iModel Changeset Utility |
 | imjs_agent_project_name | A CONNECT Project the above client ID is member of.  Defaults to the iModel name if not set. |
 | imjs_agent_imodel_name | The iModel in the above Project to use for tests.  When using a project created through the developer registration dashboard, the iModel name is the same as the project name |
 
