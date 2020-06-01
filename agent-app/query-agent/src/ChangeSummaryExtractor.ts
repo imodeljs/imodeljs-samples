@@ -4,16 +4,18 @@
 *--------------------------------------------------------------------------------------------*/
 import { assert, DbResult, Id64String, Logger } from "@bentley/bentleyjs-core";
 import { BriefcaseDb, ChangeSummary, ChangeSummaryManager, ECSqlStatement } from "@bentley/imodeljs-backend";
-import { AccessToken, AuthorizedClientRequestContext } from "@bentley/itwin-client";
 import { ChangedValueState, ChangeOpCode } from "@bentley/imodeljs-common";
+import { AuthorizedClientRequestContext } from "@bentley/itwin-client";
+
 import { QueryAgentConfig } from "./QueryAgentConfig";
 
 export class ChangeSummaryExtractor {
-  public async extractChangeSummary(accessToken: AccessToken, iModelDb: BriefcaseDb, changeSetId: string) {
+  public async extractChangeSummary(requestContext: AuthorizedClientRequestContext, iModelDb: BriefcaseDb, changeSetId: string) {
+    requestContext.enter();
+
     try {
-      const authLogCtx = new AuthorizedClientRequestContext(accessToken);
       // Extract summary information about the current version of the briefcase/iModel into the change cache
-      const changeSummaryIds: Id64String[] = await ChangeSummaryManager.extractChangeSummaries(authLogCtx, iModelDb, { currentVersionOnly: true });
+      const changeSummaryIds: Id64String[] = await ChangeSummaryManager.extractChangeSummaries(requestContext, iModelDb, { currentVersionOnly: true });
       Logger.logTrace(QueryAgentConfig.loggingCategory, `Extracted summary information from change set "${changeSetId}"`);
 
       // Attach a change cache file to the iModel to enable querying the change summary

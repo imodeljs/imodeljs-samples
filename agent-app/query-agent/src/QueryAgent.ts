@@ -2,29 +2,24 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import * as fs from "fs";
-import * as path from "path";
-
-import { ClientRequestContext, Logger } from "@bentley/bentleyjs-core";
+import { AgentAuthorizationClient, AzureFileHandler, RequestHost } from "@bentley/backend-itwin-client";
+import { Logger } from "@bentley/bentleyjs-core";
 import { ContextRegistryClient } from "@bentley/context-registry-client";
 import { ChangeSetPostPushEvent, IModelHubClient, IModelQuery, NamedVersionCreatedEvent } from "@bentley/imodelhub-client";
-import { BriefcaseDb, BriefcaseManager, IModelHost, IModelHostConfiguration } from "@bentley/imodeljs-backend";
-import { AgentAuthorizationClient, AzureFileHandler, RequestHost } from "@bentley/backend-itwin-client";
+import { AuthorizedBackendRequestContext, BriefcaseDb, BriefcaseManager, IModelHost, IModelHostConfiguration } from "@bentley/imodeljs-backend";
 import { ChangeOpCode } from "@bentley/imodeljs-common";
-import { AccessToken, AuthorizedClientRequestContext } from "@bentley/itwin-client";
-
+import { AuthorizedClientRequestContext } from "@bentley/itwin-client";
+import * as fs from "fs";
+import * as path from "path";
 import { BriefcaseProvider } from "./BriefcaseProvider";
 import { ChangeSummaryExtractor } from "./ChangeSummaryExtractor";
 import { QueryAgentConfig } from "./QueryAgentConfig";
-
-const actx = new ClientRequestContext("");
 
 /** Sleep for ms */
 const pause = async (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /** Agent for querying changesets. Contains backend iModelJs engine. */
 export class QueryAgent {
-  private _accessToken?: AccessToken;
   private _projectId?: string;
   private _iModelId?: string;
   private _iModelDb?: BriefcaseDb;
@@ -33,15 +28,7 @@ export class QueryAgent {
     private _hubClient: IModelHubClient = new IModelHubClient(new AzureFileHandler()),
     private _connectClient: ContextRegistryClient = new ContextRegistryClient(),
     private _briefcaseProvider: BriefcaseProvider = new BriefcaseProvider(),
-    private _changeSummaryExtractor: ChangeSummaryExtractor = new ChangeSummaryExtractor(),
-    private _oidcClient?: AgentAuthorizationClient) { }
-
-  private async _login(): Promise<AccessToken> {
-    Logger.logTrace(QueryAgentConfig.loggingCategory, `Getting JWT access token`);
-    const jwt: AccessToken = await this._oidcClient!.getAccessToken(actx);
-    Logger.logTrace(QueryAgentConfig.loggingCategory, `Got JWT access token`);
-    return jwt;
-  }
+    private _changeSummaryExtractor: ChangeSummaryExtractor = new ChangeSummaryExtractor()) { }
 
   public async run(listenFor?: number/*ms*/): Promise<void> {
     return this.listenForAndHandleChangesets(listenFor === undefined ? QueryAgentConfig.listenTime : listenFor );
@@ -51,19 +38,22 @@ export class QueryAgent {
   public async listenForAndHandleChangesets(listenFor: number/*ms*/) {
     // Subscribe to change set and named version events
     Logger.logTrace(QueryAgentConfig.loggingCategory, "Setting up changeset and named version listeners...");
-    const authCtx = new AuthorizedClientRequestContext(this._accessToken!);
-    const changeSetSubscription = await this._hubClient!.events.subscriptions.create(authCtx, this._iModelId!, ["ChangeSetPostPushEvent"]);
-    const deleteChangeSetListener = this._hubClient!.events.createListener(authCtx, async () => this._accessToken!, changeSetSubscription!.wsgId, this._iModelId!,
+    const requestContext = await AuthorizedBackendRequestContext.create();
+    requestContext.enter();
+
+    const changeSetSubscription = await this._hubClient!.events.subscriptions.create(requestContext, this._iModelId!, ["ChangeSetPostPushEvent"]);
+    const deleteChangeSetListener = this._hubClient!.events.createListener(requestContext, IModelHost.getAccessToken, changeSetSubscription!.wsgId, this._iModelId!,
       async (receivedEvent: ChangeSetPostPushEvent) => {
         Logger.logTrace(QueryAgentConfig.loggingCategory, `Received notification that change set "${receivedEvent.changeSetId}" was just posted on the Hub`);
         try {
-          await this._extractChangeSummary(receivedEvent.changeSetId!);
+          const locRequestContext = await AuthorizedBackendRequestContext.create(); // Refresh the authorization context just before extracting every change summary, in case it expires in between
+          await this._extractChangeSummary(locRequestContext, receivedEvent.changeSetId!);
         } catch (error) {
           Logger.logError(QueryAgentConfig.loggingCategory, `Unable to extract changeset: ${receivedEvent.changeSetId}, failed with ${error}`);
         }
       });
-    const namedVersionSubscription = await this._hubClient!.events.subscriptions.create(authCtx, this._iModelId!, ["VersionEvent"]);
-    const deleteNamedVersionListener = this._hubClient!.events.createListener(authCtx, async () => this._accessToken!, namedVersionSubscription!.wsgId, this._iModelId!,
+    const namedVersionSubscription = await this._hubClient!.events.subscriptions.create(requestContext, this._iModelId!, ["VersionEvent"]);
+    const deleteNamedVersionListener = this._hubClient!.events.createListener(requestContext, IModelHost.getAccessToken, namedVersionSubscription!.wsgId, this._iModelId!,
       async (receivedEvent: NamedVersionCreatedEvent) => {
         Logger.logTrace(QueryAgentConfig.loggingCategory, `Received notification that named version "${receivedEvent.versionName}" was just created on the Hub`);
       });
@@ -74,7 +64,7 @@ export class QueryAgent {
 
     if (this._iModelDb && this._iModelDb.isOpen) {
       this._iModelDb.close();
-      await BriefcaseManager.delete(authCtx, this._iModelDb.briefcaseKey);
+      await BriefcaseManager.delete(requestContext, this._iModelDb.briefcaseKey);
     }
     // Unsubscribe from events (if necessary)
     if (deleteChangeSetListener)
@@ -92,8 +82,8 @@ export class QueryAgent {
     await RequestHost.initialize();
 
     // Following must be done before calling any API in imodeljs
-    if (!this._oidcClient)
-      this._oidcClient = new AgentAuthorizationClient(QueryAgentConfig.oidcAgentClientConfiguration);
+    if (!IModelHost.authorizationClient)
+      IModelHost.authorizationClient = new AgentAuthorizationClient(QueryAgentConfig.oidcAgentClientConfiguration);
 
     // Startup IModel Host if we need to
     const configuration = new IModelHostConfiguration();
@@ -103,17 +93,18 @@ export class QueryAgent {
     try {
       // Initialize (cleanup) output directory
       this._initializeOutputDirectory();
-      this._accessToken = await this._login();
       Logger.logTrace(QueryAgentConfig.loggingCategory, `Attempting to find Ids for iModel and Project`);
       let projectId, iModelId: string | undefined;
-      const authCtx = new AuthorizedClientRequestContext(this._accessToken!);
+      const requestContext = await AuthorizedBackendRequestContext.create();
+      requestContext.enter();
+
       try {
-        projectId = (await this._connectClient.getProject(authCtx, {
+        projectId = (await this._connectClient.getProject(requestContext, {
           $select: "*",
           $filter: "Name+eq+'" + QueryAgentConfig.projectName + "'",
         }))!.wsgId;
         Logger.logTrace(QueryAgentConfig.loggingCategory, `Project ${QueryAgentConfig.projectName} has id: ${projectId}`);
-        const iModels = await this._hubClient.iModels.get(authCtx, projectId, new IModelQuery().byName(QueryAgentConfig.iModelName));
+        const iModels = await this._hubClient.iModels.get(requestContext, projectId, new IModelQuery().byName(QueryAgentConfig.iModelName));
         if (iModels.length === 1)
           iModelId = iModels[0].wsgId;
       } catch (error) {
@@ -134,9 +125,15 @@ export class QueryAgent {
   }
 
   /** Extract a summary of information in the change set - who changed it, when it was changed, what was changed, how it was changed, and write it to a JSON file */
-  private async _extractChangeSummary(changeSetId: string) {
-    this._iModelDb = await this._briefcaseProvider.getBriefcase(this._accessToken!, this._projectId!, this._iModelId!, changeSetId);
-    const changeContent = await this._changeSummaryExtractor.extractChangeSummary(this._accessToken!, this._iModelDb!, changeSetId);
+  private async _extractChangeSummary(requestContext: AuthorizedClientRequestContext, changeSetId: string) {
+    requestContext.enter();
+
+    this._iModelDb = await this._briefcaseProvider.getBriefcase(requestContext, this._projectId!, this._iModelId!, changeSetId);
+    requestContext.enter();
+
+    const changeContent = await this._changeSummaryExtractor.extractChangeSummary(requestContext, this._iModelDb!, changeSetId);
+    requestContext.enter();
+
     // Write the change summary contents as JSON
     this._writeChangeSummaryToDisk(changeContent);
     return changeContent;
