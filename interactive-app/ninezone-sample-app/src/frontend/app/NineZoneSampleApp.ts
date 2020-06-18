@@ -96,7 +96,7 @@ export class NineZoneSampleApp {
   }
 
   private static async getConnectionInfo(): Promise<BentleyCloudRpcParams | undefined> {
-    const usedBackend = Config.App.get("imjs_backend", UseBackend.Local);
+    const usedBackend = Config.App.getNumber("imjs_backend", UseBackend.Local);
 
     if (usedBackend === UseBackend.GeneralPurpose) {
       const urlClient = new UrlDiscoveryClient();
