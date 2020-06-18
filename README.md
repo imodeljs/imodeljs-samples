@@ -8,7 +8,7 @@ If you have questions, or wish to contribute to the iModel.js samples, see our [
 
 ## Overview of Repo
 
-[![Build Status](https://dev.azure.com/imodeljs/imodeljs/_apis/build/status/iModel.js%20Samples?branchName=master)](https://dev.azure.com/imodeljs/imodeljs/_build/latest?definitionId=5&branchName=master)
+[![Build Status](https://dev.azure.com/imodeljs/imodeljs/_apis/build/status/iModel.js%20Samples?branchName=master)](https://dev.azure.com/imodeljs/imodeljs/_build/latest?definitionId=8&branchName=master)
 
 This GitHub repo contains a (growing) collection of sample apps that demonstrate various implementations using iModel.js.  To handle managing and building all of the samples, it is built using [Rush](http://rushjs.io/).
 
