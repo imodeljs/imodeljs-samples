@@ -139,77 +139,6 @@
       "internalConsoleOptions": "neverOpen"
     },
     {
-      "name": "--------Frontend Samples--------"
-    },
-    {
-      "name": "Frontend Sample Browser",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/frontend-samples/${input:frontend-sample}/node_modules/@bentley/react-scripts/scripts/start.js",
-      "cwd": "${workspaceFolder}/frontend-samples/${input:frontend-sample}",
-      "smartStep": true,
-      "env": {
-        "USE_FULL_SOURCEMAPS": "true",
-        "USE_FAST_SASS": "true"
-      },
-      "serverReadyAction": {
-        "pattern": "listening on http:localHost:([0-9]+)",
-        "uriFormat": "http://localhost:%s",
-        "action": "debugWithChrome"
-      }
-    },
-    {
-      "name": "Heatmap Decorator Sample Browser (frontend)",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/frontend-samples/heatmap-decorator-sample/node_modules/@bentley/react-scripts/scripts/start.js",
-      "cwd": "${workspaceFolder}/frontend-samples/heatmap-decorator-sample",
-      "smartStep": true,
-      "env": {
-        "USE_FULL_SOURCEMAPS": "true",
-        "USE_FAST_SASS": "true"
-      },
-      "serverReadyAction": {
-        "pattern": "listening on http:localHost:([0-9]+)",
-        "uriFormat": "http://localhost:%s",
-        "action": "debugWithChrome"
-      }
-    },
-    {
-      "name": "Tooltip Customize Sample Browser (frontend)",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/frontend-samples/tooltip-customize-sample/node_modules/@bentley/react-scripts/scripts/start.js",
-      "cwd": "${workspaceFolder}/frontend-samples/tooltip-customize-sample",
-      "smartStep": true,
-      "env": {
-        "USE_FULL_SOURCEMAPS": "true",
-        "USE_FAST_SASS": "true"
-      },
-      "serverReadyAction": {
-        "pattern": "listening on http:localHost:([0-9]+)",
-        "uriFormat": "http://localhost:%s",
-        "action": "debugWithChrome"
-      }
-    },
-    {
-      "name": "Viewer Only Sample Browser (frontend)",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/frontend-samples/viewer-only-sample/node_modules/@bentley/react-scripts/scripts/start.js",
-      "cwd": "${workspaceFolder}/frontend-samples/viewer-only-sample",
-      "smartStep": true,
-      "env": {
-        "USE_FULL_SOURCEMAPS": "true",
-        "USE_FAST_SASS": "true"
-      },
-      "serverReadyAction": {
-        "pattern": "listening on http:localHost:([0-9]+)",
-        "uriFormat": "http://localhost:%s",
-        "action": "debugWithChrome"
-      }
-    },
-    {
       "name": "--------Basic ViewPort--------"
     },
     {
@@ -338,11 +267,10 @@
         "<node_internals>/**"
       ],
       "type": "pwa-node"
-    },
-
-    {
+    }
   ],
-  "compounds": [{
+  "compounds": [
+    {
       "name": "Basic ViewPort App Browser (frontend + backend)",
       "configurations": [
         "Basic ViewPort App Browser (backend)",
@@ -370,24 +298,5 @@
         "Simple Viewer App Electron (frontend)"
       ]
     },
-  ],
-  "inputs": [
-    {
-      "id": "frontend-sample",
-      "description": "Select the frontend sample",
-      "type": "pickString",
-      "default": "viewer-only-sample",
-      "options": [
-        "emphasize-elements-sample",
-        "heatmap-decorator-sample",
-        "marker-pin-sample",
-        "tooltip-customize-sample",
-        "view-attributes-sample",
-        "view-clip-sample",
-        "viewer-only-2d-sample",
-        "viewer-only-sample",
-        "zoom-to-elements-sample"
-      ]
-    }
   ]
 }

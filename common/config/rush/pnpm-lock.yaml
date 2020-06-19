@@ -6,7 +6,6 @@ dependencies:
   '@bentley/ecschema-metadata': 2.2.0_60f91386dc0c5f5247de258a58865e92
   '@bentley/electron-manager': 2.2.0_baae985f746e48e1ccfb2563c80c8c0f
   '@bentley/express-server': 2.2.0
-  '@bentley/extension-client': 2.2.0_283e4705a8fc75999a3239fbbc7d0067
   '@bentley/frontend-authorization-client': 2.2.0_6f1b9319c6bff250b4992e3026c76aac
   '@bentley/geometry-core': 2.2.0_@bentley+bentleyjs-core@2.2.0
   '@bentley/icons-generic-webfont': 1.0.13
@@ -32,21 +31,11 @@ dependencies:
   '@bentley/ui-framework': 2.2.0_2ddd4abb5282177ab13d8c6092079045
   '@bentley/ui-ninezone': 2.2.0_aa16546fbe23b7c2f80e5f64001c8aa0
   '@bentley/webgl-compatibility': 2.2.0
-  '@rush-temp/basic-viewport-app': 'file:projects/basic-viewport-app.tgz_567fd52238a9d118c3853e465496386e'
-  '@rush-temp/emphasize-elements-sample': 'file:projects/emphasize-elements-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e'
-  '@rush-temp/frontend-sample-base': 'file:projects/frontend-sample-base.tgz_f649b9a253dd39e2cbc1ecbfebcc4387'
-  '@rush-temp/heatmap-decorator-sample': 'file:projects/heatmap-decorator-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e'
+  '@rush-temp/basic-viewport-app': 'file:projects/basic-viewport-app.tgz'
   '@rush-temp/imodel-changeset-test-utility': 'file:projects/imodel-changeset-test-utility.tgz_958235ebe1cbec6e71d182f8c93f5560'
   '@rush-temp/imodel-query-agent': 'file:projects/imodel-query-agent.tgz_958235ebe1cbec6e71d182f8c93f5560'
-  '@rush-temp/marker-pin-sample': 'file:projects/marker-pin-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e'
-  '@rush-temp/ninezone-sample-app': 'file:projects/ninezone-sample-app.tgz_b9576972a7271685cee6cfbf15e56647'
-  '@rush-temp/simple-viewer-app': 'file:projects/simple-viewer-app.tgz_567fd52238a9d118c3853e465496386e'
-  '@rush-temp/tooltip-customize-sample': 'file:projects/tooltip-customize-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e'
-  '@rush-temp/view-attributes-sample': 'file:projects/view-attributes-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e'
-  '@rush-temp/view-clip-sample': 'file:projects/view-clip-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e'
-  '@rush-temp/viewer-only-2d-sample': 'file:projects/viewer-only-2d-sample.tgz_15b61a378910e02fbe50d37c43c94f49'
-  '@rush-temp/viewer-only-sample': 'file:projects/viewer-only-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e'
-  '@rush-temp/zoom-to-elements-sample': 'file:projects/zoom-to-elements-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e'
+  '@rush-temp/ninezone-sample-app': 'file:projects/ninezone-sample-app.tgz'
+  '@rush-temp/simple-viewer-app': 'file:projects/simple-viewer-app.tgz'
   '@testing-library/dom': 5.6.1
   '@testing-library/react': 8.0.9_react-dom@16.13.1+react@16.13.1
   '@types/body-parser': 1.19.0
@@ -68,7 +57,6 @@ dependencies:
   chai: 4.2.0
   chai-jest-snapshot: 2.0.0_chai@4.2.0
   chromedriver: 75.1.0
-  cpx: 1.5.0
   cross-env: 5.2.1
   debug: 3.2.6
   electron: 8.3.3
@@ -86,8 +74,6 @@ dependencies:
   path: 0.12.7
   puppeteer: 2.1.0
   react: 16.13.1
-  react-dnd: 5.0.0_react@16.13.1
-  react-dnd-html5-backend: 5.0.1
   react-dom: 16.13.1_react@16.13.1
   react-redux: 7.2.0_react@16.13.1+redux@4.0.5
   react-resize-detector: 3.4.0_react@16.13.1
@@ -97,7 +83,6 @@ dependencies:
   source-map-support: 0.5.19
   spectron: 10.0.1
   start-server-and-test: 1.11.0
-  tooltip.js: 1.3.3
   ts-node: 7.0.1
   tslint: 5.20.1_typescript@3.7.5
   tslint-react-hooks: 2.2.2_tslint@5.20.1+typescript@3.7.5
@@ -3100,7 +3085,7 @@ packages:
       '@typescript-eslint/experimental-utils': 2.22.0_eslint@6.8.0+typescript@3.7.5
       '@typescript-eslint/typescript-estree': 2.22.0_typescript@3.7.5
       eslint: 6.8.0
-      eslint-visitor-keys: 1.2.0
+      eslint-visitor-keys: 1.3.0
     dev: false
     engines:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
@@ -3118,7 +3103,7 @@ packages:
       '@typescript-eslint/experimental-utils': 2.34.0_eslint@6.8.0+typescript@3.7.5
       '@typescript-eslint/typescript-estree': 2.34.0_typescript@3.7.5
       eslint: 6.8.0
-      eslint-visitor-keys: 1.2.0
+      eslint-visitor-keys: 1.3.0
     dev: false
     engines:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
@@ -3133,7 +3118,7 @@ packages:
   /@typescript-eslint/typescript-estree/2.22.0_typescript@3.7.5:
     dependencies:
       debug: 4.1.1
-      eslint-visitor-keys: 1.2.0
+      eslint-visitor-keys: 1.3.0
       glob: 7.1.6
       is-glob: 4.0.1
       lodash: 4.17.15
@@ -3152,7 +3137,7 @@ packages:
   /@typescript-eslint/typescript-estree/2.34.0_typescript@3.7.5:
     dependencies:
       debug: 4.1.1
-      eslint-visitor-keys: 1.2.0
+      eslint-visitor-keys: 1.3.0
       glob: 7.1.6
       is-glob: 4.0.1
       lodash: 4.17.15
@@ -3857,7 +3842,7 @@ packages:
       '@babel/traverse': 7.10.1
       '@babel/types': 7.10.2
       eslint: 6.8.0
-      eslint-visitor-keys: 1.2.0
+      eslint-visitor-keys: 1.3.0
       resolve: 1.15.0
     dev: false
     engines:
@@ -6603,7 +6588,7 @@ packages:
       integrity: sha512-iiGRvtxWqgtx5m8EyQUJihBloE4EnYeGE/bz1wSPwJE6tZuJUtHlhqDM4Xj2ukE8Dyy1+HCZ4hE0fzIVMzb58w==
   /eslint-utils/1.4.3:
     dependencies:
-      eslint-visitor-keys: 1.2.0
+      eslint-visitor-keys: 1.3.0
     dev: false
     engines:
       node: '>=6'
@@ -6611,18 +6596,18 @@ packages:
       integrity: sha512-fbBN5W2xdY45KulGXmLHZ3c3FHfVYmKg0IrAKGOkT/464PQsx2UeIzfz1RmEci+KLm1bBaAzZAh8+/E+XAeZ8Q==
   /eslint-utils/2.1.0:
     dependencies:
-      eslint-visitor-keys: 1.2.0
+      eslint-visitor-keys: 1.3.0
     dev: false
     engines:
       node: '>=6'
     resolution:
       integrity: sha512-w94dQYoauyvlDc43XnGB8lU3Zt713vNChgt4EWwhXAP2XkBvndfxF0AgIqKOOasjPIPzj9JqgwkwbCYD0/V3Zg==
-  /eslint-visitor-keys/1.2.0:
+  /eslint-visitor-keys/1.3.0:
     dev: false
     engines:
       node: '>=4'
     resolution:
-      integrity: sha512-WFb4ihckKil6hu3Dp798xdzSfddwKKU3+nGniKF6HfeW6OLd2OUDEPP7TcHtB5+QXOKg2s6B2DaMPE1Nn/kxKQ==
+      integrity: sha512-6J72N8UNa462wa/KFODt/PJ3IU60SDpC3QXC1Hjc1BXXpfL2C9R5+AU7jhe0F6GREqVMh4Juu+NY7xn+6dipUQ==
   /eslint/6.8.0:
     dependencies:
       '@babel/code-frame': 7.10.1
@@ -6633,7 +6618,7 @@ packages:
       doctrine: 3.0.0
       eslint-scope: 5.1.0
       eslint-utils: 1.4.3
-      eslint-visitor-keys: 1.2.0
+      eslint-visitor-keys: 1.3.0
       espree: 6.2.1
       esquery: 1.3.1
       esutils: 2.0.3
@@ -6672,7 +6657,7 @@ packages:
     dependencies:
       acorn: 7.3.1
       acorn-jsx: 5.2.0_acorn@7.3.1
-      eslint-visitor-keys: 1.2.0
+      eslint-visitor-keys: 1.3.0
     dev: false
     engines:
       node: '>=6.0.0'
@@ -12111,11 +12096,6 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-7Wjy+9E3WwLOEL30D+m8TSTF7qJJUJLONBnwQp0518siuMxUQUbgZwssaFX+QKlZkjHZcw/IpZCt/H0srrntSg==
-  /popper.js/1.16.1:
-    deprecated: 'You can find the new Popper v2 at @popperjs/core, this package is dedicated to the legacy v1'
-    dev: false
-    resolution:
-      integrity: sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
   /portfinder/1.0.26:
     dependencies:
       async: 2.6.3
@@ -15601,13 +15581,6 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
-  /tooltip.js/1.3.3:
-    dependencies:
-      popper.js: 1.16.1
-    deprecated: 'Tooltip.js is not supported anymore, please migrate to tippy.js'
-    dev: false
-    resolution:
-      integrity: sha512-XWWuy/dBdF/F/YpRE955yqBZ4VdLfiTAUdOqoU+wJm6phJlMpEzl/iYHZ+qJswbeT9VG822bNfsETF9wzmoy5A==
   /toposort/1.0.7:
     dev: false
     resolution:
@@ -17083,12 +17056,13 @@ packages:
       node: '>= 0.10.0'
     resolution:
       integrity: sha1-qLxF9MG0lpnGuQGYuqyqzbzUugQ=
-  'file:projects/basic-viewport-app.tgz_567fd52238a9d118c3853e465496386e':
+  'file:projects/basic-viewport-app.tgz':
     dependencies:
       '@bentley/backend-itwin-client': 2.2.0_112946c9ade95385f1db298372fbba28
       '@bentley/bentleyjs-core': 2.2.0
       '@bentley/build-tools': 2.2.0
       '@bentley/context-registry-client': 2.2.0_6f1b9319c6bff250b4992e3026c76aac
+      '@bentley/ecschema-metadata': 2.2.0_60f91386dc0c5f5247de258a58865e92
       '@bentley/express-server': 2.2.0
       '@bentley/frontend-authorization-client': 2.2.0_6f1b9319c6bff250b4992e3026c76aac
       '@bentley/geometry-core': 2.2.0_@bentley+bentleyjs-core@2.2.0
@@ -17100,13 +17074,17 @@ packages:
       '@bentley/imodeljs-i18n': 2.2.0_@bentley+bentleyjs-core@2.2.0
       '@bentley/imodeljs-quantity': 2.2.0_@bentley+bentleyjs-core@2.2.0
       '@bentley/itwin-client': 2.2.0_@bentley+bentleyjs-core@2.2.0
+      '@bentley/orbitgt-core': 2.2.0
+      '@bentley/product-settings-client': 2.2.0_6f1b9319c6bff250b4992e3026c76aac
       '@bentley/react-scripts': 3.4.1_17aa7bee3e0054b4610d663579690f97
       '@bentley/ui-abstract': 2.2.0_060def5449828df3be462ff95bb64a6e
       '@bentley/ui-components': 2.2.0_81ea3b5a16cfda43022635c6c1ab8f92
       '@bentley/ui-core': 2.2.0_f4d771d65fd2a168463835f53007e4d2
+      '@bentley/webgl-compatibility': 2.2.0
       '@types/react': 16.9.38
       '@types/react-dom': 16.9.8
       cross-env: 5.2.1
+      node-sass: 4.14.1
       npm-run-all: 4.1.5
       react: 16.13.1
       react-dom: 16.13.1_react@16.13.1
@@ -17115,144 +17093,10 @@ packages:
       typescript: 3.7.5
       webpack: 4.42.0_webpack@4.42.0
     dev: false
-    id: 'file:projects/basic-viewport-app.tgz'
     name: '@rush-temp/basic-viewport-app'
-    peerDependencies:
-      '@bentley/ecschema-metadata': '*'
-      '@bentley/orbitgt-core': '*'
-      '@bentley/product-settings-client': '*'
-      '@bentley/webgl-compatibility': '*'
-      node-sass: '*'
     resolution:
-      integrity: sha512-jZHQibcqh7rEz8lj1F234ihG30pEwxBzMVPcdLwcfoVsMNguViZFljofZ+mtngm9ekudvJV7nkA9ODL2e8BGLw==
+      integrity: sha512-bhNNGLCj9JsMWnFKaaNfmYNANOBLqlmKoSRoKyIQ4f5zS5A4xsPAjIW6u7xAtKQLTwcW4O/UAwNL8gq1Jba5xg==
       tarball: 'file:projects/basic-viewport-app.tgz'
-    version: 0.0.0
-  'file:projects/emphasize-elements-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e':
-    dependencies:
-      '@bentley/bentleyjs-core': 2.2.0
-      '@bentley/build-tools': 2.2.0
-      '@bentley/geometry-core': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/icons-generic-webfont': 1.0.13
-      '@bentley/imodeljs-common': 2.2.0_568cdb3500c2fa32e2bc355e2187b0ad
-      '@bentley/imodeljs-frontend': 2.2.0_2e3687f3690ed2faa37c22070dd240a2
-      '@bentley/imodeljs-i18n': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/imodeljs-quantity': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/presentation-common': 2.2.0_73eb9e4d5e20e9a97dcd5506940ff169
-      '@bentley/presentation-components': 2.2.0_bf6989bccb799dfb3f984cd3fce3dcbb
-      '@bentley/presentation-frontend': 2.2.0_6d7c31e4a82d4fea6316c8a0f22745ea
-      '@bentley/react-scripts': 3.4.1_17aa7bee3e0054b4610d663579690f97
-      '@bentley/ui-abstract': 2.2.0_060def5449828df3be462ff95bb64a6e
-      '@bentley/ui-components': 2.2.0_81ea3b5a16cfda43022635c6c1ab8f92
-      '@bentley/ui-core': 2.2.0_f4d771d65fd2a168463835f53007e4d2
-      '@types/react': 16.9.38
-      '@types/react-dom': 16.9.8
-      cpx: 1.5.0
-      cross-env: 5.2.1
-      react: 16.13.1
-      react-dom: 16.13.1_react@16.13.1
-      rimraf: 2.7.1
-      tslint: 5.20.1_typescript@3.7.5
-      typescript: 3.7.5
-      webpack: 4.42.0_webpack@4.42.0
-    dev: false
-    id: 'file:projects/emphasize-elements-sample.tgz'
-    name: '@rush-temp/emphasize-elements-sample'
-    peerDependencies:
-      '@bentley/frontend-authorization-client': '*'
-      '@bentley/imodelhub-client': '*'
-      '@bentley/itwin-client': '*'
-      '@bentley/orbitgt-core': '*'
-      '@bentley/product-settings-client': '*'
-      '@bentley/webgl-compatibility': '*'
-      node-sass: '*'
-    resolution:
-      integrity: sha512-1Qx0qqde1Kw7UryKIczW//m2/o9m8bV0Eqcnha81Ki+xT7m2z+gMqRDbjxzAhUN99dWXzhQTZfi8/VxrDrS/Wg==
-      tarball: 'file:projects/emphasize-elements-sample.tgz'
-    version: 0.0.0
-  'file:projects/frontend-sample-base.tgz_f649b9a253dd39e2cbc1ecbfebcc4387':
-    dependencies:
-      '@bentley/bentleyjs-core': 2.2.0
-      '@bentley/build-tools': 2.2.0
-      '@bentley/context-registry-client': 2.2.0_6f1b9319c6bff250b4992e3026c76aac
-      '@bentley/frontend-authorization-client': 2.2.0_6f1b9319c6bff250b4992e3026c76aac
-      '@bentley/geometry-core': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/icons-generic-webfont': 1.0.13
-      '@bentley/imodelhub-client': 2.2.0_c840a3d2d6f7daee1054909bd0366a17
-      '@bentley/imodeljs-common': 2.2.0_568cdb3500c2fa32e2bc355e2187b0ad
-      '@bentley/imodeljs-frontend': 2.2.0_2e3687f3690ed2faa37c22070dd240a2
-      '@bentley/imodeljs-i18n': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/imodeljs-quantity': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/itwin-client': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/orbitgt-core': 2.2.0
-      '@bentley/presentation-common': 2.2.0_73eb9e4d5e20e9a97dcd5506940ff169
-      '@bentley/presentation-components': 2.2.0_bf6989bccb799dfb3f984cd3fce3dcbb
-      '@bentley/presentation-frontend': 2.2.0_6d7c31e4a82d4fea6316c8a0f22745ea
-      '@bentley/product-settings-client': 2.2.0_6f1b9319c6bff250b4992e3026c76aac
-      '@bentley/ui-components': 2.2.0_81ea3b5a16cfda43022635c6c1ab8f92
-      '@bentley/ui-core': 2.2.0_f4d771d65fd2a168463835f53007e4d2
-      '@types/react': 16.9.38
-      '@types/react-dom': 16.9.8
-      cpx: 1.5.0
-      react: 16.13.1
-      react-dnd: 5.0.0_react@16.13.1
-      react-dnd-html5-backend: 5.0.1
-      react-dom: 16.13.1_react@16.13.1
-      rimraf: 2.7.1
-      tooltip.js: 1.3.3
-      tslint: 5.20.1_typescript@3.7.5
-      typescript: 3.7.5
-    dev: false
-    id: 'file:projects/frontend-sample-base.tgz'
-    name: '@rush-temp/frontend-sample-base'
-    peerDependencies:
-      '@bentley/ui-abstract': '*'
-      '@bentley/webgl-compatibility': '*'
-      webpack: '*'
-    resolution:
-      integrity: sha512-ffqDJtN+Hm5naaJHK3/AE5GiDDcKYIyl7GjyU39M1jcmhEtjFipZEK8zryZUiGLodPub03cyv3PwcyrOIK5HbQ==
-      tarball: 'file:projects/frontend-sample-base.tgz'
-    version: 0.0.0
-  'file:projects/heatmap-decorator-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e':
-    dependencies:
-      '@bentley/bentleyjs-core': 2.2.0
-      '@bentley/build-tools': 2.2.0
-      '@bentley/geometry-core': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/icons-generic-webfont': 1.0.13
-      '@bentley/imodeljs-common': 2.2.0_568cdb3500c2fa32e2bc355e2187b0ad
-      '@bentley/imodeljs-frontend': 2.2.0_2e3687f3690ed2faa37c22070dd240a2
-      '@bentley/imodeljs-i18n': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/imodeljs-quantity': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/presentation-common': 2.2.0_73eb9e4d5e20e9a97dcd5506940ff169
-      '@bentley/presentation-components': 2.2.0_bf6989bccb799dfb3f984cd3fce3dcbb
-      '@bentley/presentation-frontend': 2.2.0_6d7c31e4a82d4fea6316c8a0f22745ea
-      '@bentley/react-scripts': 3.4.1_17aa7bee3e0054b4610d663579690f97
-      '@bentley/ui-abstract': 2.2.0_060def5449828df3be462ff95bb64a6e
-      '@bentley/ui-components': 2.2.0_81ea3b5a16cfda43022635c6c1ab8f92
-      '@bentley/ui-core': 2.2.0_f4d771d65fd2a168463835f53007e4d2
-      '@types/react': 16.9.38
-      '@types/react-dom': 16.9.8
-      cpx: 1.5.0
-      cross-env: 5.2.1
-      react: 16.13.1
-      react-dom: 16.13.1_react@16.13.1
-      rimraf: 2.7.1
-      tslint: 5.20.1_typescript@3.7.5
-      typescript: 3.7.5
-      webpack: 4.42.0_webpack@4.42.0
-    dev: false
-    id: 'file:projects/heatmap-decorator-sample.tgz'
-    name: '@rush-temp/heatmap-decorator-sample'
-    peerDependencies:
-      '@bentley/frontend-authorization-client': '*'
-      '@bentley/imodelhub-client': '*'
-      '@bentley/itwin-client': '*'
-      '@bentley/orbitgt-core': '*'
-      '@bentley/product-settings-client': '*'
-      '@bentley/webgl-compatibility': '*'
-      node-sass: '*'
-    resolution:
-      integrity: sha512-HBvMshgyofCNxZsbreeyHebTMTqK+zonk+x6G+IgYj/XOOLsr8+iaUh4eHeC2OviaO6i1l/yZIPwjVqFshS10w==
-      tarball: 'file:projects/heatmap-decorator-sample.tgz'
     version: 0.0.0
   'file:projects/imodel-changeset-test-utility.tgz_958235ebe1cbec6e71d182f8c93f5560':
     dependencies:
@@ -17325,49 +17169,7 @@ packages:
       integrity: sha512-dTl68wQ6/Nd2041C1O83lgVFWSJ97qc5VGnKbtT41UYZx0s3mdHv8KqOBQUpmBef8GpBtzxJZA2FyoaAb2tdbA==
       tarball: 'file:projects/imodel-query-agent.tgz'
     version: 0.0.0
-  'file:projects/marker-pin-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e':
-    dependencies:
-      '@bentley/bentleyjs-core': 2.2.0
-      '@bentley/build-tools': 2.2.0
-      '@bentley/geometry-core': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/icons-generic-webfont': 1.0.13
-      '@bentley/imodeljs-common': 2.2.0_568cdb3500c2fa32e2bc355e2187b0ad
-      '@bentley/imodeljs-frontend': 2.2.0_2e3687f3690ed2faa37c22070dd240a2
-      '@bentley/imodeljs-i18n': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/imodeljs-quantity': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/presentation-common': 2.2.0_73eb9e4d5e20e9a97dcd5506940ff169
-      '@bentley/presentation-components': 2.2.0_bf6989bccb799dfb3f984cd3fce3dcbb
-      '@bentley/presentation-frontend': 2.2.0_6d7c31e4a82d4fea6316c8a0f22745ea
-      '@bentley/react-scripts': 3.4.1_17aa7bee3e0054b4610d663579690f97
-      '@bentley/ui-abstract': 2.2.0_060def5449828df3be462ff95bb64a6e
-      '@bentley/ui-components': 2.2.0_81ea3b5a16cfda43022635c6c1ab8f92
-      '@bentley/ui-core': 2.2.0_f4d771d65fd2a168463835f53007e4d2
-      '@types/react': 16.9.38
-      '@types/react-dom': 16.9.8
-      cpx: 1.5.0
-      cross-env: 5.2.1
-      react: 16.13.1
-      react-dom: 16.13.1_react@16.13.1
-      rimraf: 2.7.1
-      tslint: 5.20.1_typescript@3.7.5
-      typescript: 3.7.5
-      webpack: 4.42.0_webpack@4.42.0
-    dev: false
-    id: 'file:projects/marker-pin-sample.tgz'
-    name: '@rush-temp/marker-pin-sample'
-    peerDependencies:
-      '@bentley/frontend-authorization-client': '*'
-      '@bentley/imodelhub-client': '*'
-      '@bentley/itwin-client': '*'
-      '@bentley/orbitgt-core': '*'
-      '@bentley/product-settings-client': '*'
-      '@bentley/webgl-compatibility': '*'
-      node-sass: '*'
-    resolution:
-      integrity: sha512-X4I5FrXofHA80s393vdobOgRao1nNTtPuc6SNu7VGU5MZ1RhPF2bPdAuKeIv1lnNjYcfZ3J9zE20aQeO7+j9Pw==
-      tarball: 'file:projects/marker-pin-sample.tgz'
-    version: 0.0.0
-  'file:projects/ninezone-sample-app.tgz_b9576972a7271685cee6cfbf15e56647':
+  'file:projects/ninezone-sample-app.tgz':
     dependencies:
       '@bentley/backend-itwin-client': 2.2.0_112946c9ade95385f1db298372fbba28
       '@bentley/bentleyjs-core': 2.2.0
@@ -17387,16 +17189,19 @@ packages:
       '@bentley/imodeljs-markup': 2.2.0_9999011c3f417e9aafb3c4e09a744410
       '@bentley/imodeljs-quantity': 2.2.0_@bentley+bentleyjs-core@2.2.0
       '@bentley/itwin-client': 2.2.0_@bentley+bentleyjs-core@2.2.0
+      '@bentley/orbitgt-core': 2.2.0
       '@bentley/presentation-backend': 2.2.0_b4e567ea23f2fe03790d81cef5499a4e
       '@bentley/presentation-common': 2.2.0_73eb9e4d5e20e9a97dcd5506940ff169
       '@bentley/presentation-components': 2.2.0_bf6989bccb799dfb3f984cd3fce3dcbb
       '@bentley/presentation-frontend': 2.2.0_6d7c31e4a82d4fea6316c8a0f22745ea
+      '@bentley/product-settings-client': 2.2.0_6f1b9319c6bff250b4992e3026c76aac
       '@bentley/react-scripts': 3.4.1_17aa7bee3e0054b4610d663579690f97
       '@bentley/ui-abstract': 2.2.0_060def5449828df3be462ff95bb64a6e
       '@bentley/ui-components': 2.2.0_81ea3b5a16cfda43022635c6c1ab8f92
       '@bentley/ui-core': 2.2.0_f4d771d65fd2a168463835f53007e4d2
       '@bentley/ui-framework': 2.2.0_2ddd4abb5282177ab13d8c6092079045
       '@bentley/ui-ninezone': 2.2.0_aa16546fbe23b7c2f80e5f64001c8aa0
+      '@bentley/webgl-compatibility': 2.2.0
       '@types/electron-devtools-installer': 2.2.0
       '@types/react': 16.9.38
       '@types/react-dom': 16.9.8
@@ -17405,6 +17210,7 @@ packages:
       cross-env: 5.2.1
       electron: 8.3.3
       electron-devtools-installer: 2.2.4
+      node-sass: 4.14.1
       npm-run-all: 4.1.5
       react: 16.13.1
       react-dom: 16.13.1_react@16.13.1
@@ -17416,23 +17222,18 @@ packages:
       typescript: 3.7.5
       webpack: 4.42.0_webpack@4.42.0
     dev: false
-    id: 'file:projects/ninezone-sample-app.tgz'
     name: '@rush-temp/ninezone-sample-app'
-    peerDependencies:
-      '@bentley/orbitgt-core': '*'
-      '@bentley/product-settings-client': '*'
-      '@bentley/webgl-compatibility': '*'
-      node-sass: '*'
     resolution:
-      integrity: sha512-jPQXQegUAuh39jtRMhaBMDhOWmxHoYiEPt7zQsKvjnmstHN6Ix+8NhEqh8pFg2iQHHeCjEmw9zusmkNBIPQqIA==
+      integrity: sha512-DLgHGVSemSfUbZBvZYKviW7rsQnD7ijrqCxXbRUZeDcfj6PBiHbZuJYiu9sl8Pwc11z2pMXN8seGSmgtefGkuw==
       tarball: 'file:projects/ninezone-sample-app.tgz'
     version: 0.0.0
-  'file:projects/simple-viewer-app.tgz_567fd52238a9d118c3853e465496386e':
+  'file:projects/simple-viewer-app.tgz':
     dependencies:
       '@bentley/backend-itwin-client': 2.2.0_112946c9ade95385f1db298372fbba28
       '@bentley/bentleyjs-core': 2.2.0
       '@bentley/build-tools': 2.2.0
       '@bentley/context-registry-client': 2.2.0_6f1b9319c6bff250b4992e3026c76aac
+      '@bentley/ecschema-metadata': 2.2.0_60f91386dc0c5f5247de258a58865e92
       '@bentley/electron-manager': 2.2.0_baae985f746e48e1ccfb2563c80c8c0f
       '@bentley/express-server': 2.2.0
       '@bentley/frontend-authorization-client': 2.2.0_6f1b9319c6bff250b4992e3026c76aac
@@ -17445,15 +17246,18 @@ packages:
       '@bentley/imodeljs-i18n': 2.2.0_@bentley+bentleyjs-core@2.2.0
       '@bentley/imodeljs-quantity': 2.2.0_@bentley+bentleyjs-core@2.2.0
       '@bentley/itwin-client': 2.2.0_@bentley+bentleyjs-core@2.2.0
+      '@bentley/orbitgt-core': 2.2.0
       '@bentley/presentation-backend': 2.2.0_b4e567ea23f2fe03790d81cef5499a4e
       '@bentley/presentation-common': 2.2.0_73eb9e4d5e20e9a97dcd5506940ff169
       '@bentley/presentation-components': 2.2.0_bf6989bccb799dfb3f984cd3fce3dcbb
       '@bentley/presentation-frontend': 2.2.0_6d7c31e4a82d4fea6316c8a0f22745ea
       '@bentley/presentation-testing': 2.2.0_dccab7a7b7ee3357f4f8dd263c9836e7
+      '@bentley/product-settings-client': 2.2.0_6f1b9319c6bff250b4992e3026c76aac
       '@bentley/react-scripts': 3.4.1_17aa7bee3e0054b4610d663579690f97
       '@bentley/ui-abstract': 2.2.0_060def5449828df3be462ff95bb64a6e
       '@bentley/ui-components': 2.2.0_81ea3b5a16cfda43022635c6c1ab8f92
       '@bentley/ui-core': 2.2.0_f4d771d65fd2a168463835f53007e4d2
+      '@bentley/webgl-compatibility': 2.2.0
       '@testing-library/dom': 5.6.1
       '@testing-library/react': 8.0.9_react-dom@16.13.1+react@16.13.1
       '@types/body-parser': 1.19.0
@@ -17480,6 +17284,7 @@ packages:
       jsdom: 13.2.0
       jsdom-global: 3.0.2_jsdom@13.2.0
       mocha: 5.2.0
+      node-sass: 4.14.1
       npm-run-all: 4.1.5
       puppeteer: 2.1.0
       react: 16.13.1
@@ -17496,275 +17301,10 @@ packages:
       webpack: 4.42.0_webpack@4.42.0
       xmlhttprequest: 1.8.0
     dev: false
-    id: 'file:projects/simple-viewer-app.tgz'
     name: '@rush-temp/simple-viewer-app'
-    peerDependencies:
-      '@bentley/ecschema-metadata': '*'
-      '@bentley/orbitgt-core': '*'
-      '@bentley/product-settings-client': '*'
-      '@bentley/webgl-compatibility': '*'
-      node-sass: '*'
     resolution:
-      integrity: sha512-B2cjqWi+TZsnHxo/xqWqhjvRynclvp+8IztIXvT7ZGcul6fu5iDmAqiRAQpvjWq3K6JZjRl2CMAhxrO+iXC/1w==
+      integrity: sha512-xMylTte/uTp1TpjeVYwz+tlZnKDg7SB4or5lRYmmgiGuI8rnpX4wuz6E22mkDEvcuajKvSic3pGynUUvNqyFkQ==
       tarball: 'file:projects/simple-viewer-app.tgz'
-    version: 0.0.0
-  'file:projects/tooltip-customize-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e':
-    dependencies:
-      '@bentley/bentleyjs-core': 2.2.0
-      '@bentley/build-tools': 2.2.0
-      '@bentley/geometry-core': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/icons-generic-webfont': 1.0.13
-      '@bentley/imodeljs-common': 2.2.0_568cdb3500c2fa32e2bc355e2187b0ad
-      '@bentley/imodeljs-frontend': 2.2.0_2e3687f3690ed2faa37c22070dd240a2
-      '@bentley/imodeljs-i18n': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/imodeljs-quantity': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/presentation-common': 2.2.0_73eb9e4d5e20e9a97dcd5506940ff169
-      '@bentley/presentation-components': 2.2.0_bf6989bccb799dfb3f984cd3fce3dcbb
-      '@bentley/presentation-frontend': 2.2.0_6d7c31e4a82d4fea6316c8a0f22745ea
-      '@bentley/react-scripts': 3.4.1_17aa7bee3e0054b4610d663579690f97
-      '@bentley/ui-abstract': 2.2.0_060def5449828df3be462ff95bb64a6e
-      '@bentley/ui-components': 2.2.0_81ea3b5a16cfda43022635c6c1ab8f92
-      '@bentley/ui-core': 2.2.0_f4d771d65fd2a168463835f53007e4d2
-      '@types/react': 16.9.38
-      '@types/react-dom': 16.9.8
-      cpx: 1.5.0
-      cross-env: 5.2.1
-      react: 16.13.1
-      react-dom: 16.13.1_react@16.13.1
-      rimraf: 2.7.1
-      tslint: 5.20.1_typescript@3.7.5
-      typescript: 3.7.5
-      webpack: 4.42.0_webpack@4.42.0
-    dev: false
-    id: 'file:projects/tooltip-customize-sample.tgz'
-    name: '@rush-temp/tooltip-customize-sample'
-    peerDependencies:
-      '@bentley/frontend-authorization-client': '*'
-      '@bentley/imodelhub-client': '*'
-      '@bentley/itwin-client': '*'
-      '@bentley/orbitgt-core': '*'
-      '@bentley/product-settings-client': '*'
-      '@bentley/webgl-compatibility': '*'
-      node-sass: '*'
-    resolution:
-      integrity: sha512-TYqvM3yFoXF+2Axv9RnbRZ5WusWCeWxbbxWT5s3PK2k6wAbat84bYTBpToWzLQCar8pFM7WQfll4mWiRqw8Wiw==
-      tarball: 'file:projects/tooltip-customize-sample.tgz'
-    version: 0.0.0
-  'file:projects/view-attributes-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e':
-    dependencies:
-      '@bentley/bentleyjs-core': 2.2.0
-      '@bentley/build-tools': 2.2.0
-      '@bentley/geometry-core': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/icons-generic-webfont': 1.0.13
-      '@bentley/imodeljs-common': 2.2.0_568cdb3500c2fa32e2bc355e2187b0ad
-      '@bentley/imodeljs-frontend': 2.2.0_2e3687f3690ed2faa37c22070dd240a2
-      '@bentley/imodeljs-i18n': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/imodeljs-quantity': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/presentation-common': 2.2.0_73eb9e4d5e20e9a97dcd5506940ff169
-      '@bentley/presentation-components': 2.2.0_bf6989bccb799dfb3f984cd3fce3dcbb
-      '@bentley/presentation-frontend': 2.2.0_6d7c31e4a82d4fea6316c8a0f22745ea
-      '@bentley/react-scripts': 3.4.1_17aa7bee3e0054b4610d663579690f97
-      '@bentley/ui-abstract': 2.2.0_060def5449828df3be462ff95bb64a6e
-      '@bentley/ui-components': 2.2.0_81ea3b5a16cfda43022635c6c1ab8f92
-      '@bentley/ui-core': 2.2.0_f4d771d65fd2a168463835f53007e4d2
-      '@types/react': 16.9.38
-      '@types/react-dom': 16.9.8
-      cpx: 1.5.0
-      cross-env: 5.2.1
-      react: 16.13.1
-      react-dom: 16.13.1_react@16.13.1
-      rimraf: 2.7.1
-      tslint: 5.20.1_typescript@3.7.5
-      typescript: 3.7.5
-      webpack: 4.42.0_webpack@4.42.0
-    dev: false
-    id: 'file:projects/view-attributes-sample.tgz'
-    name: '@rush-temp/view-attributes-sample'
-    peerDependencies:
-      '@bentley/frontend-authorization-client': '*'
-      '@bentley/imodelhub-client': '*'
-      '@bentley/itwin-client': '*'
-      '@bentley/orbitgt-core': '*'
-      '@bentley/product-settings-client': '*'
-      '@bentley/webgl-compatibility': '*'
-      node-sass: '*'
-    resolution:
-      integrity: sha512-csp6CIApLaTF96xx69D5cgtiI4Zu2F6J+kF3fA//M+f/2jpQH2m6KrBzM8ZoHGVAfGduomUmKhIwaXWFje5Vig==
-      tarball: 'file:projects/view-attributes-sample.tgz'
-    version: 0.0.0
-  'file:projects/view-clip-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e':
-    dependencies:
-      '@bentley/bentleyjs-core': 2.2.0
-      '@bentley/build-tools': 2.2.0
-      '@bentley/geometry-core': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/icons-generic-webfont': 1.0.13
-      '@bentley/imodeljs-common': 2.2.0_568cdb3500c2fa32e2bc355e2187b0ad
-      '@bentley/imodeljs-frontend': 2.2.0_2e3687f3690ed2faa37c22070dd240a2
-      '@bentley/imodeljs-i18n': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/imodeljs-quantity': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/presentation-common': 2.2.0_73eb9e4d5e20e9a97dcd5506940ff169
-      '@bentley/presentation-components': 2.2.0_bf6989bccb799dfb3f984cd3fce3dcbb
-      '@bentley/presentation-frontend': 2.2.0_6d7c31e4a82d4fea6316c8a0f22745ea
-      '@bentley/react-scripts': 3.4.1_17aa7bee3e0054b4610d663579690f97
-      '@bentley/ui-abstract': 2.2.0_060def5449828df3be462ff95bb64a6e
-      '@bentley/ui-components': 2.2.0_81ea3b5a16cfda43022635c6c1ab8f92
-      '@bentley/ui-core': 2.2.0_f4d771d65fd2a168463835f53007e4d2
-      '@types/react': 16.9.38
-      '@types/react-dom': 16.9.8
-      cpx: 1.5.0
-      cross-env: 5.2.1
-      react: 16.13.1
-      react-dom: 16.13.1_react@16.13.1
-      rimraf: 2.7.1
-      tslint: 5.20.1_typescript@3.7.5
-      typescript: 3.7.5
-      webpack: 4.42.0_webpack@4.42.0
-    dev: false
-    id: 'file:projects/view-clip-sample.tgz'
-    name: '@rush-temp/view-clip-sample'
-    peerDependencies:
-      '@bentley/frontend-authorization-client': '*'
-      '@bentley/imodelhub-client': '*'
-      '@bentley/itwin-client': '*'
-      '@bentley/orbitgt-core': '*'
-      '@bentley/product-settings-client': '*'
-      '@bentley/webgl-compatibility': '*'
-      node-sass: '*'
-    resolution:
-      integrity: sha512-R5R3brURmLYo5Qamw80JQS2qSQ/3pm6ve8s4qOwely1A0x+Ayfe7+Yuim3+mFrKc0Yl52Vjg5NA1Y3mw0/YCTA==
-      tarball: 'file:projects/view-clip-sample.tgz'
-    version: 0.0.0
-  'file:projects/viewer-only-2d-sample.tgz_15b61a378910e02fbe50d37c43c94f49':
-    dependencies:
-      '@bentley/bentleyjs-core': 2.2.0
-      '@bentley/build-tools': 2.2.0
-      '@bentley/extension-client': 2.2.0_283e4705a8fc75999a3239fbbc7d0067
-      '@bentley/geometry-core': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/icons-generic-webfont': 1.0.13
-      '@bentley/imodeljs-common': 2.2.0_568cdb3500c2fa32e2bc355e2187b0ad
-      '@bentley/imodeljs-frontend': 2.2.0_2e3687f3690ed2faa37c22070dd240a2
-      '@bentley/imodeljs-i18n': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/imodeljs-quantity': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/presentation-common': 2.2.0_73eb9e4d5e20e9a97dcd5506940ff169
-      '@bentley/presentation-components': 2.2.0_bf6989bccb799dfb3f984cd3fce3dcbb
-      '@bentley/presentation-frontend': 2.2.0_6d7c31e4a82d4fea6316c8a0f22745ea
-      '@bentley/react-scripts': 3.4.1_17aa7bee3e0054b4610d663579690f97
-      '@bentley/ui-abstract': 2.2.0_060def5449828df3be462ff95bb64a6e
-      '@bentley/ui-components': 2.2.0_81ea3b5a16cfda43022635c6c1ab8f92
-      '@bentley/ui-core': 2.2.0_f4d771d65fd2a168463835f53007e4d2
-      '@bentley/ui-framework': 2.2.0_2ddd4abb5282177ab13d8c6092079045
-      '@bentley/ui-ninezone': 2.2.0_aa16546fbe23b7c2f80e5f64001c8aa0
-      '@bentley/webgl-compatibility': 2.2.0
-      '@types/react': 16.9.38
-      '@types/react-dom': 16.9.8
-      cpx: 1.5.0
-      cross-env: 5.2.1
-      node-sass: 4.14.1
-      react: 16.13.1
-      react-dom: 16.13.1_react@16.13.1
-      rimraf: 2.7.1
-      tslint: 5.20.1_typescript@3.7.5
-      typescript: 3.7.5
-    dev: false
-    id: 'file:projects/viewer-only-2d-sample.tgz'
-    name: '@rush-temp/viewer-only-2d-sample'
-    peerDependencies:
-      '@bentley/frontend-authorization-client': '*'
-      '@bentley/imodelhub-client': '*'
-      '@bentley/imodeljs-markup': '*'
-      '@bentley/itwin-client': '*'
-      '@bentley/orbitgt-core': '*'
-      '@bentley/product-settings-client': '*'
-      react-redux: '*'
-      redux: '*'
-      webpack: '*'
-    resolution:
-      integrity: sha512-y0rFxVubOix7JBLA1FleOQSYB+mKzo1SFSOmL6hyK818HtzmyVL3/Nz2Ofvp5QzC92guNplzadhiQjVZQVuxGQ==
-      tarball: 'file:projects/viewer-only-2d-sample.tgz'
-    version: 0.0.0
-  'file:projects/viewer-only-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e':
-    dependencies:
-      '@bentley/bentleyjs-core': 2.2.0
-      '@bentley/build-tools': 2.2.0
-      '@bentley/geometry-core': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/icons-generic-webfont': 1.0.13
-      '@bentley/imodeljs-common': 2.2.0_568cdb3500c2fa32e2bc355e2187b0ad
-      '@bentley/imodeljs-frontend': 2.2.0_2e3687f3690ed2faa37c22070dd240a2
-      '@bentley/imodeljs-i18n': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/imodeljs-quantity': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/presentation-common': 2.2.0_73eb9e4d5e20e9a97dcd5506940ff169
-      '@bentley/presentation-components': 2.2.0_bf6989bccb799dfb3f984cd3fce3dcbb
-      '@bentley/presentation-frontend': 2.2.0_6d7c31e4a82d4fea6316c8a0f22745ea
-      '@bentley/react-scripts': 3.4.1_17aa7bee3e0054b4610d663579690f97
-      '@bentley/ui-abstract': 2.2.0_060def5449828df3be462ff95bb64a6e
-      '@bentley/ui-components': 2.2.0_81ea3b5a16cfda43022635c6c1ab8f92
-      '@bentley/ui-core': 2.2.0_f4d771d65fd2a168463835f53007e4d2
-      '@types/react': 16.9.38
-      '@types/react-dom': 16.9.8
-      cpx: 1.5.0
-      cross-env: 5.2.1
-      react: 16.13.1
-      react-dom: 16.13.1_react@16.13.1
-      rimraf: 2.7.1
-      tslint: 5.20.1_typescript@3.7.5
-      typescript: 3.7.5
-      webpack: 4.42.0_webpack@4.42.0
-    dev: false
-    id: 'file:projects/viewer-only-sample.tgz'
-    name: '@rush-temp/viewer-only-sample'
-    peerDependencies:
-      '@bentley/frontend-authorization-client': '*'
-      '@bentley/imodelhub-client': '*'
-      '@bentley/itwin-client': '*'
-      '@bentley/orbitgt-core': '*'
-      '@bentley/product-settings-client': '*'
-      '@bentley/webgl-compatibility': '*'
-      node-sass: '*'
-    resolution:
-      integrity: sha512-vRipxNtyQqZbyz7DihZ6dNEcSGBRiMvHC6Af94w0nU4RmQrIWkRlZOe+Gc6jwv1hZplhJJqR/I300I1vvhbU9g==
-      tarball: 'file:projects/viewer-only-sample.tgz'
-    version: 0.0.0
-  'file:projects/zoom-to-elements-sample.tgz_a2a17dd419e3c58919b42cb3b69f2a0e':
-    dependencies:
-      '@bentley/bentleyjs-core': 2.2.0
-      '@bentley/build-tools': 2.2.0
-      '@bentley/geometry-core': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/icons-generic-webfont': 1.0.13
-      '@bentley/imodeljs-common': 2.2.0_568cdb3500c2fa32e2bc355e2187b0ad
-      '@bentley/imodeljs-frontend': 2.2.0_2e3687f3690ed2faa37c22070dd240a2
-      '@bentley/imodeljs-i18n': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/imodeljs-quantity': 2.2.0_@bentley+bentleyjs-core@2.2.0
-      '@bentley/presentation-common': 2.2.0_73eb9e4d5e20e9a97dcd5506940ff169
-      '@bentley/presentation-components': 2.2.0_bf6989bccb799dfb3f984cd3fce3dcbb
-      '@bentley/presentation-frontend': 2.2.0_6d7c31e4a82d4fea6316c8a0f22745ea
-      '@bentley/react-scripts': 3.4.1_17aa7bee3e0054b4610d663579690f97
-      '@bentley/ui-abstract': 2.2.0_060def5449828df3be462ff95bb64a6e
-      '@bentley/ui-components': 2.2.0_81ea3b5a16cfda43022635c6c1ab8f92
-      '@bentley/ui-core': 2.2.0_f4d771d65fd2a168463835f53007e4d2
-      '@types/react': 16.9.38
-      '@types/react-dom': 16.9.8
-      cpx: 1.5.0
-      cross-env: 5.2.1
-      react: 16.13.1
-      react-dom: 16.13.1_react@16.13.1
-      rimraf: 2.7.1
-      tslint: 5.20.1_typescript@3.7.5
-      typescript: 3.7.5
-      webpack: 4.42.0_webpack@4.42.0
-    dev: false
-    id: 'file:projects/zoom-to-elements-sample.tgz'
-    name: '@rush-temp/zoom-to-elements-sample'
-    peerDependencies:
-      '@bentley/frontend-authorization-client': '*'
-      '@bentley/imodelhub-client': '*'
-      '@bentley/itwin-client': '*'
-      '@bentley/orbitgt-core': '*'
-      '@bentley/product-settings-client': '*'
-      '@bentley/webgl-compatibility': '*'
-      node-sass: '*'
-    resolution:
-      integrity: sha512-FC+WDokYHZUz1VWh0tOIJvcjMflYhC1ZnvjRhPiOsLGIKeZpUjVlU4FjCajNG4LUNQ9tUtcPXMJ8PfmsDfZQGQ==
-      tarball: 'file:projects/zoom-to-elements-sample.tgz'
     version: 0.0.0
 specifiers:
   '@bentley/backend-itwin-client': ^2.2.0
@@ -17774,7 +17314,6 @@ specifiers:
   '@bentley/ecschema-metadata': ^2.2.0
   '@bentley/electron-manager': ^2.2.0
   '@bentley/express-server': ^2.2.0
-  '@bentley/extension-client': ^2.2.0
   '@bentley/frontend-authorization-client': ^2.2.0
   '@bentley/geometry-core': ^2.2.0
   '@bentley/icons-generic-webfont': ^1.0.0
@@ -17801,20 +17340,10 @@ specifiers:
   '@bentley/ui-ninezone': ^2.2.0
   '@bentley/webgl-compatibility': ^2.2.0
   '@rush-temp/basic-viewport-app': 'file:./projects/basic-viewport-app.tgz'
-  '@rush-temp/emphasize-elements-sample': 'file:./projects/emphasize-elements-sample.tgz'
-  '@rush-temp/frontend-sample-base': 'file:./projects/frontend-sample-base.tgz'
-  '@rush-temp/heatmap-decorator-sample': 'file:./projects/heatmap-decorator-sample.tgz'
   '@rush-temp/imodel-changeset-test-utility': 'file:./projects/imodel-changeset-test-utility.tgz'
   '@rush-temp/imodel-query-agent': 'file:./projects/imodel-query-agent.tgz'
-  '@rush-temp/marker-pin-sample': 'file:./projects/marker-pin-sample.tgz'
   '@rush-temp/ninezone-sample-app': 'file:./projects/ninezone-sample-app.tgz'
   '@rush-temp/simple-viewer-app': 'file:./projects/simple-viewer-app.tgz'
-  '@rush-temp/tooltip-customize-sample': 'file:./projects/tooltip-customize-sample.tgz'
-  '@rush-temp/view-attributes-sample': 'file:./projects/view-attributes-sample.tgz'
-  '@rush-temp/view-clip-sample': 'file:./projects/view-clip-sample.tgz'
-  '@rush-temp/viewer-only-2d-sample': 'file:./projects/viewer-only-2d-sample.tgz'
-  '@rush-temp/viewer-only-sample': 'file:./projects/viewer-only-sample.tgz'
-  '@rush-temp/zoom-to-elements-sample': 'file:./projects/zoom-to-elements-sample.tgz'
   '@testing-library/dom': ^5.5.0
   '@testing-library/react': ^8.0.4
   '@types/body-parser': ^1.17.0
@@ -17836,7 +17365,6 @@ specifiers:
   chai: ^4.2.0
   chai-jest-snapshot: 2.0.0
   chromedriver: ^75.0.0
-  cpx: ^1.5.0
   cross-env: ^5.1.4
   debug: ^3.1.0
   electron: ^8.2.1
@@ -17854,8 +17382,6 @@ specifiers:
   path: ^0.12.7
   puppeteer: chrome-80
   react: ^16.13.0
-  react-dnd: ^5.0.0
-  react-dnd-html5-backend: ^5.0.1
   react-dom: ^16.13.0
   react-redux: ^7.2.0
   react-resize-detector: ^3.4.0
@@ -17865,7 +17391,6 @@ specifiers:
   source-map-support: ^0.5.6
   spectron: ^10.0.0
   start-server-and-test: ^1.7.11
-  tooltip.js: ^1.2.0
   ts-node: ^7.0.1
   tslint: ^5.16.0
   tslint-react-hooks: ^2.2.1

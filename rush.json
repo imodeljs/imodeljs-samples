@@ -28,46 +28,6 @@
     {
       "packageName": "imodel-changeset-test-utility",
       "projectFolder": "tools/imodel-changeset-test-utility"
-    },
-    {
-      "packageName": "@bentley/frontend-sample-base",
-      "projectFolder": "tools/frontend-sample-base"
-    },
-    {
-      "packageName": "viewer-only-sample",
-      "projectFolder": "frontend-samples/viewer-only-sample"
-    },
-    {
-      "packageName": "viewer-only-2d-sample",
-      "projectFolder": "frontend-samples/viewer-only-2d-sample"
-    },
-    {
-      "packageName": "heatmap-decorator-sample",
-      "projectFolder": "frontend-samples/heatmap-decorator-sample"
-    },
-    {
-      "packageName": "tooltip-customize-sample",
-      "projectFolder": "frontend-samples/tooltip-customize-sample"
-    },
-    {
-      "packageName": "emphasize-elements-sample",
-      "projectFolder": "frontend-samples/emphasize-elements-sample"
-    },
-    {
-      "packageName": "view-attributes-sample",
-      "projectFolder": "frontend-samples/view-attributes-sample"
-    },
-    {
-      "packageName": "zoom-to-elements-sample",
-      "projectFolder": "frontend-samples/zoom-to-elements-sample"
-    },
-    {
-      "packageName": "marker-pin-sample",
-      "projectFolder": "frontend-samples/marker-pin-sample"
-    },
-    {
-      "packageName": "view-clip-sample",
-      "projectFolder": "frontend-samples/view-clip-sample"
     }
   ]
 }
