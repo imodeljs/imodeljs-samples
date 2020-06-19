@@ -27,7 +27,7 @@ export class SimpleViewerApp {
   public static get oidcClient() { return IModelApp.authorizationClient!; }
 
   public static async startup() {
-    await IModelApp.startup();
+    await IModelApp.startup({ applicationVersion: "1.0.0" });
 
     // initialize OIDC
     await SimpleViewerApp.initializeOidc();

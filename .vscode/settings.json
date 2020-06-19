@@ -14,4 +14,7 @@
     ".nycrc": "json",
     "certa.json": "jsonc"
   },
+  "cSpell.words": [
+    "changesets"
+  ],
 }

@@ -16,7 +16,7 @@ export interface Props {
 
 /** Tree component for the viewer app */
 export default function SimpleTreeComponent(props: Props) {
-  const nodeLoader = usePresentationTreeNodeLoader({ imodel: props.imodel, ruleset: RULESET_TREE, pageSize: 20 });
+  const nodeLoader = usePresentationTreeNodeLoader({ imodel: props.imodel, ruleset: RULESET_TREE, pagingSize: 20 });
   return (
     <ControlledTree
       nodeLoader={nodeLoader}

@@ -3,7 +3,8 @@
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
-  "configurations": [{
+  "configurations": [
+  {
       "type": "node",
       "request": "attach",
       "name": "Attach to node process",
@@ -322,8 +323,24 @@
       "timeout": 30000
     },
     {
-      "name": "--------Backend + Frontend--------"
+      "name": "-------Query Agent--------"
     },
+    {
+      "name": "imodel-query-agent",
+      "request": "launch",
+      "runtimeArgs": [
+        "run-script",
+        "start"
+      ],
+      "cwd": "${workspaceFolder}/agent-app/query-agent",
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "pwa-node"
+    },
+
+    {
   ],
   "compounds": [{
       "name": "Basic ViewPort App Browser (frontend + backend)",

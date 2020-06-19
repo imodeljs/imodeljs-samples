@@ -35,7 +35,6 @@ export class ChangesetGenerationConfig {
       // -----------------------------------------------------------------------------------------------------------
       // imjs_agent_project_name: "Set this to the name of the sample project", // In most cases, this will match the test iModel name
       imjs_default_relying_party_uri: "https://connect-wsg20.bentley.com",
-      imjs_agent_scope: "urlps-third-party context-registry-service:read-only imodelhub",
     });
   }
 
@@ -51,7 +50,7 @@ export class ChangesetGenerationConfig {
     return {
       clientId: Config.App.getString("imjs_agent_client_id"),
       clientSecret: Config.App.getString("imjs_agent_client_secret"),
-      scope: Config.App.getString("imjs_agent_scope"),
+      scope: "urlps-third-party context-registry-service:read-only imodelhub",
     };
   }
 

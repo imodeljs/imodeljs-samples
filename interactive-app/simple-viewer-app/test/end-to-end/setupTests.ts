@@ -10,7 +10,7 @@ export let page: Puppeteer.Page;
 export let browser: Puppeteer.Browser;
 
 beforeEach(async () => {
-  let launchOptions: Puppeteer.LaunchOptions = { dumpio: true }; // , headless: false, slowMo: 500 };
+  let launchOptions: Puppeteer.LaunchOptions = { dumpio: true }; //, headless: false };
   if (os.platform() === "linux") {
     launchOptions = {
       args: ["--no-sandbox"], // , "--disable-setuid-sandbox"],

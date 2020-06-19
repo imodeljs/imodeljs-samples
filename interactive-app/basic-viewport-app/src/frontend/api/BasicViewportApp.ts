@@ -27,7 +27,7 @@ export class BasicViewportApp {
   public static get oidcClient() { return IModelApp.authorizationClient as BrowserAuthorizationClient; }
 
   public static async startup() {
-    await IModelApp.startup();
+    await IModelApp.startup({ applicationVersion: "1.0.0" });
 
     // initialize OIDC
     await BasicViewportApp.initializeOidc();

@@ -5,7 +5,7 @@
 import * as fs from "fs";
 
 import { Config, Id64String, Logger, LogLevel } from "@bentley/bentleyjs-core";
-import { BriefcaseDb, BriefcaseManager, IModelHost, IModelHostConfiguration } from "@bentley/imodeljs-backend";
+import { AuthorizedBackendRequestContext, BriefcaseDb, BriefcaseManager, IModelHost, IModelHostConfiguration } from "@bentley/imodeljs-backend";
 import { AccessToken, AuthorizedClientRequestContext } from "@bentley/itwin-client";
 import { CodeScopeSpec, ColorDef, IModel, IModelVersion } from "@bentley/imodeljs-common";
 
@@ -46,6 +46,7 @@ export class ChangesetGenerationHarness {
       // Always initialize logger first
       this._initializeLogger();
 
+      IModelHost.applicationVersion = "1.0.0";
       if (!IModelHost.configuration) {
         const configuration = new IModelHostConfiguration();
         await IModelHost.startup(configuration);
@@ -57,7 +58,7 @@ export class ChangesetGenerationHarness {
         if (!this._hubUtility)
           this._hubUtility = new HubUtility();
         this._accessToken = await this._hubUtility.login();
-        const authCtx = new AuthorizedClientRequestContext(this._accessToken!);
+        const authCtx = new AuthorizedBackendRequestContext(this._accessToken!);
         Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Attempting to find projectId for ${ChangesetGenerationConfig.projectName}`);
         this._projectId = await this._hubUtility.queryProjectIdByName(authCtx, ChangesetGenerationConfig.projectName);
         this._iModelId = await this._hubUtility.queryIModelIdByName(authCtx, this._projectId, ChangesetGenerationConfig.iModelName);

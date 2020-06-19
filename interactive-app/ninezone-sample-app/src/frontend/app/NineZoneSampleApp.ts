@@ -36,6 +36,7 @@ export class NineZoneSampleApp {
     // Use the AppNotificationManager subclass from ui-framework to get prompts and messages
     const opts: IModelAppOptions = {};
     opts.notifications = new AppNotificationManager();
+    opts.applicationVersion = "1.0.0";
 
     await IModelApp.startup(opts);
 

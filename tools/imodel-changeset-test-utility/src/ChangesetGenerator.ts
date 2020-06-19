@@ -4,7 +4,7 @@
 *--------------------------------------------------------------------------------------------*/
 import { assert, Guid, Id64String, Logger } from "@bentley/bentleyjs-core";
 import { Box, Point3d, Vector3d, YawPitchRollAngles } from "@bentley/geometry-core";
-import { BriefcaseDb, GeometricElement } from "@bentley/imodeljs-backend";
+import { AuthorizedBackendRequestContext, BriefcaseDb, GeometricElement } from "@bentley/imodeljs-backend";
 import { AccessToken, AuthorizedClientRequestContext } from "@bentley/itwin-client";
 import { Code, GeometricElement3dProps, GeometryStreamBuilder, GeometryStreamProps, IModelVersion } from "@bentley/imodeljs-common";
 import { ChangesetGenerationConfig } from "./ChangesetGenerationConfig";
@@ -33,19 +33,24 @@ export class ChangesetGenerator {
   public constructor(private _accessToken: AccessToken, private _hubUtility: HubUtility,
     private _physicalModelId: Id64String, private _categoryId: Id64String, private _codeSpecId: Id64String,
     private _iModelDbHandler: IModelDbHandler = new IModelDbHandler()) {
-    this._authCtx = new AuthorizedClientRequestContext(this._accessToken);
+    this._authCtx = new AuthorizedBackendRequestContext(this._accessToken);
+    this._authCtx.enter();
     Logger.logTrace(ChangesetGenerationConfig.loggingCategory, "Initialized Changeset Generator");
     Logger.logTrace(ChangesetGenerationConfig.loggingCategory, "--------------------------------------------------------------------------------------------");
   }
   public async pushFirstChangeSetTransaction(iModelDb: BriefcaseDb): Promise<void> {
+    this._authCtx.enter();
     this._iModelDb = iModelDb;
     this.insertElement(`${Guid.createValue()}`, `FIRST ELEMENT: ${Guid.createValue()}`, new Point3d(-1000, -1000, -10000 * Math.random()));
     await this._iModelDb.concurrencyControl.request(this._authCtx);
+    this._authCtx.enter();
     this._iModelDb.saveChanges("Pushed First Change");
   }
   /** Pushes new change sets to the Hub periodically and sets up named versions */
   public async pushTestChangeSetsAndVersions(projectId: string, iModelId: string, testChangesetSequence: TestChangesetSequence): Promise<boolean> {
+    this._authCtx.enter();
     this._iModelDb = await this._iModelDbHandler.openLatestIModelDb(this._authCtx, projectId, iModelId);
+    this._authCtx.enter();
     const untilLevel = this._currentLevel + testChangesetSequence.changesetCount;
     while (this._currentLevel < untilLevel) {
       try {

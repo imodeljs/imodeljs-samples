@@ -31,18 +31,24 @@ export class QueryAgent {
     private _changeSummaryExtractor: ChangeSummaryExtractor = new ChangeSummaryExtractor()) { }
 
   public async run(listenFor?: number/*ms*/): Promise<void> {
-    return this.listenForAndHandleChangesets(listenFor === undefined ? QueryAgentConfig.listenTime : listenFor );
+    return this.listenForAndHandleChangesets(listenFor === undefined ? QueryAgentConfig.listenTime : listenFor);
   }
 
   /** Create listeners and respond to changesets */
   public async listenForAndHandleChangesets(listenFor: number/*ms*/) {
     // Subscribe to change set and named version events
     Logger.logTrace(QueryAgentConfig.loggingCategory, "Setting up changeset and named version listeners...");
+
+    const getAccessToken = async () => {
+      const accessToken = await IModelHost.getAccessToken();
+      return accessToken;
+    };
+
     const requestContext = await AuthorizedBackendRequestContext.create();
     requestContext.enter();
 
     const changeSetSubscription = await this._hubClient!.events.subscriptions.create(requestContext, this._iModelId!, ["ChangeSetPostPushEvent"]);
-    const deleteChangeSetListener = this._hubClient!.events.createListener(requestContext, IModelHost.getAccessToken, changeSetSubscription!.wsgId, this._iModelId!,
+    const deleteChangeSetListener = this._hubClient!.events.createListener(requestContext, getAccessToken, changeSetSubscription!.wsgId, this._iModelId!,
       async (receivedEvent: ChangeSetPostPushEvent) => {
         Logger.logTrace(QueryAgentConfig.loggingCategory, `Received notification that change set "${receivedEvent.changeSetId}" was just posted on the Hub`);
         try {
@@ -53,7 +59,7 @@ export class QueryAgent {
         }
       });
     const namedVersionSubscription = await this._hubClient!.events.subscriptions.create(requestContext, this._iModelId!, ["VersionEvent"]);
-    const deleteNamedVersionListener = this._hubClient!.events.createListener(requestContext, IModelHost.getAccessToken, namedVersionSubscription!.wsgId, this._iModelId!,
+    const deleteNamedVersionListener = this._hubClient!.events.createListener(requestContext, getAccessToken, namedVersionSubscription!.wsgId, this._iModelId!,
       async (receivedEvent: NamedVersionCreatedEvent) => {
         Logger.logTrace(QueryAgentConfig.loggingCategory, `Received notification that named version "${receivedEvent.versionName}" was just created on the Hub`);
       });
