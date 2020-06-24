@@ -22,11 +22,7 @@ Each of the samples are self-contained and, as such, can be copied out of the cl
 
     Start here to create a new web, desktop, or mobile app.  This folder contains a collection of sample apps which include both the frontend and backend.  These are suitable to be copied and used as a template to produce a new interactive application.
 
-3. [frontend-samples](#frontend-samples)
-
-    Explore these samples to learn how to use specific APIs.  This folder contains a collection of small apps that each demonstrate a single frontend feature.  These are intended to isolate the relevant API calls.  Do *not* use as a template for a new application.
-
-4. [tools](#sample-tools)
+3. [tools](#sample-tools)
 
     A collection of tools that assist in the creation of these samples or provide value to testing the samples.
 
@@ -107,45 +103,6 @@ To run these samples, you need to first get the [required tools](https://imodelj
 
 6. Open a web browser (e.g., Chrome or Edge), and browse to localhost:3000.
 
-## Frontend Samples
-
-1. [Viewer Only](./frontend-samples/viewer-only-sample/README.md)
-
-    Stub to be used as a template for building feature specific samples.
-
-2. [Emphasize Elements](./frontend-samples/emphasize-elements-sample/README.md)
-
-    Demonstrates emphasizing, hiding, isolating, and colorizing the display of element graphics.
-
-3. [Heatmap Decorator](./frontend-samples/heatmap-decorator-sample/README.md)
-
-    Demonstrates how to display heatmap graphics that overlay the iModel.
-
-4. [Tooltip Customize](./frontend-samples/tooltip-customize-sample/README.md)
-
-    Demonstrates how to change the contents of the element hover tooltip.
-
-5. [Zoom To Elements](./frontend-samples/zoom-to-elements-sample/README.md)
-
-    Demonstrates how to simply change the viewport to focus on a set of elements.
-
-### Frontend Sample Development Setup
-
-1. (Optional) Create a sample project using the procedure at [Developer Registration](https://imodeljs.org/getting-started/#developer-registration).  This step is not needed if you already have a project to test with.
-
-2. Configure your app using the value you obtained from the registration process.  In the specific sample subfolder, edit src/config.json to refer to the project.
-
-3. Follow the [steps](#building-samples) to build the samples.
-
-4. Start the webserver for the app locally:
-
-    ```sh
-    cd [sample app subfolder]
-    npm run start
-    ```
-
-5. Open a web browser (e.g., Chrome or Edge), and browse to localhost:3000.
-
 ## Sample Tools
 
 1. [iModel Changeset Test Utility](./tools/imodel-changeset-test-utility/README.md)
@@ -180,7 +137,7 @@ Run with `node ./common/scripts/install-run-rush test`
 
 Run with `node ./common/scripts/install-run-rush test:integration`
 
-The integration tests require all configuration variables to be set either in each app's [`Config.App`](https://imodeljs.github.io/iModelJs-docs-output/reference/imodeljs-clients/config/config) object or as environment variables. The full list of variables required by the integration test are:
+The integration tests require all configuration variables to be set either in each app's [`Config.App`](https://www.imodeljs.org/reference/bentleyjs-core/configuration/config/) object or as environment variables. The full list of variables required by the integration test are:
 
 *Interactive Apps*
 
@@ -202,6 +159,6 @@ The integration tests require all configuration variables to be set either in ea
 | imjs_agent_project_name | A CONNECT Project the above client ID is member of.  Defaults to the iModel name if not set. |
 | imjs_agent_imodel_name | The iModel in the above Project to use for tests.  When using a project created through the developer registration dashboard, the iModel name is the same as the project name |
 
-> All of the above variables can be setup on the registration pages on the [Getting Started](https://imodeljs.github.io/iModelJs-docs-output/getting-started/) page.
+> All of the above variables can be setup on the registration pages on the [Getting Started](https://www.imodeljs.org/getting-started/) page.
 
-> NOTE: The imjs_agent_client_id has to be added to the Project with the following email format, `{Client Id}@apps.imsoidc.bentley.com`.  This new user to the project can be added through the [Project registration dashboard](https://imodeljs.github.io/iModelJs-docs-output/getting-started/registration-dashboard/?tab=1)
+> NOTE: The imjs_agent_client_id has to be added to the Project with the following email format, `{Client Id}@apps.imsoidc.bentley.com`.  This new user to the project can be added through the [Project registration dashboard](https://www.imodeljs.org/getting-started/registration-dashboard/?tab=1)
