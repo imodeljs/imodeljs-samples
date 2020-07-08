@@ -44,7 +44,7 @@ async function findNode(text: string) {
   return elementHandles[0];
 }
 
-describe.skip("Content view", () => {
+describe("Content view", () => {
 
   it("renders after loading iModel", async () => {
     await signIn(page);
