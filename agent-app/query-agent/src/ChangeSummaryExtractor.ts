@@ -44,7 +44,6 @@ export class ChangeSummaryExtractor {
             case ChangeOpCode.Insert: {
               // Get the instance after the insert
               const afterQuery = ChangeSummaryManager.buildPropertyValueChangesECSql(iModelDb, instanceChange, ChangedValueState.AfterInsert);
-              Logger.logTrace(QueryAgentConfig.loggingCategory, `Running query on iModelDb: ${afterQuery}`);
               const after = await iModelDb.withPreparedStatement(afterQuery, async (afterStmt: ECSqlStatement) => {
                 return afterStmt.next();
               });
@@ -54,14 +53,12 @@ export class ChangeSummaryExtractor {
             case ChangeOpCode.Update: {
               // Get the instance before the update
               const beforeQuery = ChangeSummaryManager.buildPropertyValueChangesECSql(iModelDb, instanceChange, ChangedValueState.BeforeUpdate);
-              Logger.logTrace(QueryAgentConfig.loggingCategory, `Running query on iModelDb: ${beforeQuery}`);
               const before = await iModelDb.withPreparedStatement(beforeQuery, async (beforeStmt: ECSqlStatement) => {
                 return beforeStmt.next();
               });
               instanceChange.before = before;
               // Get the instance after the update
               const afterQuery = ChangeSummaryManager.buildPropertyValueChangesECSql(iModelDb, instanceChange, ChangedValueState.AfterUpdate);
-              Logger.logTrace(QueryAgentConfig.loggingCategory, `Running query on iModelDb: ${afterQuery}`);
               const after = await iModelDb.withPreparedStatement(afterQuery, async (afterStmt: ECSqlStatement) => {
                 return afterStmt.next();
               });
@@ -71,7 +68,6 @@ export class ChangeSummaryExtractor {
             case ChangeOpCode.Delete: {
               // Get the instance before the delete
               const beforeQuery = ChangeSummaryManager.buildPropertyValueChangesECSql(iModelDb, instanceChange, ChangedValueState.BeforeDelete);
-              Logger.logTrace(QueryAgentConfig.loggingCategory, `Running query on iModelDb: ${beforeQuery}`);
               const before = await iModelDb.withPreparedStatement(beforeQuery, async (beforeStmt: ECSqlStatement) => {
                 return beforeStmt.next();
               });
@@ -89,7 +85,6 @@ export class ChangeSummaryExtractor {
       return changeContent;
     } catch (error) {
       Logger.logError(QueryAgentConfig.loggingCategory, `Error while extracting changeset summary ${changeSetId}: ${error}`);
-      throw error;
     }
     return undefined;
   }
