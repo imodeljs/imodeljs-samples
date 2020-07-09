@@ -43,22 +43,38 @@ export class ChangeSummaryExtractor {
           switch (instanceChange.opCode) {
             case ChangeOpCode.Insert: {
               // Get the instance after the insert
-              const after = await iModelDb.query(ChangeSummaryManager.buildPropertyValueChangesECSql(iModelDb, instanceChange, ChangedValueState.AfterInsert)).next();
+              const afterQuery = ChangeSummaryManager.buildPropertyValueChangesECSql(iModelDb, instanceChange, ChangedValueState.AfterInsert);
+              Logger.logTrace(QueryAgentConfig.loggingCategory, `Running query on iModelDb: ${afterQuery}`);
+              const after = await iModelDb.withPreparedStatement(afterQuery, async (afterStmt: ECSqlStatement) => {
+                return afterStmt.next();
+              });
               instanceChange.after = after;
               break;
             }
             case ChangeOpCode.Update: {
               // Get the instance before the update
-              const before = await iModelDb.query(ChangeSummaryManager.buildPropertyValueChangesECSql(iModelDb, instanceChange, ChangedValueState.BeforeUpdate)).next();
+              const beforeQuery = ChangeSummaryManager.buildPropertyValueChangesECSql(iModelDb, instanceChange, ChangedValueState.BeforeUpdate);
+              Logger.logTrace(QueryAgentConfig.loggingCategory, `Running query on iModelDb: ${beforeQuery}`);
+              const before = await iModelDb.withPreparedStatement(beforeQuery, async (beforeStmt: ECSqlStatement) => {
+                return beforeStmt.next();
+              });
               instanceChange.before = before;
               // Get the instance after the update
-              const after = await iModelDb.query(ChangeSummaryManager.buildPropertyValueChangesECSql(iModelDb, instanceChange, ChangedValueState.AfterUpdate)).next();
+              const afterQuery = ChangeSummaryManager.buildPropertyValueChangesECSql(iModelDb, instanceChange, ChangedValueState.AfterUpdate);
+              Logger.logTrace(QueryAgentConfig.loggingCategory, `Running query on iModelDb: ${afterQuery}`);
+              const after = await iModelDb.withPreparedStatement(afterQuery, async (afterStmt: ECSqlStatement) => {
+                return afterStmt.next();
+              });
               instanceChange.after = after;
               break;
             }
             case ChangeOpCode.Delete: {
               // Get the instance before the delete
-              const before = await iModelDb.query(ChangeSummaryManager.buildPropertyValueChangesECSql(iModelDb, instanceChange, ChangedValueState.BeforeDelete)).next();
+              const beforeQuery = ChangeSummaryManager.buildPropertyValueChangesECSql(iModelDb, instanceChange, ChangedValueState.BeforeDelete);
+              Logger.logTrace(QueryAgentConfig.loggingCategory, `Running query on iModelDb: ${beforeQuery}`);
+              const before = await iModelDb.withPreparedStatement(beforeQuery, async (beforeStmt: ECSqlStatement) => {
+                return beforeStmt.next();
+              });
               instanceChange.before = before;
               break;
             }
@@ -73,6 +89,7 @@ export class ChangeSummaryExtractor {
       return changeContent;
     } catch (error) {
       Logger.logError(QueryAgentConfig.loggingCategory, `Error while extracting changeset summary ${changeSetId}: ${error}`);
+      throw error;
     }
     return undefined;
   }
