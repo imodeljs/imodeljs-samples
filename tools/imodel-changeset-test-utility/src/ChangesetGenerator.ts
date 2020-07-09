@@ -11,6 +11,7 @@ import { ChangesetGenerationConfig } from "./ChangesetGenerationConfig";
 import { HubUtility } from "./HubUtility";
 import { IModelDbHandler } from "./IModelDbHandler";
 import { TestChangesetSequence } from "./TestChangesetSequence";
+import { ChangesType } from "@bentley/imodelhub-client";
 
 /** Sleep for ms */
 const pause = async (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -103,7 +104,7 @@ export class ChangesetGenerator {
     await this._iModelDb!.concurrencyControl.request(this._authCtx);
     this._iModelDb!.saveChanges("Pushed First Change");
     await this._iModelDb!.pullAndMergeChanges(this._authCtx, IModelVersion.latest());
-    await this._iModelDb!.pushChanges(this._authCtx, description);
+    await this._iModelDb!.pushChanges(this._authCtx, description, ChangesType.Regular);
   }
 
   private async createNamedVersion(iModelId: string) {
