@@ -158,9 +158,11 @@ describe("IModelQueryAgent Running with Changesets (#integration)", () => {
   });
 
   it("Extracts changeset information published to an iModel", async () => {
-    // Listen for changeset we are generating
-    const numChangeSets = 3;
+    // numChangesets must be even so all created changesets are included in a version.
+    const numChangeSets = 4;
     const changesetSequence = new TestChangesetSequence(numChangeSets, 5, 2000);
+
+    // Listen for changeset we are generating. 
     const promise = agent.run(25000);
     const changesetGenerated = await changesetHarness.generateChangesets(changesetSequence);
     expect(changesetGenerated).to.be.true;
