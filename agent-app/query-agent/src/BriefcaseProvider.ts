@@ -13,7 +13,7 @@ export class BriefcaseProvider {
 
     if (!this._iModelDb) {
       // Downloads and opens a new local briefcase of the iModel at the specified version
-      const briefcaseProps: BriefcaseProps = await BriefcaseManager.download(requestContext, projectId, iModelId, { syncMode: SyncMode.PullAndPush }, IModelVersion.asOfChangeSet(changeSetId));
+      const briefcaseProps: BriefcaseProps = await BriefcaseManager.download(requestContext, projectId, iModelId, { syncMode: SyncMode.PullOnly }, IModelVersion.asOfChangeSet(changeSetId));
       requestContext.enter();
       this._iModelDb = await BriefcaseDb.open(requestContext, briefcaseProps.key);
     } else {

@@ -4,7 +4,7 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-  {
+    {
       "type": "node",
       "request": "attach",
       "name": "Attach to node process",
@@ -266,7 +266,14 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "type": "pwa-node"
+      "type": "pwa-node",
+      "env": {
+        "imjs_agent_client_id": "",
+        "imjs_agent_client_secret": "",
+        "imjs_agent_imodel_name": "",
+        "imjs_agent_project_name": "",
+        "imjs_buddi_resolve_url_using_region": "",
+      },
     }
   ],
   "compounds": [

@@ -19,18 +19,18 @@
     "url": "http://www.bentley.com"
   },
   "dependencies": {
-    "@bentley/bentleyjs-core": "^2.2.0",
-    "@bentley/context-registry-client": "^2.2.0",
-    "@bentley/geometry-core": "^2.2.0",
-    "@bentley/imodelhub-client": "^2.2.0",
-    "@bentley/imodeljs-backend": "^2.2.0",
-    "@bentley/backend-itwin-client": "^2.2.0",
-    "@bentley/imodeljs-common": "^2.2.0",
-    "@bentley/itwin-client": "^2.2.0",
+    "@bentley/bentleyjs-core": "^2.3.0",
+    "@bentley/context-registry-client": "^2.3.0",
+    "@bentley/geometry-core": "^2.3.0",
+    "@bentley/imodelhub-client": "^2.3.0",
+    "@bentley/imodeljs-backend": "^2.3.0",
+    "@bentley/backend-itwin-client": "^2.3.0",
+    "@bentley/imodeljs-common": "^2.3.0",
+    "@bentley/itwin-client": "^2.3.0",
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "@bentley/build-tools": "^2.2.0",
+    "@bentley/build-tools": "^2.3.0",
     "@types/body-parser": "^1.17.0",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",

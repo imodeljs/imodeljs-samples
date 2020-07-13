@@ -4,6 +4,7 @@
 *--------------------------------------------------------------------------------------------*/
 import { expect } from "chai";
 import * as path from "path";
+import { readdirSync } from 'fs';
 
 import { Config, Logger, LogLevel } from "@bentley/bentleyjs-core";
 import { AuthorizedClientRequestContext, AccessToken } from "@bentley/itwin-client";
@@ -59,7 +60,7 @@ describe("QueryAgentConfig", () => {
   it("Uses the project name if the iModel name is not defined", () => {
     TestMockObjects.clearMockAppConfigProjectName();
     expect(QueryAgentConfig.projectName).equals(QueryAgentConfig.iModelName);
-    
+
     TestMockObjects.setupMockAppConfig(); // If all the configuration variables don't exist at clean up, an error gets thrown.
   });
 
@@ -148,11 +149,8 @@ describe("IModelQueryAgent Running with Changesets (#integration)", () => {
     await changesetHarness.initialize();
   });
 
-  afterEach(() => {
-    Logger.logTrace(QueryAgentConfig.loggingCategory, "Cleaning up test resources, may take some time...");
-  });
-
   after(async () => {
+    Logger.logTrace(QueryAgentConfig.loggingCategory, "Cleaning up test resources, may take some time...");
     if (requestContext) {
       // Purge briefcases that are close to reaching the aquire limit
       await hubUtility.purgeAcquiredBriefcases(requestContext, ChangesetGenerationConfig.projectName, ChangesetGenerationConfig.iModelName);
@@ -160,11 +158,18 @@ describe("IModelQueryAgent Running with Changesets (#integration)", () => {
   });
 
   it("Extracts changeset information published to an iModel", async () => {
-    // Listen for changeset we are generating
-    const changesetSequence = new TestChangesetSequence(5, 12, 2000);
-    const promise = agent.run();
+    // numChangesets must be even so all created changesets are included in a version.
+    const numChangeSets = 4;
+    const changesetSequence = new TestChangesetSequence(numChangeSets, 5, 2000);
+
+    // Listen for changeset we are generating. 
+    const promise = agent.run(25000);
     const changesetGenerated = await changesetHarness.generateChangesets(changesetSequence);
     expect(changesetGenerated).to.be.true;
+
+    // Wait for agent to finish listening
     await promise;
+    const items = readdirSync(path.join(QueryAgentConfig.outputDir, "changeSummaries"));
+    expect(items.length).to.equal(numChangeSets);
   });
 });
