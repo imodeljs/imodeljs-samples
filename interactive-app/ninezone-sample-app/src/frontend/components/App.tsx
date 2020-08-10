@@ -200,7 +200,8 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
     const connectClient = new ContextRegistryClient();
     let project: Project;
     try {
-      project = await connectClient.getProject(requestContext, { $filter: `Name+eq+'${projectName}'` });
+      const projects: Project[] = await connectClient.getInvitedProjects(requestContext, { $filter: `Name+eq+'${projectName}'` });
+      project = projects[0];
     } catch (e) {
       throw new Error(`Project with name "${projectName}" does not exist`);
     }
