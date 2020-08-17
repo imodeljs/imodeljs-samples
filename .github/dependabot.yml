@@ -1,0 +1,82 @@
+version: 2
+updates:
+
+# query-agent
+  - package-ecosystem: "npm"
+    directory: "/agent-app/query-agent"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-type: "all"
+    reviewers:
+      - "williamkbentley"
+      - "BaoTon"
+    labels:
+      - "dependencies"
+      - "query-agent"
+    pull-request-branch-name:
+      separator: "-"
+
+ # basic-viewport-app
+  - package-ecosystem: "npm"
+    directory: "/interactive-app/basic-viewport-app"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-type: "all"
+    reviewers:
+      - "williamkbentley"
+      - "BaoTon"
+    labels:
+      - "dependencies"
+      - "basic-viewport-app"
+    pull-request-branch-name:
+      separator: "-"
+
+# ninezone-sample-app
+  - package-ecosystem: "npm"
+    directory: "/interactive-app/ninezone-sample-app"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-type: "all"
+    reviewers:
+      - "williamkbentley"
+      - "BaoTon"
+    labels:
+      - "dependencies"
+      - "ninezone-sample-app"
+    pull-request-branch-name:
+      separator: "-"
+
+# simple-viewer-app
+  - package-ecosystem: "npm"
+    directory: "/interactive-app/simple-viewer-app"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-type: "all"
+    reviewers:
+      - "williamkbentley"
+      - "BaoTon"
+    labels:
+      - "dependencies"
+      - "simple-viewer-app"
+    pull-request-branch-name:
+      separator: "-"
+
+# imodel-changeset-test-utility
+  - package-ecosystem: "npm"
+    directory: "/tools/imodel-changeset-test-utility"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-type: "all"
+    reviewers:
+      - "williamkbentley"
+      - "BaoTon"
+    labels:
+      - "dependencies"
+      - "imodel-changeset-test-utility"
+    pull-request-branch-name:
+      separator: "-"
