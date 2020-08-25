@@ -28,9 +28,10 @@ export type Props = IModelConnectionProps | DataProviderProps;
 /** Tree component for the viewer app */
 export default function SimpleTreeComponent(props: Props) {
   const imodel = (props as IModelConnectionProps).imodel;
+  const pagingSize = 20;
   const imodelDataProvider = useOptionalDisposable(useCallback(() => {
     if (imodel)
-      return new PresentationTreeDataProvider({ imodel, ruleset: RULESET_TREE });
+      return new PresentationTreeDataProvider({ imodel, ruleset: RULESET_TREE, pagingSize });
     return undefined;
   }, [imodel]));
   const dataProvider = imodelDataProvider ?? (props as DataProviderProps).dataProvider;
