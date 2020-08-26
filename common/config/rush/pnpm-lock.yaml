@@ -1,40 +1,40 @@
 dependencies:
-  '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.0_7f9667b92305fcf1b61c17f006fb71b5
-  '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-  '@bentley/build-tools': registry.npmjs.org/@bentley/build-tools/2.5.0
-  '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-  '@bentley/ecschema-metadata': registry.npmjs.org/@bentley/ecschema-metadata/2.5.0_7f8a6b6e0a394c75c90532b8edea444b
-  '@bentley/electron-manager': registry.npmjs.org/@bentley/electron-manager/2.5.0_cc7d25465c01f45a3717ce53c1e003ad
-  '@bentley/express-server': registry.npmjs.org/@bentley/express-server/2.5.0
-  '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-  '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0
+  '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.1_0ffd86a3bb23f49ba685035ac8445873
+  '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+  '@bentley/build-tools': registry.npmjs.org/@bentley/build-tools/2.5.1
+  '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+  '@bentley/ecschema-metadata': registry.npmjs.org/@bentley/ecschema-metadata/2.5.1_337e6256ff230e90905b8ff990469955
+  '@bentley/electron-manager': registry.npmjs.org/@bentley/electron-manager/2.5.1_45d85d96400fbbf8fc0306766eb08339
+  '@bentley/express-server': registry.npmjs.org/@bentley/express-server/2.5.1
+  '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+  '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1
   '@bentley/icons-generic-webfont': registry.npmjs.org/@bentley/icons-generic-webfont/1.0.19
-  '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.0_2118d40f8cc695a5be3bba70d9a823cd
-  '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.0_457338c05d208df9297444f7b2c597d5
-  '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-  '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.0_e99df8b99595c6b4cd858b7b5cd9a6e0
-  '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.0_@bentley+bentleyjs-core@2.5.0
-  '@bentley/imodeljs-markup': registry.npmjs.org/@bentley/imodeljs-markup/2.5.0_a6fc25d63b9ad8ccb07c12f085c9298a
-  '@bentley/imodeljs-quantity': registry.npmjs.org/@bentley/imodeljs-quantity/2.5.0_@bentley+bentleyjs-core@2.5.0
-  '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
-  '@bentley/orbitgt-core': registry.npmjs.org/@bentley/orbitgt-core/2.5.0
-  '@bentley/presentation-backend': registry.npmjs.org/@bentley/presentation-backend/2.5.0_ffae974130e8eddc8f52de21ba0f264f
-  '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.0_5d19c6e1a644847382c85f1520413c89
-  '@bentley/presentation-components': registry.npmjs.org/@bentley/presentation-components/2.5.0_d5fffcdc4f2d91813d316417204eeec8
-  '@bentley/presentation-frontend': registry.npmjs.org/@bentley/presentation-frontend/2.5.0_58eac2079210c677b263b47c69f808c2
-  '@bentley/presentation-testing': registry.npmjs.org/@bentley/presentation-testing/2.5.0_1dc0256b6ecd1bfe4d90f36f7fd4b1fa
-  '@bentley/product-settings-client': registry.npmjs.org/@bentley/product-settings-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-  '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.0_@bentley+itwin-client@2.5.0
+  '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.1_fdf87656650666f0de0a1a8d1ebbdbb6
+  '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.1_c77f80632b1626fbe539af736d2e133c
+  '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+  '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.1_633fe890d218bf5b1fa7ec4da99e8d6b
+  '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.1_@bentley+bentleyjs-core@2.5.1
+  '@bentley/imodeljs-markup': registry.npmjs.org/@bentley/imodeljs-markup/2.5.1_1f2721275799c29db9013760ab571286
+  '@bentley/imodeljs-quantity': registry.npmjs.org/@bentley/imodeljs-quantity/2.5.1_@bentley+bentleyjs-core@2.5.1
+  '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
+  '@bentley/orbitgt-core': registry.npmjs.org/@bentley/orbitgt-core/2.5.1
+  '@bentley/presentation-backend': registry.npmjs.org/@bentley/presentation-backend/2.5.1_e5a28e3885b49ec3feffaf01f1a38535
+  '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.1_48ad3febf7cfaab5702504882d64dea4
+  '@bentley/presentation-components': registry.npmjs.org/@bentley/presentation-components/2.5.1_965211ae52d8fb50fbe249e7fc116bb6
+  '@bentley/presentation-frontend': registry.npmjs.org/@bentley/presentation-frontend/2.5.1_cd870d1bbb0d5f93e74cded5e1637cf0
+  '@bentley/presentation-testing': registry.npmjs.org/@bentley/presentation-testing/2.5.1_823f25eb3351b964a32df24f23382f83
+  '@bentley/product-settings-client': registry.npmjs.org/@bentley/product-settings-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+  '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.1_@bentley+itwin-client@2.5.1
   '@bentley/react-scripts': registry.npmjs.org/@bentley/react-scripts/3.4.1_17aa7bee3e0054b4610d663579690f97
-  '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.0_59d060f48a0c7dbe9ec6a157988c14a5
-  '@bentley/ui-components': registry.npmjs.org/@bentley/ui-components/2.5.0_ade510f09aa4b66caa5432e7d5196801
-  '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.0_a46372e87321e6dedc860b849c2486aa
-  '@bentley/ui-framework': registry.npmjs.org/@bentley/ui-framework/2.5.0_59f16c6983702ed136bb1b75b7f7cb80
-  '@bentley/ui-ninezone': registry.npmjs.org/@bentley/ui-ninezone/2.5.0_7faaa735dcf25ef9a3eba149253bf9cd
-  '@bentley/webgl-compatibility': registry.npmjs.org/@bentley/webgl-compatibility/2.5.0
+  '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.1_73904e355c9fb71111c1f203caf854ef
+  '@bentley/ui-components': registry.npmjs.org/@bentley/ui-components/2.5.1_ffcbb3289ab4c80156417c322aa88af0
+  '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.1_4ee009030ac48d59676a7aa4dff18993
+  '@bentley/ui-framework': registry.npmjs.org/@bentley/ui-framework/2.5.1_b8c889a273d69fd2c713030a101bc15b
+  '@bentley/ui-ninezone': registry.npmjs.org/@bentley/ui-ninezone/2.5.1_cdf8b7dc4633d8fd0029e1095f5e0c04
+  '@bentley/webgl-compatibility': registry.npmjs.org/@bentley/webgl-compatibility/2.5.1
   '@rush-temp/basic-viewport-app': 'file:projects/basic-viewport-app.tgz'
-  '@rush-temp/imodel-changeset-test-utility': 'file:projects/imodel-changeset-test-utility.tgz_c11c5a77d0cbb36d9267df24dd803fb8'
-  '@rush-temp/imodel-query-agent': 'file:projects/imodel-query-agent.tgz_c11c5a77d0cbb36d9267df24dd803fb8'
+  '@rush-temp/imodel-changeset-test-utility': 'file:projects/imodel-changeset-test-utility.tgz_8134bab89403b3c47e3fdecd79a08449'
+  '@rush-temp/imodel-query-agent': 'file:projects/imodel-query-agent.tgz_8134bab89403b3c47e3fdecd79a08449'
   '@rush-temp/ninezone-sample-app': 'file:projects/ninezone-sample-app.tgz'
   '@rush-temp/simple-viewer-app': 'file:projects/simple-viewer-app.tgz'
   '@testing-library/dom': 5.6.1
@@ -49,7 +49,7 @@ dependencies:
   '@types/mocha': 5.2.7
   '@types/node': 10.17.28
   '@types/puppeteer': 1.20.6
-  '@types/react': 16.9.46
+  '@types/react': 16.9.47
   '@types/react-dom': 16.9.8
   '@types/react-redux': 6.0.14
   '@types/react-resize-detector': 3.1.1
@@ -73,7 +73,7 @@ dependencies:
   npm-run-all: 4.1.5
   nyc: 14.1.1
   path: 0.12.7
-  puppeteer: 2.1.0
+  puppeteer: 5.1.0
   react: 16.13.1
   react-dom: 16.13.1_react@16.13.1
   react-redux: 7.2.1_react@16.13.1+redux@4.0.5
@@ -2222,10 +2222,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
-  /@types/mime-types/2.1.0:
-    dev: false
-    resolution:
-      integrity: sha1-nKUs2jY/aZxpRmwqbM2q2RPqenM=
   /@types/mime/2.0.3:
     dev: false
     resolution:
@@ -2285,30 +2281,30 @@ packages:
       integrity: sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
   /@types/react-dom/16.9.8:
     dependencies:
-      '@types/react': 16.9.46
+      '@types/react': 16.9.47
     dev: false
     resolution:
       integrity: sha512-ykkPQ+5nFknnlU6lDd947WbQ6TE3NNzbQAkInC2EKY1qeYdTKp7onFusmYZb+ityzx2YviqT6BXSu+LyWWJwcA==
   /@types/react-redux/6.0.14:
     dependencies:
-      '@types/react': 16.9.46
+      '@types/react': 16.9.47
       redux: 4.0.5
     dev: false
     resolution:
       integrity: sha512-bvpWqBOvz2V+EfZ9Qu1d3gFKYCIn/BYoGWAVt1c526tbiI9rtfaBbjutbbapmtEZaEfLuHj3Ljg9qho0SBSwUg==
   /@types/react-resize-detector/3.1.1:
     dependencies:
-      '@types/react': 16.9.46
+      '@types/react': 16.9.47
     dev: false
     resolution:
       integrity: sha512-3FVExywb3kC0p+dKRd2IC6wmUlfurx/9J0b1mtHd0rigwZWNJC79fnbTJaMmLNM8PhhgqDwaNOhFdv0u9YGAzA==
-  /@types/react/16.9.46:
+  /@types/react/16.9.47:
     dependencies:
       '@types/prop-types': 15.7.3
-      csstype: 3.0.2
+      csstype: 3.0.3
     dev: false
     resolution:
-      integrity: sha512-dbHzO3aAq1lB3jRQuNpuZ/mnu+CdD3H0WVaaBQA8LTT3S33xhVBUj232T8M3tAhSWJs/D/UqORYUlJNl/8VQZg==
+      integrity: sha512-dAJO4VbrjYqTUwFiQqAKjLyHHl4RSTNnRyPdX3p16MPbDKvow51wxATUPxoe2QsiXNMEYrOjc2S6s92VjG+1VQ==
   /@types/rimraf/2.0.4:
     dependencies:
       '@types/glob': 7.1.3
@@ -2323,12 +2319,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-6M64P58N+OXjU432WoLLBQxbA0LRGBCRm7aAGQJ+SMC1IMl0dgRVi9EFfoDcS2a7Xogygk/eGN94CfwU9UF7UQ==
-  /@types/sinon/9.0.4:
+  /@types/sinon/9.0.5:
     dependencies:
       '@types/sinonjs__fake-timers': 6.0.1
     dev: false
     resolution:
-      integrity: sha512-sJmb32asJZY6Z2u09bl0G2wglSxDlROlAejCjsnor+LzBMz17gu8IU7vKC/vWDnv9zEq2wqADHVXFjf4eE8Gdw==
+      integrity: sha512-4CnkGdM/5/FXDGqL32JQ1ttVrGvhOoesLLF7VnTh4KdjK5N5VQOtxaylFqqTjnHx55MnD9O02Nbk5c1ELC8wlQ==
   /@types/sinonjs__fake-timers/6.0.1:
     dev: false
     resolution:
@@ -2367,6 +2363,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-MU10TSgzNABgdzKvQVW1nuuT+sgBMWeXNc3XOs5YXV5SDAK+PPja2eUuBNB9iqElu03xyEDqlnGw0jgl4nbqGQ==
+  /@types/yauzl/2.9.1:
+    dependencies:
+      '@types/node': 10.17.28
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-A1b8SU4D10uoPjwb0lnHmmu8wZhR9d+9o2PKBQT2jU5YPTKsxac6M2qGAdY7VcL+dHHhARVUDmeg0rOrcd9EjA==
   /@typescript-eslint/eslint-plugin/2.25.0_94327f671b8b8fcfd6e40ba8fb1b6e1d:
     dependencies:
       '@typescript-eslint/experimental-utils': 2.25.0_eslint@6.8.0+typescript@3.7.5
@@ -2437,11 +2440,11 @@ packages:
       typescript: '*'
     resolution:
       integrity: sha512-eS6FTkq+wuMJ+sgtuNTtcqavWXqsflWcfBnlYhg/nS4aZ1leewkXGbvBhaapn1q6qf4M71bsR1tez5JTRMuqwA==
-  /@typescript-eslint/experimental-utils/3.9.1_eslint@6.8.0+typescript@3.7.5:
+  /@typescript-eslint/experimental-utils/3.10.1_eslint@6.8.0+typescript@3.7.5:
     dependencies:
       '@types/json-schema': 7.0.5
-      '@typescript-eslint/types': 3.9.1
-      '@typescript-eslint/typescript-estree': 3.9.1_typescript@3.7.5
+      '@typescript-eslint/types': 3.10.1
+      '@typescript-eslint/typescript-estree': 3.10.1_typescript@3.7.5
       eslint: 6.8.0
       eslint-scope: 5.1.0
       eslint-utils: 2.1.0
@@ -2452,7 +2455,7 @@ packages:
       eslint: '*'
       typescript: '*'
     resolution:
-      integrity: sha512-lkiZ8iBBaYoyEKhCkkw4SAeatXyBq9Ece5bZXdLe1LWBUwTszGbmbiqmQbwWA8cSYDnjWXp9eDbXpf9Sn0hLAg==
+      integrity: sha512-DewqIgscDzmAfd5nOGe4zm6Bl7PKtMG2Ad0KG8CUZAHlXfAKTF9Ol5PXhiMh39yRL2ChRH1cuuUGOcVyyrhQIw==
   /@typescript-eslint/parser/2.25.0_eslint@6.8.0+typescript@3.7.5:
     dependencies:
       '@types/eslint-visitor-keys': 1.0.0
@@ -2489,12 +2492,12 @@ packages:
         optional: true
     resolution:
       integrity: sha512-03ilO0ucSD0EPTw2X4PntSIRFtDPWjrVq7C3/Z3VQHRC7+13YB55rcJI3Jt+YgeHbjUdJPcPa7b23rXCBokuyA==
-  /@typescript-eslint/types/3.9.1:
+  /@typescript-eslint/types/3.10.1:
     dev: false
     engines:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
     resolution:
-      integrity: sha512-15JcTlNQE1BsYy5NBhctnEhEoctjXOjOK+Q+rk8ugC+WXU9rAcS2BYhoh6X4rOaXJEpIYDl+p7ix+A5U0BqPTw==
+      integrity: sha512-+3+FCUJIahE9q0lDi1WleYzjCwJs5hIsbugIgnbB+dSCYUxl8L6PwmsyOPFZde2hc1DlTo/xnkOgiTLSyAbHiQ==
   /@typescript-eslint/typescript-estree/2.25.0_typescript@3.7.5:
     dependencies:
       debug: 4.1.1
@@ -2533,10 +2536,10 @@ packages:
         optional: true
     resolution:
       integrity: sha512-OMAr+nJWKdlVM9LOqCqh3pQQPwxHAN7Du8DR6dmwCrAmxtiXQnhHJ6tBNtf+cggqfo51SG/FCwnKhXCIM7hnVg==
-  /@typescript-eslint/typescript-estree/3.9.1_typescript@3.7.5:
+  /@typescript-eslint/typescript-estree/3.10.1_typescript@3.7.5:
     dependencies:
-      '@typescript-eslint/types': 3.9.1
-      '@typescript-eslint/visitor-keys': 3.9.1
+      '@typescript-eslint/types': 3.10.1
+      '@typescript-eslint/visitor-keys': 3.10.1
       debug: 4.1.1
       glob: 7.1.6
       is-glob: 4.0.1
@@ -2552,15 +2555,15 @@ packages:
       typescript:
         optional: true
     resolution:
-      integrity: sha512-IqM0gfGxOmIKPhiHW/iyAEXwSVqMmR2wJ9uXHNdFpqVvPaQ3dWg302vW127sBpAiqM9SfHhyS40NKLsoMpN2KA==
-  /@typescript-eslint/visitor-keys/3.9.1:
+      integrity: sha512-QbcXOuq6WYvnB3XPsZpIwztBoquEYLXh2MtwVU+kO8jgYCiv4G5xrSP/1wg4tkvrEE+esZVquIPX/dxPlePk1w==
+  /@typescript-eslint/visitor-keys/3.10.1:
     dependencies:
       eslint-visitor-keys: 1.3.0
     dev: false
     engines:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
     resolution:
-      integrity: sha512-zxdtUjeoSh+prCpogswMwVUJfEFmCOjdzK9rpNjNBfm6EyPt99x3RrJoBOGZO23FCt0WPKUCOL5mb/9D5LjdwQ==
+      integrity: sha512-9JgC82AaQeglebjZMgYR5wgmfUdUc+EitGUUMW8u2nDckaeimzW+VsoLV6FoimPv2id3VQzfjwBxEMVz08ameQ==
   /@ungap/url-search-params/0.1.4:
     dev: false
     resolution:
@@ -2798,7 +2801,7 @@ packages:
       node: '>= 6.0.0'
     resolution:
       integrity: sha512-TMeqbNl2fMW0nMjTEPOwe3J/PRFP4vqeoNuQMG0HlMrtm5QxKqdvAkZ1pRBQ/ulIyDD5Yq0nJ7YbdD8ey0TO3g==
-  /aggregate-error/3.0.1:
+  /aggregate-error/3.1.0:
     dependencies:
       clean-stack: 2.2.0
       indent-string: 4.0.0
@@ -2806,7 +2809,7 @@ packages:
     engines:
       node: '>=8'
     resolution:
-      integrity: sha512-quoaXsZ9/BLNae5yiNoUz+Nhkwz83GhWwtYFglcjEQB2NDHCIpApbqXxIFnm4Pq/Nvhrsq5sYJFyohrrxnTGAA==
+      integrity: sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==
   /ajv-errors/1.0.1_ajv@6.12.4:
     dependencies:
       ajv: 6.12.4
@@ -3203,7 +3206,7 @@ packages:
   /autoprefixer/9.8.6:
     dependencies:
       browserslist: 4.14.0
-      caniuse-lite: 1.0.30001117
+      caniuse-lite: 1.0.30001118
       colorette: 1.2.1
       normalize-range: 0.1.2
       num2fraction: 1.2.2
@@ -3531,6 +3534,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-e8tQYnZodmebYDWGH7KMRvtzKXaJHx3BbilrgZCfvyLUYdKpK1t5PSPmpkny/SgiTSCnjfLW7v5rlONXVFkQEA==
+  /bl/4.0.3:
+    dependencies:
+      buffer: 5.6.0
+      inherits: 2.0.4
+      readable-stream: 3.6.0
+    dev: false
+    resolution:
+      integrity: sha512-fs4G6/Hu4/EE+F75J8DuN/0IpQqNjAdC7aEQv7Qt8MHGUH7Ckv2MwTEEeN9QehD0pfIDkMI1bkHYkKy7xHyKIg==
   /block-stream/0.0.9:
     dependencies:
       inherits: 2.0.4
@@ -3709,8 +3720,8 @@ packages:
       integrity: sha512-Z942RysHXmJrhqk88FmKBVq/v5tqmSkDz7p54G/MGyjMnCFFnC79XWNbg+Vta8W6Wb2qtSZTSxIGkJrRpCFEiA==
   /browserslist/4.10.0:
     dependencies:
-      caniuse-lite: 1.0.30001117
-      electron-to-chromium: 1.3.540
+      caniuse-lite: 1.0.30001118
+      electron-to-chromium: 1.3.549
       node-releases: 1.1.60
       pkg-up: 3.1.0
     dev: false
@@ -3719,8 +3730,8 @@ packages:
       integrity: sha512-TpfK0TDgv71dzuTsEAlQiHeWQ/tiPqgNZVdv046fvNtBZrjbv2O3TsWCDU0AWGJJKCF/KsjNdLzR9hXOsh/CfA==
   /browserslist/4.14.0:
     dependencies:
-      caniuse-lite: 1.0.30001117
-      electron-to-chromium: 1.3.540
+      caniuse-lite: 1.0.30001118
+      electron-to-chromium: 1.3.549
       escalade: 3.0.2
       node-releases: 1.1.60
     dev: false
@@ -3999,16 +4010,16 @@ packages:
   /caniuse-api/3.0.0:
     dependencies:
       browserslist: 4.14.0
-      caniuse-lite: 1.0.30001117
+      caniuse-lite: 1.0.30001118
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: false
     resolution:
       integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==
-  /caniuse-lite/1.0.30001117:
+  /caniuse-lite/1.0.30001118:
     dev: false
     resolution:
-      integrity: sha512-4tY0Fatzdx59kYjQs+bNxUwZB03ZEBgVmJ1UkFPz/Q8OLiUUbjct2EdpnXj0fvFTPej2EkbPIG0w8BWsjAyk1Q==
+      integrity: sha512-RNKPLojZo74a0cP7jFMidQI7nvLER40HgNfgKQEJ2PFm225L0ectUungNQoK3Xk3StQcFbpBPNEvoWD59436Hg==
   /capture-exit/2.0.0:
     dependencies:
       rsvp: 4.8.5
@@ -4655,7 +4666,7 @@ packages:
     dependencies:
       '@types/parse-json': 4.0.0
       import-fresh: 3.2.1
-      parse-json: 5.0.1
+      parse-json: 5.1.0
       path-type: 4.0.0
       yaml: 1.10.0
     dev: false
@@ -5071,10 +5082,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-ul26pfSQTZW8dcOnD2iiJssfXw0gdNVX9IJDH/X3K5DGPfj+fUYe3kB+swUY6BF3oZDxaID3AJt+9/ojSAE05A==
-  /csstype/3.0.2:
+  /csstype/3.0.3:
     dev: false
     resolution:
-      integrity: sha512-ofovWglpqoqbfLNOTBNZLSbMuGrblAf1efvvArGKOZMBrIoJeu5UsAipQolkijtyQx5MtAzT/J9IHj/CEY1mJw==
+      integrity: sha512-jPl+wbWPOWJ7SXsWyqGRk3lGecbar0Cb0OvZF/r/ZU011R4YqiRehgkQ9p4eQfo9DSDLqLL3wHwfxeJiuIsNag==
   /currently-unhandled/0.4.1:
     dependencies:
       array-find-index: 1.0.2
@@ -5122,7 +5133,7 @@ packages:
     dependencies:
       abab: 2.0.4
       whatwg-mimetype: 2.3.0
-      whatwg-url: 8.1.0
+      whatwg-url: 8.2.1
     dev: false
     engines:
       node: '>=10'
@@ -5346,6 +5357,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-WiBc48Ky73e2I41roXnrdMag6Bg=
+  /devtools-protocol/0.0.767361:
+    dev: false
+    resolution:
+      integrity: sha512-ziRTdhEVQ9jEwedaUaXZ7kl9w9TF/7A3SXQ0XuqrJB+hMS62POHZUWTbumDN2ehRTfvWqTPc2Jw4gUl/jggmHA==
   /diff-sequences/24.9.0:
     dev: false
     engines:
@@ -5450,7 +5465,7 @@ packages:
   /dom-helpers/5.2.0:
     dependencies:
       '@babel/runtime': 7.11.2
-      csstype: 3.0.2
+      csstype: 3.0.3
     dev: false
     resolution:
       integrity: sha512-Ru5o9+V8CpunKnz5LGgWXkmrH/20cGKwcHwS4m73zIvs54CN9epEmT/HLqFJW3kXpakAFkEdzgy1hzlJe3E4OQ==
@@ -5616,10 +5631,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-FjEWG9Jb/ppK/2zToP+U5dds114fM1ZOJqMAR4aXXL5CvyPE9fiqBK/9YcwC9poIFQTEJk/EM/zyRwziziRZrg==
-  /electron-to-chromium/1.3.540:
+  /electron-to-chromium/1.3.549:
     dev: false
     resolution:
-      integrity: sha512-IoGiZb8SMqTtkDYJtP8EtCdvv3VMtd1QoTlypO2RUBxRq/Wk0rU5IzhzhMckPaC9XxDqUvWsL0XKOBhTiYVN3w==
+      integrity: sha512-q09qZdginlqDH3+Y1P6ch5UDTW8nZ1ijwMkxFs15J/DAWOwqolIx8HZH1UP0vReByBigk/dPlU22xS1MaZ+kpQ==
   /electron/8.5.0:
     dependencies:
       '@electron/get': 1.12.2
@@ -5743,6 +5758,25 @@ packages:
       node: '>= 0.4'
     resolution:
       integrity: sha512-Fr89bON3WFyUi5EvAeI48QTWX0AyekGgLA8H+c+7fbfCkJwRWRMLd8CQedNEyJuoYYhmtEqY92pgte1FAhBlhw==
+  /es-abstract/1.18.0-next.0:
+    dependencies:
+      es-to-primitive: 1.2.1
+      function-bind: 1.1.1
+      has: 1.0.3
+      has-symbols: 1.0.1
+      is-callable: 1.2.0
+      is-negative-zero: 2.0.0
+      is-regex: 1.1.1
+      object-inspect: 1.8.0
+      object-keys: 1.1.1
+      object.assign: 4.1.0
+      string.prototype.trimend: 1.0.1
+      string.prototype.trimstart: 1.0.1
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha512-elZXTZXKn51hUBdJjSZGYRujuzilgXo8vSPQzjGYXLvSlGiCo8VO8ZGV3kjo9a0WNJJ57hENagwbtlRuHuzkcQ==
   /es-to-primitive/1.2.1:
     dependencies:
       is-callable: 1.2.0
@@ -5910,7 +5944,7 @@ packages:
       integrity: sha512-6j9xxegbqe8/kZY8cYpcp0xhbK0EgJlg3g9mib3/miLaExuuwc3n5UEfSnU6hWMbT0FAYVvDbL9RrRgpUeQIvA==
   /eslint-plugin-deprecation/1.1.0_eslint@6.8.0+typescript@3.7.5:
     dependencies:
-      '@typescript-eslint/experimental-utils': 3.9.1_eslint@6.8.0+typescript@3.7.5
+      '@typescript-eslint/experimental-utils': 3.10.1_eslint@6.8.0+typescript@3.7.5
       eslint: 6.8.0
       tslib: 1.13.0
       tsutils: 3.17.1_typescript@3.7.5
@@ -6199,10 +6233,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-YZegldX7a1folC9v1+qtY6CclFI=
-  /eventemitter3/4.0.4:
+  /eventemitter3/4.0.6:
     dev: false
     resolution:
-      integrity: sha512-rlaVLnVxtxvoyLsQQFBx53YmXHDxRIzzTLbdfxqi4yocpSjAxXwkU0cScM5JgSKMqEhrZpnvQ2D9gjylR0AimQ==
+      integrity: sha512-s3GJL04SQoM+gn2c14oyqxvZ3Pcq7cduSDqy3sBFXx6UPSUmgVYwQM9zwkTn9je0lrfg0gHEwR42pF3Q2dCQkQ==
   /events/3.2.0:
     dev: false
     engines:
@@ -6425,6 +6459,19 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-xoh5G1W/PB0/27lXgMQyIhP5DSY/LhoCsOyZgb+6iMmRtCwVBo55uKaMoEYrDCKQhWvqEip5ZPKAc6eFNyf/MA==
+  /extract-zip/2.0.1:
+    dependencies:
+      debug: 4.1.1
+      get-stream: 5.2.0
+      yauzl: 2.10.0
+    dev: false
+    engines:
+      node: '>= 10.17.0'
+    hasBin: true
+    optionalDependencies:
+      '@types/yauzl': 2.9.1
+    resolution:
+      integrity: sha512-GDhU9ntwuKyGXdZBUgTIe+vXnWj0fppUEtMDL0+idd5Sta8TGpHssn/eusA9mrPr9qNDym6SxAYZjNvCn/9RBg==
   /extsprintf/1.3.0:
     dev: false
     engines:
@@ -7288,7 +7335,7 @@ packages:
       node: '>=0.4.7'
     hasBin: true
     optionalDependencies:
-      uglify-js: 3.10.1
+      uglify-js: 3.10.2
     resolution:
       integrity: sha512-1f2BACcBfiwAfStCKZNrUCgqNZkGsAT7UM3kkYtXuLo0KnaVfjKOyf7PRzB6++aK9STyT1Pd2ZCPe3EGOXleXA==
   /har-schema/2.0.0:
@@ -7646,7 +7693,7 @@ packages:
       integrity: sha512-yHYTgWMQO8VvwNS22eLLloAkvungsKdKTLO8AJlftYIKNfJr3GK3zK0ZCfzDDGUBttdGc8xFy1mCitvNKQtC3Q==
   /http-proxy/1.18.1:
     dependencies:
-      eventemitter3: 4.0.4
+      eventemitter3: 4.0.6
       follow-redirects: 1.13.0
       requires-port: 1.0.0
     dev: false
@@ -7972,7 +8019,7 @@ packages:
     dependencies:
       es-abstract: 1.17.6
       has: 1.0.3
-      side-channel: 1.0.2
+      side-channel: 1.0.3
     dev: false
     engines:
       node: '>= 0.4'
@@ -8253,6 +8300,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-5G0tKtBTFImOqDnLB2hG6Bp2qcKEFduo4tZu9MT/H6NQv/ghhy30o55ufafxJ/LdH79LLs2Kfrn85TLKyA7BUg==
+  /is-negative-zero/2.0.0:
+    dev: false
+    engines:
+      node: '>= 0.4'
+    resolution:
+      integrity: sha1-lVOxIbD6wohp2p7UWeIMdUN4hGE=
   /is-number/2.1.0:
     dependencies:
       kind-of: 3.2.2
@@ -9169,6 +9222,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-mrqyZKfX5EhL7hvqcV6WG1yYjnjeuYDzDhhcAAUrq8Po85NBQBJP+ZDUT75qZQ98IkUoBqdkExkukOU7Ts2wrw==
+  /json-parse-even-better-errors/2.3.0:
+    dev: false
+    resolution:
+      integrity: sha512-o3aP+RsWDJZayj1SbHNQAI8x0v3T3SKiGoZlNYfbUP1S3omJQ6i9CnqADqkSPaOAxwua4/1YWx5CM7oiChJt2Q==
   /json-schema-traverse/0.4.1:
     dev: false
     resolution:
@@ -10146,6 +10203,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-OA5hSA1qYVtmDwertg1R4KTkvtY=
+  /mitt/2.1.0:
+    dev: false
+    resolution:
+      integrity: sha512-ILj2TpLiysu2wkBbWjAmww7TkZb65aiQO+DkVdUTBpBXq+MHYiETENkKFMtsJZX1Lf4pe4QOrTSjIfUwN5lRdg==
   /mixin-deep/1.3.2:
     dependencies:
       for-in: 1.0.2
@@ -10164,6 +10225,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-T7lJRB2rGCVA8f4DW6YOGUel5X4=
+  /mkdirp-classic/0.5.3:
+    dev: false
+    resolution:
+      integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==
   /mkdirp/0.5.1:
     dependencies:
       minimist: 0.0.8
@@ -10864,7 +10929,7 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-kbpaSSGJTWdAY5KPVeMOKXSrPtr8C8C7wodJbcsd51jRnmD+GZu8Y0VoU6Dm5Z4vWr0Ig/1NKuWRKf7j5aaYSg==
-  /open/7.1.0:
+  /open/7.2.0:
     dependencies:
       is-docker: 2.1.1
       is-wsl: 2.2.0
@@ -10872,7 +10937,7 @@ packages:
     engines:
       node: '>=8'
     resolution:
-      integrity: sha512-lLPI5KgOwEYCDKXf4np7y1PBEkj7HYIyP2DY8mVDRnx0VIIu6bNrRB0R66TuO7Mack6EnTNLm4uvcl1UoklTpA==
+      integrity: sha512-4HeyhxCvBTI5uBePsAdi55C5fmqnWZ2e2MlmvWi5KW5tdH5rxoiv/aMtbeVxKZc3eWkT1GymMnLG8XC4Rq4TDQ==
   /opener/1.5.1:
     dev: false
     hasBin: true
@@ -11072,7 +11137,7 @@ packages:
       integrity: sha512-y3b8Kpd8OAN444hxfBbFfj1FY/RjtTd8tzYwhUqNYXx0fXx2iX4maP4Qr6qhIKbQXI02wTLAda4fYUbDagTUFw==
   /p-map/3.0.0:
     dependencies:
-      aggregate-error: 3.0.1
+      aggregate-error: 3.1.0
     dev: false
     engines:
       node: '>=8'
@@ -11094,7 +11159,7 @@ packages:
       integrity: sha512-XE6G4+YTTkT2a0UWb2kjZe8xNwf8bIbnqpc/IS/idOBVhyves0mK5OJgeocjx7q5pvX/6m23xuzVPYT1uGM73w==
   /p-some/5.0.0:
     dependencies:
-      aggregate-error: 3.0.1
+      aggregate-error: 3.1.0
       p-cancelable: 2.0.0
     dev: false
     engines:
@@ -11195,17 +11260,17 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha1-vjX1Qlvh9/bHRxhPmKeIy5lHfuA=
-  /parse-json/5.0.1:
+  /parse-json/5.1.0:
     dependencies:
       '@babel/code-frame': 7.10.4
       error-ex: 1.3.2
-      json-parse-better-errors: 1.0.2
+      json-parse-even-better-errors: 2.3.0
       lines-and-columns: 1.1.6
     dev: false
     engines:
       node: '>=8'
     resolution:
-      integrity: sha512-ztoZ4/DYeXQq4E21v169sC8qWINGpcosGv9XhTDvg9/hWvx/zrFkc9BiWxR58OJLHGk28j5BL0SDLeV2WmFZlQ==
+      integrity: sha512-+mi/lmVVNKFNVyLXV31ERiy2CY5E1/F6QtJFEzoChPRwwngMNXRDQ9GJ5WdE2Z2P4AujsOi0/+2qHID68KwfIQ==
   /parse5/4.0.0:
     dev: false
     resolution:
@@ -12020,7 +12085,7 @@ packages:
     dependencies:
       autoprefixer: 9.8.6
       browserslist: 4.14.0
-      caniuse-lite: 1.0.30001117
+      caniuse-lite: 1.0.30001118
       css-blank-pseudo: 0.1.4
       css-has-pseudo: 0.10.0
       css-prefers-color-scheme: 3.1.1
@@ -12469,24 +12534,27 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
-  /puppeteer/2.1.0:
+  /puppeteer/5.1.0:
     dependencies:
-      '@types/mime-types': 2.1.0
       debug: 4.1.1
-      extract-zip: 1.7.0
+      devtools-protocol: 0.0.767361
+      extract-zip: 2.0.1
       https-proxy-agent: 4.0.0
       mime: 2.4.6
-      mime-types: 2.1.27
+      mitt: 2.1.0
+      pkg-dir: 4.2.0
       progress: 2.0.3
       proxy-from-env: 1.1.0
-      rimraf: 2.7.1
-      ws: 6.2.1
+      rimraf: 3.0.2
+      tar-fs: 2.1.0
+      unbzip2-stream: 1.4.3
+      ws: 7.3.1
     dev: false
     engines:
-      node: '>=8.16.0'
+      node: '>=10.18.1'
     requiresBuild: true
     resolution:
-      integrity: sha512-PC4oKMtwAElo8YtS/cYnk2/dew/3TonsGKKzjpFLWwkhBCteFsOZCVOXTt2QlP6w53mH0YsJE+fPLPzOW+DCug==
+      integrity: sha512-IZBFG8XcA+oHxYo5rEpJI/HQignUis2XPijPoFpNxla2O+WufonGsUsSqrhRXgBKOME5zNfhRdUY2LvxAiKlhw==
   /q/1.5.1:
     dev: false
     engines:
@@ -12679,7 +12747,7 @@ packages:
       inquirer: 7.0.4
       is-root: 2.1.0
       loader-utils: 1.2.3
-      open: 7.1.0
+      open: 7.2.0
       pkg-up: 3.1.0
       react-error-overlay: 6.0.7
       recursive-readdir: 2.2.2
@@ -13859,13 +13927,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
-  /side-channel/1.0.2:
+  /side-channel/1.0.3:
     dependencies:
-      es-abstract: 1.17.6
+      es-abstract: 1.18.0-next.0
       object-inspect: 1.8.0
     dev: false
     resolution:
-      integrity: sha512-7rL9YlPHg7Ancea1S96Pa8/QWb4BtXL/TZvS6B8XFetGBeuhAsfmUspK6DokBeZ64+Kj9TCNRD/30pVz1BvQNA==
+      integrity: sha512-A6+ByhlLkksFoUepsGxfj5x1gTSrs+OydsRptUxeNCabQpCFUvcwIczgOigI8vhY/OJCnPnyE9rGiwgvr9cS1g==
   /signal-exit/3.0.3:
     dev: false
     resolution:
@@ -14368,7 +14436,7 @@ packages:
       has-symbols: 1.0.1
       internal-slot: 1.0.2
       regexp.prototype.flags: 1.3.0
-      side-channel: 1.0.2
+      side-channel: 1.0.3
     dev: false
     resolution:
       integrity: sha512-N/jp6O5fMf9os0JU3E72Qhf590RSRZU/ungsL/qJUYVTNv7hTG0P/dbPjxINVN9jpscu3nzYwKESU3P3RY5tOg==
@@ -14718,6 +14786,15 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-4WK/bYZmj8xLr+HUCODHGF1ZFzsYffasLUgEiMBY4fgtltdO6B4WJtlSbPaDTLpYTcGVwM2qLnFTICEcNxs3kA==
+  /tar-fs/2.1.0:
+    dependencies:
+      chownr: 1.1.4
+      mkdirp-classic: 0.5.3
+      pump: 3.0.0
+      tar-stream: 2.1.3
+    dev: false
+    resolution:
+      integrity: sha512-9uW5iDvrIMCVpvasdFHW0wJPez0K4JnMZtsuIeDI7HyMGJNxmDZDOCQROr7lXyS+iL/QMpj07qcjGYTSdRFXUg==
   /tar-stream/1.6.2:
     dependencies:
       bl: 1.2.2
@@ -14732,6 +14809,18 @@ packages:
       node: '>= 0.8.0'
     resolution:
       integrity: sha512-rzS0heiNf8Xn7/mpdSVVSMAWAoy9bfb1WOTYC78Z0UQKeKa/CWS8FOq0lKGNa8DWKAn9gxjCvMLYc5PGXYlK2A==
+  /tar-stream/2.1.3:
+    dependencies:
+      bl: 4.0.3
+      end-of-stream: 1.4.4
+      fs-constants: 1.0.0
+      inherits: 2.0.4
+      readable-stream: 3.6.0
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-Z9yri56Dih8IaK8gncVPx4Wqt86NDmQTSh49XLZgjWpGZL9GK9HKParS2scqHCC4w6X9Gh2jwaU45V47XTKwVA==
   /tar/2.2.2:
     dependencies:
       block-stream: 0.0.9
@@ -15095,7 +15184,7 @@ packages:
       typescript: ^2.2.0 || ^3.0.0
     resolution:
       integrity: sha512-WlSXE+J2vY/VPgIcqQuijMQiel+UtmXS+4nvK4ZzlDiqBfXse8FAvkNnTcYhnQyOTW5KFM+uRRGXxYhFpuBc6w==
-  /tslint-etc/1.13.1_tslint@5.20.1+typescript@3.7.5:
+  /tslint-etc/1.13.6_tslint@5.20.1+typescript@3.7.5:
     dependencies:
       '@phenomnomnominal/tsquery': 4.1.0_typescript@3.7.5
       tslib: 2.0.1
@@ -15108,7 +15197,7 @@ packages:
       tslint: ^5.0.0 || ^6.0.0
       typescript: ^2.3.0 || ^3.0.0
     resolution:
-      integrity: sha512-8zyAgcdmXHuSVG2X1zpFbdoSGk/ehSP3OvDafYae468Vu6T9Fie30iyZy5l7EvUib8TyGXpLOknQffcsizwt9g==
+      integrity: sha512-lIWS8aIJy+4XWGQYTC7EFncC42INlPQAKLjZffCv0q989ALHGxiNGptaSHYKQ6m+zXzhzn4R00QcQNCTdYn9dQ==
   /tslint-react-hooks/2.2.2_tslint@5.20.1+typescript@3.7.5:
     dependencies:
       tslint: 5.20.1_typescript@3.7.5
@@ -15319,14 +15408,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==
-  /uglify-js/3.10.1:
+  /uglify-js/3.10.2:
     dev: false
     engines:
       node: '>=0.8.0'
     hasBin: true
     optional: true
     resolution:
-      integrity: sha512-RjxApKkrPJB6kjJxQS3iZlf///REXWYxYJxO/MpmlQzVkDWVI3PSnCBWezMecmTU/TRkNxrl8bmsfFQCp+LO+Q==
+      integrity: sha512-GXCYNwqoo0MbLARghYjxVBxDCnU0tLqN7IPLdHHbibCb1NI5zBkU2EPcy/GaVxc0BtTjqyGXJCINe6JMR2Dpow==
   /uglify-js/3.4.10:
     dependencies:
       commander: 2.19.0
@@ -15345,6 +15434,13 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-KPHm4VL5dDXKz01UuEd88Df+KzynaohSL9fBh096KWAxSKZQDI2uBrVqtvRM4rwrIrRRKsdLNML/lnaaVSRioA==
+  /unbzip2-stream/1.4.3:
+    dependencies:
+      buffer: 5.6.0
+      through: 2.3.8
+    dev: false
+    resolution:
+      integrity: sha512-mlExGW4w71ebDJviH16lQLtZS32VKqsSfk80GCfUlwT/4/hNRFsoscrF/c++9xinkMzECL1uL9DDwXqFWkruPg==
   /underscore/1.10.2:
     dev: false
     resolution:
@@ -15735,12 +15831,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==
-  /webidl-conversions/5.0.0:
+  /webidl-conversions/6.1.0:
     dev: false
     engines:
-      node: '>=8'
+      node: '>=10.4'
     resolution:
-      integrity: sha512-VlZwKPCkYKxQgeSbH5EyngOmRp7Ww7I9rQLERETtf5ofd9pGeswWiOtogpEO850jziPRarreGxn5QIiTqpb2wA==
+      integrity: sha512-qBIvFLGiBpLjfwmYAaHPXsn+ho5xZnGvyGvsarywGNc8VyQJUMHJ8OBKGGrPER0okBeMDaan4mNBlgBROxuI8w==
   /webpack-dev-middleware/3.7.2_webpack@4.42.0:
     dependencies:
       memory-fs: 0.4.1
@@ -15926,16 +16022,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-WUu7Rg1DroM7oQvGWfOiAK21n74Gg+T4elXEQYkOhtyLeWiJFoOGLXPKI/9gzIie9CtwVLm8wtw6YJdKyxSjeg==
-  /whatwg-url/8.1.0:
+  /whatwg-url/8.2.1:
     dependencies:
       lodash.sortby: 4.7.0
       tr46: 2.0.2
-      webidl-conversions: 5.0.0
+      webidl-conversions: 6.1.0
     dev: false
     engines:
       node: '>=10'
     resolution:
-      integrity: sha512-vEIkwNi9Hqt4TV9RdnaBPNt+E2Sgmo3gePebCRgZ1R7g6d23+53zCTnuB0amKI4AXq6VM8jj2DUAa0S1vjJxkw==
+      integrity: sha512-ZmVCr6nfBeaMxEHALLEGy0LszYjpJqf6PVNQUQ1qd9Et+q7Jpygd4rGGDXgHjD8e99yLFseD69msHDM4YwPZ4A==
   /which-module/2.0.0:
     dev: false
     resolution:
@@ -16409,31 +16505,31 @@ packages:
       integrity: sha1-qLxF9MG0lpnGuQGYuqyqzbzUugQ=
   'file:projects/basic-viewport-app.tgz':
     dependencies:
-      '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.0_7f9667b92305fcf1b61c17f006fb71b5
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/build-tools': registry.npmjs.org/@bentley/build-tools/2.5.0
-      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/ecschema-metadata': registry.npmjs.org/@bentley/ecschema-metadata/2.5.0_7f8a6b6e0a394c75c90532b8edea444b
-      '@bentley/express-server': registry.npmjs.org/@bentley/express-server/2.5.0
-      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.1_0ffd86a3bb23f49ba685035ac8445873
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/build-tools': registry.npmjs.org/@bentley/build-tools/2.5.1
+      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/ecschema-metadata': registry.npmjs.org/@bentley/ecschema-metadata/2.5.1_337e6256ff230e90905b8ff990469955
+      '@bentley/express-server': registry.npmjs.org/@bentley/express-server/2.5.1
+      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1
       '@bentley/icons-generic-webfont': registry.npmjs.org/@bentley/icons-generic-webfont/1.0.19
-      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.0_2118d40f8cc695a5be3bba70d9a823cd
-      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.0_457338c05d208df9297444f7b2c597d5
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.0_e99df8b99595c6b4cd858b7b5cd9a6e0
-      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/imodeljs-quantity': registry.npmjs.org/@bentley/imodeljs-quantity/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/orbitgt-core': registry.npmjs.org/@bentley/orbitgt-core/2.5.0
-      '@bentley/product-settings-client': registry.npmjs.org/@bentley/product-settings-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.0_@bentley+itwin-client@2.5.0
+      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.1_fdf87656650666f0de0a1a8d1ebbdbb6
+      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.1_c77f80632b1626fbe539af736d2e133c
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.1_633fe890d218bf5b1fa7ec4da99e8d6b
+      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/imodeljs-quantity': registry.npmjs.org/@bentley/imodeljs-quantity/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/orbitgt-core': registry.npmjs.org/@bentley/orbitgt-core/2.5.1
+      '@bentley/product-settings-client': registry.npmjs.org/@bentley/product-settings-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.1_@bentley+itwin-client@2.5.1
       '@bentley/react-scripts': registry.npmjs.org/@bentley/react-scripts/3.4.1_17aa7bee3e0054b4610d663579690f97
-      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.0_59d060f48a0c7dbe9ec6a157988c14a5
-      '@bentley/ui-components': registry.npmjs.org/@bentley/ui-components/2.5.0_ade510f09aa4b66caa5432e7d5196801
-      '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.0_a46372e87321e6dedc860b849c2486aa
-      '@bentley/webgl-compatibility': registry.npmjs.org/@bentley/webgl-compatibility/2.5.0
-      '@types/react': 16.9.46
+      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.1_73904e355c9fb71111c1f203caf854ef
+      '@bentley/ui-components': registry.npmjs.org/@bentley/ui-components/2.5.1_ffcbb3289ab4c80156417c322aa88af0
+      '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.1_4ee009030ac48d59676a7aa4dff18993
+      '@bentley/webgl-compatibility': registry.npmjs.org/@bentley/webgl-compatibility/2.5.1
+      '@types/react': 16.9.47
       '@types/react-dom': 16.9.8
       cross-env: 5.2.1
       node-sass: 4.14.1
@@ -16447,20 +16543,20 @@ packages:
     dev: false
     name: '@rush-temp/basic-viewport-app'
     resolution:
-      integrity: sha512-No5qwSkZLRPQtgV8ZYy1C5V5IqIYtmHMm1CxYO65AfWmQUts0y0YRS/aLvbqJelqB1wjuSkfOS6vAYg+lJPbJg==
+      integrity: sha512-Xo5iQwYPk6rOSMrNYONBO4RZAF5pusN9Taeoe/IEZD7X5a+Ql8m1hUgLafhwPZ8VAAwzb7gfBEGsNLFqBluORg==
       tarball: 'file:projects/basic-viewport-app.tgz'
     version: 0.0.0
-  'file:projects/imodel-changeset-test-utility.tgz_c11c5a77d0cbb36d9267df24dd803fb8':
+  'file:projects/imodel-changeset-test-utility.tgz_8134bab89403b3c47e3fdecd79a08449':
     dependencies:
-      '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.0_7f9667b92305fcf1b61c17f006fb71b5
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/build-tools': registry.npmjs.org/@bentley/build-tools/2.5.0
-      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.0_2118d40f8cc695a5be3bba70d9a823cd
-      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.0_457338c05d208df9297444f7b2c597d5
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.1_0ffd86a3bb23f49ba685035ac8445873
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/build-tools': registry.npmjs.org/@bentley/build-tools/2.5.1
+      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.1_fdf87656650666f0de0a1a8d1ebbdbb6
+      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.1_c77f80632b1626fbe539af736d2e133c
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
       '@types/chai': 4.2.12
       '@types/mocha': 5.2.7
       '@types/node': 10.17.28
@@ -16484,20 +16580,20 @@ packages:
       '@bentley/frontend-authorization-client': '*'
       '@bentley/rbac-client': '*'
     resolution:
-      integrity: sha512-fneEfi8bfEraTqXbBMKDpOELN5evZy1IUsGxV58pQndFUCWl4pKvBMzYwrmPiGE1Yv7LzI6nu7+pb/Rh3yvItg==
+      integrity: sha512-0EsgKsCipxxQyM57EK0aBVq6XgP71eD5n15bYjcGISwwMHN1xeWStN4F4cLj/NbzqtlF/VPIewghPd2H9cGJDg==
       tarball: 'file:projects/imodel-changeset-test-utility.tgz'
     version: 0.0.0
-  'file:projects/imodel-query-agent.tgz_c11c5a77d0cbb36d9267df24dd803fb8':
+  'file:projects/imodel-query-agent.tgz_8134bab89403b3c47e3fdecd79a08449':
     dependencies:
-      '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.0_7f9667b92305fcf1b61c17f006fb71b5
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/build-tools': registry.npmjs.org/@bentley/build-tools/2.5.0
-      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.0_2118d40f8cc695a5be3bba70d9a823cd
-      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.0_457338c05d208df9297444f7b2c597d5
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.1_0ffd86a3bb23f49ba685035ac8445873
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/build-tools': registry.npmjs.org/@bentley/build-tools/2.5.1
+      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.1_fdf87656650666f0de0a1a8d1ebbdbb6
+      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.1_c77f80632b1626fbe539af736d2e133c
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
       '@types/body-parser': 1.19.0
       '@types/chai': 4.2.12
       '@types/mocha': 5.2.7
@@ -16520,45 +16616,45 @@ packages:
       '@bentley/frontend-authorization-client': '*'
       '@bentley/rbac-client': '*'
     resolution:
-      integrity: sha512-Ae6hm8Mq2bLzp69i5OKdeKS9g3rKSYphKI86QnFLWQ0Xu1PYlVc7ow4nZqM79nvibA1sOZgydxqfdM665eVyKA==
+      integrity: sha512-jSFRZzmEMe6j33QeEB4GcVaJd0NEX/mzextC471tOztIy9XwnOCLxINYGK3KcpU0QJrbQ6hXDgZJkMas1ib+jA==
       tarball: 'file:projects/imodel-query-agent.tgz'
     version: 0.0.0
   'file:projects/ninezone-sample-app.tgz':
     dependencies:
-      '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.0_7f9667b92305fcf1b61c17f006fb71b5
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/build-tools': registry.npmjs.org/@bentley/build-tools/2.5.0
-      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/ecschema-metadata': registry.npmjs.org/@bentley/ecschema-metadata/2.5.0_7f8a6b6e0a394c75c90532b8edea444b
-      '@bentley/electron-manager': registry.npmjs.org/@bentley/electron-manager/2.5.0_cc7d25465c01f45a3717ce53c1e003ad
-      '@bentley/express-server': registry.npmjs.org/@bentley/express-server/2.5.0
-      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.1_0ffd86a3bb23f49ba685035ac8445873
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/build-tools': registry.npmjs.org/@bentley/build-tools/2.5.1
+      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/ecschema-metadata': registry.npmjs.org/@bentley/ecschema-metadata/2.5.1_337e6256ff230e90905b8ff990469955
+      '@bentley/electron-manager': registry.npmjs.org/@bentley/electron-manager/2.5.1_45d85d96400fbbf8fc0306766eb08339
+      '@bentley/express-server': registry.npmjs.org/@bentley/express-server/2.5.1
+      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1
       '@bentley/icons-generic-webfont': registry.npmjs.org/@bentley/icons-generic-webfont/1.0.19
-      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.0_2118d40f8cc695a5be3bba70d9a823cd
-      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.0_457338c05d208df9297444f7b2c597d5
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.0_e99df8b99595c6b4cd858b7b5cd9a6e0
-      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/imodeljs-markup': registry.npmjs.org/@bentley/imodeljs-markup/2.5.0_a6fc25d63b9ad8ccb07c12f085c9298a
-      '@bentley/imodeljs-quantity': registry.npmjs.org/@bentley/imodeljs-quantity/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/orbitgt-core': registry.npmjs.org/@bentley/orbitgt-core/2.5.0
-      '@bentley/presentation-backend': registry.npmjs.org/@bentley/presentation-backend/2.5.0_ffae974130e8eddc8f52de21ba0f264f
-      '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.0_5d19c6e1a644847382c85f1520413c89
-      '@bentley/presentation-components': registry.npmjs.org/@bentley/presentation-components/2.5.0_d5fffcdc4f2d91813d316417204eeec8
-      '@bentley/presentation-frontend': registry.npmjs.org/@bentley/presentation-frontend/2.5.0_58eac2079210c677b263b47c69f808c2
-      '@bentley/product-settings-client': registry.npmjs.org/@bentley/product-settings-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.0_@bentley+itwin-client@2.5.0
+      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.1_fdf87656650666f0de0a1a8d1ebbdbb6
+      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.1_c77f80632b1626fbe539af736d2e133c
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.1_633fe890d218bf5b1fa7ec4da99e8d6b
+      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/imodeljs-markup': registry.npmjs.org/@bentley/imodeljs-markup/2.5.1_1f2721275799c29db9013760ab571286
+      '@bentley/imodeljs-quantity': registry.npmjs.org/@bentley/imodeljs-quantity/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/orbitgt-core': registry.npmjs.org/@bentley/orbitgt-core/2.5.1
+      '@bentley/presentation-backend': registry.npmjs.org/@bentley/presentation-backend/2.5.1_e5a28e3885b49ec3feffaf01f1a38535
+      '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.1_48ad3febf7cfaab5702504882d64dea4
+      '@bentley/presentation-components': registry.npmjs.org/@bentley/presentation-components/2.5.1_965211ae52d8fb50fbe249e7fc116bb6
+      '@bentley/presentation-frontend': registry.npmjs.org/@bentley/presentation-frontend/2.5.1_cd870d1bbb0d5f93e74cded5e1637cf0
+      '@bentley/product-settings-client': registry.npmjs.org/@bentley/product-settings-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.1_@bentley+itwin-client@2.5.1
       '@bentley/react-scripts': registry.npmjs.org/@bentley/react-scripts/3.4.1_17aa7bee3e0054b4610d663579690f97
-      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.0_59d060f48a0c7dbe9ec6a157988c14a5
-      '@bentley/ui-components': registry.npmjs.org/@bentley/ui-components/2.5.0_ade510f09aa4b66caa5432e7d5196801
-      '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.0_a46372e87321e6dedc860b849c2486aa
-      '@bentley/ui-framework': registry.npmjs.org/@bentley/ui-framework/2.5.0_59f16c6983702ed136bb1b75b7f7cb80
-      '@bentley/ui-ninezone': registry.npmjs.org/@bentley/ui-ninezone/2.5.0_7faaa735dcf25ef9a3eba149253bf9cd
-      '@bentley/webgl-compatibility': registry.npmjs.org/@bentley/webgl-compatibility/2.5.0
+      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.1_73904e355c9fb71111c1f203caf854ef
+      '@bentley/ui-components': registry.npmjs.org/@bentley/ui-components/2.5.1_ffcbb3289ab4c80156417c322aa88af0
+      '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.1_4ee009030ac48d59676a7aa4dff18993
+      '@bentley/ui-framework': registry.npmjs.org/@bentley/ui-framework/2.5.1_b8c889a273d69fd2c713030a101bc15b
+      '@bentley/ui-ninezone': registry.npmjs.org/@bentley/ui-ninezone/2.5.1_cdf8b7dc4633d8fd0029e1095f5e0c04
+      '@bentley/webgl-compatibility': registry.npmjs.org/@bentley/webgl-compatibility/2.5.1
       '@types/electron-devtools-installer': 2.2.0
-      '@types/react': 16.9.46
+      '@types/react': 16.9.47
       '@types/react-dom': 16.9.8
       '@types/react-redux': 6.0.14
       '@types/react-resize-detector': 3.1.1
@@ -16579,41 +16675,41 @@ packages:
     dev: false
     name: '@rush-temp/ninezone-sample-app'
     resolution:
-      integrity: sha512-56icTtdpPzkUg18AjUc2H3PgbS7D8XXZu9qZLkBiWyckZn0anaNnU1dsHHJr9q9O4fUQVedqggWFd2FAXkZs0g==
+      integrity: sha512-9fBxEZ03ct133fF9iYdPZW6DeonPJMI+jxNmwkHmIcdD11X28e18GpNhh8akW0eLp803J3AtXz7vhV7GQdfkAw==
       tarball: 'file:projects/ninezone-sample-app.tgz'
     version: 0.0.0
   'file:projects/simple-viewer-app.tgz':
     dependencies:
-      '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.0_7f9667b92305fcf1b61c17f006fb71b5
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/build-tools': registry.npmjs.org/@bentley/build-tools/2.5.0
-      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/ecschema-metadata': registry.npmjs.org/@bentley/ecschema-metadata/2.5.0_7f8a6b6e0a394c75c90532b8edea444b
-      '@bentley/electron-manager': registry.npmjs.org/@bentley/electron-manager/2.5.0_cc7d25465c01f45a3717ce53c1e003ad
-      '@bentley/express-server': registry.npmjs.org/@bentley/express-server/2.5.0
-      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.1_0ffd86a3bb23f49ba685035ac8445873
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/build-tools': registry.npmjs.org/@bentley/build-tools/2.5.1
+      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/ecschema-metadata': registry.npmjs.org/@bentley/ecschema-metadata/2.5.1_337e6256ff230e90905b8ff990469955
+      '@bentley/electron-manager': registry.npmjs.org/@bentley/electron-manager/2.5.1_45d85d96400fbbf8fc0306766eb08339
+      '@bentley/express-server': registry.npmjs.org/@bentley/express-server/2.5.1
+      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1
       '@bentley/icons-generic-webfont': registry.npmjs.org/@bentley/icons-generic-webfont/1.0.19
-      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.0_2118d40f8cc695a5be3bba70d9a823cd
-      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.0_457338c05d208df9297444f7b2c597d5
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.0_e99df8b99595c6b4cd858b7b5cd9a6e0
-      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/imodeljs-quantity': registry.npmjs.org/@bentley/imodeljs-quantity/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/orbitgt-core': registry.npmjs.org/@bentley/orbitgt-core/2.5.0
-      '@bentley/presentation-backend': registry.npmjs.org/@bentley/presentation-backend/2.5.0_ffae974130e8eddc8f52de21ba0f264f
-      '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.0_5d19c6e1a644847382c85f1520413c89
-      '@bentley/presentation-components': registry.npmjs.org/@bentley/presentation-components/2.5.0_d5fffcdc4f2d91813d316417204eeec8
-      '@bentley/presentation-frontend': registry.npmjs.org/@bentley/presentation-frontend/2.5.0_58eac2079210c677b263b47c69f808c2
-      '@bentley/presentation-testing': registry.npmjs.org/@bentley/presentation-testing/2.5.0_1dc0256b6ecd1bfe4d90f36f7fd4b1fa
-      '@bentley/product-settings-client': registry.npmjs.org/@bentley/product-settings-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.0_@bentley+itwin-client@2.5.0
+      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.1_fdf87656650666f0de0a1a8d1ebbdbb6
+      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.1_c77f80632b1626fbe539af736d2e133c
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.1_633fe890d218bf5b1fa7ec4da99e8d6b
+      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/imodeljs-quantity': registry.npmjs.org/@bentley/imodeljs-quantity/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/orbitgt-core': registry.npmjs.org/@bentley/orbitgt-core/2.5.1
+      '@bentley/presentation-backend': registry.npmjs.org/@bentley/presentation-backend/2.5.1_e5a28e3885b49ec3feffaf01f1a38535
+      '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.1_48ad3febf7cfaab5702504882d64dea4
+      '@bentley/presentation-components': registry.npmjs.org/@bentley/presentation-components/2.5.1_965211ae52d8fb50fbe249e7fc116bb6
+      '@bentley/presentation-frontend': registry.npmjs.org/@bentley/presentation-frontend/2.5.1_cd870d1bbb0d5f93e74cded5e1637cf0
+      '@bentley/presentation-testing': registry.npmjs.org/@bentley/presentation-testing/2.5.1_823f25eb3351b964a32df24f23382f83
+      '@bentley/product-settings-client': registry.npmjs.org/@bentley/product-settings-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.1_@bentley+itwin-client@2.5.1
       '@bentley/react-scripts': registry.npmjs.org/@bentley/react-scripts/3.4.1_17aa7bee3e0054b4610d663579690f97
-      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.0_59d060f48a0c7dbe9ec6a157988c14a5
-      '@bentley/ui-components': registry.npmjs.org/@bentley/ui-components/2.5.0_ade510f09aa4b66caa5432e7d5196801
-      '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.0_a46372e87321e6dedc860b849c2486aa
-      '@bentley/webgl-compatibility': registry.npmjs.org/@bentley/webgl-compatibility/2.5.0
+      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.1_73904e355c9fb71111c1f203caf854ef
+      '@bentley/ui-components': registry.npmjs.org/@bentley/ui-components/2.5.1_ffcbb3289ab4c80156417c322aa88af0
+      '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.1_4ee009030ac48d59676a7aa4dff18993
+      '@bentley/webgl-compatibility': registry.npmjs.org/@bentley/webgl-compatibility/2.5.1
       '@testing-library/dom': 5.6.1
       '@testing-library/react': 8.0.9_react-dom@16.13.1+react@16.13.1
       '@types/body-parser': 1.19.0
@@ -16625,7 +16721,7 @@ packages:
       '@types/mocha': 5.2.7
       '@types/node': 10.17.28
       '@types/puppeteer': 1.20.6
-      '@types/react': 16.9.46
+      '@types/react': 16.9.47
       '@types/react-dom': 16.9.8
       '@types/webdriverio': 4.13.3
       bunyan: 1.8.14
@@ -16642,7 +16738,7 @@ packages:
       mocha: 5.2.0
       node-sass: 4.14.1
       npm-run-all: 4.1.5
-      puppeteer: 2.1.0
+      puppeteer: 5.1.0
       react: 16.13.1
       react-dom: 16.13.1_react@16.13.1
       rimraf: 2.7.1
@@ -16659,18 +16755,18 @@ packages:
     dev: false
     name: '@rush-temp/simple-viewer-app'
     resolution:
-      integrity: sha512-FXwc47NtGNNxmyItNzAWd32qNEjvsvwDcMieveuGG9JZCmUCMiBaxb3md5eD7Oqo/3VWf2cfbmL/PGQ7DZWDFQ==
+      integrity: sha512-nOaBcNTPmqZuFjLfPjnnyGFEwft3ini986Pdrxe7J2vjLPBY2iw58q62M0gnsJf4wjU96h9xdr6P8ANRdmi4NQ==
       tarball: 'file:projects/simple-viewer-app.tgz'
     version: 0.0.0
-  registry.npmjs.org/@bentley/backend-itwin-client/2.5.0_7f9667b92305fcf1b61c17f006fb71b5:
+  registry.npmjs.org/@bentley/backend-itwin-client/2.5.1_0ffd86a3bb23f49ba685035ac8445873:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.0_2118d40f8cc695a5be3bba70d9a823cd
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.0_@bentley+itwin-client@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.1_fdf87656650666f0de0a1a8d1ebbdbb6
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.1_@bentley+itwin-client@2.5.1
       deep-assign: 2.0.0
       fs-extra: 8.1.0
       fs-write-stream-atomic: 1.0.10
@@ -16682,30 +16778,30 @@ packages:
     dev: false
     engines:
       node: '>=10.16.0 <13.0'
-    id: registry.npmjs.org/@bentley/backend-itwin-client/2.5.0
+    id: registry.npmjs.org/@bentley/backend-itwin-client/2.5.1
     name: '@bentley/backend-itwin-client'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/frontend-authorization-client': ^2.5.0
-      '@bentley/geometry-core': ^2.5.0
-      '@bentley/imodelhub-client': ^2.5.0
-      '@bentley/imodeljs-common': ^2.5.0
-      '@bentley/itwin-client': ^2.5.0
-      '@bentley/rbac-client': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/frontend-authorization-client': ^2.5.1
+      '@bentley/geometry-core': ^2.5.1
+      '@bentley/imodelhub-client': ^2.5.1
+      '@bentley/imodeljs-common': ^2.5.1
+      '@bentley/itwin-client': ^2.5.1
+      '@bentley/rbac-client': ^2.5.1
     resolution:
-      integrity: sha512-9nTeIIOJdS2lq/TpqbzoKr8eOm6RjkfMPRUNm7UI5UWfkwtoYMoRpMsztkc9runlLpe4wpYoW60z7H45VPV9/A==
+      integrity: sha512-jJn0VJLW+146w1dW8BzZHs9a4vdU12iMeI7TirU6qZ56xBxgpq8v0ZOjMhezP0Hf/EBBXgwMmHX4sCXTTkNuRw==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/backend-itwin-client/-/backend-itwin-client-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/bentleyjs-core/2.5.0:
+      tarball: 'https://registry.npmjs.org/@bentley/backend-itwin-client/-/backend-itwin-client-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/bentleyjs-core/2.5.1:
     dev: false
     name: '@bentley/bentleyjs-core'
     resolution:
-      integrity: sha512-7WcgsU7eKooOxKbEpa9K6nUsiGr2ZJeif2cTDBd0LVyvhnSCsMegAbbw2mdKa6yz/7NwtsLuMpjnFPepPyMCnA==
+      integrity: sha512-gnSPSVO336mHZAdb/JajyACLPqjwZBMI7jxXr3yzSc+rxkQQb2nv0snYN/ugAa1DYajEMS+va2p87PxSqqSBMA==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/bentleyjs-core/-/bentleyjs-core-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/build-tools/2.5.0:
+      tarball: 'https://registry.npmjs.org/@bentley/bentleyjs-core/-/bentleyjs-core-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/build-tools/2.5.1:
     dependencies:
       '@microsoft/api-extractor': 7.7.3
       '@typescript-eslint/eslint-plugin': 2.25.0_94327f671b8b8fcfd6e40ba8fb1b6e1d
@@ -16737,7 +16833,7 @@ packages:
       tslint: 5.20.1_typescript@3.7.5
       tslint-consistent-codestyle: 1.16.0_tslint@5.20.1+typescript@3.7.5
       tslint-eslint-rules: 5.4.0_tslint@5.20.1+typescript@3.7.5
-      tslint-etc: 1.13.1_tslint@5.20.1+typescript@3.7.5
+      tslint-etc: 1.13.6_tslint@5.20.1+typescript@3.7.5
       tsutils: 3.17.1_typescript@3.7.5
       typedoc: 0.16.11
       typedoc-plugin-external-module-name: 3.0.0_typedoc@0.16.11
@@ -16748,61 +16844,61 @@ packages:
     hasBin: true
     name: '@bentley/build-tools'
     resolution:
-      integrity: sha512-8AVFOnsc6QmZKaVDMeElr0s2I1zR3T2Zi5OBYrw26/3E6bBhbWGGp7Mm6Y1/bzGO5EbqKaqiBiyQxc+PuxE3LA==
+      integrity: sha512-0hlKyn88V8+tAIRBqzIYbcSHU5e5+3G5eY8tEdS225zQrz1PNvjEpAI9I3vaP8jfCdi+CE2QRywJgwNdIbGUqQ==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/build-tools/-/build-tools-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/context-registry-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89:
+      tarball: 'https://registry.npmjs.org/@bentley/build-tools/-/build-tools-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/context-registry-client/2.5.1_96028a0ebda38585540ae4343b90b03f:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
       deep-assign: 2.0.0
     dev: false
-    id: registry.npmjs.org/@bentley/context-registry-client/2.5.0
+    id: registry.npmjs.org/@bentley/context-registry-client/2.5.1
     name: '@bentley/context-registry-client'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/itwin-client': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/itwin-client': ^2.5.1
     resolution:
-      integrity: sha512-dtK2rLipcs+RNBIn77WnmrWByY5cLyRiO/t3GQEDiaOlhTD0b92zytsRNdYKf8zK6YTAnFfFxmojEpFlQmfE5g==
+      integrity: sha512-e5/RsTD620zHo4ryx/jo6A/a4aYylVj/tPD7Qo0DqgC5dBFOFeCoRggDvbwYv7JFjUxc1T9f9YKwq1aoDdgjsQ==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/context-registry-client/-/context-registry-client-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/ecschema-metadata/2.5.0_7f8a6b6e0a394c75c90532b8edea444b:
+      tarball: 'https://registry.npmjs.org/@bentley/context-registry-client/-/context-registry-client-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/ecschema-metadata/2.5.1_337e6256ff230e90905b8ff990469955:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.1_@bentley+bentleyjs-core@2.5.1
     dev: false
-    id: registry.npmjs.org/@bentley/ecschema-metadata/2.5.0
+    id: registry.npmjs.org/@bentley/ecschema-metadata/2.5.1
     name: '@bentley/ecschema-metadata'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/imodeljs-i18n': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/imodeljs-i18n': ^2.5.1
     resolution:
-      integrity: sha512-CU2gkz1CTK+Rs9lpgnG+sYtQu1SDL2eO22A0DjhHLO7XXvV/NJYj8I8vTlOpwe5W24Zp12t9ULkDPTPKmUxr3w==
+      integrity: sha512-NmI/UaU2hU1x0MBBbnSRRG3Utzj+zE5kOytzS3LUSdYwX6LLfdqI1PWetVoAmbOqWKyNOQbVLJxBx45QJRKNFA==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/ecschema-metadata/-/ecschema-metadata-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/electron-manager/2.5.0_cc7d25465c01f45a3717ce53c1e003ad:
+      tarball: 'https://registry.npmjs.org/@bentley/ecschema-metadata/-/ecschema-metadata-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/electron-manager/2.5.1_45d85d96400fbbf8fc0306766eb08339:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.0_457338c05d208df9297444f7b2c597d5
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.1_c77f80632b1626fbe539af736d2e133c
       electron: 8.5.0
     dev: false
     engines:
       node: '>=10.16.0 <13.0'
-    id: registry.npmjs.org/@bentley/electron-manager/2.5.0
+    id: registry.npmjs.org/@bentley/electron-manager/2.5.1
     name: '@bentley/electron-manager'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/imodeljs-backend': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/imodeljs-backend': ^2.5.1
       electron: ^8.2.1
     resolution:
-      integrity: sha512-l+8pcxx3UJWswypkzcCmGHXb6QAl5Lrk/ohZENu5drQl4MGKkVr+czq5b3+dBwJz/5VyFpJWCRmGLzhBDcafMw==
+      integrity: sha512-Bz7wO5blMtNZaM6dmbJIowq3ovgav/Gsdhow5d4iHh+DGVSsr+K6HW7DtfjB+64vc3YbxqdnbIxRYIkjV6nN1g==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/electron-manager/-/electron-manager-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/express-server/2.5.0:
+      tarball: 'https://registry.npmjs.org/@bentley/electron-manager/-/electron-manager-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/express-server/2.5.1:
     dependencies:
       express: 4.17.1
     dev: false
@@ -16810,56 +16906,56 @@ packages:
       node: '>=10.16.0 <13.0'
     name: '@bentley/express-server'
     resolution:
-      integrity: sha512-1QBQwbZkgXrhh31DhVvlNx08epqUzHH8mT7pUgDLG2IR6zPxynN9R0DG2Y7/fTTeRbI1JlLwwcJFKg+dEzkAtA==
+      integrity: sha512-rAW+/sBC4HymmzFntWQP5eVfPScrCVCTE+3ry4L2ffJHlfktze7w4MJ+vH89EAY1O7ggCymA0RATFFGzrmupFg==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/express-server/-/express-server-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/extension-client/2.5.0_7fc937fa4a5866e351dee32732fbbc9d:
+      tarball: 'https://registry.npmjs.org/@bentley/express-server/-/express-server-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/extension-client/2.5.1_60faae275285590f5fe0d784e5fa9604:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
     dev: false
-    id: registry.npmjs.org/@bentley/extension-client/2.5.0
+    id: registry.npmjs.org/@bentley/extension-client/2.5.1
     name: '@bentley/extension-client'
     peerDependencies:
       '@bentley/geometry-core': '*'
       '@bentley/imodelhub-client': '*'
       '@bentley/rbac-client': '*'
     resolution:
-      integrity: sha512-dQKDgGtmckqQl0lXkXF1b3Dr99VRqUrfQOgNBlSTLNS5w8ZNvW3RFD6fO5eaGNkUh1T2819PJbDsIuPFHA6T5g==
+      integrity: sha512-K9TSrJC94YN7c1pBSHaSk6pWxxrpdyxLaII2Ei/r3FPD7iL+23ntr/RptURf9rYqX4qzRF4BrScd/XrU93HVxA==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/extension-client/-/extension-client-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/frontend-authorization-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89:
+      tarball: 'https://registry.npmjs.org/@bentley/extension-client/-/extension-client-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/frontend-authorization-client/2.5.1_96028a0ebda38585540ae4343b90b03f:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
       oidc-client: 1.10.1
     dev: false
-    id: registry.npmjs.org/@bentley/frontend-authorization-client/2.5.0
+    id: registry.npmjs.org/@bentley/frontend-authorization-client/2.5.1
     name: '@bentley/frontend-authorization-client'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/itwin-client': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/itwin-client': ^2.5.1
     resolution:
-      integrity: sha512-9ApMaCrXCAVStO8VrVgBrCiJF4Nej9h2rYTS4STjrBRrxIJdXbC8q98j9ocL55Hb+eNmSA0uWwWNHZe5iw6L0w==
+      integrity: sha512-MdZsttLkcjEZPx1f+m9IgP8g7AjgvVy+rUzKzftrkN+gg/X+E3UzAmOYmVfMmlLpF8UhgUJ3sYgKdO+oG9U61w==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/frontend-authorization-client/-/frontend-authorization-client-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0:
+      tarball: 'https://registry.npmjs.org/@bentley/frontend-authorization-client/-/frontend-authorization-client-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
     dev: false
-    id: registry.npmjs.org/@bentley/geometry-core/2.5.0
+    id: registry.npmjs.org/@bentley/geometry-core/2.5.1
     name: '@bentley/geometry-core'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
     resolution:
-      integrity: sha512-VWTs1u1fGKQp4dKs7GZs0RmKa9hfUYwpznGfOOkv1dCdaR9i5P3lOsVqU6KcLolALshKwe0i1hC/MD31k73DVQ==
+      integrity: sha512-noECwDpzUCV3YA2ZMRywm1AJYKOyfEtJ2/NlWppJvEeAtYEmxDKx3C4SVhNNAFHiAZkjXpLZuf4dISvzGeGN+Q==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/geometry-core/-/geometry-core-2.5.0.tgz'
-    version: 2.5.0
+      tarball: 'https://registry.npmjs.org/@bentley/geometry-core/-/geometry-core-2.5.1.tgz'
+    version: 2.5.1
   registry.npmjs.org/@bentley/icons-generic-webfont/1.0.19:
     dev: false
     name: '@bentley/icons-generic-webfont'
@@ -16876,42 +16972,42 @@ packages:
       registry: 'https://registry.npmjs.org/'
       tarball: 'https://registry.npmjs.org/@bentley/icons-generic/-/icons-generic-1.0.19.tgz'
     version: 1.0.19
-  registry.npmjs.org/@bentley/imodelhub-client/2.5.0_2118d40f8cc695a5be3bba70d9a823cd:
+  registry.npmjs.org/@bentley/imodelhub-client/2.5.1_fdf87656650666f0de0a1a8d1ebbdbb6:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.0_@bentley+itwin-client@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.1_@bentley+itwin-client@2.5.1
       deep-assign: 2.0.0
       js-base64: 2.6.4
     dev: false
-    id: registry.npmjs.org/@bentley/imodelhub-client/2.5.0
+    id: registry.npmjs.org/@bentley/imodelhub-client/2.5.1
     name: '@bentley/imodelhub-client'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/frontend-authorization-client': ^2.5.0
-      '@bentley/itwin-client': ^2.5.0
-      '@bentley/rbac-client': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/frontend-authorization-client': ^2.5.1
+      '@bentley/itwin-client': ^2.5.1
+      '@bentley/rbac-client': ^2.5.1
     resolution:
-      integrity: sha512-SrQJ1FpAAVXrQnT4dfY58kcguzXw2p0DcH/9ZX+wRVhBGF8ja+gPwQDNkKm0atju4AiFMKlv4cxKWXGyfaiHkg==
+      integrity: sha512-P8d/srqzw6eWAGNLjBgoOlY3/W6f/K4uybTVlFjzfACfv7EgdPusb9nYTe+qbn4eoDjJa5eJ+R/Rww4Txy2R2A==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/imodelhub-client/-/imodelhub-client-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/imodeljs-backend/2.5.0_457338c05d208df9297444f7b2c597d5:
+      tarball: 'https://registry.npmjs.org/@bentley/imodelhub-client/-/imodelhub-client-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/imodeljs-backend/2.5.1_c77f80632b1626fbe539af736d2e133c:
     dependencies:
       '@azure/storage-blob': 10.4.0
-      '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.0_7f9667b92305fcf1b61c17f006fb71b5
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/ecschema-metadata': registry.npmjs.org/@bentley/ecschema-metadata/2.5.0_7f8a6b6e0a394c75c90532b8edea444b
-      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.0_2118d40f8cc695a5be3bba70d9a823cd
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/imodeljs-native': registry.npmjs.org/@bentley/imodeljs-native/2.5.5
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.0_@bentley+itwin-client@2.5.0
+      '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.1_0ffd86a3bb23f49ba685035ac8445873
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/ecschema-metadata': registry.npmjs.org/@bentley/ecschema-metadata/2.5.1_337e6256ff230e90905b8ff990469955
+      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.1_fdf87656650666f0de0a1a8d1ebbdbb6
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/imodeljs-native': registry.npmjs.org/@bentley/imodeljs-native/2.5.6
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.1_@bentley+itwin-client@2.5.1
       '@openid/appauth': 1.2.8
       deep-assign: 2.0.0
       form-data: 2.5.1
@@ -16919,73 +17015,73 @@ packages:
       glob: 7.1.6
       js-base64: 2.6.4
       multiparty: 4.2.2
-      open: 7.1.0
+      open: 7.2.0
       semver: 5.7.1
       username: 5.1.0
       ws: 7.3.1
     dev: false
     engines:
       node: '>=10.16.0 <13.0'
-    id: registry.npmjs.org/@bentley/imodeljs-backend/2.5.0
+    id: registry.npmjs.org/@bentley/imodeljs-backend/2.5.1
     name: '@bentley/imodeljs-backend'
     peerDependencies:
-      '@bentley/backend-itwin-client': ^2.5.0
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/ecschema-metadata': 2.5.0
-      '@bentley/frontend-authorization-client': ^2.5.0
-      '@bentley/geometry-core': ^2.5.0
-      '@bentley/imodelhub-client': ^2.5.0
-      '@bentley/imodeljs-common': ^2.5.0
-      '@bentley/itwin-client': ^2.5.0
-      '@bentley/rbac-client': ^2.5.0
+      '@bentley/backend-itwin-client': ^2.5.1
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/ecschema-metadata': 2.5.1
+      '@bentley/frontend-authorization-client': ^2.5.1
+      '@bentley/geometry-core': ^2.5.1
+      '@bentley/imodelhub-client': ^2.5.1
+      '@bentley/imodeljs-common': ^2.5.1
+      '@bentley/itwin-client': ^2.5.1
+      '@bentley/rbac-client': ^2.5.1
     resolution:
-      integrity: sha512-ZYFe97jJd9keANe1qcwiOASwf6XV+B5meODE3F1B3fHxok/9FXx6+WqwsZztQAF+eUgrv/kv3h39dAC48t2kOg==
+      integrity: sha512-V96Zy1LuuiHDxdSGC0/xWhfx/qDu3bYWXPoa89w1UfmbCRimxTYflMHIAEYeZNiXu0S84+isi5SEFWR8hlShoA==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/imodeljs-backend/-/imodeljs-backend-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641:
+      tarball: 'https://registry.npmjs.org/@bentley/imodeljs-backend/-/imodeljs-backend-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.0_2118d40f8cc695a5be3bba70d9a823cd
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.0_@bentley+itwin-client@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.1_fdf87656650666f0de0a1a8d1ebbdbb6
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.1_@bentley+itwin-client@2.5.1
       '@ungap/url-search-params': 0.1.4
       semver: 5.7.1
     dev: false
-    id: registry.npmjs.org/@bentley/imodeljs-common/2.5.0
+    id: registry.npmjs.org/@bentley/imodeljs-common/2.5.1
     name: '@bentley/imodeljs-common'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/geometry-core': ^2.5.0
-      '@bentley/imodelhub-client': ^2.5.0
-      '@bentley/itwin-client': ^2.5.0
-      '@bentley/rbac-client': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/geometry-core': ^2.5.1
+      '@bentley/imodelhub-client': ^2.5.1
+      '@bentley/itwin-client': ^2.5.1
+      '@bentley/rbac-client': ^2.5.1
     resolution:
-      integrity: sha512-KKOfIflBo8KCWwoLA19giTbDXQy1qi+8diU5rFzQmNmH843cKbh1EwCao3Dq6Hh9RD0bPpyrKUG15oJAHzLkvQ==
+      integrity: sha512-hrY5QlljaGnuUn/QUyRIQSsSit8uC2DfHx9uwuOUearOEsMcP0wK7+6V+3cprZGDLGCUQF1665QDlvShMYE3Dg==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/imodeljs-common/-/imodeljs-common-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/imodeljs-frontend/2.5.0_e99df8b99595c6b4cd858b7b5cd9a6e0:
+      tarball: 'https://registry.npmjs.org/@bentley/imodeljs-common/-/imodeljs-common-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/imodeljs-frontend/2.5.1_633fe890d218bf5b1fa7ec4da99e8d6b:
     dependencies:
       '@azure/storage-blob': 10.4.0
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/extension-client': registry.npmjs.org/@bentley/extension-client/2.5.0_7fc937fa4a5866e351dee32732fbbc9d
-      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.0_2118d40f8cc695a5be3bba70d9a823cd
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/imodeljs-quantity': registry.npmjs.org/@bentley/imodeljs-quantity/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/orbitgt-core': registry.npmjs.org/@bentley/orbitgt-core/2.5.0
-      '@bentley/product-settings-client': registry.npmjs.org/@bentley/product-settings-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.0_@bentley+itwin-client@2.5.0
-      '@bentley/reality-data-client': registry.npmjs.org/@bentley/reality-data-client/2.5.0_@bentley+itwin-client@2.5.0
-      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.0_59d060f48a0c7dbe9ec6a157988c14a5
-      '@bentley/usage-logging-client': registry.npmjs.org/@bentley/usage-logging-client/2.5.0_@bentley+itwin-client@2.5.0
-      '@bentley/webgl-compatibility': registry.npmjs.org/@bentley/webgl-compatibility/2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/extension-client': registry.npmjs.org/@bentley/extension-client/2.5.1_60faae275285590f5fe0d784e5fa9604
+      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.1_fdf87656650666f0de0a1a8d1ebbdbb6
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/imodeljs-quantity': registry.npmjs.org/@bentley/imodeljs-quantity/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/orbitgt-core': registry.npmjs.org/@bentley/orbitgt-core/2.5.1
+      '@bentley/product-settings-client': registry.npmjs.org/@bentley/product-settings-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.1_@bentley+itwin-client@2.5.1
+      '@bentley/reality-data-client': registry.npmjs.org/@bentley/reality-data-client/2.5.1_@bentley+itwin-client@2.5.1
+      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.1_73904e355c9fb71111c1f203caf854ef
+      '@bentley/usage-logging-client': registry.npmjs.org/@bentley/usage-logging-client/2.5.1_@bentley+itwin-client@2.5.1
+      '@bentley/webgl-compatibility': registry.npmjs.org/@bentley/webgl-compatibility/2.5.1
       fuse.js: 3.6.1
       js-base64: 2.6.4
       ldclient-js: 2.10.2
@@ -16993,90 +17089,90 @@ packages:
       semver: 5.7.1
       wms-capabilities: 0.4.0
     dev: false
-    id: registry.npmjs.org/@bentley/imodeljs-frontend/2.5.0
+    id: registry.npmjs.org/@bentley/imodeljs-frontend/2.5.1
     name: '@bentley/imodeljs-frontend'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/frontend-authorization-client': ^2.5.0
-      '@bentley/geometry-core': ^2.5.0
-      '@bentley/imodelhub-client': ^2.5.0
-      '@bentley/imodeljs-common': ^2.5.0
-      '@bentley/imodeljs-i18n': ^2.5.0
-      '@bentley/imodeljs-quantity': ^2.5.0
-      '@bentley/itwin-client': ^2.5.0
-      '@bentley/orbitgt-core': ^2.5.0
-      '@bentley/product-settings-client': ^2.5.0
-      '@bentley/rbac-client': ^2.5.0
-      '@bentley/ui-abstract': ^2.5.0
-      '@bentley/webgl-compatibility': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/frontend-authorization-client': ^2.5.1
+      '@bentley/geometry-core': ^2.5.1
+      '@bentley/imodelhub-client': ^2.5.1
+      '@bentley/imodeljs-common': ^2.5.1
+      '@bentley/imodeljs-i18n': ^2.5.1
+      '@bentley/imodeljs-quantity': ^2.5.1
+      '@bentley/itwin-client': ^2.5.1
+      '@bentley/orbitgt-core': ^2.5.1
+      '@bentley/product-settings-client': ^2.5.1
+      '@bentley/rbac-client': ^2.5.1
+      '@bentley/ui-abstract': ^2.5.1
+      '@bentley/webgl-compatibility': ^2.5.1
     resolution:
-      integrity: sha512-9cpXiq1hFbcNE1bB2u5yhxTZ3jxQalzq9b2iM2r1UPUjiv3BFw+E/Vx1p7+hvJefwHRR4/kJ7VPn93qquqIs1w==
+      integrity: sha512-Qv2m+2VbsQIqsOFnq2EGVcJ6NMHYdJ0/aU/gkOVURTQ7u0Gstm5DFVPcDUtyTzD7VvjE1F0UqPCkdc+JUab+fg==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/imodeljs-frontend/-/imodeljs-frontend-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/imodeljs-i18n/2.5.0_@bentley+bentleyjs-core@2.5.0:
+      tarball: 'https://registry.npmjs.org/@bentley/imodeljs-frontend/-/imodeljs-frontend-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/imodeljs-i18n/2.5.1_@bentley+bentleyjs-core@2.5.1:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
       i18next: 10.6.0
       i18next-browser-languagedetector: 2.2.4
       i18next-xhr-backend: 2.0.1
     dev: false
-    id: registry.npmjs.org/@bentley/imodeljs-i18n/2.5.0
+    id: registry.npmjs.org/@bentley/imodeljs-i18n/2.5.1
     name: '@bentley/imodeljs-i18n'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
     resolution:
-      integrity: sha512-Zx/RRG3SpgnNW3U67GB5QBtNCW0hr0cTyUNHZvUMme1CNvirEumUgf1YE9JkpPfbWpe50AiRQhM7IclmxmMrNA==
+      integrity: sha512-k2rikDvclsHGJCT/vL3rymScUpNAR/7O42Txy0rPXz44toZYA2U6VNMlbrv2FHNZd0xlNVFPmWo6lL0jkDkuuw==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/imodeljs-i18n/-/imodeljs-i18n-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/imodeljs-markup/2.5.0_a6fc25d63b9ad8ccb07c12f085c9298a:
+      tarball: 'https://registry.npmjs.org/@bentley/imodeljs-i18n/-/imodeljs-i18n-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/imodeljs-markup/2.5.1_1f2721275799c29db9013760ab571286:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.0_e99df8b99595c6b4cd858b7b5cd9a6e0
-      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.1_633fe890d218bf5b1fa7ec4da99e8d6b
+      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.1_@bentley+bentleyjs-core@2.5.1
       '@svgdotjs/svg.js': 3.0.13
     dev: false
-    id: registry.npmjs.org/@bentley/imodeljs-markup/2.5.0
+    id: registry.npmjs.org/@bentley/imodeljs-markup/2.5.1
     name: '@bentley/imodeljs-markup'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/geometry-core': ^2.5.0
-      '@bentley/imodeljs-common': ^2.5.0
-      '@bentley/imodeljs-frontend': ^2.5.0
-      '@bentley/imodeljs-i18n': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/geometry-core': ^2.5.1
+      '@bentley/imodeljs-common': ^2.5.1
+      '@bentley/imodeljs-frontend': ^2.5.1
+      '@bentley/imodeljs-i18n': ^2.5.1
     resolution:
-      integrity: sha512-ckcKqQuTUuW0GpGokGDaopJLj7d3etfniPTdWGvNa6YtYNGjf3kom0pauu48vsb2zt/hemvfGQUCxpTGDSTf6Q==
+      integrity: sha512-B73leSUvKk7xrViKfUobKc9vQHb2BPmlUPN42E65Ul1QcZwXlFFM4Wc7fW0an9D4IY5M5ZuwPl0fsiz8dMAunQ==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/imodeljs-markup/-/imodeljs-markup-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/imodeljs-native/2.5.5:
+      tarball: 'https://registry.npmjs.org/@bentley/imodeljs-markup/-/imodeljs-markup-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/imodeljs-native/2.5.6:
     dev: false
     name: '@bentley/imodeljs-native'
     requiresBuild: true
     resolution:
-      integrity: sha512-PbhTQHbBZIMoym8MeqQMzRul1TbQ6yS23aqR7BQ666XmiFWnSPRXY3y/FG7A6xEcYris/IKpLp9DlBamSeDFZw==
+      integrity: sha512-+ChWlyUPxtiHjcBniV94EznPUo0c5w2qMgNYecqM+lguFx9ZF2CVHxQCJPimEyqbIYanB5IXxeWASK86RmrOtQ==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/imodeljs-native/-/imodeljs-native-2.5.5.tgz'
-    version: 2.5.5
-  registry.npmjs.org/@bentley/imodeljs-quantity/2.5.0_@bentley+bentleyjs-core@2.5.0:
+      tarball: 'https://registry.npmjs.org/@bentley/imodeljs-native/-/imodeljs-native-2.5.6.tgz'
+    version: 2.5.6
+  registry.npmjs.org/@bentley/imodeljs-quantity/2.5.1_@bentley+bentleyjs-core@2.5.1:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
     dev: false
-    id: registry.npmjs.org/@bentley/imodeljs-quantity/2.5.0
+    id: registry.npmjs.org/@bentley/imodeljs-quantity/2.5.1
     name: '@bentley/imodeljs-quantity'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
     resolution:
-      integrity: sha512-6x17y6xuk9GK+3PiYxgFmb+pZ2i/DyN019QVczHc85UqAbgtoJKIGePGNzt8xZeohZTV+2yjc2c6iK4Ob82qgg==
+      integrity: sha512-iMPnVmJe6XBdB20ri/wjMLGzoJBXIjVJ7T+JsNeFTzY3MqhnUG6kxJ4CPKuR1YwN870ITpmQVqRZkowzSJIDXQ==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/imodeljs-quantity/-/imodeljs-quantity-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0:
+      tarball: 'https://registry.npmjs.org/@bentley/imodeljs-quantity/-/imodeljs-quantity-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
       deep-assign: 2.0.0
       js-base64: 2.6.4
       qs: 6.9.4
@@ -17084,138 +17180,138 @@ packages:
       xmldom: 0.1.31
       xpath: 0.0.27
     dev: false
-    id: registry.npmjs.org/@bentley/itwin-client/2.5.0
+    id: registry.npmjs.org/@bentley/itwin-client/2.5.1
     name: '@bentley/itwin-client'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
     resolution:
-      integrity: sha512-2XiIzRG+n59b9b5foU3SZaU3ntjy2AFv7zbh8aeHhcnhZoOicFCezSRKlNZgowIKKeG3+gxrAJAxdfvPuMFw5g==
+      integrity: sha512-zeNwke+2oMDuohQT2o7hj25O95Fdwoj4bHamQcpSDTbTMt1MVj6jAJd/ElHiCVkctnWdncuL8q3uLscjkBj9zQ==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/itwin-client/-/itwin-client-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/orbitgt-core/2.5.0:
+      tarball: 'https://registry.npmjs.org/@bentley/itwin-client/-/itwin-client-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/orbitgt-core/2.5.1:
     dev: false
     name: '@bentley/orbitgt-core'
     resolution:
-      integrity: sha512-J0OH9NSTPEbajNHzOV5J0pDpFcxN+wxgal1o0i6SBL8oWenLloVoLqpKEqVov+huA/0q5SRJZROYIrF09vas9A==
+      integrity: sha512-fgAOGEH8uVJ6U3/djYq3V8Aqh4DGmKdNHoqn/fw1zb0njNVxRAZ702Ut7ttVg+/4Uo+rQw8IcfflU1VP+0EfGg==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/orbitgt-core/-/orbitgt-core-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/presentation-backend/2.5.0_ffae974130e8eddc8f52de21ba0f264f:
+      tarball: 'https://registry.npmjs.org/@bentley/orbitgt-core/-/orbitgt-core-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/presentation-backend/2.5.1_e5a28e3885b49ec3feffaf01f1a38535:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.0_457338c05d208df9297444f7b2c597d5
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.0_5d19c6e1a644847382c85f1520413c89
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.1_c77f80632b1626fbe539af736d2e133c
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.1_48ad3febf7cfaab5702504882d64dea4
       object-hash: 1.3.1
     dev: false
-    id: registry.npmjs.org/@bentley/presentation-backend/2.5.0
+    id: registry.npmjs.org/@bentley/presentation-backend/2.5.1
     name: '@bentley/presentation-backend'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/imodeljs-backend': ^2.5.0
-      '@bentley/imodeljs-common': ^2.5.0
-      '@bentley/presentation-common': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/imodeljs-backend': ^2.5.1
+      '@bentley/imodeljs-common': ^2.5.1
+      '@bentley/presentation-common': ^2.5.1
     resolution:
-      integrity: sha512-fL6B62OTgWDJPX5+wt4Di9EzWlVe1vCTQsbKp113YQM+mKNkdIdbNEXWc+uTaUcgM4ObJly+R6qCm18JZAdbRg==
+      integrity: sha512-/nZMg91VFaNgDsAsA2ahuTdO85oDF9YPLs3HWtQZmCIdkFm3M9Mrq1FXZla/9qF0P/P9B//JFu2vkzOJbiCoow==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/presentation-backend/-/presentation-backend-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/presentation-common/2.5.0_5d19c6e1a644847382c85f1520413c89:
+      tarball: 'https://registry.npmjs.org/@bentley/presentation-backend/-/presentation-backend-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/presentation-common/2.5.1_48ad3febf7cfaab5702504882d64dea4:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
     dev: false
-    id: registry.npmjs.org/@bentley/presentation-common/2.5.0
+    id: registry.npmjs.org/@bentley/presentation-common/2.5.1
     name: '@bentley/presentation-common'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/imodeljs-common': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/imodeljs-common': ^2.5.1
     resolution:
-      integrity: sha512-7Cd/782tj6uJ7Ywkn+HhHp1yRvqDqZFDndWIGQA9JRhR+XgUFrZ+SmNs/ALxZt31vnv68jPgvhetwnX6xonQDQ==
+      integrity: sha512-hthlLbDMhfBZCsjxAbwifNL02uqvBm7G5/vkTLL5ttYCWHgGNUHouEOmPCNi6L4rGDKlfxX5250aFHo/9OQY2A==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/presentation-common/-/presentation-common-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/presentation-components/2.5.0_d5fffcdc4f2d91813d316417204eeec8:
+      tarball: 'https://registry.npmjs.org/@bentley/presentation-common/-/presentation-common-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/presentation-components/2.5.1_965211ae52d8fb50fbe249e7fc116bb6:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.0_e99df8b99595c6b4cd858b7b5cd9a6e0
-      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.0_5d19c6e1a644847382c85f1520413c89
-      '@bentley/presentation-frontend': registry.npmjs.org/@bentley/presentation-frontend/2.5.0_58eac2079210c677b263b47c69f808c2
-      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.0_59d060f48a0c7dbe9ec6a157988c14a5
-      '@bentley/ui-components': registry.npmjs.org/@bentley/ui-components/2.5.0_ade510f09aa4b66caa5432e7d5196801
-      '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.0_a46372e87321e6dedc860b849c2486aa
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.1_633fe890d218bf5b1fa7ec4da99e8d6b
+      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.1_48ad3febf7cfaab5702504882d64dea4
+      '@bentley/presentation-frontend': registry.npmjs.org/@bentley/presentation-frontend/2.5.1_cd870d1bbb0d5f93e74cded5e1637cf0
+      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.1_73904e355c9fb71111c1f203caf854ef
+      '@bentley/ui-components': registry.npmjs.org/@bentley/ui-components/2.5.1_ffcbb3289ab4c80156417c322aa88af0
+      '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.1_4ee009030ac48d59676a7aa4dff18993
       lodash: 4.17.20
       micro-memoize: 4.0.9
       react: 16.13.1
       react-dom: 16.13.1_react@16.13.1
       rxjs: 6.6.2
     dev: false
-    id: registry.npmjs.org/@bentley/presentation-components/2.5.0
+    id: registry.npmjs.org/@bentley/presentation-components/2.5.1
     name: '@bentley/presentation-components'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/imodeljs-common': ^2.5.0
-      '@bentley/imodeljs-frontend': ^2.5.0
-      '@bentley/imodeljs-i18n': ^2.5.0
-      '@bentley/presentation-common': ^2.5.0
-      '@bentley/presentation-frontend': ^2.5.0
-      '@bentley/ui-abstract': ^2.5.0
-      '@bentley/ui-components': ^2.5.0
-      '@bentley/ui-core': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/imodeljs-common': ^2.5.1
+      '@bentley/imodeljs-frontend': ^2.5.1
+      '@bentley/imodeljs-i18n': ^2.5.1
+      '@bentley/presentation-common': ^2.5.1
+      '@bentley/presentation-frontend': ^2.5.1
+      '@bentley/ui-abstract': ^2.5.1
+      '@bentley/ui-components': ^2.5.1
+      '@bentley/ui-core': ^2.5.1
       react: ^16.8.0
       react-dom: ^16.8.0
     resolution:
-      integrity: sha512-B1D9zXJp9orpRzt313U4bN79reKCVMPZ27swATa/91IC7YsVr0gaTai2RhcO88ZhjJN/GE1JIVuCYcJwjscTag==
+      integrity: sha512-a9chu+dZ2FLEI1GDpu7V7luonK41x8cF8Qc2cgY7igSK3r3le9FXRODfesTd3r0qc1HBptbWpECMSH3xfU5C9g==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/presentation-components/-/presentation-components-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/presentation-frontend/2.5.0_58eac2079210c677b263b47c69f808c2:
+      tarball: 'https://registry.npmjs.org/@bentley/presentation-components/-/presentation-components-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/presentation-frontend/2.5.1_cd870d1bbb0d5f93e74cded5e1637cf0:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.0_e99df8b99595c6b4cd858b7b5cd9a6e0
-      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.0_5d19c6e1a644847382c85f1520413c89
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.1_633fe890d218bf5b1fa7ec4da99e8d6b
+      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.1_48ad3febf7cfaab5702504882d64dea4
       lodash: 4.17.20
     dev: false
-    id: registry.npmjs.org/@bentley/presentation-frontend/2.5.0
+    id: registry.npmjs.org/@bentley/presentation-frontend/2.5.1
     name: '@bentley/presentation-frontend'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/imodeljs-common': ^2.5.0
-      '@bentley/imodeljs-frontend': ^2.5.0
-      '@bentley/imodeljs-i18n': ^2.5.0
-      '@bentley/presentation-common': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/imodeljs-common': ^2.5.1
+      '@bentley/imodeljs-frontend': ^2.5.1
+      '@bentley/imodeljs-i18n': ^2.5.1
+      '@bentley/presentation-common': ^2.5.1
     resolution:
-      integrity: sha512-RA4Glz8aMmTBOI15EWIfd/UezYY1qOUOst5ifv+alqqzD58cbnSkE+tSGpdE1PhQ+o9bE3Xr23jkXjngl/HBPw==
+      integrity: sha512-irVRjfWkvsQ5Y4miXZ8Cce6ZI6kDBFEHPO8zsnzqHHjWzWduZDzjCGo71rb2OcOm9+vIrdV6LGPEs7v+VVD45Q==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/presentation-frontend/-/presentation-frontend-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/presentation-testing/2.5.0_1dc0256b6ecd1bfe4d90f36f7fd4b1fa:
+      tarball: 'https://registry.npmjs.org/@bentley/presentation-frontend/-/presentation-frontend-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/presentation-testing/2.5.1_823f25eb3351b964a32df24f23382f83:
     dependencies:
-      '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.0_7f9667b92305fcf1b61c17f006fb71b5
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/build-tools': registry.npmjs.org/@bentley/build-tools/2.5.0
-      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.0_457338c05d208df9297444f7b2c597d5
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.0_e99df8b99595c6b4cd858b7b5cd9a6e0
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/presentation-backend': registry.npmjs.org/@bentley/presentation-backend/2.5.0_ffae974130e8eddc8f52de21ba0f264f
-      '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.0_5d19c6e1a644847382c85f1520413c89
-      '@bentley/presentation-components': registry.npmjs.org/@bentley/presentation-components/2.5.0_d5fffcdc4f2d91813d316417204eeec8
-      '@bentley/presentation-frontend': registry.npmjs.org/@bentley/presentation-frontend/2.5.0_58eac2079210c677b263b47c69f808c2
-      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.0_59d060f48a0c7dbe9ec6a157988c14a5
-      '@bentley/ui-components': registry.npmjs.org/@bentley/ui-components/2.5.0_ade510f09aa4b66caa5432e7d5196801
+      '@bentley/backend-itwin-client': registry.npmjs.org/@bentley/backend-itwin-client/2.5.1_0ffd86a3bb23f49ba685035ac8445873
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/build-tools': registry.npmjs.org/@bentley/build-tools/2.5.1
+      '@bentley/imodeljs-backend': registry.npmjs.org/@bentley/imodeljs-backend/2.5.1_c77f80632b1626fbe539af736d2e133c
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.1_633fe890d218bf5b1fa7ec4da99e8d6b
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/presentation-backend': registry.npmjs.org/@bentley/presentation-backend/2.5.1_e5a28e3885b49ec3feffaf01f1a38535
+      '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.1_48ad3febf7cfaab5702504882d64dea4
+      '@bentley/presentation-components': registry.npmjs.org/@bentley/presentation-components/2.5.1_965211ae52d8fb50fbe249e7fc116bb6
+      '@bentley/presentation-frontend': registry.npmjs.org/@bentley/presentation-frontend/2.5.1_cd870d1bbb0d5f93e74cded5e1637cf0
+      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.1_73904e355c9fb71111c1f203caf854ef
+      '@bentley/ui-components': registry.npmjs.org/@bentley/ui-components/2.5.1_ffcbb3289ab4c80156417c322aa88af0
       '@types/chai': 4.2.12
       '@types/chai-as-promised': 7.1.3
       '@types/chai-jest-snapshot': 1.3.6
       '@types/jsdom': 12.2.4
       '@types/mocha': 5.2.7
       '@types/rimraf': 2.0.4
-      '@types/sinon': 9.0.4
+      '@types/sinon': 9.0.5
       chai: 4.2.0
       chai-as-promised: 7.1.1_chai@4.2.0
       chai-jest-snapshot: 2.0.0_chai@4.2.0
@@ -17232,7 +17328,7 @@ packages:
       typemoq: 2.1.0
       typescript: 3.7.5
     dev: false
-    id: registry.npmjs.org/@bentley/presentation-testing/2.5.0
+    id: registry.npmjs.org/@bentley/presentation-testing/2.5.1
     name: '@bentley/presentation-testing'
     peerDependencies:
       '@bentley/ecschema-metadata': '*'
@@ -17250,43 +17346,43 @@ packages:
       react: '*'
       react-dom: '*'
     resolution:
-      integrity: sha512-Pxk7axEkXDhvQKI29iSCE/ocAlw3hxE2ULD1tJxx4TCGwYK1ZTg9Aexlwb3Tu5gHYxplc+sv3J7Bw+etcKw56A==
+      integrity: sha512-YbEaxCN8s/vH5NNNxQXs2ZFxdh5gEJIhly7PRzs20xIr9M+iHa5j/F0GGDvvOPx0obI/EDjZE2vyV9xmh71tWQ==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/presentation-testing/-/presentation-testing-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/product-settings-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89:
+      tarball: 'https://registry.npmjs.org/@bentley/presentation-testing/-/presentation-testing-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/product-settings-client/2.5.1_96028a0ebda38585540ae4343b90b03f:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
     dev: false
-    id: registry.npmjs.org/@bentley/product-settings-client/2.5.0
+    id: registry.npmjs.org/@bentley/product-settings-client/2.5.1
     name: '@bentley/product-settings-client'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/itwin-client': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/itwin-client': ^2.5.1
     resolution:
-      integrity: sha512-gy95zjSwoZLW+bx2gLY77rmbnyb+/1nTNuEqrYHpyuvXrbB/U7rVfMH39WkyNdVDCp0U+MzvZ5t5DT15d4kl0w==
+      integrity: sha512-LBAR3zsGBw0Cjtx2Sv1QsQDXI9g8HmkJ8Yx41VUJSMl/5Y9u2Aya8Es5a19y9+GZgRgOjgcJB+1xWA95bs4SYQ==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/product-settings-client/-/product-settings-client-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/rbac-client/2.5.0_@bentley+itwin-client@2.5.0:
+      tarball: 'https://registry.npmjs.org/@bentley/product-settings-client/-/product-settings-client-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/rbac-client/2.5.1_@bentley+itwin-client@2.5.1:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
     dev: false
-    id: registry.npmjs.org/@bentley/rbac-client/2.5.0
+    id: registry.npmjs.org/@bentley/rbac-client/2.5.1
     name: '@bentley/rbac-client'
     peerDependencies:
-      '@bentley/itwin-client': ^2.5.0
+      '@bentley/itwin-client': ^2.5.1
     resolution:
-      integrity: sha512-Tx6pSCfYTQm1zYiLMA63/EOylta2UXLPxUXCXZi7Uze0Wwi4cKP0KLOBeinNKAf1hGTqBDb64cmUK+KKBYrKPg==
+      integrity: sha512-oA920kzEPjHgfL3X78Lftz12Lzj+lH1+As440XEIX9BWJTaos60kNbYoWtU0dJ9A/j0gbbbBV0HTSAcgRzNaUg==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/rbac-client/-/rbac-client-2.5.0.tgz'
-    version: 2.5.0
+      tarball: 'https://registry.npmjs.org/@bentley/rbac-client/-/rbac-client-2.5.1.tgz'
+    version: 2.5.1
   registry.npmjs.org/@bentley/react-scripts/3.4.1_17aa7bee3e0054b4610d663579690f97:
     dependencies:
       '@babel/core': 7.9.0
-      '@bentley/webpack-tools-core': registry.npmjs.org/@bentley/webpack-tools-core/2.5.0_webpack@4.42.0
+      '@bentley/webpack-tools-core': registry.npmjs.org/@bentley/webpack-tools-core/2.5.1_webpack@4.42.0
       '@svgr/webpack': 4.3.3
       '@typescript-eslint/eslint-plugin': 2.34.0_b19fc4176cc1ce9aa077ffdbf5f88816
       '@typescript-eslint/parser': 2.34.0_eslint@6.8.0+typescript@3.7.5
@@ -17365,48 +17461,48 @@ packages:
       registry: 'https://registry.npmjs.org/'
       tarball: 'https://registry.npmjs.org/@bentley/react-scripts/-/react-scripts-3.4.1.tgz'
     version: 3.4.1
-  registry.npmjs.org/@bentley/reality-data-client/2.5.0_@bentley+itwin-client@2.5.0:
+  registry.npmjs.org/@bentley/reality-data-client/2.5.1_@bentley+itwin-client@2.5.1:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
     dev: false
-    id: registry.npmjs.org/@bentley/reality-data-client/2.5.0
+    id: registry.npmjs.org/@bentley/reality-data-client/2.5.1
     name: '@bentley/reality-data-client'
     peerDependencies:
-      '@bentley/itwin-client': ^2.5.0
+      '@bentley/itwin-client': ^2.5.1
     resolution:
-      integrity: sha512-UEy1ialJDhEd0u0mjntVV9S+ogYzwee3otP3Hc3iO1psvLsTiPTGZ15Lx7RJW/HHhjwClwuV3bTsvX5O60jD2g==
+      integrity: sha512-VC0Brj8oO75dWjpVPCFvs0kvnBnIsjWz+hdmRIpsHW7TZn0zp9acEEa46aNnDThaErExXPhmwSlZOXj+PbdIOg==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/reality-data-client/-/reality-data-client-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/ui-abstract/2.5.0_59d060f48a0c7dbe9ec6a157988c14a5:
+      tarball: 'https://registry.npmjs.org/@bentley/reality-data-client/-/reality-data-client-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/ui-abstract/2.5.1_73904e355c9fb71111c1f203caf854ef:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1
       '@bentley/icons-generic-webfont': registry.npmjs.org/@bentley/icons-generic-webfont/1.0.19
-      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.1_@bentley+bentleyjs-core@2.5.1
     dev: false
-    id: registry.npmjs.org/@bentley/ui-abstract/2.5.0
+    id: registry.npmjs.org/@bentley/ui-abstract/2.5.1
     name: '@bentley/ui-abstract'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/geometry-core': ^2.5.0
-      '@bentley/imodeljs-i18n': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/geometry-core': ^2.5.1
+      '@bentley/imodeljs-i18n': ^2.5.1
     resolution:
-      integrity: sha512-2Hh4Ip9v4twu3ud605Bl4ES2SoUTZxRaLDYoWJ5YVR8/WWl3wSj4TR8UtiTaR0P223SmCiba0kunINkYUnBJdA==
+      integrity: sha512-zzK12LufwH5kzsB9R9JuIOaDz+xjYnAN8BkDITedJI6MpuDWpiYLx6oNDk2zbLeFNTFtyBcR9Sx+6BKFolPyjA==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/ui-abstract/-/ui-abstract-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/ui-components/2.5.0_ade510f09aa4b66caa5432e7d5196801:
+      tarball: 'https://registry.npmjs.org/@bentley/ui-abstract/-/ui-abstract-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/ui-components/2.5.1_ffcbb3289ab4c80156417c322aa88af0:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1
       '@bentley/icons-generic-webfont': registry.npmjs.org/@bentley/icons-generic-webfont/1.0.19
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.0_e99df8b99595c6b4cd858b7b5cd9a6e0
-      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.0_59d060f48a0c7dbe9ec6a157988c14a5
-      '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.0_a46372e87321e6dedc860b849c2486aa
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.1_633fe890d218bf5b1fa7ec4da99e8d6b
+      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.1_73904e355c9fb71111c1f203caf854ef
+      '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.1_4ee009030ac48d59676a7aa4dff18993
       callable-instance2: 1.0.0
       classnames: 2.2.6
       eventemitter2: 5.0.1
@@ -17431,30 +17527,30 @@ packages:
       rxjs: 6.6.2
       ts-key-enum: 2.0.3
     dev: false
-    id: registry.npmjs.org/@bentley/ui-components/2.5.0
+    id: registry.npmjs.org/@bentley/ui-components/2.5.1
     name: '@bentley/ui-components'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/geometry-core': ^2.5.0
-      '@bentley/imodeljs-common': ^2.5.0
-      '@bentley/imodeljs-frontend': ^2.5.0
-      '@bentley/imodeljs-i18n': ^2.5.0
-      '@bentley/ui-abstract': 2.5.0
-      '@bentley/ui-core': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/geometry-core': ^2.5.1
+      '@bentley/imodeljs-common': ^2.5.1
+      '@bentley/imodeljs-frontend': ^2.5.1
+      '@bentley/imodeljs-i18n': ^2.5.1
+      '@bentley/ui-abstract': 2.5.1
+      '@bentley/ui-core': ^2.5.1
       react: ^16.8.0
       react-dom: ^16.8.0
     resolution:
-      integrity: sha512-+vV/laUiaMnBbG6M+C1qmCS2EcAlK1gdiuihlquFpebT6fwwhQHKuMjEU92z6UAUpplg3kODOhXN50xGu1xjKw==
+      integrity: sha512-FUWjNDn+VGjm5Ek/qido3ju6bcIoOfqmAF4N9yZu5EMoM2/HuSkVCuGtY9RXcyJ5swsqkgZ4SZ6kwZz60Mj9Zw==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/ui-components/-/ui-components-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/ui-core/2.5.0_a46372e87321e6dedc860b849c2486aa:
+      tarball: 'https://registry.npmjs.org/@bentley/ui-components/-/ui-components-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/ui-core/2.5.1_4ee009030ac48d59676a7aa4dff18993:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1
       '@bentley/icons-generic-webfont': registry.npmjs.org/@bentley/icons-generic-webfont/1.0.19
-      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.0_59d060f48a0c7dbe9ec6a157988c14a5
+      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.1_73904e355c9fb71111c1f203caf854ef
       classnames: 2.2.6
       lodash: 4.17.20
       react: 16.13.1
@@ -17465,44 +17561,44 @@ packages:
       resize-observer-polyfill: 1.5.1
       svg-sprite-loader: 4.2.1_webpack@4.42.0
     dev: false
-    id: registry.npmjs.org/@bentley/ui-core/2.5.0
+    id: registry.npmjs.org/@bentley/ui-core/2.5.1
     name: '@bentley/ui-core'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/geometry-core': ^2.5.0
-      '@bentley/imodeljs-i18n': ^2.5.0
-      '@bentley/ui-abstract': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/geometry-core': ^2.5.1
+      '@bentley/imodeljs-i18n': ^2.5.1
+      '@bentley/ui-abstract': ^2.5.1
       react: ^16.8.0
       react-dom: ^16.8.0
       webpack: '*'
     resolution:
-      integrity: sha512-KYPgA7zSxwXAeB9EWggr0zyyBebikEeKBDSdZMr/P9q0zcKVJ5HxX+HdHWWJ7a3f4VZz7oY9oYZ0BkKZao7t8g==
+      integrity: sha512-D1AqcXjAr6jIHmG9Y9ADvtauWzlKtQKG4MeIP7i7UoiBR1Q3y7NzUnt3suheqIwHKS98tlYdDAc7FPycmJVL0Q==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/ui-core/-/ui-core-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/ui-framework/2.5.0_59f16c6983702ed136bb1b75b7f7cb80:
+      tarball: 'https://registry.npmjs.org/@bentley/ui-core/-/ui-core-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/ui-framework/2.5.1_b8c889a273d69fd2c713030a101bc15b:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/context-registry-client': registry.npmjs.org/@bentley/context-registry-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/frontend-authorization-client': registry.npmjs.org/@bentley/frontend-authorization-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/geometry-core': registry.npmjs.org/@bentley/geometry-core/2.5.1_@bentley+bentleyjs-core@2.5.1
       '@bentley/icons-generic': registry.npmjs.org/@bentley/icons-generic/1.0.19
       '@bentley/icons-generic-webfont': registry.npmjs.org/@bentley/icons-generic-webfont/1.0.19
-      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.0_2118d40f8cc695a5be3bba70d9a823cd
-      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.0_aa86485c8517dabbdeba944b17483641
-      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.0_e99df8b99595c6b4cd858b7b5cd9a6e0
-      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/imodeljs-markup': registry.npmjs.org/@bentley/imodeljs-markup/2.5.0_a6fc25d63b9ad8ccb07c12f085c9298a
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
-      '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.0_5d19c6e1a644847382c85f1520413c89
-      '@bentley/presentation-components': registry.npmjs.org/@bentley/presentation-components/2.5.0_d5fffcdc4f2d91813d316417204eeec8
-      '@bentley/presentation-frontend': registry.npmjs.org/@bentley/presentation-frontend/2.5.0_58eac2079210c677b263b47c69f808c2
-      '@bentley/product-settings-client': registry.npmjs.org/@bentley/product-settings-client/2.5.0_f793a36c0bcc079d9dba824dc87bdf89
-      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.0_@bentley+itwin-client@2.5.0
-      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.0_59d060f48a0c7dbe9ec6a157988c14a5
-      '@bentley/ui-components': registry.npmjs.org/@bentley/ui-components/2.5.0_ade510f09aa4b66caa5432e7d5196801
-      '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.0_a46372e87321e6dedc860b849c2486aa
-      '@bentley/ui-ninezone': registry.npmjs.org/@bentley/ui-ninezone/2.5.0_7faaa735dcf25ef9a3eba149253bf9cd
+      '@bentley/imodelhub-client': registry.npmjs.org/@bentley/imodelhub-client/2.5.1_fdf87656650666f0de0a1a8d1ebbdbb6
+      '@bentley/imodeljs-common': registry.npmjs.org/@bentley/imodeljs-common/2.5.1_e426ed917bfb80355438b3e0ca72c2e7
+      '@bentley/imodeljs-frontend': registry.npmjs.org/@bentley/imodeljs-frontend/2.5.1_633fe890d218bf5b1fa7ec4da99e8d6b
+      '@bentley/imodeljs-i18n': registry.npmjs.org/@bentley/imodeljs-i18n/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/imodeljs-markup': registry.npmjs.org/@bentley/imodeljs-markup/2.5.1_1f2721275799c29db9013760ab571286
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
+      '@bentley/presentation-common': registry.npmjs.org/@bentley/presentation-common/2.5.1_48ad3febf7cfaab5702504882d64dea4
+      '@bentley/presentation-components': registry.npmjs.org/@bentley/presentation-components/2.5.1_965211ae52d8fb50fbe249e7fc116bb6
+      '@bentley/presentation-frontend': registry.npmjs.org/@bentley/presentation-frontend/2.5.1_cd870d1bbb0d5f93e74cded5e1637cf0
+      '@bentley/product-settings-client': registry.npmjs.org/@bentley/product-settings-client/2.5.1_96028a0ebda38585540ae4343b90b03f
+      '@bentley/rbac-client': registry.npmjs.org/@bentley/rbac-client/2.5.1_@bentley+itwin-client@2.5.1
+      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.1_73904e355c9fb71111c1f203caf854ef
+      '@bentley/ui-components': registry.npmjs.org/@bentley/ui-components/2.5.1_ffcbb3289ab4c80156417c322aa88af0
+      '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.1_4ee009030ac48d59676a7aa4dff18993
+      '@bentley/ui-ninezone': registry.npmjs.org/@bentley/ui-ninezone/2.5.1_cdf8b7dc4633d8fd0029e1095f5e0c04
       classnames: 2.2.6
       immer: 6.0.9
       lodash: 4.17.20
@@ -17517,81 +17613,81 @@ packages:
       rxjs: 6.6.2
       svg-sprite-loader: 4.2.1_webpack@4.42.0
     dev: false
-    id: registry.npmjs.org/@bentley/ui-framework/2.5.0
+    id: registry.npmjs.org/@bentley/ui-framework/2.5.1
     name: '@bentley/ui-framework'
     peerDependencies:
-      '@bentley/bentleyjs-core': ^2.5.0
-      '@bentley/frontend-authorization-client': ^2.5.0
-      '@bentley/geometry-core': ^2.5.0
-      '@bentley/imodelhub-client': ^2.5.0
-      '@bentley/imodeljs-common': ^2.5.0
-      '@bentley/imodeljs-frontend': ^2.5.0
-      '@bentley/imodeljs-i18n': ^2.5.0
-      '@bentley/imodeljs-markup': ^2.5.0
-      '@bentley/itwin-client': ^2.5.0
-      '@bentley/presentation-common': ^2.5.0
-      '@bentley/presentation-frontend': ^2.5.0
-      '@bentley/product-settings-client': ^2.5.0
-      '@bentley/rbac-client': ^2.5.0
-      '@bentley/ui-abstract': ^2.5.0
-      '@bentley/ui-components': ^2.5.0
-      '@bentley/ui-core': ^2.5.0
-      '@bentley/ui-ninezone': ^2.5.0
+      '@bentley/bentleyjs-core': ^2.5.1
+      '@bentley/frontend-authorization-client': ^2.5.1
+      '@bentley/geometry-core': ^2.5.1
+      '@bentley/imodelhub-client': ^2.5.1
+      '@bentley/imodeljs-common': ^2.5.1
+      '@bentley/imodeljs-frontend': ^2.5.1
+      '@bentley/imodeljs-i18n': ^2.5.1
+      '@bentley/imodeljs-markup': ^2.5.1
+      '@bentley/itwin-client': ^2.5.1
+      '@bentley/presentation-common': ^2.5.1
+      '@bentley/presentation-frontend': ^2.5.1
+      '@bentley/product-settings-client': ^2.5.1
+      '@bentley/rbac-client': ^2.5.1
+      '@bentley/ui-abstract': ^2.5.1
+      '@bentley/ui-components': ^2.5.1
+      '@bentley/ui-core': ^2.5.1
+      '@bentley/ui-ninezone': ^2.5.1
       react: ^16.8.0
       react-dom: ^16.8.0
       react-redux: ^7.2.0
       redux: ^4.0.3
       webpack: '*'
     resolution:
-      integrity: sha512-9WS9aRqDwn9kl+8OtNnSR+P0sh/9ZpOO/zzDjV26U8br+8taQECBbjN/u+FzsU7w6fbB7ochikYuQAvT7jWs8A==
+      integrity: sha512-Hj+kF+dXqrJHPl6gEH23bm7SnlA7hPH6s4ddNeB+4yrI/avXALKGvVSlTvCTiWOAB5Ik9Mve3P22N95E+Grgcw==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/ui-framework/-/ui-framework-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/ui-ninezone/2.5.0_7faaa735dcf25ef9a3eba149253bf9cd:
+      tarball: 'https://registry.npmjs.org/@bentley/ui-framework/-/ui-framework-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/ui-ninezone/2.5.1_cdf8b7dc4633d8fd0029e1095f5e0c04:
     dependencies:
-      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.0_59d060f48a0c7dbe9ec6a157988c14a5
-      '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.0_a46372e87321e6dedc860b849c2486aa
+      '@bentley/ui-abstract': registry.npmjs.org/@bentley/ui-abstract/2.5.1_73904e355c9fb71111c1f203caf854ef
+      '@bentley/ui-core': registry.npmjs.org/@bentley/ui-core/2.5.1_4ee009030ac48d59676a7aa4dff18993
       classnames: 2.2.6
       immer: 6.0.9
       react: 16.13.1
       react-dom: 16.13.1_react@16.13.1
       uuid: 7.0.3
     dev: false
-    id: registry.npmjs.org/@bentley/ui-ninezone/2.5.0
+    id: registry.npmjs.org/@bentley/ui-ninezone/2.5.1
     name: '@bentley/ui-ninezone'
     peerDependencies:
-      '@bentley/ui-abstract': ^2.5.0
-      '@bentley/ui-core': ^2.5.0
+      '@bentley/ui-abstract': ^2.5.1
+      '@bentley/ui-core': ^2.5.1
       react: ^16.8.0
       react-dom: ^16.8.0
     resolution:
-      integrity: sha512-vuADFZbFJo1juGQ3Rf5ircYq8/KekmuDyEhyFAlEvZqUn/zFo/vmfJmFT6upAwSPSf+uEh4Lbsq7JJodKgIO/w==
+      integrity: sha512-zLjdap34lpyANzfxS/jTK2o5NTmjkTIBzZGfne/pRexf9Ev+2XcbtngoU7QPTvCCoFnx6BAOMYhvZ6zB4DPjtg==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/ui-ninezone/-/ui-ninezone-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/usage-logging-client/2.5.0_@bentley+itwin-client@2.5.0:
+      tarball: 'https://registry.npmjs.org/@bentley/ui-ninezone/-/ui-ninezone-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/usage-logging-client/2.5.1_@bentley+itwin-client@2.5.1:
     dependencies:
-      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.0
-      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.0_@bentley+bentleyjs-core@2.5.0
+      '@bentley/bentleyjs-core': registry.npmjs.org/@bentley/bentleyjs-core/2.5.1
+      '@bentley/itwin-client': registry.npmjs.org/@bentley/itwin-client/2.5.1_@bentley+bentleyjs-core@2.5.1
     dev: false
-    id: registry.npmjs.org/@bentley/usage-logging-client/2.5.0
+    id: registry.npmjs.org/@bentley/usage-logging-client/2.5.1
     name: '@bentley/usage-logging-client'
     peerDependencies:
-      '@bentley/itwin-client': ^2.5.0
+      '@bentley/itwin-client': ^2.5.1
     resolution:
-      integrity: sha512-lpPKmupvI6wCBdRyiXaQS1PRRBebFgJ5jVF+8xAAeyB79DnBM3de8oKkE+O7O9zRdYziJWtb/A37j0yz3MNdKA==
+      integrity: sha512-7YKgw1WQ4B5UgHyED+DJw621SmneVRpDgOcg/nKnxAXhY76zaQvOz0tVmYz0q6cygm5QNOqxfyNmhB/M1ie7kA==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/usage-logging-client/-/usage-logging-client-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/webgl-compatibility/2.5.0:
+      tarball: 'https://registry.npmjs.org/@bentley/usage-logging-client/-/usage-logging-client-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/webgl-compatibility/2.5.1:
     dev: false
     name: '@bentley/webgl-compatibility'
     resolution:
-      integrity: sha512-0tzy3Tu7OJ+FjJRQzDI/Qe9awh+mY2f657EHZBzf8z+uE5qhSFpR4h8evPrszbIjr480ISlqNtQCnIeu9XoYMA==
+      integrity: sha512-iqNEAbAxPDJVJUuASFTJ4IEgySap66MT0Hw3awINkmdjIan9tg74q4tTofphcB2xB9EI70vXQYmA1apigAHkcA==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/webgl-compatibility/-/webgl-compatibility-2.5.0.tgz'
-    version: 2.5.0
-  registry.npmjs.org/@bentley/webpack-tools-core/2.5.0_webpack@4.42.0:
+      tarball: 'https://registry.npmjs.org/@bentley/webgl-compatibility/-/webgl-compatibility-2.5.1.tgz'
+    version: 2.5.1
+  registry.npmjs.org/@bentley/webpack-tools-core/2.5.1_webpack@4.42.0:
     dependencies:
       chalk: 3.0.0
       fs-extra: 8.1.0
@@ -17601,49 +17697,49 @@ packages:
       webpack-filter-warnings-plugin: 1.2.1_webpack@4.42.0
       webpack-sources: 1.4.3
     dev: false
-    id: registry.npmjs.org/@bentley/webpack-tools-core/2.5.0
+    id: registry.npmjs.org/@bentley/webpack-tools-core/2.5.1
     name: '@bentley/webpack-tools-core'
     peerDependencies:
       webpack: 4.42.0
     resolution:
-      integrity: sha512-N0MojZqQFbXz09rMjpQX1Ih9Lj9PXmOIVsJ/enLDqMX7JK7c08KcziilaxuQ/JfWSWg7StK6MhYBCzZPxK3Isw==
+      integrity: sha512-MY4WdocXJUI0ceiEb7gI4KjPvLTrmWD7svjsUqqzH4tWnm9senlVnPPMJMZvT+uNORrI2sD6pSHkS0499e2XRw==
       registry: 'https://registry.npmjs.org/'
-      tarball: 'https://registry.npmjs.org/@bentley/webpack-tools-core/-/webpack-tools-core-2.5.0.tgz'
-    version: 2.5.0
+      tarball: 'https://registry.npmjs.org/@bentley/webpack-tools-core/-/webpack-tools-core-2.5.1.tgz'
+    version: 2.5.1
 specifiers:
-  '@bentley/backend-itwin-client': ^2.5.0
-  '@bentley/bentleyjs-core': ^2.5.0
-  '@bentley/build-tools': ^2.5.0
-  '@bentley/context-registry-client': ^2.5.0
-  '@bentley/ecschema-metadata': ^2.5.0
-  '@bentley/electron-manager': ^2.5.0
-  '@bentley/express-server': ^2.5.0
-  '@bentley/frontend-authorization-client': ^2.5.0
-  '@bentley/geometry-core': ^2.5.0
+  '@bentley/backend-itwin-client': ^2.5.1
+  '@bentley/bentleyjs-core': ^2.5.1
+  '@bentley/build-tools': ^2.5.1
+  '@bentley/context-registry-client': ^2.5.1
+  '@bentley/ecschema-metadata': ^2.5.1
+  '@bentley/electron-manager': ^2.5.1
+  '@bentley/express-server': ^2.5.1
+  '@bentley/frontend-authorization-client': ^2.5.1
+  '@bentley/geometry-core': ^2.5.1
   '@bentley/icons-generic-webfont': ^1.0.0
-  '@bentley/imodelhub-client': ^2.5.0
-  '@bentley/imodeljs-backend': ^2.5.0
-  '@bentley/imodeljs-common': ^2.5.0
-  '@bentley/imodeljs-frontend': ^2.5.0
-  '@bentley/imodeljs-i18n': ^2.5.0
-  '@bentley/imodeljs-markup': ^2.5.0
-  '@bentley/imodeljs-quantity': ^2.5.0
-  '@bentley/itwin-client': ^2.5.0
-  '@bentley/orbitgt-core': ^2.5.0
-  '@bentley/presentation-backend': ^2.5.0
-  '@bentley/presentation-common': ^2.5.0
-  '@bentley/presentation-components': ^2.5.0
-  '@bentley/presentation-frontend': ^2.5.0
-  '@bentley/presentation-testing': ^2.5.0
-  '@bentley/product-settings-client': ^2.5.0
-  '@bentley/rbac-client': ^2.5.0
+  '@bentley/imodelhub-client': ^2.5.1
+  '@bentley/imodeljs-backend': ^2.5.1
+  '@bentley/imodeljs-common': ^2.5.1
+  '@bentley/imodeljs-frontend': ^2.5.1
+  '@bentley/imodeljs-i18n': ^2.5.1
+  '@bentley/imodeljs-markup': ^2.5.1
+  '@bentley/imodeljs-quantity': ^2.5.1
+  '@bentley/itwin-client': ^2.5.1
+  '@bentley/orbitgt-core': ^2.5.1
+  '@bentley/presentation-backend': ^2.5.1
+  '@bentley/presentation-common': ^2.5.1
+  '@bentley/presentation-components': ^2.5.1
+  '@bentley/presentation-frontend': ^2.5.1
+  '@bentley/presentation-testing': ^2.5.1
+  '@bentley/product-settings-client': ^2.5.1
+  '@bentley/rbac-client': ^2.5.1
   '@bentley/react-scripts': 3.4.1
-  '@bentley/ui-abstract': ^2.5.0
-  '@bentley/ui-components': ^2.5.0
-  '@bentley/ui-core': ^2.5.0
-  '@bentley/ui-framework': ^2.5.0
-  '@bentley/ui-ninezone': ^2.5.0
-  '@bentley/webgl-compatibility': ^2.5.0
+  '@bentley/ui-abstract': ^2.5.1
+  '@bentley/ui-components': ^2.5.1
+  '@bentley/ui-core': ^2.5.1
+  '@bentley/ui-framework': ^2.5.1
+  '@bentley/ui-ninezone': ^2.5.1
+  '@bentley/webgl-compatibility': ^2.5.1
   '@rush-temp/basic-viewport-app': 'file:./projects/basic-viewport-app.tgz'
   '@rush-temp/imodel-changeset-test-utility': 'file:./projects/imodel-changeset-test-utility.tgz'
   '@rush-temp/imodel-query-agent': 'file:./projects/imodel-query-agent.tgz'
@@ -17685,7 +17781,7 @@ specifiers:
   npm-run-all: ^4.1.5
   nyc: ^14.0.0
   path: ^0.12.7
-  puppeteer: chrome-80
+  puppeteer: chrome-84
   react: ^16.13.0
   react-dom: ^16.13.0
   react-redux: ^7.2.0
