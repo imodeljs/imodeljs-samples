@@ -18,11 +18,6 @@ export default async function initialize(rpcs: RpcInterfaceDefinition[]) {
   await manager.initialize({
     width: 1280,
     height: 800,
-    webPreferences: {
-      experimentalFeatures: true, // Needed for CSS Grid support
-      nodeIntegration: true,
-    },
-    autoHideMenuBar: true,
     show: false,
   });
   // tell ElectronRpcManager which RPC interfaces to handle
