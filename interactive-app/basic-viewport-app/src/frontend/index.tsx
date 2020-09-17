@@ -14,7 +14,7 @@ Logger.initializeToConsole();
 Logger.setLevelDefault(LogLevel.Warning); // Set all logging to a default of Warning
 Logger.setLevel("basic-viewport-app", LogLevel.Info); // Override the above default and set only App level logging to Info.
 
-(async () => {
+(async () => {  // eslint-disable-line @typescript-eslint/no-floating-promises
   // initialize the application
   await BasicViewportApp.startup();
 
@@ -23,4 +23,4 @@ Logger.setLevel("basic-viewport-app", LogLevel.Info); // Override the above defa
     <App />,
     document.getElementById("root") as HTMLElement,
   );
-})(); // tslint:disable-line:no-floating-promises
+})();
