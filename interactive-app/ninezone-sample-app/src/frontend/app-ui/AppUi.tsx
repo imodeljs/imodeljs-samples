@@ -19,7 +19,7 @@ export class AppUi {
 
   // Command that toggles the backstage
   public static get backstageToggleCommand() {
-    // eslint-disable-next-line deprecation/deprecation
+    // eslint-disable deprecation/deprecation
     return Backstage.backstageToggleCommand;
   }
 

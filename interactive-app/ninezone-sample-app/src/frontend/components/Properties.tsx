@@ -12,7 +12,8 @@ import { Orientation, useDisposable } from "@bentley/ui-core";
 import { PropertyGrid } from "@bentley/ui-components";
 
 // create a HOC property grid component that supports unified selection
-// eslint-disable-next-line @typescript-eslint/naming-convention, deprecation/deprecation
+// eslint-disable deprecation/deprecation
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const SimplePropertyGrid = propertyGridWithUnifiedSelection(PropertyGrid);
 
 /** React properties for the property grid component */
