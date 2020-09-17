@@ -6,6 +6,7 @@ import { IModelConnection, ViewState } from "@bentley/imodeljs-frontend";
 import { Backstage, ConfigurableUiManager, FrontstageManager, SyncUiEventDispatcher, UiFramework } from "@bentley/ui-framework";
 import { SampleFrontstage } from "./frontstages/SampleFrontstage";
 import { SampleFrontstage2 } from "./frontstages/SampleFrontstage2";
+/* eslint-disable deprecation/deprecation */
 
 /**
  * Example Ui Configuration for an iModel.js App
@@ -19,7 +20,6 @@ export class AppUi {
 
   // Command that toggles the backstage
   public static get backstageToggleCommand() {
-    // eslint-disable deprecation/deprecation
     return Backstage.backstageToggleCommand;
   }
 

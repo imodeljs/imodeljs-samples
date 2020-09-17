@@ -2,7 +2,7 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-/* eslint-disable no-duplicate-imports */
+/* eslint-disable no-duplicate-imports, deprecation/deprecation */
 import * as React from "react";
 import { useCallback } from "react";
 import ReactResizeDetector from "react-resize-detector";
@@ -12,7 +12,6 @@ import { Orientation, useDisposable } from "@bentley/ui-core";
 import { PropertyGrid } from "@bentley/ui-components";
 
 // create a HOC property grid component that supports unified selection
-// eslint-disable deprecation/deprecation
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const SimplePropertyGrid = propertyGridWithUnifiedSelection(PropertyGrid);
 
