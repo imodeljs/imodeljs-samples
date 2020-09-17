@@ -58,12 +58,12 @@ export class ChangesetGenerationHarness {
         if (!this._hubUtility)
           this._hubUtility = new HubUtility();
         this._accessToken = await this._hubUtility.login();
-        const authCtx = new AuthorizedBackendRequestContext(this._accessToken!);
+        const authCtx = new AuthorizedBackendRequestContext(this._accessToken);
         Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Attempting to find projectId for ${ChangesetGenerationConfig.projectName}`);
         this._projectId = await this._hubUtility.queryProjectIdByName(authCtx, ChangesetGenerationConfig.projectName);
         this._iModelId = await this._hubUtility.queryIModelIdByName(authCtx, this._projectId, ChangesetGenerationConfig.iModelName);
         Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Opening latest iModel`);
-        this._iModelDb = await this._iModelDbHandler.openLatestIModelDb(authCtx, this._projectId!, this._iModelId!);
+        this._iModelDb = await this._iModelDbHandler.openLatestIModelDb(authCtx, this._projectId, this._iModelId);
         const definitionModelId: Id64String = IModel.dictionaryId;
         let needToPrePush = false;
         Logger.logTrace(ChangesetGenerationConfig.loggingCategory, `Getting ChangeSet Physical Model`);
@@ -92,8 +92,8 @@ export class ChangesetGenerationHarness {
         } else
           this._categoryId = spatialCategory.id;
 
-        this._changeSetGenerator = new ChangesetGenerator(this._accessToken!, this._hubUtility!,
-          this._physicalModelId!, this._categoryId!, this._codeSpecId!, this._iModelDbHandler);
+        this._changeSetGenerator = new ChangesetGenerator(this._accessToken, this._hubUtility,
+          this._physicalModelId, this._categoryId, this._codeSpecId, this._iModelDbHandler);
         if (needToPrePush) {
           await this._iModelDb.concurrencyControl.request(authCtx);
           this._iModelDb.saveChanges();

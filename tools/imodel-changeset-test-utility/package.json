@@ -9,7 +9,7 @@
     "build": "tsc 1>&2",
     "clean": "rimraf lib tsconfig.tsbuildinfo .rush",
     "clean-output": "rimraf ./lib/output",
-    "lint": "tslint --project .",
+    "lint": "eslint ./src/**/*.{ts,tsx} 1>&2",
     "start": "node ./lib/IModelChangesetCLUtility.js",
     "test": "betools test --grep \"#integration\" --invert",
     "test:integration": "mocha --timeout 300000 --require ts-node/register --require source-map-support/register ./src/test/**/*.test.ts --grep \"#integration\"",
@@ -32,7 +32,7 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "@bentley/build-tools": "^2.5.3",
+    "@bentley/build-tools": "^2.5.5",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.5.7",
@@ -70,5 +70,14 @@
     ],
     "report-dir": "./lib/test/coverage",
     "all": true
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/@bentley/build-tools/.eslintrc.js",
+    "parserOptions": {
+      "project": [
+        "tsconfig.json",
+        "tsconfig.backend.json"
+      ]
+    }
   }
 }
