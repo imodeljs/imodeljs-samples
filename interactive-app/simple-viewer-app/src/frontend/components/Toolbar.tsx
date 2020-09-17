@@ -7,7 +7,7 @@ import { FitViewTool, IModelApp, PanViewTool, RotateViewTool, SelectionTool, Zoo
 import * as React from "react";
 import "./Components.scss";
 
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-key */
 
 /** Toolbar containing simple navigation tools */
 const toolbar = () => {

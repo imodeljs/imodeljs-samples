@@ -2,8 +2,10 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
+/* eslint-disable no-duplicate-imports */
+
 import * as React from "react";
-import { useCallback } from "react"; // tslint:disable-line: no-duplicate-imports
+import { useCallback } from "react";
 import { IModelApp, IModelConnection } from "@bentley/imodeljs-frontend";
 import { Orientation, useOptionalDisposable } from "@bentley/ui-core";
 import { PropertyGrid } from "@bentley/ui-components";
@@ -14,7 +16,8 @@ import {
 } from "@bentley/presentation-components";
 
 // create a HOC property grid component that supports unified selection
-// tslint:disable-next-line:variable-name
+// eslint-disable deprecation/deprecation
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const SimplePropertyGrid = propertyGridWithUnifiedSelection(PropertyGrid);
 
 /** React properties for the property pane component, that accepts an iModel connection with ruleset id */
@@ -33,7 +36,7 @@ export interface DataProviderProps {
 export type Props = IModelConnectionProps | DataProviderProps;
 
 /** Property grid component for the viewer app */
-export default function SimplePropertiesComponent(props: Props) {
+export default function SimplePropertiesComponent(props: Props) { // eslint-disable-line @typescript-eslint/naming-convention
   const imodel = (props as IModelConnectionProps).imodel;
   const imodelDataProvider = useOptionalDisposable(useCallback(() => {
     if (imodel)

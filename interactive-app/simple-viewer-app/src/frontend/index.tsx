@@ -15,7 +15,7 @@ Logger.initializeToConsole();
 Logger.setLevelDefault(LogLevel.Warning); // Set all logging to a default of Warning
 Logger.setLevel(AppLoggerCategory.Frontend, LogLevel.Info); // Override the above default and set only App level logging to Info.
 
-(async () => {
+(async () => { // eslint-disable-line @typescript-eslint/no-floating-promises
   // initialize the application
   await SimpleViewerApp.startup();
 
@@ -23,4 +23,4 @@ Logger.setLevel(AppLoggerCategory.Frontend, LogLevel.Info); // Override the abov
     <App />,
     document.getElementById("root") as HTMLElement,
   );
-})(); // tslint:disable-line:no-floating-promises
+})();

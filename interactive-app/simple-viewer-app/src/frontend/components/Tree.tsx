@@ -2,13 +2,14 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
+/* eslint-disable no-duplicate-imports */
 import * as React from "react";
-import { useCallback } from "react"; // tslint:disable-line: no-duplicate-imports
+import { useCallback } from "react";
 import { IModelApp, IModelConnection } from "@bentley/imodeljs-frontend";
 import { useOptionalDisposable } from "@bentley/ui-core";
 import { ControlledTree, SelectionMode, usePagedTreeNodeLoader, useTreeModelSource, useVisibleTreeNodes } from "@bentley/ui-components";
 import { IPresentationTreeDataProvider, PresentationTreeDataProvider, useUnifiedSelectionTreeEventHandler } from "@bentley/presentation-components";
-const RULESET_TREE = require("./Tree.ruleset.json"); // tslint:disable-line: no-var-requires
+const RULESET_TREE = require("./Tree.ruleset.json"); // eslint-disable-line @typescript-eslint/no-var-requires
 
 /** React properties for the tree component, that accepts an iModel connection with ruleset id */
 export interface IModelConnectionProps {
@@ -26,7 +27,7 @@ export interface DataProviderProps {
 export type Props = IModelConnectionProps | DataProviderProps;
 
 /** Tree component for the viewer app */
-export default function SimpleTreeComponent(props: Props) {
+export default function SimpleTreeComponent(props: Props) { // eslint-disable-line @typescript-eslint/naming-convention
   const imodel = (props as IModelConnectionProps).imodel;
   const imodelDataProvider = useOptionalDisposable(useCallback(() => {
     if (imodel)
