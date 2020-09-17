@@ -19,6 +19,7 @@ export class AppUi {
 
   // Command that toggles the backstage
   public static get backstageToggleCommand() {
+    // eslint-disable-next-line deprecation/deprecation
     return Backstage.backstageToggleCommand;
   }
 
@@ -35,7 +36,7 @@ export class AppUi {
     const frontstageProvider = new SampleFrontstage(viewStates);
     FrontstageManager.addFrontstageProvider(frontstageProvider);
 
-    // tslint:disable-next-line:no-floating-promises
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     FrontstageManager.setActiveFrontstageDef(frontstageProvider.frontstageDef).then(() => {
       // Frontstage is ready
     });

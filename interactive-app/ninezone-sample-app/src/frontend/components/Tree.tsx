@@ -6,7 +6,7 @@ import { IModelConnection } from "@bentley/imodeljs-frontend";
 import { usePresentationTreeNodeLoader, useUnifiedSelectionTreeEventHandler } from "@bentley/presentation-components";
 import { ControlledTree, SelectionMode, useVisibleTreeNodes } from "@bentley/ui-components";
 import * as React from "react";
-const RULESET_TREE = require("./Tree.ruleset.json"); // tslint:disable-line: no-var-requires
+const RULESET_TREE = require("./Tree.ruleset.json"); // eslint-disable-line @typescript-eslint/no-var-requires
 
 /** React properties for the tree component */
 export interface Props {
@@ -15,7 +15,7 @@ export interface Props {
 }
 
 /** Tree component for the viewer app */
-export default function SimpleTreeComponent(props: Props) {
+export default function SimpleTreeComponent(props: Props) { // eslint-disable-line @typescript-eslint/naming-convention
   const nodeLoader = usePresentationTreeNodeLoader({ imodel: props.imodel, ruleset: RULESET_TREE, pagingSize: 20 });
   return (
     <ControlledTree

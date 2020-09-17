@@ -21,7 +21,7 @@
     "build:frontend": "cross-env GENERATE_SOURCEMAP=false USE_FAST_SASS=true react-scripts build",
     "build:backend": "tsc -p tsconfig.backend.json",
     "clean": "rimraf lib build .rush",
-    "lint": "tslint -p . 1>&2",
+    "lint": "eslint --config package.json --no-eslintrc ./src/**/*.{ts,tsx} 1>&2",
     "electron": "cross-env NODE_ENV=development electron lib/backend/main.js",
     "start": "npm run start:servers",
     "start:webserver": "cross-env USE_FAST_SASS=true react-scripts start",
@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@bentley/bentleyjs-core": "^2.5.3",
+    "@bentley/build-tools": "^2.5.5",
     "@bentley/context-registry-client": "^2.5.3",
     "@bentley/ecschema-metadata": "^2.5.3",
     "@bentley/electron-manager": "^2.5.3",
@@ -66,7 +67,6 @@
     "redux": "^4.0.0"
   },
   "devDependencies": {
-    "@bentley/build-tools": "^2.5.3",
     "@bentley/ecschema-metadata": "^2.5.3",
     "@bentley/orbitgt-core": "^2.5.3",
     "@bentley/product-settings-client": "^2.5.3",
@@ -96,5 +96,14 @@
     "last 4 edge version",
     "not dead",
     "not <0.2%"
-  ]
+  ],
+  "eslintConfig": {
+    "extends": "./node_modules/@bentley/build-tools/.eslintrc.js",
+    "parserOptions": {
+      "project": [
+        "tsconfig.json",
+        "tsconfig.backend.json"
+      ]
+    }
+  }
 }

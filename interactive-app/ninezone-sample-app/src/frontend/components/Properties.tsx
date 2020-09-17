@@ -2,8 +2,9 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
+/* eslint-disable no-duplicate-imports */
 import * as React from "react";
-import { useCallback } from "react"; // tslint:disable-line: no-duplicate-imports
+import { useCallback } from "react";
 import ReactResizeDetector from "react-resize-detector";
 import { IModelConnection } from "@bentley/imodeljs-frontend";
 import { PresentationPropertyDataProvider, propertyGridWithUnifiedSelection } from "@bentley/presentation-components";
@@ -11,7 +12,7 @@ import { Orientation, useDisposable } from "@bentley/ui-core";
 import { PropertyGrid } from "@bentley/ui-components";
 
 // create a HOC property grid component that supports unified selection
-// tslint:disable-next-line:variable-name
+// eslint-disable-next-line @typescript-eslint/naming-convention, deprecation/deprecation
 const SimplePropertyGrid = propertyGridWithUnifiedSelection(PropertyGrid);
 
 /** React properties for the property grid component */
@@ -23,7 +24,7 @@ export interface Props {
 }
 
 /** Property grid component for the viewer app */
-export default function SimplePropertiesComponent(props: Props) {
+export default function SimplePropertiesComponent(props: Props) { // eslint-disable-line @typescript-eslint/naming-convention
   const dataProvider = useDisposable(useCallback(() => new PresentationPropertyDataProvider({ imodel: props.imodel }), [props.imodel]));
   return (
     <ReactResizeDetector handleWidth>
