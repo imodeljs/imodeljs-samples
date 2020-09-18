@@ -4,11 +4,13 @@
 *--------------------------------------------------------------------------------------------*/
 import * as React from "react";
 import { IModelApp, IModelConnection } from "@bentley/imodeljs-frontend";
+import { FillCentered, Orientation, useOptionalDisposable } from "@bentley/ui-core";
 import {
-  IPresentationPropertyDataProvider, PresentationPropertyDataProvider,
+  IPresentationPropertyDataProvider,
+  PresentationPropertyDataProvider,
+  usePropertyDataProviderWithUnifiedSelection,
 } from "@bentley/presentation-components";
 import { VirtualizedPropertyGridWithDataProvider } from "@bentley/ui-components";
-import { Orientation, useOptionalDisposable } from "@bentley/ui-core";
 
 /** React properties for the property pane component, that accepts an iModel connection with ruleset id */
 export interface IModelConnectionProps {
@@ -34,14 +36,23 @@ export default function SimplePropertiesComponent(props: Props) { // eslint-disa
     return undefined;
   }, [imodel]));
   const dataProvider: IPresentationPropertyDataProvider = imodelDataProvider ?? (props as any).dataProvider;
+  const { isOverLimit } = usePropertyDataProviderWithUnifiedSelection({ dataProvider });
+  let content: JSX.Element;
+  if (isOverLimit) {
+    content = (<FillCentered>{"Too many elements."}</FillCentered>);
+  } else {
+    content = (<VirtualizedPropertyGridWithDataProvider
+      dataProvider={dataProvider}
+      isPropertyHoverEnabled={true}
+      orientation={Orientation.Horizontal}
+      horizontalOrientationMinWidth={500}
+    />);
+  }
   return (
     <>
       <h3 data-testid="property-pane-component-header">{IModelApp.i18n.translate("SimpleViewer:components.properties")}</h3>
       <div style={{ flex: "1", height: "calc(100% - 50px)" }}>
-        <VirtualizedPropertyGridWithDataProvider
-          orientation={Orientation.Horizontal}
-          dataProvider={dataProvider}
-        />
+        {content}
       </div>
     </>
   );
