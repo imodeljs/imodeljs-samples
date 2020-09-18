@@ -4,17 +4,11 @@
 *--------------------------------------------------------------------------------------------*/
 import * as React from "react";
 import { IModelApp, IModelConnection } from "@bentley/imodeljs-frontend";
-import { Orientation, useOptionalDisposable } from "@bentley/ui-core";
-import { PropertyGrid } from "@bentley/ui-components";
 import {
-  IPresentationPropertyDataProvider,
-  PresentationPropertyDataProvider,
-  propertyGridWithUnifiedSelection,
+  IPresentationPropertyDataProvider, PresentationPropertyDataProvider,
 } from "@bentley/presentation-components";
-
-// create a HOC property grid component that supports unified selection
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const SimplePropertyGrid = propertyGridWithUnifiedSelection(PropertyGrid);
+import { VirtualizedPropertyGridWithDataProvider } from "@bentley/ui-components";
+import { Orientation, useOptionalDisposable } from "@bentley/ui-core";
 
 /** React properties for the property pane component, that accepts an iModel connection with ruleset id */
 export interface IModelConnectionProps {
@@ -44,7 +38,7 @@ export default function SimplePropertiesComponent(props: Props) { // eslint-disa
     <>
       <h3 data-testid="property-pane-component-header">{IModelApp.i18n.translate("SimpleViewer:components.properties")}</h3>
       <div style={{ flex: "1", height: "calc(100% - 50px)" }}>
-        <SimplePropertyGrid
+        <VirtualizedPropertyGridWithDataProvider
           orientation={Orientation.Horizontal}
           dataProvider={dataProvider}
         />
