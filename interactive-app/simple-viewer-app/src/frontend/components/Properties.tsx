@@ -2,10 +2,7 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-/* eslint-disable no-duplicate-imports, deprecation/deprecation */
-
 import * as React from "react";
-import { useCallback } from "react";
 import { IModelApp, IModelConnection } from "@bentley/imodeljs-frontend";
 import { Orientation, useOptionalDisposable } from "@bentley/ui-core";
 import { PropertyGrid } from "@bentley/ui-components";
@@ -37,7 +34,7 @@ export type Props = IModelConnectionProps | DataProviderProps;
 /** Property grid component for the viewer app */
 export default function SimplePropertiesComponent(props: Props) { // eslint-disable-line @typescript-eslint/naming-convention
   const imodel = (props as IModelConnectionProps).imodel;
-  const imodelDataProvider = useOptionalDisposable(useCallback(() => {
+  const imodelDataProvider = useOptionalDisposable(React.useCallback(() => {
     if (imodel)
       return new PresentationPropertyDataProvider({ imodel });
     return undefined;

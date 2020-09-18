@@ -1,3 +1,5 @@
+import * as React from "react";
+
 /*---------------------------------------------------------------------------------------------
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
@@ -5,11 +7,12 @@
 import { ViewState } from "@bentley/imodeljs-frontend";
 import { SvgPath } from "@bentley/ui-core";
 import {
-  CommandItemDef, ContentGroup, ContentLayoutDef, ContentLayoutManager, ContentViewManager, CoreTools, CustomItemDef, Frontstage,
-  FrontstageProvider, GroupItemDef, IModelViewportControl, ItemList, NavigationWidget, StagePanel,
-  SyncUiEventId, ToolWidget, UiFramework, ViewSelector, Widget, WidgetState, Zone, ZoneState,
+  CommandItemDef, ContentGroup, ContentLayoutDef, ContentLayoutManager, ContentViewManager,
+  CoreTools, CustomItemDef, Frontstage, FrontstageProvider, GroupItemDef, IModelViewportControl,
+  ItemList, NavigationWidget, StagePanel, SyncUiEventId, ToolWidget, UiFramework, ViewSelector,
+  Widget, WidgetState, Zone, ZoneState,
 } from "@bentley/ui-framework";
-import * as React from "react";
+
 import { AppUi } from "../AppUi";
 import { AppStatusBarWidget } from "../statusbars/AppStatusBar";
 import { PropertyGridWidget } from "../widgets/PropertyGridWidget";
