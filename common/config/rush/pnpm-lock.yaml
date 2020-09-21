@@ -8,7 +8,7 @@ dependencies:
   '@bentley/express-server': 2.6.0
   '@bentley/frontend-authorization-client': 2.6.0_ceb1b44c97abc03d753992c9ef57226d
   '@bentley/geometry-core': 2.6.0_@bentley+bentleyjs-core@2.6.0
-  '@bentley/icons-generic-webfont': 1.0.21
+  '@bentley/icons-generic-webfont': 1.0.22
   '@bentley/imodelhub-client': 2.6.0_b18c4496a8f206939a08b3ab688465b3
   '@bentley/imodeljs-backend': 2.6.0_cb61df02753414774f602e74a8bcca6b
   '@bentley/imodeljs-common': 2.6.0_7459f430e0c8d755c828f545352712fe
@@ -139,7 +139,7 @@ packages:
       integrity: sha512-a9gxpmdXtZEInkCSHUJDLHZVBgb1QS0jhss4cPP93EW7s+uC5bikET2twEF3KV+7rDblJcmNvTR7VJejqd2C2g==
   /@babel/compat-data/7.11.0:
     dependencies:
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       invariant: 2.2.4
       semver: 5.7.1
     dev: false
@@ -183,7 +183,7 @@ packages:
       gensync: 1.0.0-beta.1
       json5: 2.1.3
       lodash: 4.17.20
-      resolve: 1.15.0
+      resolve: 1.17.0
       semver: 5.7.1
       source-map: 0.5.7
     dev: false
@@ -231,7 +231,7 @@ packages:
     dependencies:
       '@babel/compat-data': 7.11.0
       '@babel/core': 7.9.0
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       invariant: 2.2.4
       levenary: 1.1.1
       semver: 5.7.1
@@ -259,7 +259,7 @@ packages:
       '@babel/core': 7.9.0
       '@babel/helper-annotate-as-pure': 7.10.4
       '@babel/helper-regex': 7.10.5
-      regexpu-core: 4.7.0
+      regexpu-core: 4.7.1
     dev: false
     peerDependencies:
       '@babel/core': ^7.0.0
@@ -1245,7 +1245,7 @@ packages:
       '@babel/plugin-transform-unicode-regex': 7.10.4_@babel+core@7.9.0
       '@babel/preset-modules': 0.1.4_@babel+core@7.9.0
       '@babel/types': 7.11.5
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       core-js-compat: 3.6.5
       invariant: 2.2.4
       levenary: 1.1.1
@@ -1313,7 +1313,7 @@ packages:
       '@babel/plugin-transform-unicode-regex': 7.10.4_@babel+core@7.9.0
       '@babel/preset-modules': 0.1.4_@babel+core@7.9.0
       '@babel/types': 7.11.5
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       core-js-compat: 3.6.5
       invariant: 2.2.4
       levenary: 1.1.1
@@ -1457,11 +1457,11 @@ packages:
       '@bentley/rbac-client': ^2.6.0
       '@bentley/telemetry-client': ^2.6.0
     resolution:
-      integrity: sha1-mlm3unorHt67dZd4NSX7jVdI9/A=
+      integrity: sha512-mwc3DogdOrp+u62asjl+8KQU+WT2ifB7WT69B4ZgyOkLJQ+RzROYsp3rCn4htEaAwFWp6GH865tBXZFmyGEQ7A==
   /@bentley/bentleyjs-core/2.6.0:
     dev: false
     resolution:
-      integrity: sha1-nDqEl/2pr3EbOREZvm1BgzG8P4s=
+      integrity: sha512-xwffoGX6m6ca4rtZY02+sY8XE2HaEOB5KeoYFxClmimY4H1z6cUpW9UoXfj8i8KM9TtG+o4LFlyihUcECG2GLQ==
   /@bentley/build-tools/2.6.0_eslint@6.8.0:
     dependencies:
       '@bentley/eslint-plugin': 2.6.0_eslint@6.8.0
@@ -1496,7 +1496,7 @@ packages:
     peerDependencies:
       eslint: '*'
     resolution:
-      integrity: sha1-cdAHASE6VHXya5GywdUkbnSy778=
+      integrity: sha512-QNaouYGkVPWdwb0uEkA/wHr8fS29Pl37ofMVMh3InD+6KDDuZGVS8Oqu6cUWwkwZxSFZQtd0G0wXE950yIPwyg==
   /@bentley/context-registry-client/2.6.0_ceb1b44c97abc03d753992c9ef57226d:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1507,7 +1507,7 @@ packages:
       '@bentley/bentleyjs-core': ^2.6.0
       '@bentley/itwin-client': ^2.6.0
     resolution:
-      integrity: sha1-nwYwXSWsu27wKR46NyXSbGzv2Tw=
+      integrity: sha512-utSXbyTbdX8cRIYsOqkyjPlLG+AsVdSffcMBkcq44DuJXlnj8AH2BjTPLUWGI1KUnPGcmtIRMdZI7BS6zU6nTA==
   /@bentley/ecschema-metadata/2.6.0_110f9e5a8c85fd0317b2fd2f923745a7:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1517,7 +1517,7 @@ packages:
       '@bentley/bentleyjs-core': ^2.6.0
       '@bentley/imodeljs-i18n': ^2.6.0
     resolution:
-      integrity: sha1-+P9MgUc+FWoHQ6rysf14uGTzNy8=
+      integrity: sha512-Rt21boqNHqjMAk/aM15EWX88giZzE/zE/py474LmXnxdoLM03FKorfwiNyqmzqjRSznCH6XHSgsj2BQZWlAN1g==
   /@bentley/electron-manager/2.6.0_fa13bdec955c1a3ab6cbd26c5b0c0611:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1531,7 +1531,7 @@ packages:
       '@bentley/imodeljs-backend': ^2.6.0
       electron: ^8.2.1
     resolution:
-      integrity: sha1-Tqsk/NPU5qg5pbLeVZuFPwGBQTg=
+      integrity: sha512-mjV8ve2fIA+3nrs8DZbasFgqZ2bWDdpVmLf/MEvQLbWP8tZ1B5N1e70id8eNph9z9dql+ggyA17qKJmLFC922g==
   /@bentley/eslint-plugin/2.6.0_eslint@6.8.0:
     dependencies:
       '@typescript-eslint/eslint-plugin': 2.25.0_94327f671b8b8fcfd6e40ba8fb1b6e1d
@@ -1551,7 +1551,7 @@ packages:
     peerDependencies:
       eslint: ^6.8.0
     resolution:
-      integrity: sha1-5sYRhiEkEEREJ6+DcMl0V11h9+c=
+      integrity: sha512-vQUbfkJ1Y02bQrWA7NJgPzp+ZlKhwhtR/KCIlQL/P46w0wriwNB6zQpeq1f0qfFUwOywSPjfIBrlRRAFTEEK5Q==
   /@bentley/express-server/2.6.0:
     dependencies:
       express: 4.17.1
@@ -1559,7 +1559,7 @@ packages:
     engines:
       node: '>=10.16.0 <13.0'
     resolution:
-      integrity: sha1-PE0au2Rin5RRilE4GPEc6Cbr8vY=
+      integrity: sha512-nyZ2uFs+32LPQtWnrhQ8LdujMw4gDFHMpQ2T7tcH5Edl3kvLXysSrQjEkhvxD2OnSn8WyUHZEOcy5IrYSUt/fA==
   /@bentley/extension-client/2.6.0_511425a060bb9930d92d717ba3080245:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1571,7 +1571,7 @@ packages:
       '@bentley/imodelhub-client': '*'
       '@bentley/rbac-client': '*'
     resolution:
-      integrity: sha1-AlTweo9NAJiQGumpV4yQGY1udRg=
+      integrity: sha512-0imHR0ktaziPvZyzBvSha0Y1BeA+HPtLyaECr0ol8ykrp/3C/60n68SwuU+gpFkl3A7Nc/+DmndUxJ2FaKdG6Q==
   /@bentley/frontend-authorization-client/2.6.0_ceb1b44c97abc03d753992c9ef57226d:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1582,7 +1582,7 @@ packages:
       '@bentley/bentleyjs-core': ^2.6.0
       '@bentley/itwin-client': ^2.6.0
     resolution:
-      integrity: sha1-pzgj1UyQetaGV1TI5JyeqADrhtM=
+      integrity: sha512-ewXpO+nnQwzyN5Sr7S9anlD5F08FVo/oDl4UWHz3wnqo0mxpblD6L6HQgLe12iTm1RHweAgzSew1vDzWYGfmHw==
   /@bentley/geometry-core/2.6.0_@bentley+bentleyjs-core@2.6.0:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1590,15 +1590,15 @@ packages:
     peerDependencies:
       '@bentley/bentleyjs-core': ^2.6.0
     resolution:
-      integrity: sha1-621iVRfnoraDilFqfZemSyUf5Q0=
-  /@bentley/icons-generic-webfont/1.0.21:
+      integrity: sha512-bXSC451jT1UXeO0o+s7W+LKa/YGvw9hH31t1rlEJDygnp6oa8IZHLEsWzDw/OO+8Gr4Tm4UHAGRl5URcfYlw1w==
+  /@bentley/icons-generic-webfont/1.0.22:
     dev: false
     resolution:
-      integrity: sha1-1ihfaHUuvQPDkVj5F25sfxUzHgo=
-  /@bentley/icons-generic/1.0.21:
+      integrity: sha512-3EceE1KRtn0bKTA0YFQ2bbAKOUqcEFgf5YHCh07oWhIjFjug9LfH1jssvYqe4DoG2AwWtIb+6dFLptvrdPvMJQ==
+  /@bentley/icons-generic/1.0.22:
     dev: false
     resolution:
-      integrity: sha1-OrYuhbqW8di0ca63PZ0lzQHoNNU=
+      integrity: sha512-ErFmSTtHRFApxMCgeQK6cxkZRa8YLS8JPx3rjkFWzqiisDH5vmoOUmLx0LOKGj8rnMMLPVtMzOzmNolGHYCIYA==
   /@bentley/imodelhub-client/2.6.0_b18c4496a8f206939a08b3ab688465b3:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1615,7 +1615,7 @@ packages:
       '@bentley/itwin-client': ^2.6.0
       '@bentley/rbac-client': ^2.6.0
     resolution:
-      integrity: sha1-AtPxaHbvwNwAJzjWs0pEPN6/+BU=
+      integrity: sha512-fu/AJCxcdZqezsPBzrJB8bnDeZbxe87JnQ/eGpBYVVZAkKjuEAcNBooGThLCLOl3IjKZPcgClT/vPd2QVCN9tw==
   /@bentley/imodeljs-backend/2.6.0_cb61df02753414774f602e74a8bcca6b:
     dependencies:
       '@azure/storage-blob': 10.4.0
@@ -1658,7 +1658,7 @@ packages:
       '@bentley/rbac-client': ^2.6.0
       '@bentley/telemetry-client': ^2.6.0
     resolution:
-      integrity: sha1-8dU3C2dA/qDTm0n2eirJtMT7Q9Y=
+      integrity: sha512-kdl6ZGnFsowEjt5YFc1Dcyy0jBozgTJXMCOxjoxTUeGwQVh3PRqgVWvehqv2R+rrTmx8MQRc53rnkiIXPhm9jQ==
   /@bentley/imodeljs-common/2.6.0_7459f430e0c8d755c828f545352712fe:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1676,7 +1676,7 @@ packages:
       '@bentley/itwin-client': ^2.6.0
       '@bentley/rbac-client': ^2.6.0
     resolution:
-      integrity: sha1-8bfzVbDd5AY/3jSRNYZETcqcvm0=
+      integrity: sha512-iQ4kqtDwFAw49pySObx5EOe46uYGY4Uz8r8NZYuOD3oQTDnl1AUaozrtj9p/tsRZgeVHD1vF5K+YhQMK7CbKGA==
   /@bentley/imodeljs-frontend/2.6.0_9c32976bc1fdcf766f9165711d407584:
     dependencies:
       '@azure/storage-blob': 10.4.0
@@ -1721,7 +1721,7 @@ packages:
       '@bentley/ui-abstract': ^2.6.0
       '@bentley/webgl-compatibility': ^2.6.0
     resolution:
-      integrity: sha1-+4pM+nJvo6tG0CUSwofUUQ6IbCM=
+      integrity: sha512-+nvUnAulTKHMsL70+PhWL6/Tnz0aXtkUubYcfKcfhPakKEDcKXgUAV0JMB6kuZyk/4ZBQzkbHDIzAXU5QHdC6g==
   /@bentley/imodeljs-i18n/2.6.0_@bentley+bentleyjs-core@2.6.0:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1732,7 +1732,7 @@ packages:
     peerDependencies:
       '@bentley/bentleyjs-core': ^2.6.0
     resolution:
-      integrity: sha1-rTh8bOmGJP7yVQFDng4uBkH8fd4=
+      integrity: sha512-v56k70Ng6zpWiSztBaTgHTmUycH2EWAdEEDMuX7aH741blgk7Z2okKNmRH0uCdRx6fGq+QjufCnLPqs38dBMFw==
   /@bentley/imodeljs-markup/2.6.0_1bb5d0db45b4592c6b75661a77ae2a93:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1749,12 +1749,12 @@ packages:
       '@bentley/imodeljs-frontend': ^2.6.0
       '@bentley/imodeljs-i18n': ^2.6.0
     resolution:
-      integrity: sha1-Kxug93IY/ZGgZNvhHS9wCQ20DV8=
+      integrity: sha512-yX+czFnbkz2PsNd1Z6OFNLOhF/NBQuwNJ1SV6Rc4oWAlUPdRyVVKOMgdhzRUNFgKhfRhBf4ITAq/kGDNxhQy/Q==
   /@bentley/imodeljs-native/2.6.1:
     dev: false
     requiresBuild: true
     resolution:
-      integrity: sha1-xryMNwhqeibwXJxgzgiF9QSGNbQ=
+      integrity: sha512-0sJKAvcKxbjUA/ogvJbZ9ZJccvKDUUaL9e+3RhUcl/gc5gNOT6a61NDAkKa9cfBRA2sRuUZ+qh5S2NcHltt6+A==
   /@bentley/imodeljs-quantity/2.6.0_@bentley+bentleyjs-core@2.6.0:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1762,7 +1762,7 @@ packages:
     peerDependencies:
       '@bentley/bentleyjs-core': ^2.6.0
     resolution:
-      integrity: sha1-tuigqisCF/YZrhIDwIUm76cjwRw=
+      integrity: sha512-1ilGz5lj7XDsQfl7Rn2aSZ0+7lzLxZG6CpDBIhLBGR2nXswFWURx/rzm+CyvhoOwfixlQhNF4G2rZGZxGmeVtA==
   /@bentley/itwin-client/2.6.0_@bentley+bentleyjs-core@2.6.0:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1776,11 +1776,11 @@ packages:
     peerDependencies:
       '@bentley/bentleyjs-core': ^2.6.0
     resolution:
-      integrity: sha1-K9zwPr9rm1RT9dDMAgm13vK/2XE=
+      integrity: sha512-CVypzhyUG3ftS1NdELMOWEx33bgsXcRfBIOCKcMnjFjESfxp+4kWGx/6h9K2JgqFJCRck071p8IUQyzZqnzNmw==
   /@bentley/orbitgt-core/2.6.0:
     dev: false
     resolution:
-      integrity: sha1-MDWiaYxBweAVI6MT+xRRjGFUn7g=
+      integrity: sha512-oCxWS1stTEoxS1SbpgvJ7INRp6bwfxV/mse1aUaWG0NLOloj02jJ5J6z/6cusBTHcyxfyuxJCAH6v8saUbHp6Q==
   /@bentley/presentation-backend/2.6.0_bb9f9bc5dc919e2d43b8070d8fabc6ca:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1795,7 +1795,7 @@ packages:
       '@bentley/imodeljs-common': ^2.6.0
       '@bentley/presentation-common': ^2.6.0
     resolution:
-      integrity: sha1-QAzdIK4QFAHzTh3BukX/Qjccxb4=
+      integrity: sha512-DuazUbWQNPzPkf5/8tDO+Qj8oggtUn1gJBs7OrjlWwoCe3O3W2ws/Tx1TQq6PSrRem0vc4K2/x529qqeAHTKQQ==
   /@bentley/presentation-common/2.6.0_df62c50ffe04f1e0d06bb1a0941ac26d:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1805,7 +1805,7 @@ packages:
       '@bentley/bentleyjs-core': ^2.6.0
       '@bentley/imodeljs-common': ^2.6.0
     resolution:
-      integrity: sha1-bP84z28jd3ShuD8GPvGsmQEjFnM=
+      integrity: sha512-SHjLzipKPRb8gOkFpL2NT5rjl0e9rE9iFhggGXpTyy39TxWihUgRCvrwWOGqFs/0p2zg3EUOX/KTJfY8H4UpkA==
   /@bentley/presentation-components/2.6.0_1322631b07072d903e74757c1c7fc3fb:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1836,7 +1836,7 @@ packages:
       react: ^16.8.0
       react-dom: ^16.8.0
     resolution:
-      integrity: sha1-uCYpA1DJWvlkR694tzbcaZ2NHiQ=
+      integrity: sha512-72AY26TarsAj6phySaBQ7izhwMN6gEJvesV3W/SJdX0C2RP2zNWHaff5fJRVAraumULPYzbQzO6HEnCgFv8P8Q==
   /@bentley/presentation-frontend/2.6.0_9439f33090428ffa7cc439837a1fb00b:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1853,7 +1853,7 @@ packages:
       '@bentley/imodeljs-i18n': ^2.6.0
       '@bentley/presentation-common': ^2.6.0
     resolution:
-      integrity: sha1-dXA+mXda3TzrfSz0lfbNoNyeRmY=
+      integrity: sha512-pV20D4cVlqGdoq25Tctme56OzSVm2KYxdjBKYhp7tGxIjgovZ1FIClw1DVq+rTGXN/or1IPNaNIMqJ8NlFnqpA==
   /@bentley/presentation-testing/2.6.0_63c3283d55effc843b74dbe258619a3e:
     dependencies:
       '@bentley/backend-itwin-client': 2.6.0_595dabebcc19988161157b0eb6576999
@@ -1909,7 +1909,7 @@ packages:
       react: '*'
       react-dom: '*'
     resolution:
-      integrity: sha1-ydIRpDK6i33XoNX1PQhpDBVQAs0=
+      integrity: sha512-E3tSyZoa8/wtVEjurkt70ReFpKxvwJI7WQcXiUgpq8Z84OQjHGtbqwbxH2OuTkcEaH3/baMw/Ckbs+sYW1U6HQ==
   /@bentley/product-settings-client/2.6.0_ceb1b44c97abc03d753992c9ef57226d:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1919,7 +1919,7 @@ packages:
       '@bentley/bentleyjs-core': ^2.6.0
       '@bentley/itwin-client': ^2.6.0
     resolution:
-      integrity: sha1-8uYaE/pgiBJnl8kg8EdmJSUxCS0=
+      integrity: sha512-QWpngYFgUAuwpyz+Egk3k4UnBuy5LvvkfxNZLb6IRMiFxnHxUeDjP8NPpztewQ3e3WtYZI1nQdEULSmxqXG3bQ==
   /@bentley/rbac-client/2.6.0_@bentley+itwin-client@2.6.0:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -1928,7 +1928,7 @@ packages:
     peerDependencies:
       '@bentley/itwin-client': ^2.6.0
     resolution:
-      integrity: sha1-oACPQJbqc8Ub9X0r9NbjOGF3cm0=
+      integrity: sha512-aKhFIhH9Z1pt37cuh4QKVyYIQzkmtI5PHKDKf9Il2lWi0tMQodfc0YsExYG/KJWonmGRV2IhN1WJ3QTuVW2CTg==
   /@bentley/react-scripts/3.4.1_17aa7bee3e0054b4610d663579690f97:
     dependencies:
       '@babel/core': 7.9.0
@@ -2005,7 +2005,7 @@ packages:
       typescript:
         optional: true
     resolution:
-      integrity: sha1-T735Xp7tNwpZuqN4sQlvCpLT2PE=
+      integrity: sha512-nwbLc5DJYFf8WLi84vkPwOjfSb43FOJx2y5EutNW2Tzv/rNkpWthbjnPBAeCc+rodMw7g6sSoNcvIlwF2X5kVQ==
   /@bentley/reality-data-client/2.6.0_@bentley+itwin-client@2.6.0:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -2014,7 +2014,7 @@ packages:
     peerDependencies:
       '@bentley/itwin-client': ^2.6.0
     resolution:
-      integrity: sha1-y9LR3Is2qb3VcS78jZ2RDeVM3as=
+      integrity: sha512-ytNoQggwUDRTzzZFnG86GK9As4bfTjivf9WhNdMNqqPRLd6RsMxjcn+rJQBnYS1RWdHwtAMHEgaujb/72mJiTg==
   /@bentley/telemetry-client/2.6.0_@bentley+itwin-client@2.6.0:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -2023,12 +2023,12 @@ packages:
     peerDependencies:
       '@bentley/itwin-client': ^2.6.0
     resolution:
-      integrity: sha1-0y000u+sIsxBMphiBR1O7oSR9nA=
+      integrity: sha512-bcBZQ1+dN8/KeqwAshRPbFpIzYIrwJAxgJjAYGuf7Ojcuh1DWs/q03NlzBTWqAdsf1raYBRskDn6QqJNKXcB3g==
   /@bentley/ui-abstract/2.6.0_1c3e22dd7967d023be6b6ab2a6cfcc0e:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
       '@bentley/geometry-core': 2.6.0_@bentley+bentleyjs-core@2.6.0
-      '@bentley/icons-generic-webfont': 1.0.21
+      '@bentley/icons-generic-webfont': 1.0.22
       '@bentley/imodeljs-i18n': 2.6.0_@bentley+bentleyjs-core@2.6.0
     dev: false
     peerDependencies:
@@ -2036,12 +2036,12 @@ packages:
       '@bentley/geometry-core': ^2.6.0
       '@bentley/imodeljs-i18n': ^2.6.0
     resolution:
-      integrity: sha1-safiAwcqwllEckgyY9+zKYaiyXg=
+      integrity: sha512-QzP7aj2PBmhHJC6jlj3cjYLYIOw062e7+yhg8bzoaB3kqh6kHiiqqaVuFno4UTkbHU5TLpZDqu7cZ7htMyYWoA==
   /@bentley/ui-components/2.6.0_b338a4c22a4596c25646ddbaa3d7553f:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
       '@bentley/geometry-core': 2.6.0_@bentley+bentleyjs-core@2.6.0
-      '@bentley/icons-generic-webfont': 1.0.21
+      '@bentley/icons-generic-webfont': 1.0.22
       '@bentley/imodeljs-common': 2.6.0_7459f430e0c8d755c828f545352712fe
       '@bentley/imodeljs-frontend': 2.6.0_9c32976bc1fdcf766f9165711d407584
       '@bentley/imodeljs-i18n': 2.6.0_@bentley+bentleyjs-core@2.6.0
@@ -2084,16 +2084,16 @@ packages:
       react: ^16.8.0
       react-dom: ^16.8.0
     resolution:
-      integrity: sha1-Z1eJQas5MYENTYLRP+Nrq3k2gJw=
+      integrity: sha512-PdWSYutwT1Ii6FPWs4jMfFoMhwZsNsqCVHnt5rYKZ5PSY7TRySAm8w3kd3EHbIsUZoMmHwj3OsukCKMhPrui9Q==
   /@bentley/ui-core/2.6.0_d5688e9fa6eb3f11cf85399c2888f8ee:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
       '@bentley/geometry-core': 2.6.0_@bentley+bentleyjs-core@2.6.0
-      '@bentley/icons-generic-webfont': 1.0.21
+      '@bentley/icons-generic-webfont': 1.0.22
       '@bentley/imodeljs-i18n': 2.6.0_@bentley+bentleyjs-core@2.6.0
       '@bentley/ui-abstract': 2.6.0_1c3e22dd7967d023be6b6ab2a6cfcc0e
       classnames: 2.2.6
-      dompurify: 2.0.15
+      dompurify: 2.0.16
       lodash: 4.17.20
       react: 16.13.1
       react-autosuggest: 9.4.3_react@16.13.1
@@ -2112,15 +2112,15 @@ packages:
       react-dom: ^16.8.0
       webpack: '*'
     resolution:
-      integrity: sha1-bFIv1xWbWh+s8hcb8Ps+B4btet4=
+      integrity: sha512-dlsfrzakPjBVeULxi8tGLJknnuGwNkRz4ab42NOHIBSGIqDo9lnuUloU++2UsuHzXTkOrlRNdc0krdYnbXoDTg==
   /@bentley/ui-framework/2.6.0_03ac8df6850138ec8afa96bf244f028c:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
       '@bentley/context-registry-client': 2.6.0_ceb1b44c97abc03d753992c9ef57226d
       '@bentley/frontend-authorization-client': 2.6.0_ceb1b44c97abc03d753992c9ef57226d
       '@bentley/geometry-core': 2.6.0_@bentley+bentleyjs-core@2.6.0
-      '@bentley/icons-generic': 1.0.21
-      '@bentley/icons-generic-webfont': 1.0.21
+      '@bentley/icons-generic': 1.0.22
+      '@bentley/icons-generic-webfont': 1.0.22
       '@bentley/imodelhub-client': 2.6.0_b18c4496a8f206939a08b3ab688465b3
       '@bentley/imodeljs-common': 2.6.0_7459f430e0c8d755c828f545352712fe
       '@bentley/imodeljs-frontend': 2.6.0_9c32976bc1fdcf766f9165711d407584
@@ -2174,7 +2174,7 @@ packages:
       redux: ^4.0.3
       webpack: '*'
     resolution:
-      integrity: sha1-w6kahpw2/pWUFrVCV53UwCxu3Ts=
+      integrity: sha512-wGMSaeJFB86jSQ5+qirDC42XxxVmXtnOfR37mKIWQHoD3P3W5k2ujfl4WFMA6hXLzNgDl4ggOEUcuZHXEeolmg==
   /@bentley/ui-ninezone/2.6.0_51264312417a3eb4fb4535d8059bc1a6:
     dependencies:
       '@bentley/ui-abstract': 2.6.0_1c3e22dd7967d023be6b6ab2a6cfcc0e
@@ -2191,7 +2191,7 @@ packages:
       react: ^16.8.0
       react-dom: ^16.8.0
     resolution:
-      integrity: sha1-c/8kLJ3fS+lXTeindR7eWpXh/B8=
+      integrity: sha512-eflioztmrNIBe6AbxVXYqzHDd/Uewv+npu2W+hnr2TE53Li9lYt/oCsoIweRfRnggUmxev91/w+8u/ssDzKgJg==
   /@bentley/usage-logging-client/2.6.0_6950c02bba6b40a587e21eb8f8f8a676:
     dependencies:
       '@bentley/bentleyjs-core': 2.6.0
@@ -2202,11 +2202,11 @@ packages:
       '@bentley/itwin-client': ^2.6.0
       '@bentley/telemetry-client': ^2.6.0
     resolution:
-      integrity: sha1-df896wFFXPHkxuUJuRbK1NCU04M=
+      integrity: sha512-VWvlYsc/NpKn/IQnydKuxKkFVu0K+E3k/Khm75pmJ0CUJcTfCbgtPiF7QhgYaz+LJ6Y4jxrBbyEC2i0GKRiJbg==
   /@bentley/webgl-compatibility/2.6.0:
     dev: false
     resolution:
-      integrity: sha1-lMJNjzWwfNi1bzTQWnhI/vjdqbQ=
+      integrity: sha512-5egKhj4ZvX9r7Xboe1rUGTrdqB2AXVEKe0FhEtn7m9pyD72J+39Zzgi15HvTEjG3Ztjjn2KER3XinChQa4tTaA==
   /@bentley/webpack-tools-core/2.6.0_webpack@4.42.0:
     dependencies:
       chalk: 3.0.0
@@ -2220,7 +2220,7 @@ packages:
     peerDependencies:
       webpack: 4.42.0
     resolution:
-      integrity: sha1-+crg2BSSTcNAk/v8utdAUGtSp24=
+      integrity: sha512-EYa+l6VtXS2GSZRasOVM9vNQYsxHtNEub/zjtdckTEha1kItylY7m/PlTglSqYIZHOO+HXXo/2pPc0g25YAA3Q==
   /@cnakazawa/watch/1.0.4:
     dependencies:
       exec-sh: 0.3.4
@@ -2907,13 +2907,13 @@ packages:
   /@types/body-parser/1.19.0:
     dependencies:
       '@types/connect': 3.4.33
-      '@types/node': 12.12.61
+      '@types/node': 12.12.62
     dev: false
     resolution:
       integrity: sha512-W98JrE0j2K78swW4ukqMleo8R7h/pFETjM2DQ90MF6XK2i4LO4W3gQ71Lt4w3bfm2EvVSyWHplECvB5sK22yFQ==
   /@types/bunyan/1.8.6:
     dependencies:
-      '@types/node': 12.12.61
+      '@types/node': 12.12.62
     dev: false
     resolution:
       integrity: sha512-YiozPOOsS6bIuz31ilYqR5SlLif4TBWsousN2aCWLi5233nZSX19tFbcQUPdR7xJ8ypPyxkCGNxg0CIV5n9qxQ==
@@ -2978,7 +2978,7 @@ packages:
       integrity: sha512-SEYeGAIQIQX8NN6LDKprLjbrd5dARM5EXsd8GI/A5l0apYI1fGMWgPHSe4ZKL4eozlAyI+doUE9XbYS4xCkQ1w==
   /@types/got/9.6.11:
     dependencies:
-      '@types/node': 10.17.35
+      '@types/node': 12.12.62
       '@types/tough-cookie': 4.0.0
       form-data: 2.5.1
     dev: false
@@ -3009,7 +3009,7 @@ packages:
       integrity: sha512-Tyctjh56U7eX2b9udu3wG853ASYP0uagChJcQJXLUXEU6C/JiW5qt5dl8ao01VRj1i5pgXPAf8f1mq4+FDLRQg==
   /@types/jsdom/12.2.4:
     dependencies:
-      '@types/node': 12.12.61
+      '@types/node': 12.12.62
       '@types/tough-cookie': 4.0.0
       parse5: 4.0.0
     dev: false
@@ -3046,10 +3046,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-gXx7jAWpMddu0f7a+L+txMplp3FnHl53OhQIF9puXKq3hDGY/GjH+MF04oWnV/adPSCrbtHumDCFwzq2VhltWA==
-  /@types/node/12.12.61:
+  /@types/node/12.12.62:
     dev: false
     resolution:
-      integrity: sha512-+/KPk6uV9qGfVX0y2uUj3y8O0Z6KZWUy3XTS0uQGYYF+iXGtepm9GPETdcRq+hGmErkLOr5QJDX8vuymkwu4sA==
+      integrity: sha512-qAfo81CsD7yQIM9mVyh6B/U47li5g7cfpVQEDMfQeF8pSZVwzbhwU3crc0qG4DmpsebpJPR49AKOExQyJ05Cpg==
   /@types/node/8.10.54:
     dev: false
     resolution:
@@ -3064,7 +3064,7 @@ packages:
       integrity: sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
   /@types/puppeteer/1.20.7:
     dependencies:
-      '@types/node': 12.12.61
+      '@types/node': 12.12.62
     dev: false
     resolution:
       integrity: sha512-LCfP/Zf/y4I/hG8ARR8htPYa1wpLpUkysJo9TffmQssVz8c1b9uDNU4benDHSldiz7HVAMek1DCWz7KbqEUg3w==
@@ -3154,7 +3154,7 @@ packages:
       integrity: sha512-AOqu6bQu5MSWwYvehMXLukFHnupHrpZ8nvgae5Ggie9UwzDR1CCwoXgSSWNZJuyOlCdfdsWMA5F2LlmvyoTv8A==
   /@types/webdriverio/4.13.3:
     dependencies:
-      '@types/node': 12.12.61
+      '@types/node': 12.12.62
     dev: false
     resolution:
       integrity: sha512-AfSQM1xTO9Ax+u9uSQPDuw69DQ0qA2RMoKHn86jCgWNcwKVUjGMSP4sfSl3JOfcZN8X/gWvn7znVPp2/g9zcJA==
@@ -4068,7 +4068,7 @@ packages:
       integrity: sha512-OGYhWUO72V6DafbF8PM8rm3EPbfuyMZcJhtm5/n26IDwO18pohE4eNazLoCGhPiXOCD0gEGmrbU3849QvM8bbw==
   /autoprefixer/9.8.6:
     dependencies:
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       caniuse-lite: 1.0.30001131
       colorette: 1.2.1
       normalize-range: 0.1.2
@@ -4597,7 +4597,7 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-TpfK0TDgv71dzuTsEAlQiHeWQ/tiPqgNZVdv046fvNtBZrjbv2O3TsWCDU0AWGJJKCF/KsjNdLzR9hXOsh/CfA==
-  /browserslist/4.14.2:
+  /browserslist/4.14.3:
     dependencies:
       caniuse-lite: 1.0.30001131
       electron-to-chromium: 1.3.570
@@ -4608,7 +4608,7 @@ packages:
       node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7
     hasBin: true
     resolution:
-      integrity: sha512-HI4lPveGKUR0x2StIz+2FXfDk9SfVMrxn6PLh1JeGUwcuoDkdKZebWiyLRJ68iIPDpMI4JLVDf7S7XzslgWOhw==
+      integrity: sha512-GcZPC5+YqyPO4SFnz48/B0YaCwS47Q9iPChRGi6t7HhflKBcINzFrJvRfC+jp30sRMKxF+d4EHGs27Z0XP1NaQ==
   /bs-logger/0.2.6:
     dependencies:
       fast-json-stable-stringify: 2.1.0
@@ -4878,7 +4878,7 @@ packages:
       integrity: sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
   /caniuse-api/3.0.0:
     dependencies:
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       caniuse-lite: 1.0.30001131
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
@@ -5507,7 +5507,7 @@ packages:
       integrity: sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
   /core-js-compat/3.6.5:
     dependencies:
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       semver: 7.0.0
     dev: false
     resolution:
@@ -6393,10 +6393,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-JiK04h0Ht5u/80fdLMCEmV4zkNh2BcoMFBmZ/91WtYZ8qVXSKjiw7fXMgFPnHcSZgOo3XdinHvmnDUeMf5R4wA==
-  /dompurify/2.0.15:
+  /dompurify/2.0.16:
     dev: false
     resolution:
-      integrity: sha512-8AnYW8iXOC7xC7K3FBvQ7+GdmtOsgDGZC5dDXaewCC674qcId7G5mhz5VIEnVShJVjQdlcaPjxpaOzaV9JC3Tg==
+      integrity: sha512-MMNzUQdlvmbXhD0NVxME4hNI72eOlcz9TzO9L8KfmUcI+h97ISON5XagIUm40+JRwV4fGHYqxRpSy844fT9iow==
   /domready/1.0.8:
     dev: false
     resolution:
@@ -6532,7 +6532,7 @@ packages:
   /electron/8.5.1:
     dependencies:
       '@electron/get': 1.12.2
-      '@types/node': 12.12.61
+      '@types/node': 12.12.62
       extract-zip: 1.7.0
     dev: false
     engines:
@@ -12544,9 +12544,9 @@ packages:
     dev: false
     resolution:
       integrity: sha512-clkFxk/9pcdb4Vkn0hAHq3YnxBQ2p0CGD1dy24jN+reBck+EWxMbxSUqN4Yj7t0w8csl87K6p0gxBe1utkJsYA==
-  /postcss-browser-comments/3.0.0_browserslist@4.14.2:
+  /postcss-browser-comments/3.0.0_browserslist@4.14.3:
     dependencies:
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       postcss: 7.0.34
     dev: false
     engines:
@@ -12612,7 +12612,7 @@ packages:
       integrity: sha512-aAe3OhkS6qJXBbqzvZth2Au4V3KieR5sRQ4ptb2b2O8wgvB3SJBsdG+jsn2BZbbwekDG8nTfcCNKcSfe/lEy8g==
   /postcss-colormin/4.0.3:
     dependencies:
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       color: 3.1.2
       has: 1.0.3
       postcss: 7.0.34
@@ -12778,7 +12778,7 @@ packages:
       node: '>=6.0.0'
     resolution:
       integrity: sha512-whLy1IeZKY+3fYdqQFuDBf8Auw+qFuVnChWjmxm/UhHWqNHZx+B99EwxTvGYmUBqe3Fjxs4L1BoZTJmPu6usVg==
-  /postcss-load-config/2.1.0:
+  /postcss-load-config/2.1.1:
     dependencies:
       cosmiconfig: 5.2.1
       import-cwd: 2.1.0
@@ -12786,12 +12786,12 @@ packages:
     engines:
       node: '>= 4'
     resolution:
-      integrity: sha512-4pV3JJVPLd5+RueiVVB+gFOAa7GWc25XQcMp86Zexzke69mKf6Nx9LRcQywdz7yZI9n1udOxmLuAwTBypypF8Q==
+      integrity: sha512-D2ENobdoZsW0+BHy4x1CAkXtbXtYWYRIxL/JbtRBqrRGOPtJ2zoga/bEZWhV/ShWB5saVxJMzbMdSyA/vv4tXw==
   /postcss-loader/3.0.0:
     dependencies:
       loader-utils: 1.4.0
       postcss: 7.0.34
-      postcss-load-config: 2.1.0
+      postcss-load-config: 2.1.1
       schema-utils: 1.0.0
     dev: false
     engines:
@@ -12827,7 +12827,7 @@ packages:
       integrity: sha512-alx/zmoeXvJjp7L4mxEMjh8lxVlDFX1gqWHzaaQewwMZiVhLo42TEClKaeHbRf6J7j82ZOdTJ808RtN0ZOZwvw==
   /postcss-merge-rules/4.0.3:
     dependencies:
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       caniuse-api: 3.0.0
       cssnano-util-same-parent: 4.0.1
       postcss: 7.0.34
@@ -12861,7 +12861,7 @@ packages:
   /postcss-minify-params/4.0.2:
     dependencies:
       alphanum-sort: 1.0.2
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       cssnano-util-get-arguments: 4.0.0
       postcss: 7.0.34
       postcss-value-parser: 3.3.1
@@ -12987,7 +12987,7 @@ packages:
       integrity: sha512-acwJY95edP762e++00Ehq9L4sZCEcOPyaHwoaFOhIwWCDfik6YvqsYNxckee65JHLKzuNSSmAdxwD2Cud1Z54A==
   /postcss-normalize-unicode/4.0.1:
     dependencies:
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       postcss: 7.0.34
       postcss-value-parser: 3.3.1
     dev: false
@@ -13018,9 +13018,9 @@ packages:
   /postcss-normalize/8.0.1:
     dependencies:
       '@csstools/normalize.css': 10.1.0
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       postcss: 7.0.34
-      postcss-browser-comments: 3.0.0_browserslist@4.14.2
+      postcss-browser-comments: 3.0.0_browserslist@4.14.3
       sanitize.css: 10.0.0
     dev: false
     engines:
@@ -13069,7 +13069,7 @@ packages:
   /postcss-preset-env/6.7.0:
     dependencies:
       autoprefixer: 9.8.6
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       caniuse-lite: 1.0.30001131
       css-blank-pseudo: 0.1.4
       css-has-pseudo: 0.10.0
@@ -13121,7 +13121,7 @@ packages:
       integrity: sha512-lgXW9sYJdLqtmw23otOzrtbDXofUdfYzNm4PIpNE322/swES3VU9XlXHeJS46zT2onFO7V1QFdD4Q9LiZj8mew==
   /postcss-reduce-initial/4.0.3:
     dependencies:
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       caniuse-api: 3.0.0
       has: 1.0.3
       postcss: 7.0.34
@@ -14204,7 +14204,7 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-ZOIzd8yVsQQA7j8GCSlPGXwg5PfmA1mrq0JP4nGhh54LaKN3xdai/vHUDu74pKwV8OxseMS65u2NImosQcSD0Q==
-  /regexpu-core/4.7.0:
+  /regexpu-core/4.7.1:
     dependencies:
       regenerate: 1.4.1
       regenerate-unicode-properties: 8.2.0
@@ -14216,7 +14216,7 @@ packages:
     engines:
       node: '>=4'
     resolution:
-      integrity: sha512-TQ4KXRnIn6tz6tjnrXEkD/sshygKH/j5KzK86X8MkeHyZ8qst/LZ89j3X4/8HEIfHANTFIP/AbXakeRhWIl5YQ==
+      integrity: sha512-ywH2VUraA44DZQuRKzARmw6S66mr48pQVva4LBeRhcOltJ6hExvWly5ZjFLYo67xbIxb6W1q4bAGtgfEl20zfQ==
   /regjsgen/0.5.2:
     dev: false
     resolution:
@@ -15595,7 +15595,7 @@ packages:
       integrity: sha512-XK+uv9kWwhZMZ1y7mysB+zoihsEj4wneFWAS5qoiLwzW0WzSqMrrsIy+a3zkQJq0ipFtBpX5W3MqyRIBF/WFGg==
   /stylehacks/4.0.3:
     dependencies:
-      browserslist: 4.14.2
+      browserslist: 4.14.3
       postcss: 7.0.34
       postcss-selector-parser: 3.1.2
     dev: false
@@ -17503,7 +17503,7 @@ packages:
       '@bentley/express-server': 2.6.0
       '@bentley/frontend-authorization-client': 2.6.0_ceb1b44c97abc03d753992c9ef57226d
       '@bentley/geometry-core': 2.6.0_@bentley+bentleyjs-core@2.6.0
-      '@bentley/icons-generic-webfont': 1.0.21
+      '@bentley/icons-generic-webfont': 1.0.22
       '@bentley/imodelhub-client': 2.6.0_b18c4496a8f206939a08b3ab688465b3
       '@bentley/imodeljs-backend': 2.6.0_cb61df02753414774f602e74a8bcca6b
       '@bentley/imodeljs-common': 2.6.0_7459f430e0c8d755c828f545352712fe
@@ -17628,7 +17628,7 @@ packages:
       '@bentley/express-server': 2.6.0
       '@bentley/frontend-authorization-client': 2.6.0_ceb1b44c97abc03d753992c9ef57226d
       '@bentley/geometry-core': 2.6.0_@bentley+bentleyjs-core@2.6.0
-      '@bentley/icons-generic-webfont': 1.0.21
+      '@bentley/icons-generic-webfont': 1.0.22
       '@bentley/imodelhub-client': 2.6.0_b18c4496a8f206939a08b3ab688465b3
       '@bentley/imodeljs-backend': 2.6.0_cb61df02753414774f602e74a8bcca6b
       '@bentley/imodeljs-common': 2.6.0_7459f430e0c8d755c828f545352712fe
@@ -17690,7 +17690,7 @@ packages:
       '@bentley/express-server': 2.6.0
       '@bentley/frontend-authorization-client': 2.6.0_ceb1b44c97abc03d753992c9ef57226d
       '@bentley/geometry-core': 2.6.0_@bentley+bentleyjs-core@2.6.0
-      '@bentley/icons-generic-webfont': 1.0.21
+      '@bentley/icons-generic-webfont': 1.0.22
       '@bentley/imodelhub-client': 2.6.0_b18c4496a8f206939a08b3ab688465b3
       '@bentley/imodeljs-backend': 2.6.0_cb61df02753414774f602e74a8bcca6b
       '@bentley/imodeljs-common': 2.6.0_7459f430e0c8d755c828f545352712fe
@@ -17762,7 +17762,6 @@ packages:
       integrity: sha512-2EOIvEJVQXmT14RIYBweIVpMsQDPpRWWa3XuN6yUSmpIjHv5fx35ikmWJsB0d2ViVdwenydPiAT3CSPEL1aXtA==
       tarball: 'file:projects/simple-viewer-app.tgz'
     version: 0.0.0
-registry: ''
 specifiers:
   '@bentley/backend-itwin-client': ^2.5.3
   '@bentley/bentleyjs-core': ^2.5.3
