@@ -31,6 +31,7 @@ class EmptyPropertyDataProvider implements IPresentationPropertyDataProvider {
 
   public dispose() { }
 
+  public getFieldByPropertyRecord = async () => undefined;
   public getContentDescriptor = async () => undefined;
   public getContentSetSize = async () => 0;
   public getContent = async () => undefined;
