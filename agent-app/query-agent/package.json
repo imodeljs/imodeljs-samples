@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc 1>&2",
     "clean": "rimraf lib tsconfig.tsbuildinfo .rush",
-    "lint": "eslint ./src/**/*.{ts,tsx} 1>&2",
+    "lint": "eslint ./src/**/*.ts 1>&2",
     "test": "betools test --grep \"#integration\" --invert",
     "test:integration": "betools test --timeout 240000 --grep \"#integration\"",
     "cover": "nyc npm test",
