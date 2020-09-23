@@ -11,11 +11,11 @@ import "./Components.scss";
 const toolbar = () => {
   return (
     <div className="toolbar">
-      <button title={SelectionTool.flyover} onClick={select}><span className="icon icon-cursor"></span></button>
-      <button title={FitViewTool.flyover} onClick={fitView}><span className="icon icon-fit-to-view"></span></button>
-      <button title={RotateViewTool.flyover} onClick={rotate}><span className="icon icon-gyroscope"></span></button>
-      <button title={PanViewTool.flyover} onClick={pan}><span className="icon icon-hand-2"></span></button>
-      <button title={ZoomViewTool.flyover} onClick={zoom}><span className="icon icon-zoom"></span></button>
+      <a href="#cursor" title={SelectionTool.flyover} onClick={select}><span className="icon icon-cursor"></span></a>
+      <a href="#fit-to-view" title={FitViewTool.flyover} onClick={fitView}><span className="icon icon-fit-to-view"></span></a>
+      <a href="#gyroscope" title={RotateViewTool.flyover} onClick={rotate}><span className="icon icon-gyroscope"></span></a>
+      <a href="#hand" title={PanViewTool.flyover} onClick={pan}><span className="icon icon-hand-2"></span></a>
+      <a href="#zoom" title={ZoomViewTool.flyover} onClick={zoom}><span className="icon icon-zoom"></span></a>
     </div>
   );
 };
