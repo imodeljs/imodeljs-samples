@@ -72,10 +72,10 @@ export class ChangesetGenerationConfig {
   }
 
   public static get numChangesets(): number {
-    return 10;
+    return 2;
   }
   public static get numCreatedPerChangeset(): number {
-    return 20;
+    return 5;
   }
   public static get changesetPushDelay(): number {
     return 2000;
