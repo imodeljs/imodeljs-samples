@@ -3,19 +3,14 @@
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
 import * as React from "react";
-import { useCallback } from "react"; // tslint:disable-line: no-duplicate-imports
 import { IModelApp, IModelConnection } from "@bentley/imodeljs-frontend";
-import { Orientation, useOptionalDisposable } from "@bentley/ui-core";
-import { PropertyGrid } from "@bentley/ui-components";
+import { FillCentered, Orientation, useOptionalDisposable } from "@bentley/ui-core";
 import {
   IPresentationPropertyDataProvider,
   PresentationPropertyDataProvider,
-  propertyGridWithUnifiedSelection,
+  usePropertyDataProviderWithUnifiedSelection,
 } from "@bentley/presentation-components";
-
-// create a HOC property grid component that supports unified selection
-// tslint:disable-next-line:variable-name
-const SimplePropertyGrid = propertyGridWithUnifiedSelection(PropertyGrid);
+import { VirtualizedPropertyGridWithDataProvider } from "@bentley/ui-components";
 
 /** React properties for the property pane component, that accepts an iModel connection with ruleset id */
 export interface IModelConnectionProps {
@@ -33,22 +28,31 @@ export interface DataProviderProps {
 export type Props = IModelConnectionProps | DataProviderProps;
 
 /** Property grid component for the viewer app */
-export default function SimplePropertiesComponent(props: Props) {
+export default function SimplePropertiesComponent(props: Props) { // eslint-disable-line @typescript-eslint/naming-convention
   const imodel = (props as IModelConnectionProps).imodel;
-  const imodelDataProvider = useOptionalDisposable(useCallback(() => {
+  const imodelDataProvider = useOptionalDisposable(React.useCallback(() => {
     if (imodel)
       return new PresentationPropertyDataProvider({ imodel });
     return undefined;
   }, [imodel]));
   const dataProvider: IPresentationPropertyDataProvider = imodelDataProvider ?? (props as any).dataProvider;
+  const { isOverLimit } = usePropertyDataProviderWithUnifiedSelection({ dataProvider });
+  let content: JSX.Element;
+  if (isOverLimit) {
+    content = (<FillCentered>{"Too many elements."}</FillCentered>);
+  } else {
+    content = (<VirtualizedPropertyGridWithDataProvider
+      dataProvider={dataProvider}
+      isPropertyHoverEnabled={true}
+      orientation={Orientation.Horizontal}
+      horizontalOrientationMinWidth={500}
+    />);
+  }
   return (
     <>
       <h3 data-testid="property-pane-component-header">{IModelApp.i18n.translate("SimpleViewer:components.properties")}</h3>
       <div style={{ flex: "1", height: "calc(100% - 50px)" }}>
-        <SimplePropertyGrid
-          orientation={Orientation.Horizontal}
-          dataProvider={dataProvider}
-        />
+        {content}
       </div>
     </>
   );

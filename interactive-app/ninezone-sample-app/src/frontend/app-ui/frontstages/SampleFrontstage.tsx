@@ -15,6 +15,8 @@ import { AppStatusBarWidget } from "../statusbars/AppStatusBar";
 import { PropertyGridWidget } from "../widgets/PropertyGridWidget";
 import { TreeWidget } from "../widgets/TreeWidget";
 
+/* eslint-disable react/jsx-key */
+
 /**
  * Sample Frontstage for 9-Zone sample application
  */

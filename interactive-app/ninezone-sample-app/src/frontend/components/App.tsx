@@ -241,7 +241,7 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
 
   private _onClickSignOut = async () => {
     if (NineZoneSampleApp.oidcClient)
-      NineZoneSampleApp.oidcClient.signOut(new ClientRequestContext()); // tslint:disable-line:no-floating-promises
+      NineZoneSampleApp.oidcClient.signOut(new ClientRequestContext());  // eslint-disable-line @typescript-eslint/no-floating-promises
   }
 
   public render() {

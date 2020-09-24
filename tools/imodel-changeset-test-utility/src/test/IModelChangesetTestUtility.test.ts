@@ -4,14 +4,14 @@
 *--------------------------------------------------------------------------------------------*/
 import { expect } from "chai";
 import { Config } from "@bentley/bentleyjs-core";
-import { AuthorizedClientRequestContext, AccessToken } from "@bentley/itwin-client";
+import { AccessToken, AuthorizedClientRequestContext } from "@bentley/itwin-client";
+import { ChangesetGenerationConfig } from "../ChangesetGenerationConfig";
 import { ChangesetGenerationHarness } from "../ChangesetGenerationHarness";
+import { ChangesetGenerator } from "../ChangesetGenerator";
+import { HubUtility } from "../HubUtility";
+import { main } from "../IModelChangesetCLUtility";
 import { TestChangesetSequence } from "../TestChangesetSequence";
 import { TestMockObjects } from "./TestMockObjects";
-import { ChangesetGenerator } from "../ChangesetGenerator";
-import { main } from "../IModelChangesetCLUtility";
-import { ChangesetGenerationConfig } from "../ChangesetGenerationConfig";
-import { HubUtility } from "../HubUtility";
 
 describe("TestChangesetSequence", () => {
   const changesetCount = 10;
@@ -103,7 +103,7 @@ describe("IModelChangesetCLUtility", () => {
 ChangesetGenerationConfig.setupConfig();
 /** Basic Integration test for change set creation and pushing into IModelHub. */
 describe("ChangesetGenerationHarnessIntegration (#integration)", () => {
-  let hubUtility: HubUtility = new HubUtility();
+  const hubUtility: HubUtility = new HubUtility();
   let accessToken: AccessToken;
   let requestContext: AuthorizedClientRequestContext;
 

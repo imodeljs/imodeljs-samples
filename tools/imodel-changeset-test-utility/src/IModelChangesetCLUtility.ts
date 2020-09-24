@@ -35,6 +35,6 @@ export const main = async (_process: NodeJS.Process, harness?: ChangesetGenerati
 
 // Invoke main if IModelChangesetCLUtility.js is being run directly
 if (require.main === module) {
-  // tslint:disable-next-line:no-floating-promises
+  // eslint-disable-next-line @typescript-eslint/no-floating-promises
   main(process);
 }

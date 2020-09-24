@@ -7,17 +7,15 @@ import { FitViewTool, IModelApp, PanViewTool, RotateViewTool, SelectionTool, Zoo
 import * as React from "react";
 import "./Components.scss";
 
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 /** Toolbar containing simple navigation tools */
 const toolbar = () => {
   return (
     <div className="toolbar">
-      <a href="#" title={SelectionTool.flyover} onClick={select}><span className="icon icon-cursor"></span></a>
-      <a href="#" title={FitViewTool.flyover} onClick={fitView}><span className="icon icon-fit-to-view"></span></a>
-      <a href="#" title={RotateViewTool.flyover} onClick={rotate}><span className="icon icon-gyroscope"></span></a>
-      <a href="#" title={PanViewTool.flyover} onClick={pan}><span className="icon icon-hand-2"></span></a>
-      <a href="#" title={ZoomViewTool.flyover} onClick={zoom}><span className="icon icon-zoom"></span></a>
+      <a href="#cursor" title={SelectionTool.flyover} onClick={select}><span className="icon icon-cursor"></span></a>
+      <a href="#fit-to-view" title={FitViewTool.flyover} onClick={fitView}><span className="icon icon-fit-to-view"></span></a>
+      <a href="#gyroscope" title={RotateViewTool.flyover} onClick={rotate}><span className="icon icon-gyroscope"></span></a>
+      <a href="#hand" title={PanViewTool.flyover} onClick={pan}><span className="icon icon-hand-2"></span></a>
+      <a href="#zoom" title={ZoomViewTool.flyover} onClick={zoom}><span className="icon icon-zoom"></span></a>
     </div>
   );
 };

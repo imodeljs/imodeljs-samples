@@ -30,12 +30,12 @@ export class QueryAgent {
     private _briefcaseProvider: BriefcaseProvider = new BriefcaseProvider(),
     private _changeSummaryExtractor: ChangeSummaryExtractor = new ChangeSummaryExtractor()) { }
 
-  public async run(listenFor?: number/*ms*/): Promise<void> {
+  public async run(listenFor?: number /* ms */): Promise<void> {
     return this.listenForAndHandleChangesets(listenFor === undefined ? QueryAgentConfig.listenTime : listenFor);
   }
 
   /** Create listeners and respond to changesets */
-  public async listenForAndHandleChangesets(listenFor: number/*ms*/) {
+  public async listenForAndHandleChangesets(listenFor: number /* ms */) {
     // Subscribe to change set and named version events
     Logger.logTrace(QueryAgentConfig.loggingCategory, "Setting up changeset and named version listeners...");
 
@@ -47,19 +47,19 @@ export class QueryAgent {
     const requestContext = await AuthorizedBackendRequestContext.create();
     requestContext.enter();
 
-    const changeSetSubscription = await this._hubClient!.events.subscriptions.create(requestContext, this._iModelId!, ["ChangeSetPostPushEvent"]);
-    const deleteChangeSetListener = this._hubClient!.events.createListener(requestContext, getAccessToken, changeSetSubscription!.wsgId, this._iModelId!,
+    const changeSetSubscription = await this._hubClient.events.subscriptions.create(requestContext, this._iModelId!, ["ChangeSetPostPushEvent"]);  // eslint-disable-line deprecation/deprecation
+    const deleteChangeSetListener = this._hubClient.events.createListener(requestContext, getAccessToken, changeSetSubscription.wsgId, this._iModelId!,
       async (receivedEvent: ChangeSetPostPushEvent) => {
         Logger.logTrace(QueryAgentConfig.loggingCategory, `Received notification that change set "${receivedEvent.changeSetId}" was just posted on the Hub`);
         try {
           const locRequestContext = await AuthorizedBackendRequestContext.create(); // Refresh the authorization context just before extracting every change summary, in case it expires in between
-          await this._extractChangeSummary(locRequestContext, receivedEvent.changeSetId!);
+          await this._extractChangeSummary(locRequestContext, receivedEvent.changeSetId);
         } catch (error) {
           Logger.logError(QueryAgentConfig.loggingCategory, `Unable to extract changeset: ${receivedEvent.changeSetId}, failed with ${error}`);
         }
       });
-    const namedVersionSubscription = await this._hubClient!.events.subscriptions.create(requestContext, this._iModelId!, ["VersionEvent"]);
-    const deleteNamedVersionListener = this._hubClient!.events.createListener(requestContext, getAccessToken, namedVersionSubscription!.wsgId, this._iModelId!,
+    const namedVersionSubscription = await this._hubClient.events.subscriptions.create(requestContext, this._iModelId!, ["VersionEvent"]);  // eslint-disable-line deprecation/deprecation
+    const deleteNamedVersionListener = this._hubClient.events.createListener(requestContext, getAccessToken, namedVersionSubscription.wsgId, this._iModelId!,
       async (receivedEvent: NamedVersionCreatedEvent) => {
         Logger.logTrace(QueryAgentConfig.loggingCategory, `Received notification that named version "${receivedEvent.versionName}" was just created on the Hub`);
       });
@@ -107,7 +107,7 @@ export class QueryAgent {
       try {
         projectId = (await this._connectClient.getProject(requestContext, {
           $select: "*",
-          $filter: "Name+eq+'" + QueryAgentConfig.projectName + "'",
+          $filter: `Name+eq+'${QueryAgentConfig.projectName}'`,
         }))!.wsgId;
         Logger.logTrace(QueryAgentConfig.loggingCategory, `Project ${QueryAgentConfig.projectName} has id: ${projectId}`);
         const iModels = await this._hubClient.iModels.get(requestContext, projectId, new IModelQuery().byName(QueryAgentConfig.iModelName));
@@ -137,7 +137,7 @@ export class QueryAgent {
     this._iModelDb = await this._briefcaseProvider.getBriefcase(requestContext, this._projectId!, this._iModelId!, changeSetId);
     requestContext.enter();
 
-    const changeContent = await this._changeSummaryExtractor.extractChangeSummary(requestContext, this._iModelDb!, changeSetId);
+    const changeContent = await this._changeSummaryExtractor.extractChangeSummary(requestContext, this._iModelDb, changeSetId);
     requestContext.enter();
 
     // Write the change summary contents as JSON

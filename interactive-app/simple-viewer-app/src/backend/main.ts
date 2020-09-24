@@ -16,7 +16,7 @@ Logger.initializeToConsole();
 Logger.setLevelDefault(LogLevel.Warning);
 Logger.setLevel(AppLoggerCategory.Backend, LogLevel.Info);
 
-(async () => {
+(async () => { // eslint-disable-line @typescript-eslint/no-floating-promises
   try {
     // Initialize iModelHost
     await IModelHost.startup();
@@ -41,4 +41,4 @@ Logger.setLevel(AppLoggerCategory.Backend, LogLevel.Info);
     Logger.logError(AppLoggerCategory.Backend, error);
     process.exitCode = 1;
   }
-})(); // tslint:disable-line:no-floating-promises
+})();

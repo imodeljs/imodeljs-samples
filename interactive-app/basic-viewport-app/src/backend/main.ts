@@ -14,7 +14,7 @@ Logger.initializeToConsole();
 Logger.setLevelDefault(LogLevel.Warning);
 Logger.setLevel("basic-viewport-app", LogLevel.Info);
 
-(async () => {
+(async () => {  // eslint-disable-line @typescript-eslint/no-floating-promises
   try {
     // Initialize iModelHost
     await IModelHost.startup();
@@ -34,4 +34,4 @@ Logger.setLevel("basic-viewport-app", LogLevel.Info);
     Logger.logError("basic-viewport-app", error);
     process.exitCode = 1;
   }
-})(); // tslint:disable-line:no-floating-promises
+})();

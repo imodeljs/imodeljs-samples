@@ -18,7 +18,7 @@
     "build:frontend": "cross-env GENERATE_SOURCEMAP=false USE_FAST_SASS=true react-scripts build",
     "build:backend": "tsc -p tsconfig.backend.json",
     "clean": "rimraf build lib .rush",
-    "lint": "tslint --project . 1>&2",
+    "lint": "eslint --config package.json --no-eslintrc ./src/**/*.{ts,tsx} 1>&2",
     "start": "npm run start:servers",
     "start:webserver": "cross-env USE_FAST_SASS=true react-scripts start",
     "start:backend": "node lib/backend/main.js",
@@ -48,7 +48,7 @@
     "react-dom": "^16.13.0"
   },
   "devDependencies": {
-    "@bentley/build-tools": "^2.5.3",
+    "@bentley/build-tools": "^2.5.5",
     "@bentley/ecschema-metadata": "^2.5.3",
     "@bentley/orbitgt-core": "^2.5.3",
     "@bentley/product-settings-client": "^2.5.3",
@@ -60,7 +60,7 @@
     "node-sass": "^4.0.0",
     "npm-run-all": "^4.1.5",
     "rimraf": "^2.6.2",
-    "tslint": "^5.16.0",
+    "eslint": "^6.8.0",
     "typescript": "~3.7.4",
     "webpack": "4.42.0"
   },
@@ -75,5 +75,14 @@
     "last 4 edge version",
     "not dead",
     "not <0.2%"
-  ]
+  ],
+  "eslintConfig": {
+    "extends": "./node_modules/@bentley/build-tools/.eslintrc.js",
+    "parserOptions": {
+      "project": [
+        "tsconfig.json",
+        "tsconfig.backend.json"
+      ]
+    }
+  }
 }
