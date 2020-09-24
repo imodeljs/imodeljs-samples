@@ -12,7 +12,7 @@ Logger.initializeToConsole();
 Logger.setLevelDefault(LogLevel.Error);
 Logger.setLevel(QueryAgentConfig.loggingCategory, LogLevel.Trace);
 
-(async () => {
+(async () => { // eslint-disable-line @typescript-eslint/no-floating-promises
   try {
     const agent = new QueryAgent();
     await agent.initialize();
@@ -23,4 +23,4 @@ Logger.setLevel(QueryAgentConfig.loggingCategory, LogLevel.Trace);
     Logger.logTrace(QueryAgentConfig.loggingCategory, "Query Agent Web Server finished executing unsuccessfully.");
     process.exitCode = 1;
   }
-})(); // tslint:disable-line:no-floating-promises
+})();

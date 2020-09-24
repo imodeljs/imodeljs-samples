@@ -74,7 +74,7 @@ export default class App extends React.Component<{}, AppState> {
 
   private _onStartSignin = async () => {
     this.setState((prev) => ({ user: { ...prev.user, isLoading: true } }));
-    SimpleViewerApp.oidcClient.signIn(new FrontendRequestContext());  // tslint:disable-line:no-floating-promises
+    SimpleViewerApp.oidcClient.signIn(new FrontendRequestContext());  // eslint-disable-line @typescript-eslint/no-floating-promises
   }
 
   private _onSelectionChanged = (evt: SelectionChangeEventArgs, selectionProvider: ISelectionProvider) => {
@@ -109,12 +109,12 @@ export default class App extends React.Component<{}, AppState> {
     // Return first spatial view definition (if any)
     const spatialViews: IModelConnection.ViewSpec[] = await imodel.views.getViewList({ from: SpatialViewState.classFullName });
     if (spatialViews.length > 0)
-      return spatialViews[0].id!;
+      return spatialViews[0].id;
 
     // Return first drawing view definition (if any)
     const drawingViews: IModelConnection.ViewSpec[] = await imodel.views.getViewList({ from: DrawingViewState.classFullName });
     if (drawingViews.length > 0)
-      return drawingViews[0].id!;
+      return drawingViews[0].id;
 
     throw new Error("No valid view definitions in imodel");
   }
@@ -209,11 +209,10 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
     const requestContext: AuthorizedFrontendRequestContext = await AuthorizedFrontendRequestContext.create();
 
     const connectClient = new ContextRegistryClient();
-    let project: Project;
     const projects: Project[] = await connectClient.getProjects(requestContext, { $filter: `Name+eq+'${projectName}'` });
     if (projects.length === 0)
       throw new Error(`Project with name "${projectName}" does not exist`);
-    project = projects[0];
+    const project: Project = projects[0];
 
     const imodelQuery = new IModelQuery();
     imodelQuery.byName(imodelName);
@@ -249,7 +248,7 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
 
   private _onClickSignOut = async () => {
     if (SimpleViewerApp.oidcClient)
-      SimpleViewerApp.oidcClient.signOut(new ClientRequestContext()); // tslint:disable-line:no-floating-promises
+      SimpleViewerApp.oidcClient.signOut(new ClientRequestContext()); // eslint-disable-line @typescript-eslint/no-floating-promises
   }
 
   public render() {

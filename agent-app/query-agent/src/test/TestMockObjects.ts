@@ -2,17 +2,17 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import * as TypeMoq from "typemoq";
+/* eslint-disable @typescript-eslint/naming-convention */
 
+import * as TypeMoq from "typemoq";
 import { Config } from "@bentley/bentleyjs-core";
 import { ContextRegistryClient, Project } from "@bentley/context-registry-client";
 import { EventHandler, EventSubscription, EventSubscriptionHandler, HubIModel,
   IModelHubClient, IModelHubEvent, IModelsHandler,
 } from "@bentley/imodelhub-client";
 import { BriefcaseDb } from "@bentley/imodeljs-backend";
-import { OidcAgentClient } from "@bentley/backend-itwin-client";
+import { AgentAuthorizationClient } from "@bentley/backend-itwin-client";
 import { AccessToken, UserInfo } from "@bentley/itwin-client";
-
 import { BriefcaseProvider } from "../BriefcaseProvider";
 import { ChangeSummaryExtractor } from "../ChangeSummaryExtractor";
 
@@ -49,7 +49,7 @@ export class TestMockObjects {
   public static clearMockAppConfigProjectName() {
     Config.App.remove("imjs_agent_project_name");
   }
-  
+
   public static readonly fakeAccessToken: string = "FAKE_ACCESS_TOKEN";
   public static getMockChangeSummaryExtractor(): ChangeSummaryExtractor {
     const mockExtractor = TypeMoq.Mock.ofType<ChangeSummaryExtractor>();
@@ -60,16 +60,16 @@ export class TestMockObjects {
     const mockContextRegistryClient = TypeMoq.Mock.ofType<ContextRegistryClient>();
     const project = new Project();
     project.wsgId = "FAKE_WSG_ID";
-    mockContextRegistryClient.setup((_) => _.getProject(TypeMoq.It.isAny(), TypeMoq.It.isAny())).returns(async () => project);
+    mockContextRegistryClient.setup(async (_) => _.getProject(TypeMoq.It.isAny(), TypeMoq.It.isAny())).returns(async () => project);
     return mockContextRegistryClient.object;
   }
 
-  public static getMockOidcAgentClient(throwsError = false): OidcAgentClient {
-    const mockOidcAgentClient = TypeMoq.Mock.ofType<OidcAgentClient>();
+  public static getMockAgentAuthorizationClient(throwsError = false): AgentAuthorizationClient {
+    const mockOidcAgentClient = TypeMoq.Mock.ofType<AgentAuthorizationClient>();
     if (throwsError)
-      mockOidcAgentClient.setup((_) => _.getToken(TypeMoq.It.isAny())).throws(new Error("Mock login failure"));
+      mockOidcAgentClient.setup(async (_) => _.getAccessToken(TypeMoq.It.isAny())).throws(new Error("Mock login failure"));
     else
-      mockOidcAgentClient.setup((_) => _.getToken(TypeMoq.It.isAny())).returns(async () => this.getFakeAccessToken());
+      mockOidcAgentClient.setup(async (_) => _.getAccessToken(TypeMoq.It.isAny())).returns(async () => this.getFakeAccessToken());
     return mockOidcAgentClient.object;
   }
 
@@ -80,10 +80,10 @@ export class TestMockObjects {
   public static getMockBriefcaseProvider(throwsError: boolean = false): BriefcaseProvider {
     const mockBriefcaseProvider = TypeMoq.Mock.ofType(BriefcaseProvider);
     if (throwsError) {
-      mockBriefcaseProvider.setup((_) => _.getBriefcase(TypeMoq.It.isAny(), TypeMoq.It.isAny(), TypeMoq.It.isAny(),
+      mockBriefcaseProvider.setup(async (_) => _.getBriefcase(TypeMoq.It.isAny(), TypeMoq.It.isAny(), TypeMoq.It.isAny(),
         TypeMoq.It.isAny())).throws(new Error("MOCK Briefcase provider failure"));
     } else {
-      mockBriefcaseProvider.setup((_) => _.getBriefcase(TypeMoq.It.isAny(), TypeMoq.It.isAny(), TypeMoq.It.isAny(), TypeMoq.It.isAny())).returns(async () => {
+      mockBriefcaseProvider.setup(async (_) => _.getBriefcase(TypeMoq.It.isAny(), TypeMoq.It.isAny(), TypeMoq.It.isAny(), TypeMoq.It.isAny())).returns(async () => {
         return this.getMockIModelDb();
       });
     }
@@ -100,7 +100,7 @@ export class TestMockObjects {
     hubIModel.wsgId = "FAKE_WSG_ID";
     const hubIModels: HubIModel[] = [hubIModel];
     const mockIModelHandler = TypeMoq.Mock.ofType<IModelsHandler>();
-    mockIModelHandler.setup((_) => _.get(TypeMoq.It.isAny(), TypeMoq.It.isAny(), TypeMoq.It.isAny())).returns(async () => hubIModels);
+    mockIModelHandler.setup(async (_) => _.get(TypeMoq.It.isAny(), TypeMoq.It.isAny(), TypeMoq.It.isAny())).returns(async () => hubIModels);
     return mockIModelHandler.object;
   }
   public static getMockEventHandler(): EventHandler {
@@ -113,7 +113,7 @@ export class TestMockObjects {
   }
   public static getMockEventSubscriptionHandler(): EventSubscriptionHandler {
     const mockEventSubscriptionHandler: TypeMoq.IMock<EventSubscriptionHandler> = TypeMoq.Mock.ofType(EventSubscriptionHandler);
-    mockEventSubscriptionHandler.setup((_) => _.create(TypeMoq.It.isAny(), TypeMoq.It.isAny(), TypeMoq.It.isAny())).returns(async () => this.getMockEventSubscription());
+    mockEventSubscriptionHandler.setup(async (_) => _.create(TypeMoq.It.isAny(), TypeMoq.It.isAny(), TypeMoq.It.isAny())).returns(async () => this.getMockEventSubscription());
     return mockEventSubscriptionHandler.object;
   }
   public static getMockEventSubscription(): EventSubscription {

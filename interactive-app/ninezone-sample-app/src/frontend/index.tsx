@@ -18,7 +18,7 @@ Logger.initializeToConsole();
 Logger.setLevelDefault(LogLevel.Warning);
 Logger.setLevel(AppLoggerCategory.Frontend, LogLevel.Info);
 
-(async () => {
+(async () => {  // eslint-disable-line @typescript-eslint/no-floating-promises
   // Start the app.
   await NineZoneSampleApp.startup();
 
@@ -30,4 +30,4 @@ Logger.setLevel(AppLoggerCategory.Frontend, LogLevel.Info);
     <App />,
     document.getElementById("root") as HTMLElement,
   );
-})(); // tslint:disable-line:no-floating-promises
+})();

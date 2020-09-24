@@ -130,8 +130,8 @@ export class ChangesetGenerator {
   private insertElement(name: string, userLabel: string, location: Point3d, size: Point3d = new Point3d(5, 5, 5)): Id64String {
     const testElementProps: GeometricElement3dProps = {
       classFullName: "Generic:PhysicalObject",
-      model: this._physicalModelId!,
-      category: this._categoryId!,
+      model: this._physicalModelId,
+      category: this._categoryId,
       code: this._createCode(name),
       placement: { origin: location, angles: new YawPitchRollAngles() },
       geom: ChangesetGenerator._createBox(size),
@@ -182,8 +182,8 @@ export class ChangesetGenerator {
   }
   private _createCode(name: string): Code {
     return new Code({
-      spec: this._codeSpecId!,
-      scope: this._physicalModelId!.toString(),
+      spec: this._codeSpecId,
+      scope: this._physicalModelId.toString(),
       value: name + this._codeSeed,
     });
   }

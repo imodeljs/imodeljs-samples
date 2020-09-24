@@ -6,7 +6,7 @@
 import { AgentAuthorizationClient, AzureFileHandler } from "@bentley/backend-itwin-client";
 import { ClientRequestContext, Logger } from "@bentley/bentleyjs-core";
 import { ContextRegistryClient, Project } from "@bentley/context-registry-client";
-import { Briefcase as HubBriefcase, BriefcaseQuery, HubIModel, IModelHubClient, IModelQuery, Version } from "@bentley/imodelhub-client";
+import { Briefcase, BriefcaseQuery, HubIModel, IModelHubClient, IModelQuery, Version } from "@bentley/imodelhub-client";
 import { BriefcaseManager } from "@bentley/imodeljs-backend";
 import { IModelVersion } from "@bentley/imodeljs-common";
 import { AccessToken, AuthorizedClientRequestContext } from "@bentley/itwin-client";
@@ -73,7 +73,7 @@ export class HubUtility {
   private async _queryProjectByName(authContext: AuthorizedClientRequestContext, projectName: string): Promise<Project | undefined> {
     const project: Project = await this.connectClient.getProject(authContext, {
       $select: "*",
-      $filter: "Name+eq+'" + projectName + "'",
+      $filter: `Name+eq+'${projectName}'`,
     });
     return project;
   }
@@ -94,12 +94,12 @@ export class HubUtility {
     const projectId: string = await this.queryProjectIdByName(requestContext, projectName);
     const iModelId: string = await this.queryIModelIdByName(requestContext, projectId, iModelName);
 
-    const briefcases: HubBriefcase[] = await BriefcaseManager.imodelClient.briefcases.get(requestContext, iModelId, new BriefcaseQuery().ownedByMe());
+    const briefcases: Briefcase[] = await BriefcaseManager.imodelClient.briefcases.get(requestContext, iModelId, new BriefcaseQuery().ownedByMe());
     if (briefcases.length > acquireThreshold) {
       Logger.logInfo(ChangesetGenerationConfig.loggingCategory, `Reached limit of maximum number of briefcases for ${projectName}:${iModelName}. Purging all briefcases.`);
 
       const promises = new Array<Promise<void>>();
-      briefcases.forEach((briefcase: HubBriefcase) => {
+      briefcases.forEach((briefcase: Briefcase) => {
         promises.push(BriefcaseManager.imodelClient.briefcases.delete(requestContext, iModelId, briefcase.briefcaseId!));
       });
       await Promise.all(promises);

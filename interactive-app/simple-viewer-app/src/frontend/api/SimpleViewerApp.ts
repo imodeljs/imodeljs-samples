@@ -66,7 +66,7 @@ export class SimpleViewerApp {
     if (isElectronRenderer) {
       const clientId = Config.App.getString("imjs_electron_test_client_id");
       const redirectUri = Config.App.getString("imjs_electron_test_redirect_uri");
-      const oidcConfiguration: DesktopAuthorizationClientConfiguration = { clientId, redirectUri, scope: scope + " offline_access" };
+      const oidcConfiguration: DesktopAuthorizationClientConfiguration = { clientId, redirectUri, scope: `${scope} offline_access` };
       const desktopClient = new DesktopAuthorizationClient(oidcConfiguration);
       await desktopClient.initialize(new ClientRequestContext());
       IModelApp.authorizationClient = desktopClient;
@@ -74,7 +74,7 @@ export class SimpleViewerApp {
       const clientId = Config.App.getString("imjs_browser_test_client_id");
       const redirectUri = Config.App.getString("imjs_browser_test_redirect_uri");
       const postSignoutRedirectUri = Config.App.get("imjs_browser_test_post_signout_redirect_uri");
-      const oidcConfiguration: BrowserAuthorizationClientConfiguration = { clientId, redirectUri, postSignoutRedirectUri, scope: scope + " imodeljs-router", responseType: "code" };
+      const oidcConfiguration: BrowserAuthorizationClientConfiguration = { clientId, redirectUri, postSignoutRedirectUri, scope: `${scope} imodeljs-router`, responseType: "code" };
       await BrowserAuthorizationCallbackHandler.handleSigninCallback(oidcConfiguration.redirectUri);
       IModelApp.authorizationClient = new BrowserAuthorizationClient(oidcConfiguration);
       try {

@@ -3,7 +3,7 @@
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
 import { IModelConnection, ViewState } from "@bentley/imodeljs-frontend";
-import { Backstage, ConfigurableUiManager, FrontstageManager, SyncUiEventDispatcher, UiFramework } from "@bentley/ui-framework";
+import {  BackstageManager, CommandItemDef, ConfigurableUiManager, FrontstageManager, SyncUiEventDispatcher, UiFramework } from "@bentley/ui-framework";
 import { SampleFrontstage } from "./frontstages/SampleFrontstage";
 import { SampleFrontstage2 } from "./frontstages/SampleFrontstage2";
 
@@ -18,8 +18,8 @@ export class AppUi {
   }
 
   // Command that toggles the backstage
-  public static get backstageToggleCommand() {
-    return Backstage.backstageToggleCommand;
+  public static get backstageToggleCommand(): CommandItemDef {
+    return BackstageManager.getBackstageToggleCommand();
   }
 
   /** Handle when an iModel and the views have been selected  */
@@ -35,7 +35,7 @@ export class AppUi {
     const frontstageProvider = new SampleFrontstage(viewStates);
     FrontstageManager.addFrontstageProvider(frontstageProvider);
 
-    // tslint:disable-next-line:no-floating-promises
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     FrontstageManager.setActiveFrontstageDef(frontstageProvider.frontstageDef).then(() => {
       // Frontstage is ready
     });
