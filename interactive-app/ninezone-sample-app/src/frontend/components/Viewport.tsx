@@ -7,11 +7,11 @@ import { viewWithUnifiedSelection } from "@bentley/presentation-components";
 import { ViewportComponent, ViewportProps } from "@bentley/ui-components";
 
 // create a HOC viewport component that supports unified selection
-// tslint:disable-next-line:variable-name
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const SimpleViewport = viewWithUnifiedSelection(ViewportComponent);
 
 /** Viewport component for the viewer app */
-export default function SimpleViewportComponent(props: ViewportProps) {
+export default function SimpleViewportComponent(props: ViewportProps) { // eslint-disable-line @typescript-eslint/naming-convention
   return (
     <SimpleViewport
       viewportRef={props.viewportRef}

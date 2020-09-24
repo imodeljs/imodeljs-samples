@@ -3,18 +3,16 @@
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
 import { expect } from "chai";
+import { readdirSync } from "fs";
+import { ChangesetGenerationConfig, ChangesetGenerationHarness, HubUtility, TestChangesetSequence } from "imodel-changeset-test-utility";
 import * as path from "path";
-import { readdirSync } from 'fs';
-
 import { Config, Logger, LogLevel } from "@bentley/bentleyjs-core";
-import { AuthorizedClientRequestContext, AccessToken } from "@bentley/itwin-client";
-import { ChangesetGenerationHarness, TestChangesetSequence, HubUtility, ChangesetGenerationConfig } from "imodel-changeset-test-utility";
-
+import { AuthorizedBackendRequestContext, IModelHost } from "@bentley/imodeljs-backend";
+import { AccessToken, AuthorizedClientRequestContext } from "@bentley/itwin-client";
+import { ChangeSummaryExtractor } from "../ChangeSummaryExtractor";
 import { QueryAgent } from "../QueryAgent";
 import { QueryAgentConfig } from "../QueryAgentConfig";
 import { TestMockObjects } from "./TestMockObjects";
-import { ChangeSummaryExtractor } from "../ChangeSummaryExtractor";
-import { IModelHost, AuthorizedBackendRequestContext } from "@bentley/imodeljs-backend";
 
 // Unit Tests
 describe("QueryAgent", () => {
@@ -29,7 +27,7 @@ describe("QueryAgent", () => {
   });
 
   it("Extracts changeset information published to an iModel", async () => {
-    IModelHost.authorizationClient = TestMockObjects.getMockOidcAgentClient();
+    IModelHost.authorizationClient = TestMockObjects.getMockAgentAuthorizationClient();
     agent = new QueryAgent(TestMockObjects.getMockHubClient(), TestMockObjects.getMockContextRegistryClient(), TestMockObjects.getMockBriefcaseProvider(),
       TestMockObjects.getMockChangeSummaryExtractor());
     await agent.listenForAndHandleChangesets(10);
@@ -38,7 +36,7 @@ describe("QueryAgent", () => {
 
   it("Throws error when async initialization fails", async () => {
     const throwError = true;
-    IModelHost.authorizationClient = TestMockObjects.getMockOidcAgentClient(throwError);
+    IModelHost.authorizationClient = TestMockObjects.getMockAgentAuthorizationClient(throwError);
     agent = new QueryAgent(TestMockObjects.getMockHubClient(), TestMockObjects.getMockContextRegistryClient(), TestMockObjects.getMockBriefcaseProvider(),
       TestMockObjects.getMockChangeSummaryExtractor());
     try {
@@ -74,7 +72,7 @@ describe("QueryAgent", () => {
 
   before(async () => {
     TestMockObjects.setupMockAppConfig();
-    IModelHost.authorizationClient = TestMockObjects.getMockOidcAgentClient();
+    IModelHost.authorizationClient = TestMockObjects.getMockAgentAuthorizationClient();
     agent = new QueryAgent(TestMockObjects.getMockHubClient(), TestMockObjects.getMockContextRegistryClient(), TestMockObjects.getMockBriefcaseProvider(),
       TestMockObjects.getMockChangeSummaryExtractor());
     await agent.initialize();
@@ -89,9 +87,9 @@ describe("QueryAgent", () => {
     await agent.run(10);
   });
 
-  it("Returns false when listen for changesets routine throws error", async () => {
-    const throwError = true;
-    IModelHost.authorizationClient = TestMockObjects.getMockOidcAgentClient(throwError);
+  it("Runs when listen for changesets routine does not throw error", async () => {
+    const throwError = false;
+    IModelHost.authorizationClient = TestMockObjects.getMockAgentAuthorizationClient(throwError);
     const localAgent: QueryAgent = new QueryAgent(TestMockObjects.getMockHubClient(), TestMockObjects.getMockContextRegistryClient(), TestMockObjects.getMockBriefcaseProvider(),
       TestMockObjects.getMockChangeSummaryExtractor());
     await localAgent.initialize();
@@ -114,7 +112,7 @@ describe("ChangeSummaryExtractor", () => {
 
   it("Catches errors in its method", async () => {
     // Will throw error when the ChangeSummaryManager tries to extract summaries with a fake access token
-    IModelHost.authorizationClient = TestMockObjects.getMockOidcAgentClient();
+    IModelHost.authorizationClient = TestMockObjects.getMockAgentAuthorizationClient();
     const requestContext = await AuthorizedBackendRequestContext.create();
     const ret = await changeSummaryExtractor.extractChangeSummary(requestContext, TestMockObjects.getMockIModelDb(), "FAKE_CHANGESET_ID");
     expect(ret).equals(undefined);
@@ -126,7 +124,7 @@ describe("IModelQueryAgent Running with Changesets (#integration)", () => {
   let changesetHarness: ChangesetGenerationHarness;
   let requestContext: AuthorizedClientRequestContext;
   let agent: QueryAgent;
-  let hubUtility: HubUtility = new HubUtility();
+  const hubUtility: HubUtility = new HubUtility();
   let accessToken: AccessToken;
 
   before(async () => {
@@ -162,7 +160,7 @@ describe("IModelQueryAgent Running with Changesets (#integration)", () => {
     const numChangeSets = 4;
     const changesetSequence = new TestChangesetSequence(numChangeSets, 5, 2000);
 
-    // Listen for changeset we are generating. 
+    // Listen for changeset we are generating.
     const promise = agent.run(25000);
     const changesetGenerated = await changesetHarness.generateChangesets(changesetSequence);
     expect(changesetGenerated).to.be.true;

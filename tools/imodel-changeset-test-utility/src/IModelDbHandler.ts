@@ -14,7 +14,7 @@ export class IModelDbHandler {
 
   public async openLatestIModelDb(authContext: AuthorizedClientRequestContext, projectId: string, iModelId: string,
     downloadOptions: DownloadBriefcaseOptions = { syncMode: SyncMode.PullAndPush }, iModelVersion: IModelVersion = IModelVersion.latest()): Promise<BriefcaseDb> {
-    const briefcaseProps: BriefcaseProps = await BriefcaseManager.download(authContext, projectId!, iModelId!, downloadOptions, iModelVersion);
+    const briefcaseProps: BriefcaseProps = await BriefcaseManager.download(authContext, projectId, iModelId, downloadOptions, iModelVersion);
     authContext.enter();
     const briefcase = await BriefcaseDb.open(authContext, briefcaseProps.key);
     briefcase.concurrencyControl.setPolicy(new ConcurrencyControl.OptimisticPolicy());
@@ -82,7 +82,7 @@ export class IModelDbHandler {
     const model: PhysicalModel = iModelDb.models.createModel({
       classFullName: PhysicalModel.classFullName,
       modeledElement: { id: partitionId },
-    }) as PhysicalModel;
+    });
     const modelId = iModelDb.models.insertModel(model);
     return modelId;
   }
@@ -95,13 +95,13 @@ export class IModelDbHandler {
       isPrivate: false,
     };
     const categoryId: Id64String = iModelDb.elements.insertElement(categoryProps);
-    const category: SpatialCategory = iModelDb.elements.getElement(categoryId) as SpatialCategory;
+    const category: SpatialCategory = iModelDb.elements.getElement(categoryId);
     category.setDefaultAppearance(new SubCategoryAppearance({ color: color.toJSON() }));
     iModelDb.elements.updateElement(category);
     return categoryId;
   }
   public insertCodeSpec(iModelDb: IModelDb, name: string, scopeType: CodeScopeSpec.Type): Id64String {
-    const codeSpec = new CodeSpec(iModelDb, Id64.fromUint32Pair(crypto.randomBytes(4).readUInt32BE(0, true), crypto.randomBytes(4).readUInt32BE(0, true)), name, scopeType);
+    const codeSpec = new CodeSpec(iModelDb, Id64.fromUint32Pair(crypto.randomBytes(4).readUInt32BE(0, true), crypto.randomBytes(4).readUInt32BE(0, true)), name, scopeType); // eslint-disable-line deprecation/deprecation
     iModelDb.codeSpecs.insert(codeSpec);
     return codeSpec.id;
   }

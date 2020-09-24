@@ -22,7 +22,7 @@
     "build:backend": "tsc -p tsconfig.backend.json",
     "clean": "rimraf lib build .rush",
     "electron": "cross-env NODE_ENV=development electron lib/backend/main.js",
-    "lint": "tslint --project . 1>&2",
+    "lint": "eslint --config package.json --no-eslintrc ./src/**/*.{ts,tsx} 1>&2",
     "pseudolocalize": "betools pseudolocalize --englishDir ./public/locales/en --out ./lib/public/locales/en-PSEUDO",
     "start": "npm run start:servers",
     "start:webserver": "npm run pseudolocalize && cross-env USE_FULL_SOURCEMAPS=true USE_FAST_SASS=true react-scripts start",
@@ -104,7 +104,7 @@
     "sinon": "^7.2.0",
     "spectron": "^10.0.0",
     "start-server-and-test": "^1.7.11",
-    "tslint": "^5.16.0",
+    "eslint": "^6.8.0",
     "tslint-react-hooks": "^2.2.1",
     "ts-node": "^7.0.1",
     "typemoq": "^2.1.0",
@@ -122,5 +122,14 @@
     "last 4 edge version",
     "not dead",
     "not <0.2%"
-  ]
+  ],
+  "eslintConfig": {
+    "extends": "./node_modules/@bentley/build-tools/.eslintrc.js",
+    "parserOptions": {
+      "project": [
+        "tsconfig.json",
+        "tsconfig.backend.json"
+      ]
+    }
+  }
 }

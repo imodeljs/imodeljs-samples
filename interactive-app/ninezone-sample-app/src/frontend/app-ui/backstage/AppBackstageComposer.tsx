@@ -35,4 +35,4 @@ export class AppBackstageComposerComponent extends React.PureComponent<AppBackst
   }
 }
 
-export const AppBackstageComposer = connect(mapStateToProps)(AppBackstageComposerComponent); // tslint:disable-line:variable-name
+export const AppBackstageComposer = connect(mapStateToProps)(AppBackstageComposerComponent); // eslint-disable-line @typescript-eslint/naming-convention
