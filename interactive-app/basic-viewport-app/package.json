@@ -27,7 +27,6 @@
   },
   "dependencies": {
     "@bentley/bentleyjs-core": "^2.5.3",
-    "@bentley/build-tools": "^2.5.5",
     "@bentley/context-registry-client": "^2.5.3",
     "@bentley/express-server": "^2.5.3",
     "@bentley/frontend-authorization-client": "^2.5.3",
@@ -49,6 +48,7 @@
     "react-dom": "^16.13.0"
   },
   "devDependencies": {
+    "@bentley/build-tools": "^2.5.5",
     "@bentley/ecschema-metadata": "^2.5.3",
     "@bentley/orbitgt-core": "^2.5.3",
     "@bentley/product-settings-client": "^2.5.3",
