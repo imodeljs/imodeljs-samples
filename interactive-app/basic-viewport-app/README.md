@@ -18,7 +18,7 @@ The purpose of this application is to demonstrate the following:
 * [Scripts](./package.json) recommended to build and run iModel.js-based applications.
 * How to set up a simple [backend for web](./src/backend/BackendServer.ts) and
 * How to set up a simple [frontend for web](./src/frontend/api/BasicViewportApp.ts).
-* How to [implement OIDC sign-in](./docs/oidc.md) to get access to iModels on iModelHub.
+* How to obtain an [access token](https://www.imodeljs.org/learning/common/accesstoken/) used to access iModelHub and other services.
 * How to [consume](./src/frontend/components/App.tsx) iModel.js React components.
 * How to [setup a viewport](./src/frontend/components/App.tsx#L106).
 * How to include
