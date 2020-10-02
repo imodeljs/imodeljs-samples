@@ -230,26 +230,43 @@
       ]
     },
     {
-      "type": "node",
+      "name": "[BACKEND] simple-viewer-app electron",
+      "presentation": {
+        "hidden": true
+      },
+      "cwd": "${workspaceFolder}",
+      "type": "pwa-node",
       "request": "launch",
-      "name": "Simple Viewer App Electron (backend)",
-      "protocol": "inspector",
       "runtimeExecutable": "${workspaceFolder}/interactive-app/simple-viewer-app/node_modules/.bin/electron",
       "runtimeArgs": [
-        "--remote-debugging-port=9223",
-        "${workspaceFolder}/interactive-app/simple-viewer-app/lib/backend/main.js"
+        "${workspaceFolder}/interactive-app/simple-viewer-app/lib/backend/electronmain.js",
+        "--remote-debugging-port=9223"
       ],
-      "windows": {
-        "runtimeExecutable": "${workspaceFolder}/interactive-app/simple-viewer-app/node_modules/.bin/electron.cmd"
-      }
+      "env": {
+        "NODE_ENV": "development",
+        "ITWIN_VIEWER_SNAPSHOT": "tpb.ibim"
+      },
+      "outFiles": [
+        "${workspaceRoot}/interactive-app/simple-viewer-app/lib/**/**/*.js",
+      ],
+      "cascadeTerminateToConfigurations": [
+        "[FRONTEND] simple-viewer-app electron"
+      ]
     },
     {
-      "name": "Simple Viewer App Electron (frontend)",
-      "type": "chrome",
+      "name": "[FRONTEND] simple-viewer-app electron",
+      "presentation": {
+        "hidden": true
+      },
+      "type": "pwa-chrome",
       "request": "attach",
       "port": 9223,
-      "webRoot": "${workspaceFolder}/interactive-app/simple-viewer-app/build/",
-      "timeout": 30000
+      "outFiles": [
+        "${workspaceRoot}/interactive-app/simple-viewer-app/lib/**/*.js",
+      ],
+      "cascadeTerminateToConfigurations": [
+        "[BACKEND] simple-viewer-app electron"
+      ]
     },
     {
       "name": "-------Query Agent--------"
@@ -274,7 +291,10 @@
         "imjs_agent_project_name": "",
         "imjs_buddi_resolve_url_using_region": "",
       },
-    }
+    },
+    {
+      "name": "-------Compounds--------"
+    },
   ],
   "compounds": [
     {
@@ -301,8 +321,8 @@
     {
       "name": "Simple Viewer App Electron (frontend + backend)",
       "configurations": [
-        "Simple Viewer App Electron (backend)",
-        "Simple Viewer App Electron (frontend)"
+        "[BACKEND] simple-viewer-app electron",
+        "[FRONTEND] simple-viewer-app electron"
       ]
     },
   ]
