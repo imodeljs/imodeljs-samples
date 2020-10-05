@@ -128,7 +128,6 @@ describe("IModelQueryAgent Running with Changesets (#integration)", () => {
   let accessToken: AccessToken;
 
   before(async () => {
-    (Config.App as any).appendSystemVars();
     QueryAgentConfig.setupConfig();
 
     Logger.initializeToConsole();

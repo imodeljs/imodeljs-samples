@@ -108,7 +108,6 @@ describe("ChangesetGenerationHarnessIntegration (#integration)", () => {
   let requestContext: AuthorizedClientRequestContext;
 
   before(async () => {
-    (Config.App as any).appendSystemVars();
     ChangesetGenerationConfig.setupConfig();
     accessToken = await hubUtility.login();
     requestContext = new AuthorizedClientRequestContext(accessToken!);
