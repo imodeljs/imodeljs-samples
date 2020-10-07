@@ -12,7 +12,7 @@ describe("Application", () => {
   before(async () => {
     testApp = new Application({
       path: app as any,
-      args: [path.join(__dirname, "..", "..", "lib/backend/main.js")],
+      args: [path.join(__dirname, "..", "..", "lib/backend/electronmain.js")],
       requireName: "electronRequire",
     });
     return testApp.start();

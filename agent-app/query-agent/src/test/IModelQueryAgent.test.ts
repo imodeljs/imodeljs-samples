@@ -6,7 +6,7 @@ import { expect } from "chai";
 import { readdirSync } from "fs";
 import { ChangesetGenerationConfig, ChangesetGenerationHarness, HubUtility, TestChangesetSequence } from "imodel-changeset-test-utility";
 import * as path from "path";
-import { Config, Logger, LogLevel } from "@bentley/bentleyjs-core";
+import { Logger, LogLevel } from "@bentley/bentleyjs-core";
 import { AuthorizedBackendRequestContext, IModelHost } from "@bentley/imodeljs-backend";
 import { AccessToken, AuthorizedClientRequestContext } from "@bentley/itwin-client";
 import { ChangeSummaryExtractor } from "../ChangeSummaryExtractor";
@@ -128,7 +128,6 @@ describe("IModelQueryAgent Running with Changesets (#integration)", () => {
   let accessToken: AccessToken;
 
   before(async () => {
-    (Config.App as any).appendSystemVars();
     QueryAgentConfig.setupConfig();
 
     Logger.initializeToConsole();

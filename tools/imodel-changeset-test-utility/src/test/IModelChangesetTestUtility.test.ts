@@ -3,7 +3,6 @@
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
 import { expect } from "chai";
-import { Config } from "@bentley/bentleyjs-core";
 import { AccessToken, AuthorizedClientRequestContext } from "@bentley/itwin-client";
 import { ChangesetGenerationConfig } from "../ChangesetGenerationConfig";
 import { ChangesetGenerationHarness } from "../ChangesetGenerationHarness";
@@ -108,7 +107,6 @@ describe("ChangesetGenerationHarnessIntegration (#integration)", () => {
   let requestContext: AuthorizedClientRequestContext;
 
   before(async () => {
-    (Config.App as any).appendSystemVars();
     ChangesetGenerationConfig.setupConfig();
     accessToken = await hubUtility.login();
     requestContext = new AuthorizedClientRequestContext(accessToken!);
