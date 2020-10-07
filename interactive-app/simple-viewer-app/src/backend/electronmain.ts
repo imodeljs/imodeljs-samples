@@ -40,10 +40,6 @@ const electronMain = async () => {
   await manager.initialize({
     width: 1280,
     height: 800,
-    webPreferences: {
-      experimentalFeatures: true, // Needed for CSS Grid support
-      nodeIntegration: true,
-    },
     autoHideMenuBar: true,
     show: false,
   });
