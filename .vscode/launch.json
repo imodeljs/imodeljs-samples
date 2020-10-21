@@ -189,6 +189,9 @@
         "USE_FULL_SOURCEMAPS": "true",
         "USE_FAST_SASS": "true"
       },
+      "outFiles": [
+        "${workspaceRoot}/interactive-app/ninezone-sample-app/lib/**/*.js"
+      ],
       "smartStep": true,
       "serverReadyAction": {
         "pattern": "listening on http:localHost:([0-9]+)",
@@ -267,7 +270,7 @@
         "[BACKEND] simple-viewer-app electron"
       ]
     },
-        {
+    {
       "name": "[BACKEND] ninezone-sample-app electron",
       "presentation": {
         "hidden": true
