@@ -302,6 +302,44 @@
       "request": "attach",
       "port": 9223,
       "outFiles": [
+        "${workspaceRoot}/interactive-app/simple-viewer-app/lib/**/*.js",
+      ],
+      "cascadeTerminateToConfigurations": [
+        "[BACKEND] simple-viewer-app electron"
+      ]
+    },
+    {
+      "name": "[BACKEND] ninezone-sample-app electron",
+      "presentation": {
+        "hidden": true
+      },
+      "cwd": "${workspaceFolder}",
+      "type": "pwa-node",
+      "request": "launch",
+      "runtimeExecutable": "${workspaceFolder}/interactive-app/ninezone-sample-app/node_modules/.bin/electron",
+      "runtimeArgs": [
+        "${workspaceFolder}/interactive-app/ninezone-sample-app/lib/backend/electronmain.js",
+        "--remote-debugging-port=9223"
+      ],
+      "env": {
+        "NODE_ENV": "development",
+      },
+      "outFiles": [
+        "${workspaceRoot}/interactive-app/ninezone-sample-app/lib/**/**/*.js",
+      ],
+      "cascadeTerminateToConfigurations": [
+        "[FRONTEND] ninezone-sample-app electron"
+      ]
+    },
+    {
+      "name": "[FRONTEND] ninezone-sample-app electron",
+      "presentation": {
+        "hidden": true
+      },
+      "type": "pwa-chrome",
+      "request": "attach",
+      "port": 9223,
+      "outFiles": [
         "${workspaceRoot}/interactive-app/ninezone-sample-app/lib/**/*.js",
       ],
       "cascadeTerminateToConfigurations": [
