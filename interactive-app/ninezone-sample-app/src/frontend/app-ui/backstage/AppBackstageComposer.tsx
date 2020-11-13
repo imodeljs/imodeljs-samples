@@ -6,7 +6,7 @@ import { UserInfo } from "@bentley/itwin-client";
 import { BackstageComposer, UserProfileBackstageItem } from "@bentley/ui-framework";
 import * as React from "react";
 import { connect } from "react-redux";
-import { RootState } from "../../app/AppState";
+import { RootState } from "../../app/NineZoneSampleApp";
 import { AppBackstageItemProvider } from "./AppBackstageItemProvider";
 
 function mapStateToProps(state: RootState) {

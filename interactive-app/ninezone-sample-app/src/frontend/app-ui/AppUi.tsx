@@ -2,8 +2,9 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import { IModelConnection, ViewState } from "@bentley/imodeljs-frontend";
-import {  BackstageManager, CommandItemDef, ConfigurableUiManager, FrontstageManager, SyncUiEventDispatcher, UiFramework } from "@bentley/ui-framework";
+import { IModelApp, IModelConnection, ViewState } from "@bentley/imodeljs-frontend";
+import { Presentation } from "@bentley/presentation-frontend/lib/presentation-frontend/Presentation";
+import { BackstageManager, CommandItemDef, ConfigurableUiManager, FrontstageManager, SyncUiEventDispatcher, UiFramework } from "@bentley/ui-framework";
 import { SampleFrontstage } from "./frontstages/SampleFrontstage";
 import { SampleFrontstage2 } from "./frontstages/SampleFrontstage2";
 
@@ -13,7 +14,13 @@ import { SampleFrontstage2 } from "./frontstages/SampleFrontstage2";
 export class AppUi {
 
   // Initialize the ConfigurableUiManager
-  public static initialize() {
+  public static async initialize() {
+    // initialize UiFramework
+    await UiFramework.initialize(undefined);
+
+    // initialize Presentation
+    await Presentation.initialize({ activeLocale: IModelApp.i18n.languageList()[0] });
+
     ConfigurableUiManager.initialize();
   }
 
