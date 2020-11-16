@@ -7,11 +7,10 @@ import { BrowserAuthorizationCallbackHandler, BrowserAuthorizationClient, Browse
 import { BentleyCloudRpcParams, DesktopAuthorizationClientConfiguration } from "@bentley/imodeljs-common";
 import { DesktopAuthorizationClient, FrontendRequestContext, IModelApp, IModelAppOptions } from "@bentley/imodeljs-frontend";
 import { UrlDiscoveryClient } from "@bentley/itwin-client";
-import { AppNotificationManager, FrameworkReducer, FrameworkRootState, StateManager, } from "@bentley/ui-framework";
+import { Presentation } from "@bentley/presentation-frontend";
+import { AppNotificationManager, UiFramework } from "@bentley/ui-framework";
 import { initRpc } from "../api/rpc";
-import { Store } from "redux";
-
-export interface RootState extends FrameworkRootState { }
+import { AppState, AppStore } from "./AppState";
 
 /**
  * List of possible backends that ninezone-sample-app can use
@@ -26,21 +25,13 @@ export enum UseBackend {
 
 // subclass of IModelApp needed to use imodeljs-frontend
 export class NineZoneSampleApp {
-  private static _appStateManager: StateManager | undefined;
-
-  public static get store(): Store<RootState> {
-    return StateManager.store as Store<RootState>;
-  }
+  private static _appState: AppState;
 
   public static get oidcClient(): FrontendAuthorizationClient { return IModelApp.authorizationClient as FrontendAuthorizationClient; }
 
+  public static get store(): AppStore { return this._appState.store; }
+
   public static async startup(): Promise<void> {
-    // use new state manager that allows dynamic additions from extensions and snippets
-    if (!this._appStateManager) {
-      this._appStateManager = new StateManager({
-        frameworkState: FrameworkReducer,
-      });
-    }
 
     // Use the AppNotificationManager subclass from ui-framework to get prompts and messages
     const opts: IModelAppOptions = {};
@@ -52,11 +43,29 @@ export class NineZoneSampleApp {
     // initialize OIDC
     await NineZoneSampleApp.initializeOidc();
 
+    // contains various initialization promises which need
+    // to be fulfilled before the app is ready
+    const initPromises = new Array<Promise<any>>();
+
     // initialize RPC communication
-    await NineZoneSampleApp.initializeRpc();
+    initPromises.push(NineZoneSampleApp.initializeRpc());
 
     // initialize localization for the app
-    await IModelApp.i18n.registerNamespace("NineZoneSample").readFinished;
+    initPromises.push(IModelApp.i18n.registerNamespace("NineZoneSample").readFinished);
+
+    // create the application state store for Redux
+    this._appState = new AppState();
+
+    // initialize UiFramework
+    initPromises.push(UiFramework.initialize(this.store, IModelApp.i18n));
+
+    // initialize Presentation
+    initPromises.push(Presentation.initialize({
+      activeLocale: IModelApp.i18n.languageList()[0],
+    }));
+
+    // the app is ready when all initialization promises are fulfilled
+    await Promise.all(initPromises);
   }
 
   private static async initializeRpc(): Promise<void> {
