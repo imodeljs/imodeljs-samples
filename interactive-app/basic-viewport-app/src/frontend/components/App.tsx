@@ -53,11 +53,11 @@ export default class App extends React.Component<{}, AppState> {
   private _onStartSignin = async () => {
     this.setState((prev) => ({ user: { ...prev.user, isLoading: true } }));
     BasicViewportApp.oidcClient.signIn(new FrontendRequestContext());  // eslint-disable-line @typescript-eslint/no-floating-promises
-  }
+  };
 
   private _onUserStateChanged = () => {
     this.setState((prev) => ({ user: { ...prev.user, isAuthorized: BasicViewportApp.oidcClient.isAuthorized, isLoading: false } }));
-  }
+  };
 
   /** Pick the first available spatial view definition in the imodel */
   private async getFirstViewDefinitionId(imodel: IModelConnection): Promise<Id64String> {
@@ -96,7 +96,7 @@ export default class App extends React.Component<{}, AppState> {
       this.setState({ imodel: undefined, viewDefinitionId: undefined });
       alert(e.message);
     }
-  }
+  };
 
   private get _signInRedirectUri() {
     const split = (Config.App.get("imjs_browser_test_redirect_uri") as string).split("://");
@@ -183,12 +183,12 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
       alert(e.message);
     }
     await this.onIModelSelected(imodel);
-  }
+  };
 
   private _onClickSignOut = async () => {
     if (BasicViewportApp.oidcClient)
       BasicViewportApp.oidcClient.signOut(new FrontendRequestContext());  // eslint-disable-line @typescript-eslint/no-floating-promises
-  }
+  };
 
   public render() {
     return (

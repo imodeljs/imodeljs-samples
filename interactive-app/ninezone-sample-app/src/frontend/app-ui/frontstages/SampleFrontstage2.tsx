@@ -158,7 +158,7 @@ export class SampleFrontstage2 extends FrontstageProvider {
     if (activeContentControl && activeContentControl.viewport && (activeContentControl.viewport.view.iModel.selectionSet.size > 0))
       return WidgetState.Open;
     return WidgetState.Closed;
-  }
+  };
 
   /** Command that switches to layout 1 */
   private get _switchLayout1(): CommandItemDef {

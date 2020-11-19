@@ -133,7 +133,7 @@ export class SampleFrontstage extends FrontstageProvider {
     if (activeContentControl && activeContentControl.viewport && (activeContentControl.viewport.view.iModel.selectionSet.size > 0))
       return WidgetState.Open;
     return WidgetState.Closed;
-  }
+  };
 
   /** Get the CustomItemDef for ViewSelector  */
   private get _viewSelectorItemDef() {

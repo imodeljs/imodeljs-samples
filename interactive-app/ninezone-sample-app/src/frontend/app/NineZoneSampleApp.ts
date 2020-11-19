@@ -7,11 +7,11 @@ import { BrowserAuthorizationCallbackHandler, BrowserAuthorizationClient, Browse
 import { BentleyCloudRpcParams, DesktopAuthorizationClientConfiguration } from "@bentley/imodeljs-common";
 import { DesktopAuthorizationClient, FrontendRequestContext, IModelApp, IModelAppOptions } from "@bentley/imodeljs-frontend";
 import { UrlDiscoveryClient } from "@bentley/itwin-client";
-import { AppNotificationManager, FrameworkReducer, FrameworkRootState, StateManager, } from "@bentley/ui-framework";
+import { AppNotificationManager, FrameworkReducer, FrameworkRootState, StateManager } from "@bentley/ui-framework";
 import { initRpc } from "../api/rpc";
 import { Store } from "redux";
 
-export interface RootState extends FrameworkRootState { }
+export type RootState = FrameworkRootState;
 
 /**
  * List of possible backends that ninezone-sample-app can use

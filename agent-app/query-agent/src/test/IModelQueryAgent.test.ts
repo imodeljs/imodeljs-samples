@@ -138,7 +138,7 @@ describe("IModelQueryAgent Running with Changesets (#integration)", () => {
     requestContext = new AuthorizedClientRequestContext(accessToken!);
 
     agent = new QueryAgent();
-    await agent.initialize()
+    await agent.initialize();
 
     // Set up changeset generation harness and agent web server
     changesetHarness = new ChangesetGenerationHarness(undefined, undefined, QueryAgentConfig.outputDir);
