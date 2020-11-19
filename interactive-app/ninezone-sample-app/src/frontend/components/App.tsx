@@ -57,20 +57,20 @@ export default class App extends React.Component<{}, AppState> {
 
   private _onUserStateChanged = () => {
     this.setState((prev) => ({ user: { ...prev.user, isAuthorized: NineZoneSampleApp.oidcClient.isAuthorized, isLoading: false } }));
-  }
+  };
 
   private _onRegister = () => {
     window.open("https://git.io/fx8YP", "_blank");
-  }
+  };
 
   private _onOffline = () => {
     this.setState((prev) => ({ user: { ...prev.user, isLoading: false }, offlineIModel: true }));
-  }
+  };
 
   private _onStartSignin = async () => {
     this.setState((prev) => ({ user: { ...prev.user, isLoading: true } }));
     await NineZoneSampleApp.oidcClient.signIn(new FrontendRequestContext());
-  }
+  };
 
   /** Pick the first two available spatial, orthographic or drawing view definitions in the imodel */
   private async getFirstTwoViewDefinitions(imodel: IModelConnection): Promise<ViewState[]> {
@@ -121,7 +121,7 @@ export default class App extends React.Component<{}, AppState> {
       this.setState({ imodel: undefined, viewStates: undefined });
       alert(e.message);
     }
-  }
+  };
 
   private get _signInRedirectUri() {
     const split = (Config.App.get("imjs_browser_test_redirect_uri") as string).split("://");
@@ -237,12 +237,12 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
       alert(e.message);
     }
     await this.onIModelSelected(imodel);
-  }
+  };
 
   private _onClickSignOut = async () => {
     if (NineZoneSampleApp.oidcClient)
       NineZoneSampleApp.oidcClient.signOut(new ClientRequestContext());  // eslint-disable-line @typescript-eslint/no-floating-promises
-  }
+  };
 
   public render() {
     return (

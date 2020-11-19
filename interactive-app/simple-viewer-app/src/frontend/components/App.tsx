@@ -62,20 +62,20 @@ export default class App extends React.Component<{}, AppState> {
 
   private _onUserStateChanged = () => {
     this.setState((prev) => ({ user: { ...prev.user, isAuthorized: SimpleViewerApp.oidcClient.isAuthorized, isLoading: false } }));
-  }
+  };
 
   private _onRegister = () => {
     window.open("https://git.io/fx8YP", "_blank");
-  }
+  };
 
   private _onOffline = () => {
     this.setState((prev) => ({ user: { ...prev.user, isLoading: false }, offlineIModel: true }));
-  }
+  };
 
   private _onStartSignin = async () => {
     this.setState((prev) => ({ user: { ...prev.user, isLoading: true } }));
     SimpleViewerApp.oidcClient.signIn(new FrontendRequestContext());  // eslint-disable-line @typescript-eslint/no-floating-promises
-  }
+  };
 
   private _onSelectionChanged = (evt: SelectionChangeEventArgs, selectionProvider: ISelectionProvider) => {
     const selection = selectionProvider.getSelection(evt.imodel, evt.level);
@@ -97,7 +97,7 @@ export default class App extends React.Component<{}, AppState> {
       }
       Logger.logInfo(AppLoggerCategory.Frontend, "=======================================");
     }
-  }
+  };
 
   /** Pick the first available spatial view definition in the imodel */
   private async getFirstViewDefinitionId(imodel: IModelConnection): Promise<Id64String> {
@@ -136,7 +136,7 @@ export default class App extends React.Component<{}, AppState> {
       this.setState({ imodel: undefined, viewDefinitionId: undefined });
       alert(e.message);
     }
-  }
+  };
 
   private get _signInRedirectUri() {
     const split = (Config.App.get("imjs_browser_test_redirect_uri") as string).split("://");
@@ -244,12 +244,12 @@ class OpenIModelButton extends React.PureComponent<OpenIModelButtonProps, OpenIM
       alert(e.message);
     }
     await this.onIModelSelected(imodel);
-  }
+  };
 
   private _onClickSignOut = async () => {
     if (SimpleViewerApp.oidcClient)
       SimpleViewerApp.oidcClient.signOut(new ClientRequestContext()); // eslint-disable-line @typescript-eslint/no-floating-promises
-  }
+  };
 
   public render() {
     return (

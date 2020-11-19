@@ -23,7 +23,7 @@ Logger.setLevel(AppLoggerCategory.Frontend, LogLevel.Info);
   await NineZoneSampleApp.startup();
 
   // Initialize the AppUi & ConfigurableUiManager
-  AppUi.initialize();
+  await AppUi.initialize();
 
   // when initialization is complete, render
   ReactDOM.render(

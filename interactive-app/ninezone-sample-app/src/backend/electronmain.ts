@@ -35,7 +35,7 @@ const electronMain = async () => {
 
   const opts: ElectronManagerOptions = {
     webResourcesPath: path.join(__dirname, "..", "..", "..", "build"),
-  }
+  };
   const manager = (process.env.NODE_ENV === "development") ? new WebpackDevServerElectronManager(opts) : new IModelJsElectronManager(opts);
   await manager.initialize({
     width: 1280,
@@ -48,7 +48,7 @@ const electronMain = async () => {
     manager.mainWindow.show();
   }
 
-}
+};
 
 try {// execute this immediately when we load
   electronMain(); // eslint-disable-line @typescript-eslint/no-floating-promises
