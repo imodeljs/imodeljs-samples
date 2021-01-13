@@ -70,7 +70,7 @@ export class QueryAgent {
 
     if (this._iModelDb && this._iModelDb.isOpen) {
       this._iModelDb.close();
-      await BriefcaseManager.delete(requestContext, this._iModelDb.briefcaseKey);
+      await BriefcaseManager.deleteBriefcaseFiles(this._iModelDb.pathName, requestContext);
     }
     // Unsubscribe from events (if necessary)
     if (deleteChangeSetListener)

@@ -5,18 +5,17 @@
 import { Id64, Id64Set, Id64String } from "@bentley/bentleyjs-core";
 import { BriefcaseDb, BriefcaseManager, ConcurrencyControl, ECSqlStatement, Element, IModelDb, PhysicalElement, PhysicalModel, PhysicalPartition, SpatialCategory } from "@bentley/imodeljs-backend";
 import { AuthorizedClientRequestContext } from "@bentley/itwin-client";
-import { BriefcaseProps, CategoryProps, CodeScopeSpec, CodeSpec, ColorDef, DbResult, DownloadBriefcaseOptions, IModel, IModelVersion, InformationPartitionElementProps, SubCategoryAppearance, SyncMode } from "@bentley/imodeljs-common";
+import { BriefcaseProps, CategoryProps, CodeScopeSpec, CodeSpec, ColorDef, DbResult, IModel, IModelVersion, InformationPartitionElementProps, LocalBriefcaseProps, SubCategoryAppearance, SyncMode } from "@bentley/imodeljs-common";
 import * as crypto from "crypto";
 
 /** Injectable handles for opening IModels andStatic functions to create Models, CodeSecs, Categories, Category Selector, Styles, and View Definitions */
 export class IModelDbHandler {
   public constructor() { }
 
-  public async openLatestIModelDb(authContext: AuthorizedClientRequestContext, projectId: string, iModelId: string,
-    downloadOptions: DownloadBriefcaseOptions = { syncMode: SyncMode.PullAndPush }, iModelVersion: IModelVersion = IModelVersion.latest()): Promise<BriefcaseDb> {
-    const briefcaseProps: BriefcaseProps = await BriefcaseManager.download(authContext, projectId, iModelId, downloadOptions, iModelVersion);
+  public async openLatestIModelDb(authContext: AuthorizedClientRequestContext, projectId: string, iModelId: string, iModelVersion: IModelVersion = IModelVersion.latest()): Promise<BriefcaseDb> {
+    const briefcaseProps: LocalBriefcaseProps = await BriefcaseManager.downloadBriefcase(authContext, { contextId: projectId, asOf: iModelVersion.toJSON(), iModelId });
     authContext.enter();
-    const briefcase = await BriefcaseDb.open(authContext, briefcaseProps.key);
+    const briefcase = await BriefcaseDb.open(authContext, { fileName: briefcaseProps.fileName, readonly: false });
     briefcase.concurrencyControl.setPolicy(new ConcurrencyControl.OptimisticPolicy());
     return briefcase;
   }
@@ -109,7 +108,7 @@ export class IModelDbHandler {
     try {
       const codeSpec = iModelDb.codeSpecs.getByName(codeSpecName);
       return codeSpec;
-    } catch  { }
+    } catch { }
     return undefined;
   }
 }

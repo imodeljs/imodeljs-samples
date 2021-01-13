@@ -2,8 +2,8 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import { BriefcaseDb, BriefcaseManager } from "@bentley/imodeljs-backend";
-import { BriefcaseProps, IModelVersion, SyncMode } from "@bentley/imodeljs-common";
+import { BriefcaseDb, BriefcaseManager, RequestNewBriefcaseArg } from "@bentley/imodeljs-backend";
+import { IModelVersion, LocalBriefcaseProps } from "@bentley/imodeljs-common";
 import { AuthorizedClientRequestContext } from "@bentley/itwin-client";
 
 export class BriefcaseProvider {
@@ -13,9 +13,15 @@ export class BriefcaseProvider {
 
     if (!this._iModelDb) {
       // Downloads and opens a new local briefcase of the iModel at the specified version
-      const briefcaseProps: BriefcaseProps = await BriefcaseManager.download(requestContext, projectId, iModelId, { syncMode: SyncMode.PullOnly }, IModelVersion.asOfChangeSet(changeSetId));
+      const requestArgs: RequestNewBriefcaseArg = {
+        contextId: projectId,
+        iModelId,
+        asOf: IModelVersion.asOfChangeSet(changeSetId).toJSON()
+      };
+      
+      const briefcaseProps: LocalBriefcaseProps = await BriefcaseManager.downloadBriefcase(requestContext, requestArgs);
       requestContext.enter();
-      this._iModelDb = await BriefcaseDb.open(requestContext, briefcaseProps.key);
+      this._iModelDb = await BriefcaseDb.open(requestContext, { fileName: briefcaseProps.fileName, readonly: true });
     } else {
       // Update the existing local briefcase of the iModel to the specified version
       await this._iModelDb.pullAndMergeChanges(requestContext, IModelVersion.asOfChangeSet(changeSetId));

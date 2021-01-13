@@ -131,7 +131,7 @@ export class ChangesetGenerationHarness {
       if (this._iModelDb && this._iModelDb.isOpen) {
         this._iModelDb.close();
         try {
-          await BriefcaseManager.delete(authCtx, this._iModelDb.briefcaseKey);
+          await BriefcaseManager.deleteBriefcaseFiles(this._iModelDb.pathName, authCtx);
         } catch (error) {
           Logger.logError(ChangesetGenerationConfig.loggingCategory, error);
         }
