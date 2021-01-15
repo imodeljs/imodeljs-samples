@@ -13,15 +13,9 @@ export class BriefcaseProvider {
 
     if (!this._iModelDb) {
       // Downloads and opens a new local briefcase of the iModel at the specified version
-      const requestArgs: RequestNewBriefcaseArg = {
-        contextId: projectId,
-        iModelId,
-        asOf: IModelVersion.asOfChangeSet(changeSetId).toJSON()
-      };
-      
-      const briefcaseProps: LocalBriefcaseProps = await BriefcaseManager.downloadBriefcase(requestContext, requestArgs);
+      const briefcaseProps: LocalBriefcaseProps = await BriefcaseManager.downloadBriefcase(requestContext, { contextId: projectId, iModelId, asOf: IModelVersion.asOfChangeSet(changeSetId).toJSON() });
       requestContext.enter();
-      this._iModelDb = await BriefcaseDb.open(requestContext, { fileName: briefcaseProps.fileName, readonly: true });
+      this._iModelDb = await BriefcaseDb.open(requestContext, { fileName: briefcaseProps.fileName, readonly: false });
     } else {
       // Update the existing local briefcase of the iModel to the specified version
       await this._iModelDb.pullAndMergeChanges(requestContext, IModelVersion.asOfChangeSet(changeSetId));

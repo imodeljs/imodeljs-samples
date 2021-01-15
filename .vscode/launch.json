@@ -57,7 +57,12 @@
       },
       "port": 9229,
       "protocol": "inspector",
-      "outputCapture": "std"
+      "outputCapture": "std",
+      "outFiles": [
+        "${workspaceFolder}/**/*.js",
+        "!**/node_modules/**",
+        "${workspaceFolder}/tools/imodel-changeset-test-utility/lib"
+      ],
     },
     {
       "type": "node",
