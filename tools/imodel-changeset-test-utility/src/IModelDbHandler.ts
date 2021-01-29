@@ -5,7 +5,7 @@
 import { Id64, Id64Set, Id64String } from "@bentley/bentleyjs-core";
 import { BriefcaseDb, BriefcaseManager, ConcurrencyControl, ECSqlStatement, Element, IModelDb, PhysicalElement, PhysicalModel, PhysicalPartition, SpatialCategory } from "@bentley/imodeljs-backend";
 import { AuthorizedClientRequestContext } from "@bentley/itwin-client";
-import { BriefcaseProps, CategoryProps, CodeScopeSpec, CodeSpec, ColorDef, DbResult, IModel, IModelVersion, InformationPartitionElementProps, LocalBriefcaseProps, SubCategoryAppearance, SyncMode } from "@bentley/imodeljs-common";
+import { CategoryProps, CodeScopeSpec, CodeSpec, ColorDef, DbResult, IModel, IModelVersion, InformationPartitionElementProps, LocalBriefcaseProps, SubCategoryAppearance } from "@bentley/imodeljs-common";
 import * as crypto from "crypto";
 
 /** Injectable handles for opening IModels andStatic functions to create Models, CodeSecs, Categories, Category Selector, Styles, and View Definitions */

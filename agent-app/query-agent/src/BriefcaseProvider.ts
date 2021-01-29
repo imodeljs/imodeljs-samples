@@ -2,7 +2,7 @@
 * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 * See LICENSE.md in the project root for license terms and full copyright notice.
 *--------------------------------------------------------------------------------------------*/
-import { BriefcaseDb, BriefcaseManager, RequestNewBriefcaseArg } from "@bentley/imodeljs-backend";
+import { BriefcaseDb, BriefcaseManager } from "@bentley/imodeljs-backend";
 import { IModelVersion, LocalBriefcaseProps } from "@bentley/imodeljs-common";
 import { AuthorizedClientRequestContext } from "@bentley/itwin-client";
 
