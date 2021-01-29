@@ -1,13 +1,13 @@
 # 🚨Repository deprecated🚨
 **This repository has been deprecated and is no longer maintained. Please refer to three separate "starter apps" for examples of iModel.js applications.**
 ### Web viewer
-[itwin-viewer](https://github.com/imodeljs/itwin-viewer)
+[itwin-viewer](https://www.itwinjs.org/learning/tutorials/develop-web-viewer/)
 
 ### Desktop viewer
-[desktop-starter](https://github.com/imodeljs/desktop-starter)
+[desktop-starter](https://www.itwinjs.org/learning/tutorials/develop-desktop-viewer/)
 
 ### Agent
-[agent-starter](https://github.com/imodeljs/agent-starter)
+[agent-starter](https://www.itwinjs.org/learning/tutorials/develop-agent/)
 
 
 ---
