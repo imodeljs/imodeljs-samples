@@ -76,7 +76,7 @@ describe("Content view", () => {
     await nodeHandle.click();
 
     // Wait for table to load
-    await page.waitForSelector(".components-table .components-table-cell", { timeout: 50000 });
+    await page.waitForSelector(".components-table .components-table-row", { timeout: 50000 });
 
     // Limit search to table
     const tableHandle = await page.$(".components-table");
