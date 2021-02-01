@@ -11,7 +11,6 @@ import { Presentation } from "@bentley/presentation-backend";
 
 import { getSupportedRpcs } from "../common/rpcs";
 
-
 /**
  * Initializes Web Server backend
  */

@@ -1,4 +1,17 @@
-# iModel.js Samples
+# 🚨Repository deprecated🚨
+**This repository has been deprecated and is no longer maintained. Please refer to three separate "starter apps" for examples of iModel.js applications.**
+### Web viewer
+[itwin-viewer](https://www.itwinjs.org/learning/tutorials/develop-web-viewer/)
+
+### Desktop viewer
+[desktop-starter](https://www.itwinjs.org/learning/tutorials/develop-desktop-viewer/)
+
+### Agent
+[agent-starter](https://www.itwinjs.org/learning/tutorials/develop-agent/)
+
+
+---
+## iModel.js Samples
 
 Copyright © Bentley Systems, Incorporated. All rights reserved.
 

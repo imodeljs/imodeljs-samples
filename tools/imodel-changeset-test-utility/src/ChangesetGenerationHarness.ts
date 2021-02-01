@@ -129,9 +129,10 @@ export class ChangesetGenerationHarness {
     } finally {
       const authCtx = new AuthorizedClientRequestContext(this._accessToken!);
       if (this._iModelDb && this._iModelDb.isOpen) {
+        const pathName = this._iModelDb.pathName;
         this._iModelDb.close();
         try {
-          await BriefcaseManager.delete(authCtx, this._iModelDb.briefcaseKey);
+          await BriefcaseManager.deleteBriefcaseFiles(pathName, authCtx);
         } catch (error) {
           Logger.logError(ChangesetGenerationConfig.loggingCategory, error);
         }

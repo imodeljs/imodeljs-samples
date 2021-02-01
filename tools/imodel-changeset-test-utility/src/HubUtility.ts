@@ -7,7 +7,7 @@ import { AgentAuthorizationClient, AzureFileHandler } from "@bentley/backend-itw
 import { ClientRequestContext, Logger } from "@bentley/bentleyjs-core";
 import { ContextRegistryClient, Project } from "@bentley/context-registry-client";
 import { Briefcase, BriefcaseQuery, HubIModel, IModelHubClient, IModelQuery, Version } from "@bentley/imodelhub-client";
-import { BriefcaseManager } from "@bentley/imodeljs-backend";
+import { BriefcaseManager, IModelHost } from "@bentley/imodeljs-backend";
 import { IModelVersion } from "@bentley/imodeljs-common";
 import { AccessToken, AuthorizedClientRequestContext } from "@bentley/itwin-client";
 import { ChangesetGenerationConfig } from "./ChangesetGenerationConfig";
@@ -94,13 +94,13 @@ export class HubUtility {
     const projectId: string = await this.queryProjectIdByName(requestContext, projectName);
     const iModelId: string = await this.queryIModelIdByName(requestContext, projectId, iModelName);
 
-    const briefcases: Briefcase[] = await BriefcaseManager.imodelClient.briefcases.get(requestContext, iModelId, new BriefcaseQuery().ownedByMe());
+    const briefcases: Briefcase[] = await IModelHost.iModelClient.briefcases.get(requestContext, iModelId, new BriefcaseQuery().ownedByMe());
     if (briefcases.length > acquireThreshold) {
       Logger.logInfo(ChangesetGenerationConfig.loggingCategory, `Reached limit of maximum number of briefcases for ${projectName}:${iModelName}. Purging all briefcases.`);
 
       const promises = new Array<Promise<void>>();
       briefcases.forEach((briefcase: Briefcase) => {
-        promises.push(BriefcaseManager.imodelClient.briefcases.delete(requestContext, iModelId, briefcase.briefcaseId!));
+        promises.push(BriefcaseManager.releaseBriefcase(requestContext, {briefcaseId: briefcase.briefcaseId!, iModelId}));
       });
       await Promise.all(promises);
     }

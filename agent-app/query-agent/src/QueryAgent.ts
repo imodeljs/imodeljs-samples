@@ -69,8 +69,9 @@ export class QueryAgent {
     await pause(listenFor);
 
     if (this._iModelDb && this._iModelDb.isOpen) {
+      const pathName = this._iModelDb.pathName;
       this._iModelDb.close();
-      await BriefcaseManager.delete(requestContext, this._iModelDb.briefcaseKey);
+      await BriefcaseManager.deleteBriefcaseFiles(pathName, requestContext);
     }
     // Unsubscribe from events (if necessary)
     if (deleteChangeSetListener)

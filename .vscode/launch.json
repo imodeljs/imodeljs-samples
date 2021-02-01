@@ -57,7 +57,12 @@
       },
       "port": 9229,
       "protocol": "inspector",
-      "outputCapture": "std"
+      "outputCapture": "std",
+      "outFiles": [
+        "${workspaceFolder}/**/*.js",
+        "!**/node_modules/**",
+        "${workspaceFolder}/tools/imodel-changeset-test-utility/lib"
+      ],
     },
     {
       "type": "node",
@@ -360,6 +365,32 @@
       "runtimeExecutable": "npm",
       "skipFiles": [
         "<node_internals>/**"
+      ],
+      "type": "pwa-node",
+      "env": {
+        "imjs_agent_client_id": "",
+        "imjs_agent_client_secret": "",
+        "imjs_agent_imodel_name": "",
+        "imjs_agent_project_name": "",
+        "imjs_buddi_resolve_url_using_region": "",
+      },
+    },
+    {
+      "name": "changeset-test-util",
+      "request": "launch",
+      "runtimeArgs": [
+        "run-script",
+        "start"
+      ],
+      "cwd": "${workspaceFolder}/tools/imodel-changeset-test-utility",
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/**/*.js",
+        "!**/node_modules/**",
+        "${workspaceFolder}/tools/imodel-changeset-test-utility/lib"
       ],
       "type": "pwa-node",
       "env": {
